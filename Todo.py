@@ -6,11 +6,15 @@ def main():
     todo_list = p.read_text(encoding="utf8").splitlines()
 
     while True:
-        meny = int(input("Välj ett meny val:\n1: Titta på Todolistan\n2: Lägg till i Todo-list"))
+        meny = int(input("Välj ett meny val:\n1: Titta på Todo-list\n2: Lägg till i Todo-list\n"
+                         "3: Ta bort från Todo-list"))
         if meny == 1:
             showlist(todo_list)
         if meny == 2:
-            todo_list = addlist(todo_list,p)
+            todo_list = addlist(todo_list, p)
+        if meny == 3:
+            pass
+
 
 
 def showlist(text):
@@ -26,6 +30,10 @@ def addlist(todo_list,p):
     todo_list.append(new_content)
     p.write_text("\n".join(todo_list), encoding='utf8')
     return todo_list
+
+def delete_item(todo_list):
+    showlist(todo_list)
+
 
 if __name__ == "__main__":
     main()
