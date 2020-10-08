@@ -23,16 +23,16 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        velocity = 3
+        velocity = 1
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT] and player_x > velocity:
             player_x -= velocity
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT] and player_x < 800 - 40 - velocity:
             player_x += velocity
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN] and player_y < 600 - 30 - velocity:
             player_y += velocity
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_UP] and player_y > velocity:
             player_y -= velocity
         if keys[pygame.K_ESCAPE]:
             running = False
