@@ -1,6 +1,7 @@
-def main():
-    pass
+import pygame
 
 
-if __name__ == '__main__':
-    main()
+def get_player_sprite():
+    player_sprite = pygame.image.load("images_src/frog.png")
+    player_sprite = pygame.transform.scale(player_sprite,(40,30))
+    return player_sprite

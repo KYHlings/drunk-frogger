@@ -1,12 +1,12 @@
 import pygame
-
+from image_handler import get_player_sprite
 pygame.init()
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, image):
+    def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.transform.scale(image, (37, 20))
+        self.image = get_player_sprite()
 
 
 def main():
@@ -18,6 +18,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        screen.blit(get_player_sprite(),(400,300))
 
         pygame.display.update()
 
