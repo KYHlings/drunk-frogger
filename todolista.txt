@@ -1,5 +1,0 @@
-Lista Todo Items
-Lägga till Todo Item
-Ta bort Todo Item
-Avsluta program
-
