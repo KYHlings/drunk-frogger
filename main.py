@@ -25,8 +25,10 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        velocity = 1
-
+        velocity = 3
+        mob_x += velocity
+        if mob_x == 720:
+            mob_x = 0
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] and player_x > velocity:
             player_x -= velocity
