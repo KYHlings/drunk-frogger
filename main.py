@@ -22,9 +22,6 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.K_ESCAPE:
-                running = False
-
 
         velocity = 3
 
@@ -37,9 +34,12 @@ def main():
             player_y += velocity
         if keys[pygame.K_UP]:
             player_y -= velocity
+        if keys[pygame.K_ESCAPE]:
+            running = False
 
         screen.blit(get_player_sprite(), (player_x, player_y))
         pygame.display.update()
+
 
 if __name__ == '__main__':
     main()
