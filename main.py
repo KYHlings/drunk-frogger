@@ -1,7 +1,9 @@
 import pygame
+from quiz_handler import get_quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite
 
 pygame.init()
+
 
 
 class Player(object):
@@ -23,7 +25,7 @@ class Mob(object):
 
 
 def main():
-    pygame.mixer.load("")
+    pygame.mixer.music.load("sounds_src/ph_bgm2.mp3")
     pygame.mixer.music.play(-1)
     animals = Player(400, 570, 40, 30)
     cars = [Mob(0, 350, 80, 40), Mob(0, 400, 80, 40), Mob(0, 450, 80, 40)]
