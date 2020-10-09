@@ -27,6 +27,7 @@ class Mob(object):
 def main():
     pygame.mixer.music.load("sounds_src/ph_bgm2.mp3")
     pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.2)
     animals = Player(400, 570, 40, 30)
     cars = [Mob(0, 350, 80, 40), Mob(0, 400, 80, 40), Mob(0, 450, 80, 40)]
     screen = pygame.display.set_mode((800, 600))
