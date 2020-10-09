@@ -23,6 +23,8 @@ class Mob(object):
 
 
 def main():
+    pygame.mixer.load("")
+    pygame.mixer.music.play(-1)
     animals = Player(400, 570, 40, 30)
     cars = [Mob(0, 350, 80, 40), Mob(0, 400, 80, 40), Mob(0, 450, 80, 40)]
     screen = pygame.display.set_mode((800, 600))
@@ -39,14 +41,14 @@ def main():
             if cars[i].mob_x == 720:
                 cars[i].mob_x = 0
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] and animals.player_x > animals.velocity:
+        if keys[pygame.K_LEFT] or keys[pygame.K_a] and animals.player_x > animals.velocity:
             animals.player_x -= animals.velocity
-        if keys[pygame.K_RIGHT] and animals.player_x < 800 - 40 - animals.velocity:
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d] and animals.player_x < 800 - 40 - animals.velocity:
             animals.player_x += animals.velocity
-        if keys[pygame.K_DOWN] and animals.player_y < 600 - 30 - animals.velocity:
-            animals.player_y += animals.velocity
-        if keys[pygame.K_UP] and animals.player_y > animals.velocity:
+        if keys[pygame.K_UP] or keys[pygame.K_w] and animals.player_y > animals.velocity:
             animals.player_y -= animals.velocity
+        if keys[pygame.K_DOWN] or keys[pygame.K_s] and animals.player_y < 600 - 30 - animals.velocity:
+            animals.player_y += animals.velocity
         if keys[pygame.K_ESCAPE]:
             running = False
 
