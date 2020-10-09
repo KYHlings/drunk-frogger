@@ -4,17 +4,25 @@ from image_handler import get_player_sprite, get_background_image, get_mob_sprit
 pygame.init()
 
 
-class Player(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = get_player_sprite()
+class Player(object):
+    def __init__(self,player_x,player_y,width,height):
+        self.player_x = player_x
+        self.player_y = player_y
+        self.width = width
+        self.height = height
+        self.velocity = 2
 
+class Mob(object):
+    def __init__(self,mob_x,mob_y,width,height):
+        self.mob_x = mob_x
+        self.mob_y = mob_y
+        self.width =width
+        self.height = height
+        self.velocity = 2
 
 def main():
-    player_x = 400
-    player_y = 570
-    mob_x = 0
-    mob_y = 350
+    animals = Player(400,570,40,30)
+    cars = Mob(0,350,80,40)
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Drunk Frogger")
     running = True
@@ -25,24 +33,24 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        velocity = 3
-        mob_x += velocity
-        if mob_x == 720:
-            mob_x = 0
+
+        cars.mob_x += cars.velocity
+        if cars.mob_x == 720:
+            cars.mob_x = 0
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] and player_x > velocity:
-            player_x -= velocity
-        if keys[pygame.K_RIGHT] and player_x < 800 - 40 - velocity:
-            player_x += velocity
-        if keys[pygame.K_DOWN] and player_y < 600 - 30 - velocity:
-            player_y += velocity
-        if keys[pygame.K_UP] and player_y > velocity:
-            player_y -= velocity
+        if keys[pygame.K_LEFT] and animals.player_x > animals.velocity:
+            animals.player_x -= animals.velocity
+        if keys[pygame.K_RIGHT] and animals.player_x < 800 - 40 - animals.velocity:
+            animals.player_x += animals.velocity
+        if keys[pygame.K_DOWN] and animals.player_y < 600 - 30 - animals.velocity:
+            animals.player_y += animals.velocity
+        if keys[pygame.K_UP] and animals.player_y > animals.velocity:
+            animals.player_y -= animals.velocity
         if keys[pygame.K_ESCAPE]:
             running = False
 
-        screen.blit(get_mob_sprite(),(mob_x,mob_y))
-        screen.blit(get_player_sprite(), (player_x, player_y))
+        screen.blit(get_mob_sprite(),(cars.mob_x,cars.mob_y))
+        screen.blit(get_player_sprite(), (animals.player_x, animals.player_y))
         pygame.display.update()
 
 
