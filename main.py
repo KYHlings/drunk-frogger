@@ -13,6 +13,7 @@ class Player(object):
         self.width = width
         self.height = height
         self.velocity = 2
+        self.hitbox = (self.player_x,self.player_y,width,height)
 
 
 class Mob(object):
@@ -22,7 +23,7 @@ class Mob(object):
         self.width = width
         self.height = height
         self.velocity = 2
-
+        self.hitbox = (self.mob_x,self.mob_y,width,height)
 
 def main():
     pygame.mixer.music.load("sounds_src/ph_bgm2.mp3")
@@ -57,7 +58,11 @@ def main():
 
         for i in range(len(cars)):
             screen.blit(get_mob_sprite(), (cars[i].mob_x, cars[i].mob_y))
+            cars[i].hitbox = (cars[i].mob_x,cars[i].mob_y,cars[i].width,cars[i].height)
+           # pygame.draw.rect(screen,(255,0,0),cars[i].hitbox,3)
         screen.blit(get_player_sprite(), (animals.player_x, animals.player_y))
+        animals.hitbox = (animals.player_x,animals.player_y,animals.width,animals.height)
+        #pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
         pygame.display.update()
 
 
