@@ -5,24 +5,26 @@ pygame.init()
 
 
 class Player(object):
-    def __init__(self,player_x,player_y,width,height):
+    def __init__(self, player_x, player_y, width, height):
         self.player_x = player_x
         self.player_y = player_y
         self.width = width
         self.height = height
         self.velocity = 2
 
+
 class Mob(object):
-    def __init__(self,mob_x,mob_y,width,height):
+    def __init__(self, mob_x, mob_y, width, height):
         self.mob_x = mob_x
         self.mob_y = mob_y
-        self.width =width
+        self.width = width
         self.height = height
         self.velocity = 2
 
+
 def main():
-    animals = Player(400,570,40,30)
-    cars = Mob(0,350,80,40)
+    animals = Player(400, 570, 40, 30)
+    cars = [Mob(0, 350, 80, 40), Mob(0, 400, 80, 40), Mob(0, 450, 80, 40)]
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Drunk Frogger")
     running = True
@@ -32,11 +34,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
-
-        cars.mob_x += cars.velocity
-        if cars.mob_x == 720:
-            cars.mob_x = 0
+        for i in range(len(cars)):
+            cars[i].mob_x += cars[i].velocity
+            if cars[i].mob_x == 720:
+                cars[i].mob_x = 0
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] and animals.player_x > animals.velocity:
             animals.player_x -= animals.velocity
@@ -49,7 +50,8 @@ def main():
         if keys[pygame.K_ESCAPE]:
             running = False
 
-        screen.blit(get_mob_sprite(),(cars.mob_x,cars.mob_y))
+        for i in range(len(cars)):
+            screen.blit(get_mob_sprite(), (cars[i].mob_x, cars[i].mob_y))
         screen.blit(get_player_sprite(), (animals.player_x, animals.player_y))
         pygame.display.update()
 

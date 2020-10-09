@@ -13,6 +13,6 @@ def get_background_image():
     return background_image
 
 def get_mob_sprite():
-    mob_sprite = pygame.image.load("images_src/lorry.png")
+    mob_sprite = pygame.image.load("images_src/postnord2.png")
     mob_sprite = pygame.transform.scale(mob_sprite,(80,40))
     return mob_sprite
