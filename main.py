@@ -1,7 +1,7 @@
 from random import randint
 import pygame
 from quiz_handler import get_quiz
-from image_handler import get_player_sprite, get_background_image, get_mob_sprite
+from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -83,6 +83,8 @@ def crash(text):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_y:
                     run = False
+                if event.key == pygame.K_n:
+                    run = False
         screen.blit(message_window, (200, 250))
         screen.blit(text_surf, text_rect)
         pygame.display.update()
@@ -98,14 +100,14 @@ def main():
     rotation = 0
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
             Mob(0, 450, 80, 40, get_mob_sprite(False))]
-    #wise_goat = Get(animals.player_x, 200, 40, 30 )
+    wise_goat = Get(animals.player_x, 200, 40, 30 )
     pygame.display.set_caption("Drunk Frogger")
     running = True
 
     now = [pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()]
     mob_spawn_timer = [1000, 2000, 1000]
     lanes = [350, 400, 450]
-
+    q = False
     while running:
         clock.tick(60)
         screen.blit(get_background_image(), (0, 0))
@@ -158,13 +160,16 @@ def main():
             car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
             pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
         screen.blit(get_player_sprite(rotation), (animals.player_x, animals.player_y))
+        screen.blit(get_get_sprite(),(animals.player_x - 20,wise_goat.get_y))
         for car in cars:
             if animals.check_collide(car):
                 splat.play()
                 # pygame.mixer.music.stop()
                 animals.reset()
-                crash("Aj!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
+                #crash("Är T.O.A.D's bäst? y/n ")
+        if animals.player_y <= 300 and q == False:
+            crash("Är T.O.A.D's bäst? y/n ")
+            q = True
         pygame.display.update()
 
 
