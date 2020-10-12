@@ -5,6 +5,7 @@ from quiz_handler import get_quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite
 
 pygame.init()
+screen = pygame.display.set_mode((800, 600))
 
 clock = pygame.time.Clock()
 
@@ -18,7 +19,7 @@ class Player():
         self.width = width
         self.height = height
         self.velocity = 3
-        self.hitbox = (self.player_x, self.player_y, width, height)
+        self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
 
     def check_collide_x(self,mob):
         if self.player_x <= mob.mob_x:
@@ -55,8 +56,27 @@ class Mob():
         self.width = width
         self.height = height
         self.velocity = 4
-        self.hitbox = (self.mob_x, self.mob_y, width, height)
+        self.hitbox = (self.mob_x + 6, self.mob_y + 7, 69, 30)
 
+def text_object(text, font):
+    text_surface = font.render(text, True, (255, 255, 255))
+    return text_surface, text_surface.get_rect()
+
+def crash(text):
+
+    run = True
+    while run:
+        message_window = pygame.Surface([400, 100])
+        large_text = pygame.font.Font("freesansbold.ttf", 20)
+        text_surf,text_rect = text_object(text,large_text)
+        text_rect.center = (400, 300)
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_y:
+                    run = False
+        screen.blit(message_window, (200, 250))
+        screen.blit(text_surf, text_rect)
+        pygame.display.update()
 
 
 def main():
@@ -65,7 +85,6 @@ def main():
     pygame.mixer.music.set_volume(0.1)
     animals = Player(400, 570, 40, 30)
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)), Mob(0, 450, 80, 40, get_mob_sprite(False))]
-    screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Drunk Frogger")
     running = True
 
@@ -110,15 +129,15 @@ def main():
 
         for car in cars:
             screen.blit(car.image, (car.mob_x, car.mob_y))
-            car.hitbox = (car.mob_x, car.mob_y, car.width, car.height)
-        pygame.draw.rect(screen,(255,0,0),car.hitbox,3)
+            car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
+            pygame.draw.rect(screen,(255,0,0),car.hitbox,3)
         screen.blit(get_player_sprite(), (animals.player_x, animals.player_y))
-        animals.hitbox = (animals.player_x, animals.player_y, animals.width, animals.height)
+        animals.hitbox = (animals.player_x + 2, animals.player_y + 2, 36, 27)
         pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
         for car in cars:
             if animals.check_collide(car):
                 animals.reset()
-
+                crash("Aj!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         pygame.display.update()
 
 
