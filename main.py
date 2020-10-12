@@ -49,12 +49,20 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         for car in cars[:]:
-            car.mob_x += car.velocity
-            if car.mob_x >= 800:
-                cars.remove(car)
+            if car.mob_y!= 400:
+                car.mob_x += car.velocity
+                if car.mob_x >= 800:
+                    cars.remove(car)
+            else:
+                car.mob_x -= car.velocity
+                if car.mob_x <= -50:
+                    cars.remove(car)
         for i in range(3):
             if pygame.time.get_ticks() - now[i] >= mob_spawn_timer[i]:
-                cars.append(Mob(0, lanes[i], 80, 40, get_mob_sprite()))
+                if lanes[i]!= 400:
+                    cars.append(Mob(0, lanes[i], 80, 40, get_mob_sprite()))
+                else:
+                    cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite()))
                 now[i] = pygame.time.get_ticks()
                 mob_spawn_timer[i] = randint(1000, 2000)
         keys = pygame.key.get_pressed()
