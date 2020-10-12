@@ -64,7 +64,7 @@ def main():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.1)
     animals = Player(400, 570, 40, 30)
-    cars = [Mob(0, 350, 80, 40, get_mob_sprite()), Mob(0, 400, 80, 40, get_mob_sprite()), Mob(0, 450, 80, 40, get_mob_sprite())]
+    cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)), Mob(0, 450, 80, 40, get_mob_sprite(False))]
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Drunk Frogger")
     running = True
@@ -91,9 +91,9 @@ def main():
         for i in range(3):
             if pygame.time.get_ticks() - now[i] >= mob_spawn_timer[i]:
                 if lanes[i]!= 400:
-                    cars.append(Mob(0, lanes[i], 80, 40, get_mob_sprite()))
+                    cars.append(Mob(0, lanes[i], 80, 40, get_mob_sprite(False)))
                 else:
-                    cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite()))
+                    cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite(True)))
                 now[i] = pygame.time.get_ticks()
                 mob_spawn_timer[i] = randint(1000, 2000)
         keys = pygame.key.get_pressed()
