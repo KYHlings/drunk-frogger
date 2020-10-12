@@ -1,3 +1,5 @@
+from random import randint
+
 import pygame
 from quiz_handler import get_quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite
@@ -35,15 +37,24 @@ def main():
     pygame.display.set_caption("Drunk Frogger")
     running = True
 
+    now = [pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()]
+    mob_spawn_timer = [1000, 2000, 1000]
+    lanes = [350, 400, 450]
+
     while running:
         screen.blit(get_background_image(), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        for i in range(len(cars)):
-            cars[i].mob_x += cars[i].velocity
-            if cars[i].mob_x == 720:
-                cars[i].mob_x = 0
+        for car in cars[:]:
+            car.mob_x += car.velocity
+            if car.mob_x >= 800:
+                cars.remove(car)
+        for i in range(3):
+            if pygame.time.get_ticks() - now[i] >= mob_spawn_timer[i]:
+                cars.append(Mob(0, lanes[i], 80, 40))
+                now[i] = pygame.time.get_ticks()
+                mob_spawn_timer[i] = randint(1000,2000)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a] and animals.player_x > animals.velocity:
             animals.player_x -= animals.velocity
