@@ -6,7 +6,7 @@ from image_handler import get_player_sprite, get_background_image, get_mob_sprit
 
 pygame.init()
 
-
+clock = pygame.time.Clock()
 
 class Player(object):
     def __init__(self, player_x, player_y, width, height):
@@ -15,7 +15,7 @@ class Player(object):
         self.width = width
         self.height = height
         self.velocity = 2
-        self.hitbox = (self.player_x,self.player_y,width,height)
+        self.hitbox = (self.player_x, self.player_y, width, height)
 
 
 class Mob(object):
@@ -25,10 +25,11 @@ class Mob(object):
         self.width = width
         self.height = height
         self.velocity = 2
-        self.hitbox = (self.mob_x,self.mob_y,width,height)
+        self.hitbox = (self.mob_x, self.mob_y, width, height)
+
 
 def main():
-    pygame.mixer.music.load("sounds_src/ph_bgm2.mp3")
+    pygame.mixer.music.load("sounds_src/df_level_drunk.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.2)
     animals = Player(400, 570, 40, 30)
@@ -42,6 +43,7 @@ def main():
     lanes = [350, 400, 450]
 
     while running:
+        clock.tick(30)
         screen.blit(get_background_image(), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -54,7 +56,7 @@ def main():
             if pygame.time.get_ticks() - now[i] >= mob_spawn_timer[i]:
                 cars.append(Mob(0, lanes[i], 80, 40))
                 now[i] = pygame.time.get_ticks()
-                mob_spawn_timer[i] = randint(1000,2000)
+                mob_spawn_timer[i] = randint(1000, 2000)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a] and animals.player_x > animals.velocity:
             animals.player_x -= animals.velocity
@@ -69,11 +71,11 @@ def main():
 
         for i in range(len(cars)):
             screen.blit(get_mob_sprite(), (cars[i].mob_x, cars[i].mob_y))
-            cars[i].hitbox = (cars[i].mob_x,cars[i].mob_y,cars[i].width,cars[i].height)
-           # pygame.draw.rect(screen,(255,0,0),cars[i].hitbox,3)
+            cars[i].hitbox = (cars[i].mob_x, cars[i].mob_y, cars[i].width, cars[i].height)
+        # pygame.draw.rect(screen,(255,0,0),cars[i].hitbox,3)
         screen.blit(get_player_sprite(), (animals.player_x, animals.player_y))
-        animals.hitbox = (animals.player_x,animals.player_y,animals.width,animals.height)
-        #pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
+        animals.hitbox = (animals.player_x, animals.player_y, animals.width, animals.height)
+        # pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
         pygame.display.update()
 
 
