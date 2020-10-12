@@ -80,6 +80,8 @@ def crash(text):
 
 
 def main():
+    splat = pygame.mixer.Sound('sounds_src/splat.wav')
+
     pygame.mixer.music.load("sounds_src/df_level.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.1)
@@ -93,7 +95,7 @@ def main():
     lanes = [350, 400, 450]
 
     while running:
-        clock.tick(30)
+        clock.tick(60)
         screen.blit(get_background_image(), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -136,8 +138,11 @@ def main():
         pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
         for car in cars:
             if animals.check_collide(car):
+                splat.play()
+                #pygame.mixer.music.stop()
                 animals.reset()
                 crash("Aj!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
         pygame.display.update()
 
 
