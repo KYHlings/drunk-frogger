@@ -36,7 +36,7 @@ class Player():
                 return True
             return False
         else:
-            if mob.mob_y + mob.height <= self.player_y:
+            if mob.mob_y + mob.height >= self.player_y:
                 return True
             return False
     def check_collide(self,mob):
