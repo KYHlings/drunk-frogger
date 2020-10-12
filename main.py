@@ -13,7 +13,7 @@ class Player(object):
         self.player_y = player_y
         self.width = width
         self.height = height
-        self.velocity = 2
+        self.velocity = 3
         self.hitbox = (self.player_x, self.player_y, width, height)
 
 
@@ -24,14 +24,14 @@ class Mob(object):
         self.image = image
         self.width = width
         self.height = height
-        self.velocity = 2
+        self.velocity = 4
         self.hitbox = (self.mob_x, self.mob_y, width, height)
 
 
 def main():
-   # pygame.mixer.music.load("sounds_src/df_level_drunk.mp3")
-   # pygame.mixer.music.play(-1)
-   # pygame.mixer.music.set_volume(0.2)
+    pygame.mixer.music.load("sounds_src/df_level.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.1)
     animals = Player(400, 570, 40, 30)
     cars = [Mob(0, 350, 80, 40, get_mob_sprite()), Mob(0, 400, 80, 40, get_mob_sprite()), Mob(0, 450, 80, 40, get_mob_sprite())]
     screen = pygame.display.set_mode((800, 600))
@@ -43,6 +43,7 @@ def main():
     lanes = [350, 400, 450]
 
     while running:
+        clock.tick(30)
         screen.blit(get_background_image(), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
