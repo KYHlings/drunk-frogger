@@ -1,5 +1,7 @@
 from random import randint
 import pygame
+
+from music_handler import get_level_music, get_goat_music, get_splat
 from quiz_handler import get_quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite
 
@@ -115,12 +117,18 @@ def crash(text):
         pygame.display.update()
 
 
+def redraw_window(cars, animals, wise_goat):
+    for car in cars:
+        screen.blit(car.image, (car.mob_x, car.mob_y))
+        car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
+        pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
+    screen.blit(get_player_sprite(animals.rotation), (animals.player_x, animals.player_y))
+    screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
+    pygame.display.update()
+
+
 def main():
-    splat = pygame.mixer.Sound('sounds_src/splat.wav')
-    # pygame.mixer.music.load("sounds_src/df_goat_music.mp3")
-    pygame.mixer.music.load("sounds_src/df_level.mp3")
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_volume(0.1)
+    get_level_music()
     animals = Player(400, 570, 40, 30, 0)
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
             Mob(0, 450, 80, 40, get_mob_sprite(False))]
@@ -161,28 +169,15 @@ def main():
             running = False
 
         for car in cars:
-            screen.blit(car.image, (car.mob_x, car.mob_y))
-            car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
-            pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
-        screen.blit(get_player_sprite(animals.rotation), (animals.player_x, animals.player_y))
-        screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
-        for car in cars:
             if animals.check_collide(car):
-                splat.play()
+                get_splat()
                 animals.reset()
-                # crash("Är T.O.A.D's bäst? y/n ")
         if animals.player_y <= 300 and q == False:
-            pygame.mixer.music.stop()
-            pygame.mixer.music.load("sounds_src/df_goat_music.mp3")
-            pygame.mixer.music.play(-1)
-
+            get_goat_music()
             crash("Är T.O.A.D's bäst? y/n ")
             q = True
-            pygame.mixer.music.stop()
-            pygame.mixer.music.load("sounds_src/df_level.mp3")
-            pygame.mixer.music.play(-1)
-
-        pygame.display.update()
+            get_level_music()
+        redraw_window(cars, animals, wise_goat)
 
 
 if __name__ == '__main__':
