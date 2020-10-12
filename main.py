@@ -7,7 +7,11 @@ from image_handler import get_player_sprite, get_background_image, get_mob_sprit
 pygame.init()
 
 clock = pygame.time.Clock()
-class Player(object):
+
+
+
+
+class Player():
     def __init__(self, player_x, player_y, width, height):
         self.player_x = player_x
         self.player_y = player_y
@@ -16,8 +20,34 @@ class Player(object):
         self.velocity = 3
         self.hitbox = (self.player_x, self.player_y, width, height)
 
+    def check_collide_x(self,mob):
+        if self.player_x <= mob.mob_x:
+            if self.player_x + self.width >= mob.mob_x:
+                return True
+            return False
+        else:
+            if mob.mob_x + mob.width >= self.player_x:
+                return True
+            return False
 
-class Mob(object):
+    def check_collide_y(self,mob):
+        if self.player_y <= mob.mob_y:
+            if self.player_y + self.height >= mob.mob_y:
+                return True
+            return False
+        else:
+            if mob.mob_y + mob.height <= self.player_y:
+                return True
+            return False
+    def check_collide(self,mob):
+
+        return self.check_collide_y(mob) and self.check_collide_x(mob)
+
+    def reset(self):
+        self.player_x = 400
+        self.player_y = 570
+
+class Mob():
     def __init__(self, mob_x, mob_y, width, height, image):
         self.mob_x = mob_x
         self.mob_y = mob_y
@@ -26,6 +56,7 @@ class Mob(object):
         self.height = height
         self.velocity = 4
         self.hitbox = (self.mob_x, self.mob_y, width, height)
+
 
 
 def main():
@@ -80,10 +111,14 @@ def main():
         for car in cars:
             screen.blit(car.image, (car.mob_x, car.mob_y))
             car.hitbox = (car.mob_x, car.mob_y, car.width, car.height)
-        # pygame.draw.rect(screen,(255,0,0),cars[i].hitbox,3)
+        pygame.draw.rect(screen,(255,0,0),car.hitbox,3)
         screen.blit(get_player_sprite(), (animals.player_x, animals.player_y))
         animals.hitbox = (animals.player_x, animals.player_y, animals.width, animals.height)
-        # pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
+        pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
+        for car in cars:
+            if animals.check_collide(car):
+                animals.reset()
+
         pygame.display.update()
 
 
