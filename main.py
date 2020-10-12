@@ -92,7 +92,7 @@ def crash(text):
 
 def main():
     splat = pygame.mixer.Sound('sounds_src/splat.wav')
-
+    #pygame.mixer.music.load("sounds_src/df_goat_music.mp3")
     pygame.mixer.music.load("sounds_src/df_level.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.1)
@@ -168,8 +168,16 @@ def main():
                 animals.reset()
                 #crash("Är T.O.A.D's bäst? y/n ")
         if animals.player_y <= 300 and q == False:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load("sounds_src/df_goat_music.mp3")
+            pygame.mixer.music.play(-1)
+
             crash("Är T.O.A.D's bäst? y/n ")
             q = True
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load("sounds_src/df_level.mp3")
+            pygame.mixer.music.play(-1)
+        
         pygame.display.update()
 
 
