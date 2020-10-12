@@ -24,7 +24,7 @@ class Mob(object):
         self.image = image
         self.width = width
         self.height = height
-        self.velocity = 5
+        self.velocity = 2
         self.hitbox = (self.mob_x, self.mob_y, width, height)
 
 
@@ -43,7 +43,6 @@ def main():
     lanes = [350, 400, 450]
 
     while running:
-        clock.tick(30)
         screen.blit(get_background_image(), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
