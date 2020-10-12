@@ -1,5 +1,4 @@
 from random import randint
-
 import pygame
 from quiz_handler import get_quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite
@@ -58,6 +57,15 @@ class Mob:
         self.velocity = 4
         self.hitbox = (self.mob_x + 6, self.mob_y + 7, 69, 30)
 
+class Get:
+    def __init__(self, get_x, get_y, width, height):
+        self.get_x = get_x
+        self.get_y = get_y
+        self.width = width
+        self.height = height
+        self.velocity = 4
+        self.hitbox = (self.get_x + 6, self.get_y + 7, 69, 30)
+
 
 def text_object(text, font):
     text_surface = font.render(text, True, (255, 255, 255))
@@ -90,6 +98,7 @@ def main():
     rotation = 0
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
             Mob(0, 450, 80, 40, get_mob_sprite(False))]
+    #wise_goat = Get(animals.player_x, 200, 40, 30 )
     pygame.display.set_caption("Drunk Frogger")
     running = True
 
@@ -124,15 +133,23 @@ def main():
         if keys[pygame.K_LEFT] or keys[pygame.K_a] and animals.player_x > animals.velocity:
             animals.player_x -= animals.velocity
             rotation = 90
+            animals.hitbox = (animals.player_x + 2, animals.player_y + 2, 27, 36)
+            pygame.draw.rect(screen, (255, 0, 0), animals.hitbox, 2)
         if keys[pygame.K_RIGHT] or keys[pygame.K_d] and animals.player_x < 800 - 40 - animals.velocity:
             animals.player_x += animals.velocity
             rotation = 270
+            animals.hitbox = (animals.player_x + 2, animals.player_y + 2, 27, 36)
+            pygame.draw.rect(screen, (255, 0, 0), animals.hitbox, 2)
         if keys[pygame.K_UP] or keys[pygame.K_w] and animals.player_y > animals.velocity:
             animals.player_y -= animals.velocity
             rotation = 0
+            animals.hitbox = (animals.player_x + 2, animals.player_y + 2, 36, 27)
+            pygame.draw.rect(screen, (255, 0, 0), animals.hitbox, 2)
         if keys[pygame.K_DOWN] or keys[pygame.K_s] and animals.player_y < 600 - 30 - animals.velocity:
             rotation = 180
             animals.player_y += animals.velocity
+            animals.hitbox = (animals.player_x + 2, animals.player_y + 2, 36, 27)
+            pygame.draw.rect(screen, (255, 0, 0), animals.hitbox, 2)
         if keys[pygame.K_ESCAPE]:
             running = False
 
@@ -141,8 +158,6 @@ def main():
             car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
             pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
         screen.blit(get_player_sprite(rotation), (animals.player_x, animals.player_y))
-        animals.hitbox = (animals.player_x + 2, animals.player_y + 2, 36, 27)
-        pygame.draw.rect(screen, (255, 0, 0), animals.hitbox, 2)
         for car in cars:
             if animals.check_collide(car):
                 splat.play()

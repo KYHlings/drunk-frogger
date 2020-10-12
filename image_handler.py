@@ -8,6 +8,10 @@ def get_player_sprite(rotation):
     player_sprite = pygame.transform.rotate(player_sprite, rotation)
     return player_sprite
 
+def get_get_sprite():
+    get_sprite = pygame.image.load("images_src/visgetens_het.png")
+    get_sprite = pygame.transform.scale(get_sprite, (40, 30))
+    return get_sprite
 
 def get_background_image():
     background_image = pygame.image.load("images_src/back_placehold2.png")
