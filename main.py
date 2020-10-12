@@ -10,9 +10,7 @@ screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
 
-
-
-class Player():
+class Player:
     def __init__(self, player_x, player_y, width, height):
         self.player_x = player_x
         self.player_y = player_y
@@ -21,7 +19,7 @@ class Player():
         self.velocity = 3
         self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
 
-    def check_collide_x(self,mob):
+    def check_collide_x(self, mob):
         if self.player_x <= mob.mob_x:
             if self.player_x + self.width >= mob.mob_x:
                 return True
@@ -31,7 +29,7 @@ class Player():
                 return True
             return False
 
-    def check_collide_y(self,mob):
+    def check_collide_y(self, mob):
         if self.player_y <= mob.mob_y:
             if self.player_y + self.height >= mob.mob_y:
                 return True
@@ -40,7 +38,8 @@ class Player():
             if mob.mob_y + mob.height >= self.player_y:
                 return True
             return False
-    def check_collide(self,mob):
+
+    def check_collide(self, mob):
 
         return self.check_collide_y(mob) and self.check_collide_x(mob)
 
@@ -48,7 +47,8 @@ class Player():
         self.player_x = 400
         self.player_y = 570
 
-class Mob():
+
+class Mob:
     def __init__(self, mob_x, mob_y, width, height, image):
         self.mob_x = mob_x
         self.mob_y = mob_y
@@ -58,17 +58,18 @@ class Mob():
         self.velocity = 4
         self.hitbox = (self.mob_x + 6, self.mob_y + 7, 69, 30)
 
+
 def text_object(text, font):
     text_surface = font.render(text, True, (255, 255, 255))
     return text_surface, text_surface.get_rect()
 
-def crash(text):
 
+def crash(text):
     run = True
     while run:
         message_window = pygame.Surface([400, 100])
         large_text = pygame.font.Font("freesansbold.ttf", 20)
-        text_surf,text_rect = text_object(text,large_text)
+        text_surf, text_rect = text_object(text, large_text)
         text_rect.center = (400, 300)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -86,7 +87,9 @@ def main():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.1)
     animals = Player(400, 570, 40, 30)
-    cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)), Mob(0, 450, 80, 40, get_mob_sprite(False))]
+    rotation = 0
+    cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
+            Mob(0, 450, 80, 40, get_mob_sprite(False))]
     pygame.display.set_caption("Drunk Frogger")
     running = True
 
@@ -101,7 +104,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         for car in cars[:]:
-            if car.mob_y!= 400:
+            if car.mob_y != 400:
                 car.mob_x += car.velocity
                 if car.mob_x >= 800:
                     cars.remove(car)
@@ -111,7 +114,7 @@ def main():
                     cars.remove(car)
         for i in range(3):
             if pygame.time.get_ticks() - now[i] >= mob_spawn_timer[i]:
-                if lanes[i]!= 400:
+                if lanes[i] != 400:
                     cars.append(Mob(0, lanes[i], 80, 40, get_mob_sprite(False)))
                 else:
                     cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite(True)))
@@ -120,11 +123,15 @@ def main():
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a] and animals.player_x > animals.velocity:
             animals.player_x -= animals.velocity
+            rotation = 90
         if keys[pygame.K_RIGHT] or keys[pygame.K_d] and animals.player_x < 800 - 40 - animals.velocity:
             animals.player_x += animals.velocity
+            rotation = 270
         if keys[pygame.K_UP] or keys[pygame.K_w] and animals.player_y > animals.velocity:
             animals.player_y -= animals.velocity
+            rotation = 0
         if keys[pygame.K_DOWN] or keys[pygame.K_s] and animals.player_y < 600 - 30 - animals.velocity:
+            rotation = 180
             animals.player_y += animals.velocity
         if keys[pygame.K_ESCAPE]:
             running = False
@@ -132,14 +139,14 @@ def main():
         for car in cars:
             screen.blit(car.image, (car.mob_x, car.mob_y))
             car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
-            pygame.draw.rect(screen,(255,0,0),car.hitbox,3)
-        screen.blit(get_player_sprite(), (animals.player_x, animals.player_y))
+            pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
+        screen.blit(get_player_sprite(rotation), (animals.player_x, animals.player_y))
         animals.hitbox = (animals.player_x + 2, animals.player_y + 2, 36, 27)
-        pygame.draw.rect(screen,(255,0,0),animals.hitbox,2)
+        pygame.draw.rect(screen, (255, 0, 0), animals.hitbox, 2)
         for car in cars:
             if animals.check_collide(car):
                 splat.play()
-                #pygame.mixer.music.stop()
+                # pygame.mixer.music.stop()
                 animals.reset()
                 crash("Aj!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
