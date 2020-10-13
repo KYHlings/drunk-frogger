@@ -1,3 +1,4 @@
+import sys
 from random import randint
 import pygame
 from os import system
@@ -106,17 +107,26 @@ def main_menu():
     running = True
     while running:
         screen.fill((0, 0, 0))
-        draw_text("Main menu", font, (250, 255, 255), screen, 400, 100)
-        button_1=pygame.Rect(400,200,100,60)
-        button_2=pygame.Rect(400,300,100,60)
-        button_3 = pygame.Rect(400, 400, 100, 60)
+        draw_text("Main menu", font, (250, 255, 255), screen, 210, 100)
+        button_1 = pygame.Rect(340,200,100,60)
+        button_2 = pygame.Rect(340,300,100,60)
+        button_3 = pygame.Rect(340, 400, 100, 60)
         pygame.draw.rect(screen,(255,255,255),button_1)
         pygame.draw.rect(screen, (255, 255, 255),button_2)
         pygame.draw.rect(screen, (255, 255, 255), button_3)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    running = False
+                if event.key == pygame.K_2:
+                    pass
+                if event.key == pygame.K_3:
+                    sys.exit()
         pygame.display.update()
+
 
 def text_object(text, font):
     text_surface = font.render(text, True, (255, 255, 255))
