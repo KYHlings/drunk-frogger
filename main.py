@@ -3,9 +3,10 @@ from random import randint, shuffle
 import pygame
 
 from music_handler import get_level_music, get_goat_music, get_splat, get_drunk_music, get_burp, get_title_music, \
-    get_win_music, get_announcment
+    get_win_music, get_announcement, get_lose_music
 from quiz_handler import get_quiz, quiz
-from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image
+from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image, \
+    win_image, lose_image
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -107,7 +108,7 @@ def draw_text(text, font, colour, surface, x, y):
 
 
 def main_menu():
-    get_announcment()
+    #get_announcement()
     get_title_music()
     running = True
     while running:
@@ -116,11 +117,11 @@ def main_menu():
         button_1 = pygame.Rect(235, 220, 0, 50)
         button_2 = pygame.Rect(235, 320, 0, 50)
         button_3 = pygame.Rect(235, 420, 0, 50)
-        pygame.draw.rect(screen, (255, 255, 255), button_1)
+        pygame.draw.rect(screen, (text_colour), button_1)
         draw_text("Start Game [1]", font1, text_colour, screen, 245, 200)
-        pygame.draw.rect(screen, (255, 255, 255), button_2)
+        pygame.draw.rect(screen, (text_colour), button_2)
         draw_text("Settings [2]", font1, text_colour, screen, 245, 300)
-        pygame.draw.rect(screen, (255, 255, 255), button_3)
+        pygame.draw.rect(screen, (text_colour), button_3)
         draw_text("End Game [3]", font1, text_colour, screen, 245, 400)
 
         for event in pygame.event.get():
@@ -185,6 +186,36 @@ def redraw_window(cars, animals, wise_goat):
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
+def win_window():
+    get_win_music()
+    winning = True
+    while winning:
+        screen.blit(win_image(),(0,0))
+        draw_text("You Win!", font, text_colour, screen, 800, 600)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                sys.exit()
+
+        pygame.display.update()
+
+
+def lose_window():
+    get_lose_music()
+    losing = True
+    while losing:
+        screen.blit(lose_image(),(0,0))
+        draw_text("You Lose!", font, text_colour, screen, 800, 600)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                sys.exit()
+
+        pygame.display.update()
 
 def main():
     main_menu()
@@ -235,15 +266,17 @@ def main():
         if animals.player_y <= 300 and q == False:
             get_goat_music()
             if not quiz_window(quiz()):
+                if animals.drunk_meter == 3:
+                    lose_window()
                 animals.drunk_meter += 1
                 get_burp()
                 get_drunk_music(animals.drunk_meter)
                 animals.reset()
                 q = False
-            elif animals.drunk_meter ==0:
-                get_win_music()
+            elif animals.drunk_meter == 0:
+                win_window()
                 #get_level_music()
-                q = True
+                #q = True
 
         redraw_window(cars, animals, wise_goat)
 

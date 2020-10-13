@@ -7,6 +7,15 @@ def main_menu_image():
     main_menu_image = pygame.transform.scale(main_menu_image, (800, 600))
     return main_menu_image
 
+def win_image():
+    win_frog_image = pygame.image.load("images_src/win_frog.jpg")
+    win_frog_image = pygame.transform.scale(win_frog_image, (800, 600))
+    return win_frog_image
+
+def lose_image():
+    lose_frog_image = pygame.image.load("images_src/you_lose.jpg")
+    lose_frog_image = pygame.transform.scale(lose_frog_image, (800, 600))
+    return lose_frog_image
 
 def get_player_sprite(rotation):
     player_sprite = pygame.image.load("images_src/frog.png")
