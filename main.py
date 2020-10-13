@@ -10,6 +10,7 @@ from image_handler import get_player_sprite, get_background_image, get_mob_sprit
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 font = pygame.font.SysFont("freesansbold.ttf", 100)
+font1 = pygame.font.SysFont("freesansbold.ttf", 80)
 
 clock = pygame.time.Clock()
 
@@ -107,13 +108,16 @@ def main_menu():
     running = True
     while running:
         screen.fill((0, 0, 0))
-        draw_text("Main menu", font, (250, 255, 255), screen, 210, 100)
-        button_1 = pygame.Rect(340,200,100,60)
-        button_2 = pygame.Rect(340,300,100,60)
-        button_3 = pygame.Rect(340, 400, 100, 60)
+        draw_text("Main Menu", font, (250, 255, 255), screen, 210, 100)
+        button_1 = pygame.Rect(205,200,0,50)
+        button_2 = pygame.Rect(205,300,0,50)
+        button_3 = pygame.Rect(205, 400, 0, 50)
         pygame.draw.rect(screen,(255,255,255),button_1)
+        draw_text("Start Game", font1, (250, 255, 255), screen, 225, 200)
         pygame.draw.rect(screen, (255, 255, 255),button_2)
+        draw_text("Settings", font1, (250, 255, 255), screen, 225, 300)
         pygame.draw.rect(screen, (255, 255, 255), button_3)
+        draw_text("End Game", font1, (250, 255, 255), screen, 225, 400)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
