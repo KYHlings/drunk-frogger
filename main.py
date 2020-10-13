@@ -161,14 +161,10 @@ def quiz_window(text):
                 for i in range(len(question_list)):
                     if event.key == keys[i]:
                         return
-                #if event.key == pygame.K_y:
-                 #   return True
-                #if event.key == pygame.K_n:
-                 #   return False
         screen.blit(message_window, (200, 250))
         screen.blit(text_surf, text_rect)
         for alternative_text in alternatives_text:
-            alternative_text[1].center=(300,200)
+            alternative_text[1].center=(325, 325)
             screen.blit(alternative_text[0],alternative_text[1])
         screen.blit(get_get_sprite(), (200, 250))
         pygame.display.update()
