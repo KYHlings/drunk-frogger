@@ -4,7 +4,7 @@ import pygame
 
 from music_handler import get_level_music, get_goat_music, get_splat, get_drunk_music, get_burp, get_title_music, \
     get_win_music, get_announcement, get_lose_music
-from quiz_handler import get_quiz, quiz
+from quiz_handler import quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image, \
     win_image, lose_image
 
@@ -23,7 +23,7 @@ class Player:
         self.player_y = player_y
         self.width = width
         self.height = height
-        self.velocity = 3
+        self.velocity = 4
         self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
         self.rotation = rotation
         self.drunk_meter = 0
@@ -61,22 +61,22 @@ class Player:
             self.player_x -= self.velocity
             self.rotation = 90
             self.hitbox = (self.player_x + 2, self.player_y + 2, 27, 36)
-            pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
         if keys[pygame.K_RIGHT] or keys[pygame.K_d] and self.player_x < 800 - 40 - self.velocity:
             self.player_x += self.velocity
             self.rotation = 270
             self.hitbox = (self.player_x + 2, self.player_y + 2, 27, 36)
-            pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
         if keys[pygame.K_UP] or keys[pygame.K_w] and self.player_y > self.velocity:
             self.player_y -= self.velocity
             self.rotation = 0
             self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
-            pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
         if keys[pygame.K_DOWN] or keys[pygame.K_s] and self.player_y < 600 - 30 - self.velocity:
             self.rotation = 180
             self.player_y += self.velocity
             self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
-            pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
 
 
 class Mob:
@@ -86,7 +86,7 @@ class Mob:
         self.image = image
         self.width = width
         self.height = height
-        self.velocity = 4
+        self.velocity = 5
         self.hitbox = (self.mob_x + 6, self.mob_y + 7, 69, 30)
 
 
@@ -117,11 +117,11 @@ def main_menu():
         button_1 = pygame.Rect(235, 220, 0, 50)
         button_2 = pygame.Rect(235, 320, 0, 50)
         button_3 = pygame.Rect(235, 420, 0, 50)
-        pygame.draw.rect(screen, (text_colour), button_1)
+        pygame.draw.rect(screen, text_colour, button_1)
         draw_text("Start Game [1]", font1, text_colour, screen, 245, 200)
-        pygame.draw.rect(screen, (text_colour), button_2)
+        pygame.draw.rect(screen, text_colour, button_2)
         draw_text("Settings [2]", font1, text_colour, screen, 245, 300)
-        pygame.draw.rect(screen, (text_colour), button_3)
+        pygame.draw.rect(screen, text_colour, button_3)
         draw_text("End Game [3]", font1, text_colour, screen, 245, 400)
 
         for event in pygame.event.get():
@@ -143,10 +143,10 @@ def text_object(text, font):
 
 
 def quiz_window(text):
-    question, rightAnswers, wrongAnswers = text
-    question_list = [rightAnswers]
-    for wrongAnswer in wrongAnswers:
-        question_list.append(wrongAnswer)
+    question, rightanswers, wronganswers = text
+    question_list = [rightanswers]
+    for wronganswer in wronganswers:
+        question_list.append(wronganswer)
     shuffle(question_list)
     run = True
     keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
@@ -165,7 +165,7 @@ def quiz_window(text):
             if event.type == pygame.KEYDOWN:
                 for i in range(len(question_list)):
                     if event.key == keys[i]:
-                        return question_list[i] == rightAnswers
+                        return question_list[i] == rightanswers
         screen.blit(message_window, (175, 250))
         screen.blit(text_surf, text_rect)
         alt = 325
@@ -181,16 +181,17 @@ def redraw_window(cars, animals, wise_goat):
     for car in cars:
         screen.blit(car.image, (car.mob_x, car.mob_y))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
-        pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
+        # pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
     screen.blit(get_player_sprite(animals.rotation), (animals.player_x, animals.player_y))
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
+
 
 def win_window():
     get_win_music()
     winning = True
     while winning:
-        screen.blit(win_image(),(0,0))
+        screen.blit(win_image(), (0, 0))
         draw_text("You Win!", font, text_colour, screen, 800, 600)
 
         for event in pygame.event.get():
@@ -206,7 +207,7 @@ def lose_window():
     get_lose_music()
     losing = True
     while losing:
-        screen.blit(lose_image(),(0,0))
+        screen.blit(lose_image(), (0, 0))
         draw_text("You Lose!", font, text_colour, screen, 800, 600)
 
         for event in pygame.event.get():
@@ -216,6 +217,7 @@ def lose_window():
                 sys.exit()
 
         pygame.display.update()
+
 
 def main():
     main_menu()
@@ -232,7 +234,7 @@ def main():
     lanes = [350, 400, 450]
     q = False
     while running:
-        clock.tick(60)
+        clock.tick(30)
         screen.blit(get_background_image(), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -266,7 +268,7 @@ def main():
         if animals.player_y <= 300 and q == False:
             get_goat_music()
             if not quiz_window(quiz()):
-                if animals.drunk_meter == 3:
+                if animals.drunk_meter == 7:
                     lose_window()
                 animals.drunk_meter += 1
                 get_burp()
@@ -275,8 +277,6 @@ def main():
                 q = False
             elif animals.drunk_meter == 0:
                 win_window()
-                #get_level_music()
-                #q = True
 
         redraw_window(cars, animals, wise_goat)
 
