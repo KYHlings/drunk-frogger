@@ -144,6 +144,7 @@ def quiz_window(text):
     question_list.append(rightAnswers)
     for wrongAnswer in wrongAnswers:
         question_list.append(wrongAnswer)
+    shuffle(question_list)
     run = True
     keys=[pygame.K_1,pygame.K_2,pygame.K_3,pygame.K_4,pygame.K_5,
           pygame.K_6,pygame.K_7,pygame.K_8,pygame.K_9]
@@ -152,6 +153,9 @@ def quiz_window(text):
         large_text = pygame.font.Font("PAPYRUS.TTF", 20)
         text_surf, text_rect = text_object(question, large_text)
         text_rect.center = (400, 300)
+        alternatives_text=[]
+        for alternative in question_list:
+            alternatives_text.append(text_object(alternative,large_text))
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 for i in range(len(question_list)):
@@ -163,6 +167,9 @@ def quiz_window(text):
                  #   return False
         screen.blit(message_window, (200, 250))
         screen.blit(text_surf, text_rect)
+        for alternative_text in alternatives_text:
+            alternative_text[1].center=(300,200)
+            screen.blit(alternative_text[0],alternative_text[1])
         screen.blit(get_get_sprite(), (200, 250))
         pygame.display.update()
 
