@@ -1,0 +1,42 @@
+{ "questions":[
+  {
+    "prompt": "Finns det en timer modul?",
+    "rightAnswer": "Ja",
+    "wrongAnswers": [
+      "Nej",
+      "Kanske"
+    ]
+  },
+  {
+    "prompt": "Vad heter datatypen för heltal i Python?",
+    "rightAnswer": "Integer",
+    "wrongAnswers": [
+      "Double",
+      "Float"
+    ]
+  },
+  {
+    "prompt": "Vilken version av Python använder vi?",
+    "rightAnswer": "3.8",
+    "wrongAnswers": [
+      "2.7",
+      "1.5"
+    ]
+  },
+  {
+    "prompt": "Finns det en modul för datum??",
+    "rightAnswer": "Ja",
+    "wrongAnswers": [
+      "Nej",
+      "Kanske"
+    ]
+  },
+  {
+    "prompt": "Är T.O.A.D Productions bäst",
+    "rightAnswer": "Självklart",
+    "wrongAnswers": [
+      "vet ej",
+      "beror"
+    ]
+  }
+]}
