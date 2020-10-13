@@ -2,7 +2,6 @@ import sys
 from random import randint
 import pygame
 
-
 from music_handler import get_level_music, get_goat_music, get_splat
 from quiz_handler import get_quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image
@@ -11,7 +10,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 font = pygame.font.Font("PAPYRUS.TTF", 80)
 font1 = pygame.font.Font("PAPYRUS.TTF", 60)
-text_colour = (255,0,0)
+text_colour = (255, 0, 0)
 
 clock = pygame.time.Clock()
 
@@ -98,6 +97,7 @@ class Get:
         self.velocity = 4
         self.hitbox = (self.get_x + 6, self.get_y + 7, 69, 30)
 
+
 def draw_text(text, font, colour, surface, x, y):
     text_obj = font.render(text, 1, colour)
     text_rect = text_obj.get_rect()
@@ -105,18 +105,17 @@ def draw_text(text, font, colour, surface, x, y):
     surface.blit(text_obj, text_rect)
 
 
-
 def main_menu():
     running = True
     while running:
-        screen.blit(main_menu_image(),(0,0))
+        screen.blit(main_menu_image(), (0, 0))
         draw_text("Main Menu", font, text_colour, screen, 210, 100)
-        button_1 = pygame.Rect(235,220,0,50)
-        button_2 = pygame.Rect(235,320,0,50)
+        button_1 = pygame.Rect(235, 220, 0, 50)
+        button_2 = pygame.Rect(235, 320, 0, 50)
         button_3 = pygame.Rect(235, 420, 0, 50)
-        pygame.draw.rect(screen,(255,255,255),button_1)
+        pygame.draw.rect(screen, (255, 255, 255), button_1)
         draw_text("Start Game [1]", font1, text_colour, screen, 245, 200)
-        pygame.draw.rect(screen, (255, 255, 255),button_2)
+        pygame.draw.rect(screen, (255, 255, 255), button_2)
         draw_text("Settings [2]", font1, text_colour, screen, 245, 300)
         pygame.draw.rect(screen, (255, 255, 255), button_3)
         draw_text("End Game [3]", font1, text_colour, screen, 245, 400)
@@ -139,7 +138,7 @@ def text_object(text, font):
     return text_surface, text_surface.get_rect()
 
 
-def crash(text):
+def crash(text, answer):
     run = True
     while run:
         message_window = pygame.Surface([400, 100])
