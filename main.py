@@ -5,12 +5,13 @@ import pygame
 
 from music_handler import get_level_music, get_goat_music, get_splat
 from quiz_handler import get_quiz
-from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite
+from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
-font = pygame.font.SysFont("freesansbold.ttf", 100)
-font1 = pygame.font.SysFont("freesansbold.ttf", 80)
+font = pygame.font.Font("PAPYRUS.TTF", 80)
+font1 = pygame.font.Font("PAPYRUS.TTF", 60)
+text_colour = (255,0,0)
 
 clock = pygame.time.Clock()
 
@@ -108,17 +109,17 @@ def draw_text(text, font, colour, surface, x, y):
 def main_menu():
     running = True
     while running:
-        screen.fill((0, 0, 0))
-        draw_text("Main Menu", font, (250, 255, 255), screen, 210, 100)
-        button_1 = pygame.Rect(205,200,0,50)
-        button_2 = pygame.Rect(205,300,0,50)
-        button_3 = pygame.Rect(205, 400, 0, 50)
+        screen.blit(main_menu_image(),(0,0))
+        draw_text("Main Menu", font, text_colour, screen, 210, 100)
+        button_1 = pygame.Rect(235,220,0,50)
+        button_2 = pygame.Rect(235,320,0,50)
+        button_3 = pygame.Rect(235, 420, 0, 50)
         pygame.draw.rect(screen,(255,255,255),button_1)
-        draw_text("Start Game", font1, (250, 255, 255), screen, 225, 200)
+        draw_text("Start Game [1]", font1, text_colour, screen, 245, 200)
         pygame.draw.rect(screen, (255, 255, 255),button_2)
-        draw_text("Settings", font1, (250, 255, 255), screen, 225, 300)
+        draw_text("Settings [2]", font1, text_colour, screen, 245, 300)
         pygame.draw.rect(screen, (255, 255, 255), button_3)
-        draw_text("End Game", font1, (250, 255, 255), screen, 225, 400)
+        draw_text("End Game [3]", font1, text_colour, screen, 245, 400)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -142,7 +143,7 @@ def crash(text):
     run = True
     while run:
         message_window = pygame.Surface([400, 100])
-        large_text = pygame.font.Font("freesansbold.ttf", 20)
+        large_text = pygame.font.Font("PAPYRUS.TTF", 20)
         text_surf, text_rect = text_object(text, large_text)
         text_rect.center = (400, 300)
         for event in pygame.event.get():

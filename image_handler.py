@@ -2,6 +2,12 @@ import pygame
 from random import choice
 
 
+def main_menu_image():
+    main_menu_image = pygame.image.load("images_src/frog_wine.jpg!d")
+    main_menu_image = pygame.transform.scale(main_menu_image, (800, 600))
+    return main_menu_image
+
+
 def get_player_sprite(rotation):
     player_sprite = pygame.image.load("images_src/frog.png")
     player_sprite = pygame.transform.scale(player_sprite, (40, 30))
