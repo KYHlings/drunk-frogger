@@ -20,6 +20,12 @@ def get_win_music():
     pygame.mixer.music.set_volume(0.1)
     return pygame.mixer.music.play(1)
 
+
+def get_announcment():
+    announcment = pygame.mixer.music.load("sounds_src/df_theme_announcer.mp3")
+    pygame.mixer.music.set_volume(0.1)
+    return announcment.play(1)
+
 def get_splat():
     splat = pygame.mixer.Sound("sounds_src/splat.wav")
     pygame.mixer.music.set_volume(0.1)

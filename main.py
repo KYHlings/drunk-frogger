@@ -3,7 +3,7 @@ from random import randint, shuffle
 import pygame
 
 from music_handler import get_level_music, get_goat_music, get_splat, get_drunk_music, get_burp, get_title_music, \
-    get_win_music
+    get_win_music, get_announcment
 from quiz_handler import get_quiz, quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image
 
@@ -107,6 +107,7 @@ def draw_text(text, font, colour, surface, x, y):
 
 
 def main_menu():
+    get_announcment()
     get_title_music()
     running = True
     while running:
