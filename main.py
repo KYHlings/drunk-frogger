@@ -107,6 +107,12 @@ def main_menu():
     while running:
         screen.fill((0, 0, 0))
         draw_text("Main menu", font, (250, 255, 255), screen, 400, 100)
+        button_1=pygame.Rect(400,200,100,60)
+        button_2=pygame.Rect(400,300,100,60)
+        button_3 = pygame.Rect(400, 400, 100, 60)
+        pygame.draw.rect(screen,(255,255,255),button_1)
+        pygame.draw.rect(screen, (255, 255, 255),button_2)
+        pygame.draw.rect(screen, (255, 255, 255), button_3)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
