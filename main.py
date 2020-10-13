@@ -2,7 +2,8 @@ import sys
 from random import randint, shuffle
 import pygame
 
-from music_handler import get_level_music, get_goat_music, get_splat
+from music_handler import get_level_music, get_goat_music, get_splat, get_drunk_music, get_burp, get_title_music, \
+    get_win_music
 from quiz_handler import get_quiz, quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image
 
@@ -84,7 +85,7 @@ class Mob:
         self.image = image
         self.width = width
         self.height = height
-        self.velocity = 2
+        self.velocity = 4
         self.hitbox = (self.mob_x + 6, self.mob_y + 7, 69, 30)
 
 
@@ -106,6 +107,7 @@ def draw_text(text, font, colour, surface, x, y):
 
 
 def main_menu():
+    get_title_music()
     running = True
     while running:
         screen.blit(main_menu_image(), (0, 0))
@@ -233,8 +235,15 @@ def main():
             get_goat_music()
             if not quiz_window(quiz()):
                 animals.drunk_meter += 1
-            q = True
-            get_level_music()
+                get_burp()
+                get_drunk_music(animals.drunk_meter)
+                animals.reset()
+                q = False
+            elif animals.drunk_meter ==0:
+                get_win_music()
+                #get_level_music()
+                q = True
+
         redraw_window(cars, animals, wise_goat)
 
 
