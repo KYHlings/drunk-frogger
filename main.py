@@ -1,5 +1,6 @@
 from random import randint
 import pygame
+from os import system
 
 from music_handler import get_level_music, get_goat_music, get_splat
 from quiz_handler import get_quiz
@@ -7,6 +8,7 @@ from image_handler import get_player_sprite, get_background_image, get_mob_sprit
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
+font = pygame.font.SysFont("freesansbold.ttf", 100)
 
 clock = pygame.time.Clock()
 
@@ -92,6 +94,23 @@ class Get:
         self.velocity = 4
         self.hitbox = (self.get_x + 6, self.get_y + 7, 69, 30)
 
+def draw_text(text, font, colour, surface, x, y):
+    text_obj = font.render(text, 1, colour)
+    text_rect = text_obj.get_rect()
+    text_rect.topleft = (x, y)
+    surface.blit(text_obj, text_rect)
+
+
+
+def main_menu():
+    running = True
+    while running:
+        screen.fill((0, 0, 0))
+        draw_text("Main menu", font, (250, 255, 255), screen, 400, 100)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+        pygame.display.update()
 
 def text_object(text, font):
     text_surface = font.render(text, True, (255, 255, 255))
@@ -128,6 +147,7 @@ def redraw_window(cars, animals, wise_goat):
 
 
 def main():
+    main_menu()
     get_level_music()
     animals = Player(400, 570, 40, 30, 0)
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
