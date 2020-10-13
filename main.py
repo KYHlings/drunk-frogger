@@ -268,7 +268,7 @@ def main():
         if animals.player_y <= 300 and q == False:
             get_goat_music()
             if not quiz_window(quiz()):
-                if animals.drunk_meter == 7:
+                if animals.drunk_meter == 3:
                     lose_window()
                 animals.drunk_meter += 1
                 get_burp()

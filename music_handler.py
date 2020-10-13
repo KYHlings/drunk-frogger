@@ -31,7 +31,7 @@ def get_announcement():
     return announcement.play(0,0,0)
 
 def get_splat():
-    splat = pygame.mixer.Sound("sounds_src/splat.wav")
+    splat = pygame.mixer.Sound("sounds_src/splat2.ogg")
     pygame.mixer.music.set_volume(0.1)
     return splat.play(0, 0, 0)
 
