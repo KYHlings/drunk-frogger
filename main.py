@@ -108,7 +108,7 @@ def draw_text(text, font, colour, surface, x, y):
 
 
 def main_menu():
-    #get_announcement()
+    get_announcement()
     get_title_music()
     running = True
     while running:
