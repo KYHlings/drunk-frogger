@@ -3,7 +3,7 @@ from random import choice
 
 
 def main_menu_image():
-    main_menu_image = pygame.image.load("images_src/frog_wine.jpg!d")
+    main_menu_image = pygame.image.load("images_src/drunk_frog.jpg")
     main_menu_image = pygame.transform.scale(main_menu_image, (800, 600))
     return main_menu_image
 

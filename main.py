@@ -3,14 +3,14 @@ from random import randint
 import pygame
 
 from music_handler import get_level_music, get_goat_music, get_splat
-from quiz_handler import get_quiz
+from quiz_handler import get_quiz, quiz
 from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite, main_menu_image
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 font = pygame.font.Font("PAPYRUS.TTF", 80)
 font1 = pygame.font.Font("PAPYRUS.TTF", 60)
-text_colour = (255, 0, 0)
+text_colour = (0, 0, 0)
 
 clock = pygame.time.Clock()
 
@@ -138,19 +138,23 @@ def text_object(text, font):
     return text_surface, text_surface.get_rect()
 
 
-def crash(text, answer):
+def crash(text):
+    (question,answers)=text
     run = True
     while run:
         message_window = pygame.Surface([400, 100])
         large_text = pygame.font.Font("PAPYRUS.TTF", 20)
-        text_surf, text_rect = text_object(text, large_text)
+        text_surf, text_rect = text_object(question, large_text)
         text_rect.center = (400, 300)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_y:
-                    return True
-                if event.key == pygame.K_n:
-                    return False
+                for i in range(len(answers)):
+                    if event.key == pygame.K_[i]:
+                        return
+                #if event.key == pygame.K_y:
+                 #   return True
+                #if event.key == pygame.K_n:
+                 #   return False
         screen.blit(message_window, (200, 250))
         screen.blit(text_surf, text_rect)
         screen.blit(get_get_sprite(), (200, 250))
@@ -215,7 +219,7 @@ def main():
                 animals.reset()
         if animals.player_y <= 300 and q == False:
             get_goat_music()
-            if crash("Är T.O.A.D's bäst? y/n "):
+            if crash(quiz()):
                 animals.drunk_meter += 1
             q = True
             get_level_music()

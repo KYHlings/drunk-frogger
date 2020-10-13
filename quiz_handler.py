@@ -7,6 +7,6 @@ def get_quiz():
     return content
 
 def quiz():
-    q_ls = ["Är T.O.A.D's bäst?"]
-    q_ans = "y"
-    return  q_ls, q_ans
+    q_prompt= "Är T.O.A.D's bäst?"
+    q_ans = ["y","n"]
+    return  q_prompt, q_ans
