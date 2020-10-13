@@ -1,7 +1,7 @@
 import sys
 from random import randint
 import pygame
-from os import system
+
 
 from music_handler import get_level_music, get_goat_music, get_splat
 from quiz_handler import get_quiz
