@@ -1,5 +1,5 @@
 import sys
-from random import randint
+from random import randint,shuffle
 import pygame
 
 from music_handler import get_level_music, get_goat_music, get_splat
@@ -84,7 +84,7 @@ class Mob:
         self.image = image
         self.width = width
         self.height = height
-        self.velocity = 4
+        self.velocity = 2
         self.hitbox = (self.mob_x + 6, self.mob_y + 7, 69, 30)
 
 
@@ -138,9 +138,15 @@ def text_object(text, font):
     return text_surface, text_surface.get_rect()
 
 
-def crash(text):
-    (question,answers)=text
+def quiz_window(text):
+    question,rightAnswers,wrongAnswers=text
+    question_list=[]
+    question_list.append(rightAnswers)
+    for wrongAnswer in wrongAnswers:
+        question_list.append(wrongAnswer)
     run = True
+    keys=[pygame.K_1,pygame.K_2,pygame.K_3,pygame.K_4,pygame.K_5,
+          pygame.K_6,pygame.K_7,pygame.K_8,pygame.K_9]
     while run:
         message_window = pygame.Surface([400, 100])
         large_text = pygame.font.Font("PAPYRUS.TTF", 20)
@@ -148,8 +154,8 @@ def crash(text):
         text_rect.center = (400, 300)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                for i in range(len(answers)):
-                    if event.key == pygame.K_[i]:
+                for i in range(len(question_list)):
+                    if event.key == keys[i]:
                         return
                 #if event.key == pygame.K_y:
                  #   return True
@@ -219,7 +225,7 @@ def main():
                 animals.reset()
         if animals.player_y <= 300 and q == False:
             get_goat_music()
-            if crash(quiz()):
+            if quiz_window(quiz()):
                 animals.drunk_meter += 1
             q = True
             get_level_music()

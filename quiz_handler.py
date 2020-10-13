@@ -7,6 +7,7 @@ def get_quiz():
     return content
 
 def quiz():
-    q_prompt= "Är T.O.A.D's bäst?"
-    q_ans = ["y","n"]
-    return  q_prompt, q_ans
+    quiz_content=get_quiz()
+    for q in quiz_content:
+        return q["prompt"],q["rightAnswer"],q["wrongAnswers"]
+print (quiz())
