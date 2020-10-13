@@ -24,6 +24,7 @@ class Player:
         self.velocity = 3
         self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
         self.rotation = rotation
+        self.drunk_meter = 0
 
     def check_collide_x(self, mob):
         if self.player_x <= mob.mob_x:
@@ -147,9 +148,9 @@ def crash(text):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_y:
-                    run = False
+                    return True
                 if event.key == pygame.K_n:
-                    run = False
+                    return False
         screen.blit(message_window, (200, 250))
         screen.blit(text_surf, text_rect)
         screen.blit(get_get_sprite(), (200, 250))
@@ -214,7 +215,8 @@ def main():
                 animals.reset()
         if animals.player_y <= 300 and q == False:
             get_goat_music()
-            crash("Är T.O.A.D's bäst? y/n ")
+            if crash("Är T.O.A.D's bäst? y/n "):
+                animals.drunk_meter += 1
             q = True
             get_level_music()
         redraw_window(cars, animals, wise_goat)
