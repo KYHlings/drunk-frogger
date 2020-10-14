@@ -57,22 +57,22 @@ class Player:
         self.player_y = 570
 
     def move(self, keys):
-        if keys[pygame.K_LEFT] or keys[pygame.K_a] and self.player_x > self.velocity:
+        if keys[pygame.K_LEFT] and self.player_x > self.velocity or keys[pygame.K_a] and self.player_x > self.velocity:
             self.player_x -= self.velocity
             self.rotation = 90
             self.hitbox = (self.player_x + 2, self.player_y + 2, 27, 36)
             # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d] and self.player_x < 800 - 40 - self.velocity:
+        if keys[pygame.K_RIGHT] and self.player_x < 800 - 40 - self.velocity or keys[pygame.K_d] and self.player_x < 800 - 40 - self.velocity:
             self.player_x += self.velocity
             self.rotation = 270
             self.hitbox = (self.player_x + 2, self.player_y + 2, 27, 36)
             # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
-        if keys[pygame.K_UP] or keys[pygame.K_w] and self.player_y > self.velocity:
+        if keys[pygame.K_UP] and self.player_y > self.velocity or keys[pygame.K_w] and self.player_y > self.velocity:
             self.player_y -= self.velocity
             self.rotation = 0
             self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
             # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
-        if keys[pygame.K_DOWN] or keys[pygame.K_s] and self.player_y < 600 - 30 - self.velocity:
+        if keys[pygame.K_DOWN] and self.player_y < 600 - 30 - self.velocity or keys[pygame.K_s] and self.player_y < 600 - 30 - self.velocity:
             self.rotation = 180
             self.player_y += self.velocity
             self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
