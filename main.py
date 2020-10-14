@@ -275,7 +275,7 @@ def main():
                 get_drunk_music(animals.drunk_meter)
                 animals.reset()
                 q = False
-            elif animals.drunk_meter == 0:
+            else:
                 win_window()
 
         redraw_window(cars, animals, wise_goat)
