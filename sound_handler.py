@@ -66,7 +66,7 @@ def get_burp():
     pygame.mixer.music.set_volume(0.1)
     return burp
 
-
+#Loads different track depending on level of drunkness.
 def get_drunk_music(drunken_meter):
     drunk_music_ls = ["df_level1_music_drunk1.mp3", "df_level1_music_drunk2.mp3", "df_level1_music_drunk3.mp3",
                       "df_level1_music_drunk4.mp3", "df_level1_music_drunk5.mp3", "df_level1_music_drunk6.mp3"]
