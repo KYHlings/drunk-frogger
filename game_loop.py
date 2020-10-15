@@ -10,7 +10,8 @@ from quiz_handler import quiz_window, quiz
 from sound_handler import get_level_music, get_goat_music, get_drunk_music
 from window_handler import screen, lose_window, win_window
 
-#This updates the sprites that's been drawn
+
+# This function updates the window with sprites each loop
 def redraw_window(cars, animals, wise_goat):
     for car in cars:
         screen.blit(car.image, (car.mob_x, car.mob_y))
@@ -20,7 +21,7 @@ def redraw_window(cars, animals, wise_goat):
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
-
+#This function runs the main game
 def game_loop(sound_fx):
     clock = pygame.time.Clock()
     get_level_music()
@@ -67,8 +68,13 @@ def game_loop(sound_fx):
             if animals.check_collide(car):
                 sound_fx.play_splat()
                 animals.reset()
+
+                #This if statement checks if the player has reached the safe zone and triggers the quiz function
         if animals.player_y <= 300 and q == False:
             get_goat_music()
+
+            #This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
+            #if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
             if not quiz_window(quiz()):
                 if animals.drunk_meter == 3:
                     lose_window()
