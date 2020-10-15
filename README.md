@@ -1,6 +1,2 @@
 # drunk-frogger 
-Elizabettthhh
-Jontethan
-Tooooobias
-Dannesan
-David
+The main file starts the game.

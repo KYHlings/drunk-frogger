@@ -1,6 +1,7 @@
 import pygame
 
 class Sound_fx:
+    #This class saves all the sound effects in memory, so you don't have to load the file everytime it called
     def __init__(self):
         self.announcement_sound= get_announcement()
         self.splat_sound = get_splat()
@@ -17,7 +18,7 @@ class Sound_fx:
 
 
 
-
+#Each function gets a specific soundfile to load
 def get_title_music():
     pygame.mixer.music.load("sounds_src/df_theme.mp3")
     pygame.mixer.music.set_volume(0.1)

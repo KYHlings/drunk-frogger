@@ -3,15 +3,17 @@ import sys
 import pygame
 
 from image_handler import main_menu_image
-from sound_handler import get_announcement, get_title_music
+from sound_handler import get_title_music
 from window_handler import screen, draw_text, font, text_colour, font1
 
 
 def main_menu(sound_fx):
+    #This loads the sound handler module
     sound_fx.play_announcement()
     get_title_music()
     running = True
     while running:
+        #This program writes out the start menu
         screen.blit(main_menu_image(), (0, 0))
         draw_text("Main Menu", font, text_colour, screen, 210, 100)
         button_1 = pygame.Rect(235, 220, 0, 50)
@@ -23,7 +25,7 @@ def main_menu(sound_fx):
         draw_text("Settings [2]", font1, text_colour, screen, 245, 300)
         pygame.draw.rect(screen, text_colour, button_3)
         draw_text("End Game [3]", font1, text_colour, screen, 245, 400)
-
+        #This section takes input user to control menu
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

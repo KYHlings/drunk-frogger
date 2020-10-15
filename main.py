@@ -11,3 +11,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+#This program runs the game
