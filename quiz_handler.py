@@ -7,22 +7,23 @@ import json
 from image_handler import get_get_sprite
 from window_handler import screen,text_object
 
-
+#loads quiz from json-file, in future will load from api.
 def get_quiz():
     p = Path("quiz.json")
     #url = requests.get("https://mqif4s7obg.execute-api.eu-central-1.amazonaws.com/olofs_lambda")
     content = json.loads(p.read_text(encoding='utf8'))['questions']
     shuffle(content)
     return content
-
+#unloads content from get_quiz function.
 def quiz():
     quiz_content=get_quiz()
     for q in quiz_content:
         return q["prompt"],q["rightAnswer"],q["wrongAnswers"]
 
 
-def quiz_window(text):
-    question, rightanswers, wronganswers = text
+def quiz_window(quiz):
+    #takes quiz function and draws on screen.
+    question, rightanswers, wronganswers = quiz
     question_list = [rightanswers]
     for wronganswer in wronganswers:
         question_list.append(wronganswer)
@@ -40,6 +41,7 @@ def quiz_window(text):
         for alternative in question_list:
             alternatives_text.append(text_object(f"{altnr + 1}:{alternative}", large_text))
             altnr += 1
+        #checks players answers
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 for i in range(len(question_list)):
