@@ -11,15 +11,18 @@ font = pygame.font.Font("PAPYRUS.TTF", 80)
 font1 = pygame.font.Font("PAPYRUS.TTF", 60)
 text_colour = (0, 0, 0)
 
+
 def text_object(text, font):
     text_surface = font.render(text, True, (255, 255, 255))
     return text_surface, text_surface.get_rect()
+
 
 def draw_text(text, font, colour, surface, x, y):
     text_obj = font.render(text, 1, colour)
     text_rect = text_obj.get_rect()
     text_rect.topleft = (x, y)
     surface.blit(text_obj, text_rect)
+
 
 def win_window():
     get_win_music()

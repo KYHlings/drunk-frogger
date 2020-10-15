@@ -1,89 +1,11 @@
-from random import randint
-import pygame
-
+from game_loop import game_loop
 from main_menu import main_menu
-from sound_handler import get_level_music, get_goat_music, get_splat, get_drunk_music, get_burp
-from npc import Mob, Get
-from player import Player
-from quiz_handler import quiz_window, quiz
-from image_handler import get_player_sprite, get_background_image, get_mob_sprite, get_get_sprite
-from window_handler import win_window, lose_window,screen
-
-pygame.init()
-clock = pygame.time.Clock()
 
 
-def redraw_window(cars, animals, wise_goat):
-    for car in cars:
-        screen.blit(car.image, (car.mob_x, car.mob_y))
-        car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
-        # pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
-    screen.blit(get_player_sprite(animals.rotation), (animals.player_x, animals.player_y))
-    screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
-    pygame.display.update()
-
-
-def game_loop():
+def main():
     main_menu()
-    get_level_music()
-    animals = Player(400, 570, 40, 30, 0)
-    cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
-            Mob(0, 450, 80, 40, get_mob_sprite(False))]
-    wise_goat = Get(animals.player_x, 200, 40, 30)
-    pygame.display.set_caption("Drunk Frogger")
-    running = True
-
-    now = [pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()]
-    mob_spawn_timer = [1000, 2000, 1000]
-    lanes = [350, 400, 450]
-    q = False
-    while running:
-        clock.tick(30)
-        screen.blit(get_background_image(), (0, 0))
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        for car in cars[:]:
-            if car.mob_y != 400:
-                car.mob_x += car.velocity
-                if car.mob_x >= 800:
-                    cars.remove(car)
-            else:
-                car.mob_x -= car.velocity
-                if car.mob_x <= -50:
-                    cars.remove(car)
-        for i in range(3):
-            if pygame.time.get_ticks() - now[i] >= mob_spawn_timer[i]:
-                if lanes[i] != 400:
-                    cars.append(Mob(0, lanes[i], 80, 40, get_mob_sprite(False)))
-                else:
-                    cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite(True)))
-                now[i] = pygame.time.get_ticks()
-                mob_spawn_timer[i] = randint(1000, 2000)
-        keys = pygame.key.get_pressed()
-        animals.move(keys)
-        if keys[pygame.K_ESCAPE]:
-            running = False
-
-        for car in cars:
-            if animals.check_collide(car):
-                get_splat()
-                animals.reset()
-        if animals.player_y <= 300 and q == False:
-            get_goat_music()
-            if not quiz_window(quiz()):
-                if animals.drunk_meter == 3:
-                    lose_window()
-                animals.drunk_meter += 1
-                get_burp()
-                get_drunk_music(animals.drunk_meter)
-                animals.reset()
-                q = False
-            else:
-                win_window()
-
-        redraw_window(cars, animals, wise_goat)
+    game_loop()
 
 
 if __name__ == '__main__':
-    game_loop()
+    main()
