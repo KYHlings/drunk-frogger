@@ -50,7 +50,7 @@ def get_lose_music():
 
 
 def get_announcement():
-    announcement = pygame.mixer.Sound("sounds_src/df-theme-anon.ogg")
+    announcement = pygame.mixer.Sound("sounds_src/df-theme-announcer.ogg")
     pygame.mixer.music.set_volume(0.4)
     return announcement
 
