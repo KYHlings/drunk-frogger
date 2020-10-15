@@ -7,11 +7,10 @@ from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get
 from npc import Mob, Get
 from player import Player
 from quiz_handler import quiz_window, quiz
-from sound_handler import get_level_music, get_splat, get_goat_music, get_burp, get_drunk_music, Sound_fx
+from sound_handler import get_level_music, get_goat_music, get_drunk_music
 from window_handler import screen, lose_window, win_window
 
-
-
+#This updates the sprites that's been drawn
 def redraw_window(cars, animals, wise_goat):
     for car in cars:
         screen.blit(car.image, (car.mob_x, car.mob_y))

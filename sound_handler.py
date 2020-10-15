@@ -1,9 +1,10 @@
 import pygame
 
+
 class Sound_fx:
-    #This class saves all the sound effects in memory, so you don't have to load the file everytime it called
+    # This class saves all the sound effects in memory, so you don't have to load the file everytime it called
     def __init__(self):
-        self.announcement_sound= get_announcement()
+        self.announcement_sound = get_announcement()
         self.splat_sound = get_splat()
         self.burp_sound = get_burp()
 
@@ -17,8 +18,7 @@ class Sound_fx:
         return self.announcement_sound.play()
 
 
-
-#Each function gets a specific soundfile to load
+# Each function gets a specific soundfile to load
 def get_title_music():
     pygame.mixer.music.load("sounds_src/df_theme.mp3")
     pygame.mixer.music.set_volume(0.1)
@@ -66,10 +66,17 @@ def get_burp():
     pygame.mixer.music.set_volume(0.1)
     return burp
 
-#Loads different track depending on level of drunkness.
+
+# Loads different track depending on level of drunkness.
 def get_drunk_music(drunken_meter):
     drunk_music_ls = ["df_level1_music_drunk1.mp3", "df_level1_music_drunk2.mp3", "df_level1_music_drunk3.mp3",
                       "df_level1_music_drunk4.mp3", "df_level1_music_drunk5.mp3", "df_level1_music_drunk6.mp3"]
     pygame.mixer.music.load(f"sounds_src/{drunk_music_ls[drunken_meter]}")
     pygame.mixer.music.set_volume(0.1)
     return pygame.mixer.music.play(-1)
+
+
+def get_credits():
+    pygame.mixer.music.load("sounds_src/df_credits.mp3")
+    pygame.mixer.music.set_volume(0.1)
+    pygame.mixer.music.play(-1)
