@@ -3,11 +3,11 @@ from random import randint
 import pygame
 
 from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image
-from main_menu import main_menu
+
 from npc import Mob, Get
 from player import Player
 from quiz_handler import quiz_window, quiz
-from sound_handler import get_level_music, get_splat, get_goat_music, get_burp, get_drunk_music, Sound_Music
+from sound_handler import get_level_music, get_splat, get_goat_music, get_burp, get_drunk_music, Sound_fx
 from window_handler import screen, lose_window, win_window
 
 
@@ -22,8 +22,7 @@ def redraw_window(cars, animals, wise_goat):
     pygame.display.update()
 
 
-def game_loop():
-    sound_music = Sound_Music()
+def game_loop(sound_fx):
     clock = pygame.time.Clock()
     get_level_music()
     animals = Player(400, 570, 40, 30, 0)
@@ -67,7 +66,7 @@ def game_loop():
 
         for car in cars:
             if animals.check_collide(car):
-                sound_music.play_splat()
+                sound_fx.play_splat()
                 animals.reset()
         if animals.player_y <= 300 and q == False:
             get_goat_music()
@@ -75,7 +74,7 @@ def game_loop():
                 if animals.drunk_meter == 3:
                     lose_window()
                 animals.drunk_meter += 1
-                get_burp()
+                sound_fx.play_burp()
                 get_drunk_music(animals.drunk_meter)
                 animals.reset()
                 q = False

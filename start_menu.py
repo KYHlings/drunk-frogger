@@ -7,8 +7,8 @@ from sound_handler import get_announcement, get_title_music
 from window_handler import screen, draw_text, font, text_colour, font1
 
 
-def main_menu():
-    get_announcement()
+def main_menu(sound_fx):
+    sound_fx.play_announcement()
     get_title_music()
     running = True
     while running:

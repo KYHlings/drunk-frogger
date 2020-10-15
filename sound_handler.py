@@ -1,19 +1,27 @@
 import pygame
 
-class Sound_Music:
+class Sound_fx:
     def __init__(self):
-        self.title_music = get_title_music()
+        self.announcement_sound= get_announcement()
         self.splat_sound = get_splat()
+        self.burp_sound = get_burp()
 
     def play_splat(self):
         return self.splat_sound.play()
+
+    def play_burp(self):
+        return self.burp_sound.play()
+
+    def play_announcement(self):
+        return self.announcement_sound.play()
+
 
 
 
 def get_title_music():
     pygame.mixer.music.load("sounds_src/df_theme.mp3")
     pygame.mixer.music.set_volume(0.1)
-    return pygame.mixer.music
+    return pygame.mixer.music.play(-1)
 
 
 def get_level_music():
@@ -41,9 +49,9 @@ def get_lose_music():
 
 
 def get_announcement():
-    announcement = pygame.mixer.Sound("sounds_src/df-theme-announcer.ogg")
+    announcement = pygame.mixer.Sound("sounds_src/df-theme-anon.ogg")
     pygame.mixer.music.set_volume(0.4)
-    return announcement.play(0, 0, 0)
+    return announcement
 
 
 def get_splat():
@@ -53,9 +61,9 @@ def get_splat():
 
 
 def get_burp():
-    splat = pygame.mixer.Sound("sounds_src/df_burp2.wav")
+    burp = pygame.mixer.Sound("sounds_src/df_burp2.wav")
     pygame.mixer.music.set_volume(0.1)
-    return splat.play(0, 0, 0)
+    return burp
 
 
 def get_drunk_music(drunken_meter):
