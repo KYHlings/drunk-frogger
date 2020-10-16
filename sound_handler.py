@@ -17,11 +17,12 @@ class Sound_fx:
     def play_announcement(self):
         return self.announcement_sound.play()
 
-
+def music_volume(volume):
+    pygame.mixer.music.set_volume(volume)
 # Each function gets a specific soundfile to load
 def get_title_music():
     pygame.mixer.music.load("sounds_src/df_theme.mp3")
-    pygame.mixer.music.set_volume(0.1)
+    #music_volume(volume)
     return pygame.mixer.music.play(-1)
 
 

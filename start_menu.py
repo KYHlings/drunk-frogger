@@ -3,7 +3,7 @@ import sys
 import pygame
 
 from image_handler import main_menu_image
-from sound_handler import get_title_music
+from sound_handler import get_title_music, music_volume
 from window_handler import screen, draw_text, font, text_colour, font1
 
 
@@ -11,6 +11,7 @@ def main_menu(sound_fx):
     #This loads the sound handler module
     sound_fx.play_announcement()
     get_title_music()
+    music_volume(0.8)
     running = True
     while running:
         #This program writes out the start menu
