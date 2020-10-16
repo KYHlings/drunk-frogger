@@ -11,7 +11,7 @@ def main_menu(sound_fx):
     #This loads the sound handler module
     sound_fx.play_announcement()
     get_title_music()
-    music_volume(0.8)
+    #music_volume(0.8)
     running = True
     while running:
         #This program writes out the start menu
