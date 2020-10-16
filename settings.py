@@ -12,7 +12,7 @@ def settings():
         screen.blit(main_menu_image(), (0, 0))
         draw_text("Settings", font, text_colour, screen, 210, 100)
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     volume_int -= 5
                 if event.key == pygame.K_RIGHT:
@@ -20,7 +20,7 @@ def settings():
             if event.type == pygame.QUIT:
                 running = False
         for i in range(volume_int):
-            volume_rect = pygame.Rect(volume_rect_x, 320, 0, 50)
+            volume_rect = pygame.Rect(volume_rect_x, 320, 20, 50)
             volume_rect_x += 50
-            pygame.draw.rect(screen, text_colour, volume_rect)
+            pygame.draw.rect(screen, (255, 0, 0), volume_rect)
         pygame.display.update()
