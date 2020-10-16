@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from image_handler import main_menu_image
+from settings import settings
 from sound_handler import get_title_music, music_volume
 from window_handler import screen, draw_text, font, text_colour, font1
 
@@ -34,7 +35,7 @@ def main_menu(sound_fx):
                 if event.key == pygame.K_1:
                     running = False
                 if event.key == pygame.K_2:
-                    pass
+                    settings()
                 if event.key == pygame.K_3:
                     sys.exit()
         pygame.display.update()

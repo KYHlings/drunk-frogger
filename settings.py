@@ -24,6 +24,3 @@ def settings():
             volume_rect_x += 50
             pygame.draw.rect(screen, text_colour, volume_rect)
         pygame.display.update()
-
-
-settings()
