@@ -12,6 +12,19 @@ class Player:
         self.rotation = rotation
         self.drunk_meter = 0
 
+    def drunken_consequence(self):
+        if self.drunk_meter == 1:
+            self.velocity = 3.5
+        elif self.drunk_meter == 2:
+            self.velocity = 10
+        elif self.drunk_meter == 3:
+            self.velocity = - 4
+
+
+
+
+
+
     def check_collide_x(self, mob):
         if self.player_x <= mob.mob_x:
             if self.player_x + self.width >= mob.mob_x:
@@ -41,6 +54,7 @@ class Player:
         self.player_y = 570
 
     def move(self, keys):
+
         if keys[pygame.K_LEFT] and self.player_x > self.velocity or keys[pygame.K_a] and self.player_x > self.velocity:
             self.player_x -= self.velocity
             self.rotation = 90
@@ -61,3 +75,15 @@ class Player:
             self.player_y += self.velocity
             self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
             # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+
+        if self.player_y > 570:
+            self.player_y = 570
+
+        if self.player_y < 0:
+            self.player_y = 0
+
+        if self.player_x < 0:
+            self.player_x = 0
+
+        if self.player_x > 760:
+            self.player_x = 760
