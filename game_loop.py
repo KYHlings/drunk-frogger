@@ -80,6 +80,7 @@ def game_loop(sound_fx):
                     lose_window()
                 animals.drunk_meter += 1
                 sound_fx.play_burp()
+                animals.drunken_consequence()
                 get_drunk_music(animals.drunk_meter)
                 animals.reset()
                 q = False
