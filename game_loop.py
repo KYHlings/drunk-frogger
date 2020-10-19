@@ -17,7 +17,7 @@ def redraw_window(cars, animals, wise_goat):
         screen.blit(car.image, (car.mob_x, car.mob_y))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
         # pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
-    screen.blit(get_player_sprite(animals.rotation, animals.drunk_meter), (animals.player_x, animals.player_y))
+    screen.blit(animals.img, (animals.player_x, animals.player_y))
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
@@ -25,7 +25,7 @@ def redraw_window(cars, animals, wise_goat):
 def game_loop(sound_fx):
     clock = pygame.time.Clock()
     get_level_music()
-    animals = Player(400, 570, 40, 30, 0)
+    animals = Player(400, 570, 40, 30, 0,get_player_sprite(0))
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
             Mob(0, 450, 80, 40, get_mob_sprite(False))]
     wise_goat = Get(animals.player_x, 200, 40, 30)
