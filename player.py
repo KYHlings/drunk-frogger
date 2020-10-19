@@ -34,12 +34,14 @@ class Player:
 
 
     def check_collide(self, mob):
-        px,py=self.player_rect[0],self.player_rect[1]
-        mx=px-mob.mob_rect[0]
-        my=py-mob.mob_rect[1]
-        overlap=mob.mob_mask.overlap(self.player_mask,(mx,my))
+        (px,py) = (self.player_rect[0],self.player_rect[1])
+        mx = px-mob.mob_rect[0]
+        my = py-mob.mob_rect[1]
+        overlap = mob.mob_mask.overlap(self.player_mask,(mx,my))
+        print(overlap)
         if overlap:
-             return True
+            print(overlap)
+            return True
         else:
              return False
 

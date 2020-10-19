@@ -64,10 +64,10 @@ def game_loop(sound_fx):
         if keys[pygame.K_ESCAPE]:
             running = False
 
-        for car in cars:
-            if animals.check_collide(car):
-                sound_fx.play_splat()
-                animals.reset()
+
+        if animals.check_collide(cars[0]) == True:
+            #sound_fx.play_splat()
+            animals.reset()
 
                 #This if statement checks if the player has reached the safe zone and triggers the quiz function
         if animals.player_y <= 300 and q == False:
