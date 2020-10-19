@@ -17,7 +17,7 @@ def redraw_window(cars, animals, wise_goat):
         screen.blit(car.image, (car.mob_x, car.mob_y))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
         # pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
-    screen.blit(get_player_sprite(animals.rotation), (animals.player_x, animals.player_y))
+    screen.blit(get_player_sprite(animals.rotation, animals.drunk_meter), (animals.player_x, animals.player_y))
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 

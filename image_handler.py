@@ -20,8 +20,9 @@ def lose_image():
     return lose_frog_image
 
 
-def get_player_sprite(rotation):
-    player_sprite = pygame.image.load("images_src/frog.png").convert_alpha()
+def get_player_sprite(rotation, drunk_meter):
+    player_sprites = ['frog.png', 'frog_tipsy.png', 'frog_drunk.png', 'frog_sloshed.png']
+    player_sprite = pygame.image.load(f"images_src/{player_sprites[drunk_meter]}").convert_alpha()
     player_sprite = pygame.transform.scale(player_sprite, (40, 30))
     player_sprite = pygame.transform.rotate(player_sprite, rotation)
     return player_sprite
