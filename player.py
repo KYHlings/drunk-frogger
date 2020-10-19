@@ -32,29 +32,16 @@ class Player:
         elif self.drunk_meter == 3:
             self.velocity = - 4
 
-    def check_collide_x(self, mob):
-        if self.player_x <= mob.mob_x:
-            if self.player_x + self.width >= mob.mob_x:
-                return True
-            return False
-        else:
-            if mob.mob_x + mob.width >= self.player_x:
-                return True
-            return False
-
-    def check_collide_y(self, mob):
-        if self.player_y <= mob.mob_y:
-            if self.player_y + self.height >= mob.mob_y:
-                return True
-            return False
-        else:
-            if mob.mob_y + mob.height >= self.player_y:
-                return True
-            return False
 
     def check_collide(self, mob):
-
-        return self.check_collide_y(mob) and self.check_collide_x(mob)
+        px,py=self.player_rect[0],self.player_rect[1]
+        mx=px-mob.mob_rect[0]
+        my=py-mob.mob_rect[1]
+        overlap=mob.mob_mask.overlap(self.player_mask,(mx,my))
+        if overlap:
+             return True
+        else:
+             return False
 
     def reset(self):
         self.player_x = 400
