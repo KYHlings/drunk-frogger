@@ -20,11 +20,14 @@ def redraw_window(cars, animals, wise_goat,dead_frog):
         life_x += 25
     if dead_frog.is_dead:
         screen.blit(dead_frog.img,(dead_frog.dead_x,dead_frog.dead_y))
+        screen.blit(animals.update_img()[0],(1000,1000))
+
+    else:
+        screen.blit(animals.update_img()[0], animals.update_img()[1])
     for car in cars:
         screen.blit(car.image, (car.mob_rect))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
         # pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
-    screen.blit(animals.update_img()[0],animals.update_img()[1])
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
@@ -68,8 +71,11 @@ def game_loop(sound_fx):
                     cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite(True)))
                 now[i] = pygame.time.get_ticks()
                 mob_spawn_timer[i] = randint(1000, 2000)
-        keys = pygame.key.get_pressed()
-        animals.move(keys)
+        if dead_frog.is_dead:
+            dead_frog.check_time_of_death()
+        else:
+            keys = pygame.key.get_pressed()
+            animals.move(keys)
         if keys[pygame.K_ESCAPE]:
             running = False
 

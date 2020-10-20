@@ -1,3 +1,4 @@
+from pygame.time import get_ticks
 from image_handler import get_dead_sprite
 
 
@@ -10,4 +11,9 @@ class Dead_Frog():
         self.dead_x = x
         self.dead_y = y
         self.is_dead = True
+        self.time_of_death = get_ticks()
+
+    def check_time_of_death(self):
+        if get_ticks()-self.time_of_death >= 1500:
+            self.is_dead = False
 
