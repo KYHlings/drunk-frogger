@@ -29,7 +29,7 @@ def Sound_settings(volume_float):
                 if event.key == pygame.K_ESCAPE:
                     return False
             if event.type == pygame.QUIT:
-                sys.exit()
+                quit()
         #Changes the volume bars
         for i in range(volume_int):
             volume_rect = pygame.Rect(volume_rect_x, 320, 20, 50)

@@ -11,7 +11,7 @@ class Player:
         self.player_y = player_y
         self.width = width
         self.height = height
-        self.velocity = 10
+        self.velocity = 4
         self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
         self.rotation = rotation
         self.drunk_meter = 0
