@@ -19,25 +19,30 @@ def lose_image():
     lose_frog_image = pygame.transform.scale(lose_frog_image, (800, 600))
     return lose_frog_image
 
+
 def get_player_sprite(drunk_meter):
     player_sprites = ['frog.png', 'frog_tipsy.png', 'frog_drunk.png', 'frog_sloshed.png']
     player_sprite = pygame.image.load(f"images_src/{player_sprites[drunk_meter]}").convert_alpha()
     player_sprite = pygame.transform.scale(player_sprite, (40, 30))
     return player_sprite
 
-def rotate_player_sprite(player_sprite,rotation):
+
+def rotate_player_sprite(player_sprite, rotation):
     player_sprite = pygame.transform.rotate(player_sprite, rotation)
     return player_sprite
+
 
 def get_get_sprite():
     get_sprite = pygame.image.load("images_src/visgetens_het.png")
     get_sprite = pygame.transform.scale(get_sprite, (100, 85))
     return get_sprite
 
+
 def get_background_image():
     background_image = pygame.image.load("images_src/back_placehold2.png")
     background_image = pygame.transform.scale(background_image, (800, 600))
     return background_image
+
 
 def get_mob_sprite(is_left):
     cars_sprites = ["car_green1.png", "car_red1.png", "taxi1.png", "postnord2.png"]
@@ -46,7 +51,14 @@ def get_mob_sprite(is_left):
     mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
     return mob_sprite
 
+
 def get_life_sprite():
     life_sprite = pygame.image.load("images_src/frog_face.png")
-    life_sprite = pygame.transform.scale(life_sprite, (40,30))
+    life_sprite = pygame.transform.scale(life_sprite, (40, 30))
     return life_sprite
+
+
+def get_dead_sprite():
+    dead_frog = pygame.image.load("images_src/dead_frog.png")
+    dead_frog = pygame.transform.scale(dead_frog, (40, 30))
+    return dead_frog

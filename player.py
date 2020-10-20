@@ -1,6 +1,7 @@
 import pygame
 
-from image_handler import rotate_player_sprite, get_player_sprite
+from image_handler import rotate_player_sprite, get_player_sprite, get_dead_sprite
+from window_handler import screen
 
 
 class Player:
@@ -17,17 +18,14 @@ class Player:
         self.img = img
         self.org_img = img
         self.player_mask = pygame.mask.from_surface(self.img)
-        self.player_rect = self.img.get_rect(topleft=(self.player_x,self.player_y))
+        self.player_rect = self.img.get_rect(topleft=(self.player_x, self.player_y))
 
     def update_img(self):
         self.img = get_player_sprite(self.drunk_meter)
-        self.img = rotate_player_sprite(self.img,self.rotation)
+        self.img = rotate_player_sprite(self.img, self.rotation)
         self.player_mask = pygame.mask.from_surface(self.img)
-        self.player_rect = self.img.get_rect(topleft=(self.player_x,self.player_y))
-        return self.img,self.player_rect
-
-
-
+        self.player_rect = self.img.get_rect(topleft=(self.player_x, self.player_y))
+        return self.img, self.player_rect
 
     def drunken_consequence(self):
         if self.drunk_meter == 1:
@@ -37,16 +35,16 @@ class Player:
         elif self.drunk_meter == 3:
             self.velocity = - 4
 
-
     def check_collide(self, mob):
-        (px,py) = (self.player_rect[0],self.player_rect[1])
-        mx = px-mob.mob_rect[0]
-        my = py-mob.mob_rect[1]
-        overlap = mob.mob_mask.overlap(self.player_mask,(mx,my))
+        (px, py) = (self.player_rect[0], self.player_rect[1])
+        mx = px - mob.mob_rect[0]
+        my = py - mob.mob_rect[1]
+        overlap = mob.mob_mask.overlap(self.player_mask, (mx, my))
         if overlap:
             self.lives -= 1
+            screen.blit(get_dead_sprite(), (self.player_x, self.player_y))
+            pygame.time.set_timer(2000)
             return True
-
 
     def reset(self):
         self.player_x = 400
@@ -54,7 +52,7 @@ class Player:
 
     def move(self, keys):
 
-        if keys[pygame.K_LEFT]  or keys[pygame.K_a]:
+        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.player_x -= self.velocity
             self.rotation = 90
             self.hitbox = (self.player_x + 2, self.player_y + 2, 27, 36)
