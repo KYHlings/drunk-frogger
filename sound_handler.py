@@ -52,11 +52,13 @@ def get_announcement():
 
 def get_splat():
     splat = pygame.mixer.Sound("sounds_src/splat2.ogg")
+    pygame.mixer.Sound.set_volume(splat,0.4)
     return splat
 
 
 def get_burp():
     burp = pygame.mixer.Sound("sounds_src/df_burp2.wav")
+    pygame.mixer.Sound.set_volume(burp,0.4)
     return burp
 
 

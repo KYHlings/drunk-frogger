@@ -6,7 +6,7 @@ from window_handler import screen
 
 class Player:
     def __init__(self, player_x, player_y, width, height, rotation, img):
-        self.lives = 2
+        self.lives = 10
         self.player_x = player_x
         self.player_y = player_y
         self.width = width
@@ -70,6 +70,7 @@ class Player:
             self.player_y += self.velocity
             self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
             # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+
 
         if self.player_y > 570:
             self.player_y = 570

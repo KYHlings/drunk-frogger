@@ -1,3 +1,4 @@
+import sys
 from random import randint
 
 import pygame
@@ -80,6 +81,11 @@ def game_loop(sound_fx, volume):
             animals.move(keys)
         if keys[pygame.K_p]:
             volume = Sound_settings(volume)
+            if not volume:
+                return
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
 
         for car in cars:
             if animals.check_collide(car):

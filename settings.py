@@ -9,7 +9,7 @@ from window_handler import draw_text, font, text_colour, screen, font1
 
 def Sound_settings(volume_float):
     running = True
-    get_title_music()
+
     volume_int = int(volume_float * 10)
     while running:
         volume_float = float(volume_int)/10
@@ -24,8 +24,10 @@ def Sound_settings(volume_float):
                     volume_int -= 1
                 if event.key == pygame.K_PLUS and volume_int <= 5:
                     volume_int += 1
-                if event.key == pygame.K_ESCAPE:
+                if event.key == pygame.K_RETURN:
                     return volume_float
+                if event.key == pygame.K_ESCAPE:
+                    return False
             if event.type == pygame.QUIT:
                 sys.exit()
         #Changes the volume bars
