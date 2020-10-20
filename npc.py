@@ -9,7 +9,11 @@ class Mob:
         self.velocity = 5
         self.hitbox = (self.mob_x + 6, self.mob_y + 7, 69, 30)
         self.mob_mask = pygame.mask.from_surface(self.image)
-        self.mob_rect = self.image.get_rect()
+        self.mob_rect = self.image.get_rect(topleft=(self.mob_x,self.mob_y))
+
+    def update_rect(self,direction):
+        self.mob_x += self.velocity * direction
+        self.mob_rect = self.image.get_rect(topleft=(self.mob_x,self.mob_y))
 
 
 class Get:

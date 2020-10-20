@@ -16,12 +16,13 @@ class Player:
         self.img = img
         self.org_img = img
         self.player_mask = pygame.mask.from_surface(self.img)
-        self.player_rect = self.img.get_rect()
+        self.player_rect = self.img.get_rect(topleft=(self.player_x,self.player_y))
 
     def update_img(self):
-        self.img = get_player_sprite(self.rotation,self.drunk_meter)
+        self.img = get_player_sprite(self.drunk_meter)
         self.player_mask = pygame.mask.from_surface(self.img)
-        self.player_rect = self.img.get_rect()
+        self.player_rect = self.img.get_rect(topleft=(self.player_x,self.player_y))
+        return self.img,self.player_rect
 
 
     def drunken_consequence(self):
@@ -38,12 +39,9 @@ class Player:
         mx = px-mob.mob_rect[0]
         my = py-mob.mob_rect[1]
         overlap = mob.mob_mask.overlap(self.player_mask,(mx,my))
-        print(overlap)
         if overlap:
-            print(overlap)
             return True
-        else:
-             return False
+
 
     def reset(self):
         self.player_x = 400

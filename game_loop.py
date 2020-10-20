@@ -14,10 +14,10 @@ from window_handler import screen, lose_window, win_window
 # This function updates the window with sprites each loop
 def redraw_window(cars, animals, wise_goat):
     for car in cars:
-        screen.blit(car.image, (car.mob_x, car.mob_y))
+        screen.blit(car.image, (car.mob_rect))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
         # pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
-    screen.blit(animals.img, (animals.player_x, animals.player_y))
+    screen.blit(animals.update_img()[0],animals.update_img()[1])
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
@@ -44,11 +44,11 @@ def game_loop(sound_fx):
                 running = False
         for car in cars[:]:
             if car.mob_y != 400:
-                car.mob_x += car.velocity
+                car.update_rect(1)
                 if car.mob_x >= 800:
                     cars.remove(car)
             else:
-                car.mob_x -= car.velocity
+                car.update_rect(-1)
                 if car.mob_x <= -50:
                     cars.remove(car)
         for i in range(3):
@@ -64,10 +64,10 @@ def game_loop(sound_fx):
         if keys[pygame.K_ESCAPE]:
             running = False
 
-
-        if animals.check_collide(cars[0]) == True:
-            #sound_fx.play_splat()
-            animals.reset()
+        for car in cars:
+            if animals.check_collide(car):
+                sound_fx.play_splat()
+                animals.reset()
 
                 #This if statement checks if the player has reached the safe zone and triggers the quiz function
         if animals.player_y <= 300 and q == False:
