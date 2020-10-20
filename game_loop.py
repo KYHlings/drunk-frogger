@@ -9,6 +9,7 @@ from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get
 from npc import Mob, Get
 from player import Player
 from quiz_handler import quiz_window, quiz
+from settings import Sound_settings
 from sound_handler import get_level_music, get_goat_music, get_drunk_music
 from window_handler import screen, lose_window, win_window
 
@@ -34,7 +35,7 @@ def redraw_window(cars, animals, wise_goat, dead_frog):
 
 
 # This function runs the main game
-def game_loop(sound_fx):
+def game_loop(sound_fx, volume):
     clock = pygame.time.Clock()
     get_level_music()
     animals = Player(400, 570, 40, 30, 0, get_player_sprite(0))
@@ -72,13 +73,13 @@ def game_loop(sound_fx):
                     cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite(True)))
                 now[i] = pygame.time.get_ticks()
                 mob_spawn_timer[i] = randint(1000, 2000)
+        keys = pygame.key.get_pressed()
         if dead_frog.is_dead:
             dead_frog.check_time_of_death()
         else:
-            keys = pygame.key.get_pressed()
             animals.move(keys)
-        if keys[pygame.K_ESCAPE]:
-            running = False
+        if keys[pygame.K_p]:
+            volume = Sound_settings(volume)
 
         for car in cars:
             if animals.check_collide(car):

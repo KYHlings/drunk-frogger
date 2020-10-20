@@ -7,7 +7,7 @@ def main():
     volume = 0.1
     sound_fx = Sound_fx()
     start_menu(sound_fx, volume)
-    game_loop(sound_fx)
+    game_loop(sound_fx, volume)
 
 
 if __name__ == '__main__':
