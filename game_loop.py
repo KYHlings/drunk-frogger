@@ -2,6 +2,7 @@ from random import randint
 
 import pygame
 
+from dead_frog import Dead_Frog
 from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite
 
 from npc import Mob, Get
@@ -12,11 +13,13 @@ from window_handler import screen, lose_window, win_window
 
 
 # This function updates the window with sprites each loop
-def redraw_window(cars, animals, wise_goat):
+def redraw_window(cars, animals, wise_goat,dead_frog):
     life_x = 10
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25
+    if dead_frog.is_dead:
+        screen.blit(dead_frog.img,(dead_frog.dead_x,dead_frog.dead_y))
     for car in cars:
         screen.blit(car.image, (car.mob_rect))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
@@ -33,6 +36,7 @@ def game_loop(sound_fx):
     animals = Player(400, 570, 40, 30, 0,get_player_sprite(0))
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
             Mob(0, 450, 80, 40, get_mob_sprite(False))]
+    dead_frog = Dead_Frog()
     wise_goat = Get(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
     running = True
@@ -73,6 +77,7 @@ def game_loop(sound_fx):
             if animals.check_collide(car):
                 if animals.lives == 0:
                     lose_window()
+                dead_frog.player_died(animals.player_x,animals.player_y)
                 sound_fx.play_splat()
                 animals.reset()
 
@@ -94,4 +99,4 @@ def game_loop(sound_fx):
             else:
                 win_window()
 
-        redraw_window(cars, animals, wise_goat)
+        redraw_window(cars, animals, wise_goat,dead_frog)

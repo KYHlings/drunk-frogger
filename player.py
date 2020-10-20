@@ -42,8 +42,6 @@ class Player:
         overlap = mob.mob_mask.overlap(self.player_mask, (mx, my))
         if overlap:
             self.lives -= 1
-            screen.blit(get_dead_sprite(), (self.player_x, self.player_y))
-            pygame.time.set_timer(2000)
             return True
 
     def reset(self):
