@@ -45,3 +45,5 @@ def get_mob_sprite(is_left):
     mob_sprite = pygame.transform.scale(mob_sprite, (80, 40))
     mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
     return mob_sprite
+
+def get_life_sprite():

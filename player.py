@@ -5,6 +5,7 @@ from image_handler import rotate_player_sprite, get_player_sprite
 
 class Player:
     def __init__(self, player_x, player_y, width, height, rotation, img):
+        self.lives = 10
         self.player_x = player_x
         self.player_y = player_y
         self.width = width
@@ -26,6 +27,8 @@ class Player:
         return self.img,self.player_rect
 
 
+
+
     def drunken_consequence(self):
         if self.drunk_meter == 1:
             self.velocity = 3.5
@@ -41,6 +44,7 @@ class Player:
         my = py-mob.mob_rect[1]
         overlap = mob.mob_mask.overlap(self.player_mask,(mx,my))
         if overlap:
+            self.lives -= 1
             return True
 
 

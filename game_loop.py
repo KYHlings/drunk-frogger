@@ -13,6 +13,10 @@ from window_handler import screen, lose_window, win_window
 
 # This function updates the window with sprites each loop
 def redraw_window(cars, animals, wise_goat):
+    for i in range(animals.lives):
+        live = pygame.
+        volume_rect_x += 50
+        pygame.draw.rect(screen, text_colour, volume_rect)
     for car in cars:
         screen.blit(car.image, (car.mob_rect))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
@@ -23,6 +27,7 @@ def redraw_window(cars, animals, wise_goat):
 
 #This function runs the main game
 def game_loop(sound_fx):
+
     clock = pygame.time.Clock()
     get_level_music()
     animals = Player(400, 570, 40, 30, 0,get_player_sprite(0))
