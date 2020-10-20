@@ -4,7 +4,7 @@ from image_handler import get_dead_sprite
 
 class Dead_Frog():
     def __init__(self):
-        self.img = get_dead_sprite()
+        self.img = get_dead_sprite(0)
         self.is_dead = False
 
     def player_died(self, x, y):

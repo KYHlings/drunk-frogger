@@ -3,7 +3,8 @@ from random import randint
 import pygame
 
 from dead_frog import Dead_Frog
-from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite
+from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite, \
+    get_dead_sprite
 
 from npc import Mob, Get
 from player import Player
@@ -83,9 +84,11 @@ def game_loop(sound_fx):
             if animals.check_collide(car):
                 if animals.lives == 0:
                     lose_window()
-                dead_frog.player_died(animals.player_x, animals.player_y)
-                sound_fx.play_splat()
-                animals.reset()
+                    return
+                else:
+                    dead_frog.player_died(animals.player_x, animals.player_y)
+                    sound_fx.play_splat()
+                    animals.reset()
 
                 # This if statement checks if the player has reached the safe zone and triggers the quiz function
         if animals.player_y <= 300 and q == False:
@@ -96,8 +99,9 @@ def game_loop(sound_fx):
             if not quiz_window(quiz()):
                 if animals.drunk_meter == 3:
                     lose_window()
-                    break
+                    return
                 animals.drunk_meter += 1
+                dead_frog.img = get_dead_sprite(animals.drunk_meter)
                 sound_fx.play_burp()
                 animals.drunken_consequence()
                 get_drunk_music(animals.drunk_meter)
@@ -105,6 +109,6 @@ def game_loop(sound_fx):
                 q = False
             else:
                 win_window()
-                break
+                return
 
         redraw_window(cars, animals, wise_goat, dead_frog)

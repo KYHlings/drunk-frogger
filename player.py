@@ -6,12 +6,12 @@ from window_handler import screen
 
 class Player:
     def __init__(self, player_x, player_y, width, height, rotation, img):
-        self.lives = 10
+        self.lives = 2
         self.player_x = player_x
         self.player_y = player_y
         self.width = width
         self.height = height
-        self.velocity = 4
+        self.velocity = 10
         self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
         self.rotation = rotation
         self.drunk_meter = 0

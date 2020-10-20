@@ -46,7 +46,7 @@ def get_background_image():
 
 def get_mob_sprite(is_left):
     cars_sprites = ["car_green1.png", "car_red1.png", "taxi1.png", "postnord2.png"]
-    mob_sprite = pygame.image.load(f"images_src/{choice(cars_sprites)}")
+    mob_sprite = pygame.image.load(f"images_src/{choice(cars_sprites)}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, (80, 40))
     mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
     return mob_sprite
@@ -58,7 +58,8 @@ def get_life_sprite():
     return life_sprite
 
 
-def get_dead_sprite():
-    dead_frog = pygame.image.load("images_src/dead_frog.png")
+def get_dead_sprite(drunk_meter):
+    dead_frogs = ["dead_frog.png", "frog_dead_tipsy.png", "frog_dead_drunk.png", "frog_dead_sloshed.png"]
+    dead_frog = pygame.image.load(f"images_src/{dead_frogs[drunk_meter]}")
     dead_frog = pygame.transform.scale(dead_frog, (40, 30))
     return dead_frog
