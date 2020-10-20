@@ -2,7 +2,7 @@ from random import randint
 
 import pygame
 
-from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image
+from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite
 
 from npc import Mob, Get
 from player import Player
@@ -13,10 +13,10 @@ from window_handler import screen, lose_window, win_window
 
 # This function updates the window with sprites each loop
 def redraw_window(cars, animals, wise_goat):
+    life_x = 10
     for i in range(animals.lives):
-        live = pygame.
-        volume_rect_x += 50
-        pygame.draw.rect(screen, text_colour, volume_rect)
+        screen.blit(get_life_sprite(), (life_x, 10))
+        life_x += 25
     for car in cars:
         screen.blit(car.image, (car.mob_rect))
         car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
@@ -71,6 +71,8 @@ def game_loop(sound_fx):
 
         for car in cars:
             if animals.check_collide(car):
+                if animals.lives == 0:
+                    lose_window()
                 sound_fx.play_splat()
                 animals.reset()
 

@@ -31,7 +31,7 @@ def rotate_player_sprite(player_sprite,rotation):
 
 def get_get_sprite():
     get_sprite = pygame.image.load("images_src/visgetens_het.png")
-    get_sprite = pygame.transform.scale(get_sprite, (80, 60))
+    get_sprite = pygame.transform.scale(get_sprite, (100, 85))
     return get_sprite
 
 def get_background_image():
@@ -47,3 +47,6 @@ def get_mob_sprite(is_left):
     return mob_sprite
 
 def get_life_sprite():
+    life_sprite = pygame.image.load("images_src/frog_face.png")
+    life_sprite = pygame.transform.scale(life_sprite, (40,30))
+    return life_sprite
