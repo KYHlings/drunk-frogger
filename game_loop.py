@@ -13,14 +13,14 @@ from window_handler import screen, lose_window, win_window
 
 
 # This function updates the window with sprites each loop
-def redraw_window(cars, animals, wise_goat,dead_frog):
+def redraw_window(cars, animals, wise_goat, dead_frog):
     life_x = 10
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25
     if dead_frog.is_dead:
-        screen.blit(dead_frog.img,(dead_frog.dead_x,dead_frog.dead_y))
-        screen.blit(animals.update_img()[0],(1000,1000))
+        screen.blit(dead_frog.img, (dead_frog.dead_x, dead_frog.dead_y))
+        screen.blit(animals.update_img()[0], (1000, 1000))
 
     else:
         screen.blit(animals.update_img()[0], animals.update_img()[1])
@@ -31,12 +31,12 @@ def redraw_window(cars, animals, wise_goat,dead_frog):
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
-#This function runs the main game
-def game_loop(sound_fx):
 
+# This function runs the main game
+def game_loop(sound_fx):
     clock = pygame.time.Clock()
     get_level_music()
-    animals = Player(400, 570, 40, 30, 0,get_player_sprite(0))
+    animals = Player(400, 570, 40, 30, 0, get_player_sprite(0))
     cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
             Mob(0, 450, 80, 40, get_mob_sprite(False))]
     dead_frog = Dead_Frog()
@@ -83,19 +83,20 @@ def game_loop(sound_fx):
             if animals.check_collide(car):
                 if animals.lives == 0:
                     lose_window()
-                dead_frog.player_died(animals.player_x,animals.player_y)
+                dead_frog.player_died(animals.player_x, animals.player_y)
                 sound_fx.play_splat()
                 animals.reset()
 
-                #This if statement checks if the player has reached the safe zone and triggers the quiz function
+                # This if statement checks if the player has reached the safe zone and triggers the quiz function
         if animals.player_y <= 300 and q == False:
             get_goat_music()
 
-            #This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
-            #if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
+            # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
+            # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
             if not quiz_window(quiz()):
                 if animals.drunk_meter == 3:
                     lose_window()
+                    break
                 animals.drunk_meter += 1
                 sound_fx.play_burp()
                 animals.drunken_consequence()
@@ -104,5 +105,6 @@ def game_loop(sound_fx):
                 q = False
             else:
                 win_window()
+                break
 
-        redraw_window(cars, animals, wise_goat,dead_frog)
+        redraw_window(cars, animals, wise_goat, dead_frog)
