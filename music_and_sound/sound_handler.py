@@ -66,7 +66,7 @@ def get_burp():
 def get_drunk_music(drunken_meter):
     drunk_music_ls = ["df_level1_music_drunk1.mp3", "df_level1_music_drunk2.mp3", "df_level1_music_drunk3.mp3",
                       "df_level1_music_drunk4.mp3", "df_level1_music_drunk5.mp3", "df_level1_music_drunk6.mp3"]
-    pygame.mixer.music.load(f"music_and_sound/sounds_fx_src/{drunk_music_ls[drunken_meter]}")
+    pygame.mixer.music.load(f"music_and_sound/music_src/{drunk_music_ls[drunken_meter]}")
     return pygame.mixer.music.play(-1)
 
 

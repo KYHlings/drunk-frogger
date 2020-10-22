@@ -8,7 +8,7 @@ from game_src.window_handler import screen,text_object
 
 #loads quiz from json-file, in future will load from api.
 def get_quiz():
-    p = Path("quiz.json")
+    p = Path("quiz_ui/quiz.json")
     #url = requests.get("https://mqif4s7obg.execute-api.eu-central-1.amazonaws.com/olofs_lambda")
     content = json.loads(p.read_text(encoding='utf8'))['questions']
     shuffle(content)
@@ -32,7 +32,7 @@ def quiz_window(quiz):
             pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
     while run:
         message_window = pygame.Surface([450, 100])
-        large_text = pygame.font.Font("PAPYRUS.TTF", 20)
+        large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 20)
         text_surf, text_rect = text_object(question, large_text)
         text_rect.center = (400, 300)
         alternatives_text = []
