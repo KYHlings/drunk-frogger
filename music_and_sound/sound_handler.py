@@ -1,4 +1,5 @@
 import pygame
+from random import choice
 
 
 class Sound_fx:
@@ -17,8 +18,11 @@ class Sound_fx:
     def play_announcement(self):
         return self.announcement_sound.play()
 
+
 def music_volume(volume):
     pygame.mixer.music.set_volume(volume)
+
+
 # Each function gets a specific soundfile to load
 def get_title_music():
     pygame.mixer.music.load("music_and_sound/music_src/df_theme.mp3")
@@ -45,23 +49,6 @@ def get_lose_music():
     return pygame.mixer.music.play(1)
 
 
-def get_announcement():
-    announcement = pygame.mixer.Sound("music_and_sound/sounds_fx_src/df-theme-announcer.ogg")
-    return announcement
-
-
-def get_splat():
-    splat = pygame.mixer.Sound("music_and_sound/sounds_fx_src/splat2.ogg")
-    pygame.mixer.Sound.set_volume(splat,0.4)
-    return splat
-
-
-def get_burp():
-    burp = pygame.mixer.Sound("music_and_sound/sounds_fx_src/df_burp2.wav")
-    pygame.mixer.Sound.set_volume(burp,0.4)
-    return burp
-
-
 # Loads different track depending on level of drunkness.
 def get_drunk_music(drunken_meter):
     drunk_music_ls = ["df_level1_music_drunk1.mp3", "df_level1_music_drunk2.mp3", "df_level1_music_drunk3.mp3",
@@ -73,3 +60,22 @@ def get_drunk_music(drunken_meter):
 def get_credits():
     pygame.mixer.music.load("music_and_sound/music_src/df_credits.mp3")
     pygame.mixer.music.play(-1)
+
+
+def get_announcement():
+    announcement = pygame.mixer.Sound("music_and_sound/sounds_fx_src/df-theme-announcer.ogg")
+    return announcement
+
+
+def get_splat():
+    splat_files = ["df_splat1.ogg", "df_splat2.ogg", "df_splat3.ogg"]
+    splat = pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{choice(splat_files)}")
+    pygame.mixer.Sound.set_volume(splat, 0.4)
+    return splat
+
+
+def get_burp():
+    burp_files = ["df_burp1.ogg", "df_burp2.wav", "df_burp3.ogg"]
+    burp = pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{choice(burp_files)}")
+    pygame.mixer.Sound.set_volume(burp, 0.4)
+    return burp
