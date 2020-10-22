@@ -2,9 +2,9 @@ from random import randint
 
 import pygame
 
-from game_src.level import Level
+from game_src.level import create_level
 from sprites_classes.dead_frog import Dead_Frog
-from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, \
+from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite,\
     get_life_sprite, get_dead_sprite
 
 from sprites_classes.npc import Mob, Goat
@@ -15,19 +15,9 @@ from music_and_sound.sound_handler import get_level_music, get_goat_music, get_d
 from game_src.window_handler import screen, lose_window, win_window
 
 
-def create_level(level_number):
-    if level_number == 1:
-        level = Level(lanes=[350, 400, 450],
-                      background_image=get_background_image(),
-                      mobs=[Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
-                            Mob(0, 450, 80, 40, get_mob_sprite(False))],
-                      goat=Goat(400, 200, 40, 30),
-                      music=0,
-                      spawm_timer=[1000, 2000, 1000])
-
-
 # This function updates the window with sprites_classes each loop
-def redraw_window(cars, animals, wise_goat, dead_frog):
+def redraw_window(cars, animals, wise_goat, dead_frog,background_image):
+    screen.blit(background_image, (0, 0))
     life_x = 10
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
@@ -58,29 +48,29 @@ def game_loop(sound_fx, volume):
 
     now = [pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()]
     q = False
+    level = create_level(1)
     while running:
         clock.tick(30)
-        screen.blit(get_background_image(), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        for car in cars[:]:
+        for car in level.mobs[:]:
             if car.mob_y != 400:
                 car.update_rect(1)
                 if car.mob_x >= 800:
-                    cars.remove(car)
+                    level.mobs.remove(car)
             else:
                 car.update_rect(-1)
                 if car.mob_x <= -50:
-                    cars.remove(car)
+                    level.mobs.remove(car)
         for i in range(3):
-            if pygame.time.get_ticks() - now[i] >= mob_spawn_timer[i]:
-                if lanes[i] != 400:
-                    cars.append(Mob(0, lanes[i], 80, 40, get_mob_sprite(False)))
+            if pygame.time.get_ticks() - now[i] >= level.spawn_timer[i]:
+                if level.lanes[i] != 400:
+                    level.mobs.append(Mob(0, level.lanes[i], 80, 40, get_mob_sprite(False)))
                 else:
-                    cars.append(Mob(800, lanes[i], 80, 40, get_mob_sprite(True)))
+                    level.mobs.append(Mob(800, level.lanes[i], 80, 40, get_mob_sprite(True)))
                 now[i] = pygame.time.get_ticks()
-                mob_spawn_timer[i] = randint(1000, 2000)
+                level.spawn_timer[i] = randint(1000, 2000)
         keys = pygame.key.get_pressed()
         if dead_frog.is_dead:
             dead_frog.check_time_of_death()
@@ -94,7 +84,7 @@ def game_loop(sound_fx, volume):
             if event.type == pygame.QUIT:
                 exit()
 
-        for car in cars:
+        for car in level.mobs:
             if animals.check_collide(car):
                 if animals.lives == 0:
                     lose_window()
@@ -125,4 +115,4 @@ def game_loop(sound_fx, volume):
                 win_window()
                 return
 
-        redraw_window(cars, animals, wise_goat, dead_frog)
+        redraw_window(level.mobs, animals, wise_goat, dead_frog,level.background_image)
