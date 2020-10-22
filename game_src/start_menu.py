@@ -3,9 +3,9 @@ import sys
 import pygame
 
 from image.image_handler import main_menu_image
-from settings import Sound_settings
-from sound_handler import get_title_music, music_volume
-from window_handler import screen, draw_text, font, text_colour, font1
+from game_src.settings import Sound_settings
+from music_and_sound.sound_handler import get_title_music, music_volume
+from game_src.window_handler import screen, draw_text, font, text_colour, font1
 
 
 def start_menu(sound_fx, volume):

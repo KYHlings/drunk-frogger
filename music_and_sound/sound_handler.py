@@ -46,18 +46,18 @@ def get_lose_music():
 
 
 def get_announcement():
-    announcement = pygame.mixer.Sound("sounds_src/df-theme-announcer.ogg")
+    announcement = pygame.mixer.Sound("music_and_sound/sounds_fx_src/df-theme-announcer.ogg")
     return announcement
 
 
 def get_splat():
-    splat = pygame.mixer.Sound("sounds_src/splat2.ogg")
+    splat = pygame.mixer.Sound("music_and_sound/sounds_fx_src/splat2.ogg")
     pygame.mixer.Sound.set_volume(splat,0.4)
     return splat
 
 
 def get_burp():
-    burp = pygame.mixer.Sound("sounds_src/df_burp2.wav")
+    burp = pygame.mixer.Sound("music_and_sound/sounds_fx_src/df_burp2.wav")
     pygame.mixer.Sound.set_volume(burp,0.4)
     return burp
 
@@ -66,7 +66,7 @@ def get_burp():
 def get_drunk_music(drunken_meter):
     drunk_music_ls = ["df_level1_music_drunk1.mp3", "df_level1_music_drunk2.mp3", "df_level1_music_drunk3.mp3",
                       "df_level1_music_drunk4.mp3", "df_level1_music_drunk5.mp3", "df_level1_music_drunk6.mp3"]
-    pygame.mixer.music.load(f"sounds_src/{drunk_music_ls[drunken_meter]}")
+    pygame.mixer.music.load(f"music_and_sound/sounds_fx_src/{drunk_music_ls[drunken_meter]}")
     return pygame.mixer.music.play(-1)
 
 

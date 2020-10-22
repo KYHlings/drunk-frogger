@@ -2,13 +2,13 @@ import sys
 import pygame
 
 from image.image_handler import win_image, lose_image
-from sound_handler import get_win_music, get_lose_music
+from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 pygame.init()
 
 screen = pygame.display.set_mode((800, 600))
-font = pygame.font.Font("PAPYRUS.TTF", 80)
-font1 = pygame.font.Font("PAPYRUS.TTF", 60)
+font = pygame.font.Font("font_src/PAPYRUS.TTF", 80)
+font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 60)
 text_colour = (0, 0, 0)
 
 

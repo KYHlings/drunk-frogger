@@ -8,10 +8,10 @@ from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprit
 
 from sprites_classes.npc import Mob, Get
 from sprites_classes.player import Player
-from quiz_handler import quiz_window, quiz
-from settings import Sound_settings
-from sound_handler import get_level_music, get_goat_music, get_drunk_music
-from window_handler import screen, lose_window, win_window
+from quiz_ui.quiz_handler import quiz_window, quiz
+from game_src.settings import Sound_settings
+from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
+from game_src.window_handler import screen, lose_window, win_window
 
 
 # This function updates the window with sprites_classes each loop

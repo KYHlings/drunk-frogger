@@ -1,6 +1,6 @@
-from game_loop import game_loop
-from start_menu import start_menu
-from sound_handler import Sound_fx
+from game_src.game_loop import game_loop
+from game_src.start_menu import start_menu
+from music_and_sound.sound_handler import Sound_fx
 
 
 def main():

@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 
 from image.image_handler import get_get_sprite
-from window_handler import screen,text_object
+from game_src.window_handler import screen,text_object
 
 #loads quiz from json-file, in future will load from api.
 def get_quiz():

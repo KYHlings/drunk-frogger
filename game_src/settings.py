@@ -1,8 +1,8 @@
 import pygame
 
 from image.image_handler import main_menu_image
-from sound_handler import music_volume
-from window_handler import draw_text, font, text_colour, screen, font1
+from music_and_sound.sound_handler import music_volume
+from game_src.window_handler import draw_text, font, text_colour, screen, font1
 
 
 def Sound_settings(volume_float):
