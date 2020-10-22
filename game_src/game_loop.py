@@ -2,6 +2,7 @@ from random import randint
 
 import pygame
 
+from game_src.level import Level
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite, \
     get_dead_sprite
@@ -36,6 +37,7 @@ def redraw_window(cars, animals, wise_goat, dead_frog):
 
 # This function runs the main game
 def game_loop(sound_fx, volume):
+    level = Level()
     clock = pygame.time.Clock()
     get_level_music()
     animals = Player(400, 570, 40, 30, 0, get_player_sprite(0))
