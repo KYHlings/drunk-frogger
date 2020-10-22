@@ -46,73 +46,75 @@ def game_loop(sound_fx, volume):
     pygame.display.set_caption("Drunk Frogger")
     running = True
 
-    now = [pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()]
     q = False
-    level = create_level(1)
+
+    level_number = 1
     while running:
-        clock.tick(30)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        for car in level.mobs[:]:
-            if car.mob_y != 400:
-                car.update_rect(1)
-                if car.mob_x >= 800:
-                    level.mobs.remove(car)
+        level = create_level(level_number)
+        while True:
+            clock.tick(30)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+            for car in level.mobs[:]:
+                if car.mob_y != 400:
+                    car.update_rect(1)
+                    if car.mob_x >= 800:
+                        level.mobs.remove(car)
+                else:
+                    car.update_rect(-1)
+                    if car.mob_x <= -50:
+                        level.mobs.remove(car)
+            for i in range(3):
+                if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
+                    if level.lanes[i] != 400:
+                        level.mobs.append(Mob(0, level.lanes[i], 80, 40, get_mob_sprite(False)))
+                    else:
+                        level.mobs.append(Mob(800, level.lanes[i], 80, 40, get_mob_sprite(True)))
+                    level.time_spawned[i] = pygame.time.get_ticks()
+                    level.spawn_timer[i] = randint(1000, 2000)
+            keys = pygame.key.get_pressed()
+            if dead_frog.is_dead:
+                dead_frog.check_time_of_death()
             else:
-                car.update_rect(-1)
-                if car.mob_x <= -50:
-                    level.mobs.remove(car)
-        for i in range(3):
-            if pygame.time.get_ticks() - now[i] >= level.spawn_timer[i]:
-                if level.lanes[i] != 400:
-                    level.mobs.append(Mob(0, level.lanes[i], 80, 40, get_mob_sprite(False)))
-                else:
-                    level.mobs.append(Mob(800, level.lanes[i], 80, 40, get_mob_sprite(True)))
-                now[i] = pygame.time.get_ticks()
-                level.spawn_timer[i] = randint(1000, 2000)
-        keys = pygame.key.get_pressed()
-        if dead_frog.is_dead:
-            dead_frog.check_time_of_death()
-        else:
-            animals.move(keys)
-        if keys[pygame.K_p]:
-            volume = Sound_settings(volume)
-            if not volume:
-                return
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
-
-        for car in level.mobs:
-            if animals.check_collide(car):
-                if animals.lives == 0:
-                    lose_window()
+                animals.move(keys)
+            if keys[pygame.K_p]:
+                volume = Sound_settings(volume)
+                if not volume:
                     return
-                else:
-                    dead_frog.player_died(animals.player_x, animals.player_y)
-                    sound_fx.play_splat()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit()
+
+            for car in level.mobs:
+                if animals.check_collide(car):
+                    if animals.lives == 0:
+                        lose_window()
+                        return
+                    else:
+                        dead_frog.player_died(animals.player_x, animals.player_y)
+                        sound_fx.play_splat()
+                        animals.reset()
+
+                    # This if statement checks if the player has reached the safe zone and triggers the quiz function
+            if animals.player_y <= 300 and q == False:
+                get_goat_music()
+
+                # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
+                # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
+                if not quiz_window(quiz()):
+                    if animals.drunk_meter == 3:
+                        lose_window()
+                        return
+                    animals.drunk_meter += 1
+                    dead_frog.img = get_dead_sprite(animals.drunk_meter)
+                    sound_fx.play_burp()
+                    animals.drunken_consequence()
+                    get_drunk_music(animals.drunk_meter)
                     animals.reset()
-
-                # This if statement checks if the player has reached the safe zone and triggers the quiz function
-        if animals.player_y <= 300 and q == False:
-            get_goat_music()
-
-            # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
-            # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
-            if not quiz_window(quiz()):
-                if animals.drunk_meter == 3:
-                    lose_window()
+                    q = False
+                else:
+                    win_window()
                     return
-                animals.drunk_meter += 1
-                dead_frog.img = get_dead_sprite(animals.drunk_meter)
-                sound_fx.play_burp()
-                animals.drunken_consequence()
-                get_drunk_music(animals.drunk_meter)
-                animals.reset()
-                q = False
-            else:
-                win_window()
-                return
 
-        redraw_window(level.mobs, animals, wise_goat, dead_frog,level.background_image)
+            redraw_window(level.mobs, animals, wise_goat, dead_frog,level.background_image)
