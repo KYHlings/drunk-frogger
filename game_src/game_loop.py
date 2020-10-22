@@ -70,7 +70,7 @@ def game_loop(sound_fx, volume):
                     car.update_rect(-1)
                     if car.mob_x <= -50:
                         level.mobs.remove(car)
-            for i in range(3):
+            for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if level.lanes[i] != 400:
                         level.mobs.append(Mob(-40, level.lanes[i], 80, 40, get_mob_sprite(False)))

@@ -39,7 +39,7 @@ def get_get_sprite():
 
 
 def get_background_image(level_number):
-    file_names = ["back_placehold2.png", "bg_suburban_bourbon.png"]
+    file_names = ["bg_suburban_bourbon.png", "back_placehold2.png"]
     background_image = pygame.image.load(f"image/backgrounds_src/{file_names[level_number]}")
     background_image = pygame.transform.scale(background_image, (800, 600))
     return background_image
