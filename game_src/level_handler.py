@@ -15,7 +15,7 @@ class Level:
         self.time_spawned = time_spawned
 
 
-class Lanes:
+class Lane:
     def __init__(self, y, velocity, is_left):
         self.y = y
         self.velocity = velocity
@@ -24,7 +24,7 @@ class Lanes:
 
 def create_level(level_number):
     if level_number == 1:
-        level = Level(lanes=[350, 400, 450, 500],
+        level = Level(lanes=[Lane(350, 5, False ),Lane(400, 5, True),Lane(450, 5, False),Lane(500, 5, True)],
                       background_image=get_background_image(0),
                       mobs=[Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
                             Mob(0, 450, 80, 40, get_mob_sprite(False)), Mob(0, 500, 80, 40, get_mob_sprite(True))],

@@ -2,7 +2,7 @@ from random import randint
 
 import pygame
 
-from game_src.level import create_level
+from game_src.level_handler import create_level
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
     get_life_sprite, get_dead_sprite, get_beer_sprite
@@ -72,10 +72,11 @@ def game_loop(sound_fx, volume):
                         level.mobs.remove(car)
             for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
-                    if level.lanes[i] != 400:
-                        level.mobs.append(Mob(-40, level.lanes[i], 80, 40, get_mob_sprite(False)))
+                   # print(level.lanes[i].is_left)
+                    if not level.lanes[i].is_left:
+                        level.mobs.append(Mob(-40, level.lanes[i].y, 80, 40, get_mob_sprite(False)))
                     else:
-                        level.mobs.append(Mob(800, level.lanes[i], 80, 40, get_mob_sprite(True)))
+                        level.mobs.append(Mob(800, level.lanes[i].y, 80, 40, get_mob_sprite(True)))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
             keys = pygame.key.get_pressed()
