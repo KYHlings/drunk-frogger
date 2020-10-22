@@ -18,10 +18,10 @@ from game_src.window_handler import screen, lose_window, win_window
 # This function updates the window with sprites_classes each loop
 def redraw_window(cars, animals, wise_goat, dead_frog, background_image):
     screen.blit(background_image, (0, 0))
-    screen.blit(get_life_sprite(), (10, 305))
-    screen.blit(pygame.transform.flip(get_life_sprite(),True,True), (10, 215))
+    screen.blit(get_life_sprite(), (10, 315))
+    screen.blit(pygame.transform.flip(get_life_sprite(), True, True), (10, 205))
     life_x = 10
-    beer_y = 300
+    beer_y = 285
     for i in range(animals.drunk_meter):
         screen.blit(get_beer_sprite(), (10, beer_y))
         beer_y -= 25
@@ -35,9 +35,7 @@ def redraw_window(cars, animals, wise_goat, dead_frog, background_image):
     else:
         screen.blit(animals.update_img()[0], animals.update_img()[1])
     for car in cars:
-        screen.blit(car.image, (car.mob_rect))
-        car.hitbox = (car.mob_x + 6, car.mob_y + 7, 69, 30)
-        # pygame.draw.rect(screen, (255, 0, 0), car.hitbox, 3)
+        screen.blit(car.image, car.mob_rect)
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
@@ -75,7 +73,7 @@ def game_loop(sound_fx, volume):
             for i in range(3):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if level.lanes[i] != 400:
-                        level.mobs.append(Mob(0, level.lanes[i], 80, 40, get_mob_sprite(False)))
+                        level.mobs.append(Mob(-40, level.lanes[i], 80, 40, get_mob_sprite(False)))
                     else:
                         level.mobs.append(Mob(800, level.lanes[i], 80, 40, get_mob_sprite(True)))
                     level.time_spawned[i] = pygame.time.get_ticks()

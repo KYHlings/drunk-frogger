@@ -11,7 +11,6 @@ class Player:
         self.width = width
         self.height = height
         self.velocity = 4
-        self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
         self.rotation = rotation
         self.drunk_meter = 0
         self.img = img
@@ -52,24 +51,15 @@ class Player:
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.player_x -= self.velocity
             self.rotation = 90
-            self.hitbox = (self.player_x + 2, self.player_y + 2, 27, 36)
-            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.player_x += self.velocity
             self.rotation = 270
-            self.hitbox = (self.player_x + 2, self.player_y + 2, 27, 36)
-            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
         if keys[pygame.K_UP] or keys[pygame.K_w]:
             self.player_y -= self.velocity
             self.rotation = 0
-            self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
-            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.rotation = 180
             self.player_y += self.velocity
-            self.hitbox = (self.player_x + 2, self.player_y + 2, 36, 27)
-            # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
-
 
         if self.player_y > 570:
             self.player_y = 570
