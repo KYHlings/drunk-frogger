@@ -4,7 +4,7 @@ import pygame
 
 from game_src.level import create_level
 from sprites_classes.dead_frog import Dead_Frog
-from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite,\
+from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
     get_life_sprite, get_dead_sprite
 
 from sprites_classes.npc import Mob, Goat
@@ -16,7 +16,7 @@ from game_src.window_handler import screen, lose_window, win_window
 
 
 # This function updates the window with sprites_classes each loop
-def redraw_window(cars, animals, wise_goat, dead_frog,background_image):
+def redraw_window(cars, animals, wise_goat, dead_frog, background_image):
     screen.blit(background_image, (0, 0))
     life_x = 10
     for i in range(animals.lives):
@@ -49,13 +49,14 @@ def game_loop(sound_fx, volume):
     q = False
 
     level_number = 1
-    while running:
+    while True:
         level = create_level(level_number)
-        while True:
+        running = True
+        while running:
             clock.tick(30)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
+                    quit()
             for car in level.mobs[:]:
                 if car.mob_y != 400:
                     car.update_rect(1)
@@ -82,9 +83,6 @@ def game_loop(sound_fx, volume):
                 volume = Sound_settings(volume)
                 if not volume:
                     return
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    exit()
 
             for car in level.mobs:
                 if animals.check_collide(car):
@@ -115,6 +113,10 @@ def game_loop(sound_fx, volume):
                     q = False
                 else:
                     win_window()
-                    return
+                    animals.reset()
+                    running = False
 
-            redraw_window(level.mobs, animals, wise_goat, dead_frog,level.background_image)
+            redraw_window(level.mobs, animals, wise_goat, dead_frog, level.background_image)
+        level_number += 1
+        if level_number == 3:
+            level_number = 1
