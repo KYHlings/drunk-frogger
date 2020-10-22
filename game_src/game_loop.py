@@ -62,7 +62,7 @@ def game_loop(sound_fx, volume):
                 if event.type == pygame.QUIT:
                     quit()
             for car in level.mobs[:]:
-                if car.mob_y != 400:
+                if not car.is_left:
                     car.update_rect(1)
                     if car.mob_x >= 800:
                         level.mobs.remove(car)
@@ -72,11 +72,13 @@ def game_loop(sound_fx, volume):
                         level.mobs.remove(car)
             for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
-                   # print(level.lanes[i].is_left)
+                    # print(level.lanes[i].is_left)
                     if not level.lanes[i].is_left:
-                        level.mobs.append(Mob(-40, level.lanes[i].y, 80, 40, get_mob_sprite(False)))
+                        level.mobs.append(
+                            Mob(-40, level.lanes[i].y, 80, 40, get_mob_sprite(False), level.lanes[i].is_left))
                     else:
-                        level.mobs.append(Mob(800, level.lanes[i].y, 80, 40, get_mob_sprite(True)))
+                        level.mobs.append(
+                            Mob(800, level.lanes[i].y, 80, 40, get_mob_sprite(True), level.lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
             keys = pygame.key.get_pressed()

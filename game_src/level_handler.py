@@ -24,20 +24,23 @@ class Lane:
 
 def create_level(level_number):
     if level_number == 1:
-        level = Level(lanes=[Lane(350, 5, False ),Lane(400, 5, True),Lane(450, 5, False),Lane(500, 5, True)],
+        level = Level(lanes=[Lane(350, 5, False), Lane(400, 5, True), Lane(450, 5, False), Lane(500, 5, True)],
                       background_image=get_background_image(0),
-                      mobs=[Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
-                            Mob(0, 450, 80, 40, get_mob_sprite(False)), Mob(0, 500, 80, 40, get_mob_sprite(True))],
+                      mobs=[Mob(0, 350, 80, 40, get_mob_sprite(False), False),
+                            Mob(500, 400, 80, 40, get_mob_sprite(True), True),
+                            Mob(0, 450, 80, 40, get_mob_sprite(False), False),
+                            Mob(600, 500, 80, 40, get_mob_sprite(True), True)],
                       goat=Goat(400, 200, 40, 30),
                       music=0,
                       spawn_timer=[1000, 2000, 1000, 2000],
                       time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
                                     pygame.time.get_ticks()])
     if level_number == 2:
-        level = Level(lanes=[350, 400, 450],
+        level = Level(lanes=[Lane(350, 5, False), Lane(400, 5, True), Lane(450, 5, False)],
                       background_image=get_background_image(1),
-                      mobs=[Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
-                            Mob(0, 450, 80, 40, get_mob_sprite(False))],
+                      mobs=[Mob(0, 350, 80, 40, get_mob_sprite(False), False),
+                            Mob(0, 400, 80, 40, get_mob_sprite(True), True),
+                            Mob(0, 450, 80, 40, get_mob_sprite(False), False)],
                       goat=Goat(400, 200, 40, 30),
                       music=0,
                       spawn_timer=[1000, 2000, 1000],
