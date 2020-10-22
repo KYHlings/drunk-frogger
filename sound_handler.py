@@ -21,27 +21,27 @@ def music_volume(volume):
     pygame.mixer.music.set_volume(volume)
 # Each function gets a specific soundfile to load
 def get_title_music():
-    pygame.mixer.music.load("sounds_src/df_theme.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/df_theme.mp3")
     return pygame.mixer.music.play(-1)
 
 
 def get_level_music():
-    pygame.mixer.music.load("sounds_src/df_level.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/df_level.mp3")
     return pygame.mixer.music.play(-1)
 
 
 def get_goat_music():
-    pygame.mixer.music.load("sounds_src/df_goat_music.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/df_goat_music.mp3")
     return pygame.mixer.music.play(-1)
 
 
 def get_win_music():
-    pygame.mixer.music.load("sounds_src/df_win_music.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/df_win_music.mp3")
     return pygame.mixer.music.play(1)
 
 
 def get_lose_music():
-    pygame.mixer.music.load("sounds_src/df_die_music.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/df_die_music.mp3")
     return pygame.mixer.music.play(1)
 
 
@@ -71,5 +71,5 @@ def get_drunk_music(drunken_meter):
 
 
 def get_credits():
-    pygame.mixer.music.load("sounds_src/df_credits.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/df_credits.mp3")
     pygame.mixer.music.play(-1)

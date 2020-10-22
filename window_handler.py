@@ -1,7 +1,7 @@
 import sys
 import pygame
 
-from image_handler import win_image, lose_image
+from image.image_handler import win_image, lose_image
 from sound_handler import get_win_music, get_lose_music
 
 pygame.init()

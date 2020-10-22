@@ -1,5 +1,5 @@
 from pygame.time import get_ticks
-from image_handler import get_dead_sprite
+from image.image_handler import get_dead_sprite
 
 
 class Dead_Frog():

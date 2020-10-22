@@ -1,21 +1,20 @@
-import sys
 from random import randint
 
 import pygame
 
-from dead_frog import Dead_Frog
-from image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite, \
+from sprites_classes.dead_frog import Dead_Frog
+from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite, \
     get_dead_sprite
 
-from npc import Mob, Get
-from player import Player
+from sprites_classes.npc import Mob, Get
+from sprites_classes.player import Player
 from quiz_handler import quiz_window, quiz
 from settings import Sound_settings
 from sound_handler import get_level_music, get_goat_music, get_drunk_music
 from window_handler import screen, lose_window, win_window
 
 
-# This function updates the window with sprites each loop
+# This function updates the window with sprites_classes each loop
 def redraw_window(cars, animals, wise_goat, dead_frog):
     life_x = 10
     for i in range(animals.lives):
@@ -85,7 +84,7 @@ def game_loop(sound_fx, volume):
                 return
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()
+                exit()
 
         for car in cars:
             if animals.check_collide(car):
