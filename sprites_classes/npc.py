@@ -16,7 +16,7 @@ class Mob:
         self.mob_rect = self.image.get_rect(topleft=(self.mob_x,self.mob_y))
 
 
-class Get:
+class Goat:
     def __init__(self, get_x, get_y, width, height):
         self.get_x = get_x
         self.get_y = get_y

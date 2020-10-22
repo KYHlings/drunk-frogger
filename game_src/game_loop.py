@@ -4,15 +4,26 @@ import pygame
 
 from game_src.level import Level
 from sprites_classes.dead_frog import Dead_Frog
-from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, get_life_sprite, \
-    get_dead_sprite
+from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, get_background_image, \
+    get_life_sprite, get_dead_sprite
 
-from sprites_classes.npc import Mob, Get
+from sprites_classes.npc import Mob, Goat
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from game_src.settings import Sound_settings
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
 from game_src.window_handler import screen, lose_window, win_window
+
+
+def create_level(level_number):
+    if level_number == 1:
+        level = Level(lanes=[350, 400, 450],
+                      background_image=get_background_image(),
+                      mobs=[Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
+                            Mob(0, 450, 80, 40, get_mob_sprite(False))],
+                      goat=Goat(400, 200, 40, 30),
+                      music=0,
+                      spawm_timer=[1000, 2000, 1000])
 
 
 # This function updates the window with sprites_classes each loop
@@ -37,20 +48,15 @@ def redraw_window(cars, animals, wise_goat, dead_frog):
 
 # This function runs the main game
 def game_loop(sound_fx, volume):
-    level = Level()
     clock = pygame.time.Clock()
     get_level_music()
     animals = Player(400, 570, 40, 30, 0, get_player_sprite(0))
-    cars = [Mob(0, 350, 80, 40, get_mob_sprite(False)), Mob(0, 400, 80, 40, get_mob_sprite(True)),
-            Mob(0, 450, 80, 40, get_mob_sprite(False))]
     dead_frog = Dead_Frog()
-    wise_goat = Get(animals.player_x, 200, 40, 30)
+    wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
     running = True
 
     now = [pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()]
-    mob_spawn_timer = [1000, 2000, 1000]
-    lanes = [350, 400, 450]
     q = False
     while running:
         clock.tick(30)
