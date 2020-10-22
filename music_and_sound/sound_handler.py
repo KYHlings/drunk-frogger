@@ -6,14 +6,18 @@ class Sound_fx:
     # This class saves all the sound effects in memory, so you don't have to load the file everytime it called
     def __init__(self):
         self.announcement_sound = get_announcement()
-        self.splat_sound = get_splat()
-        self.burp_sound = get_burp()
+        self.splat_sounds = get_splat()
+        self.burp_sounds = get_burp()
 
     def play_splat(self):
-        return self.splat_sound.play()
+        splat_sound = choice(self.splat_sounds)
+        pygame.mixer.Sound.set_volume(splat_sound,0.4)
+        return splat_sound.play()
 
     def play_burp(self):
-        return self.burp_sound.play()
+        burp_sound = choice(self.burp_sounds)
+        pygame.mixer.Sound.set_volume(burp_sound,0.2)
+        return burp_sound.play()
 
     def play_announcement(self):
         return self.announcement_sound.play()
@@ -69,13 +73,15 @@ def get_announcement():
 
 def get_splat():
     splat_files = ["df_splat1.ogg", "df_splat2.ogg", "df_splat3.ogg"]
-    splat = pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{choice(splat_files)}")
-    pygame.mixer.Sound.set_volume(splat, 0.4)
-    return splat
+    splat_fx = []
+    for s in splat_files:
+        splat_fx.append(pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{s}"))
+    return splat_fx
 
 
 def get_burp():
     burp_files = ["df_burp1.ogg", "df_burp2.wav", "df_burp3.ogg"]
-    burp = pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{choice(burp_files)}")
-    pygame.mixer.Sound.set_volume(burp, 0.4)
-    return burp
+    burp_fx = []
+    for b in burp_files:
+        burp_fx.append(pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{b}"))
+    return burp_fx
