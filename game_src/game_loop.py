@@ -5,7 +5,7 @@ import pygame
 from game_src.level import create_level
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
-    get_life_sprite, get_dead_sprite
+    get_life_sprite, get_dead_sprite, get_beer_sprite
 
 from sprites_classes.npc import Mob, Goat
 from sprites_classes.player import Player
@@ -19,6 +19,10 @@ from game_src.window_handler import screen, lose_window, win_window
 def redraw_window(cars, animals, wise_goat, dead_frog, background_image):
     screen.blit(background_image, (0, 0))
     life_x = 10
+    beer_x = 10
+    for i in range(animals.drunk_meter):
+        screen.blit(get_beer_sprite(), (beer_x, 20))
+        beer_x += 25
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25

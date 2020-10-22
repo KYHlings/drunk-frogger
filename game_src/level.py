@@ -5,7 +5,7 @@ from sprites_classes.npc import Mob, Goat
 
 
 class Level:
-    def __init__(self,lanes,background_image,mobs,goat,music, spawn_timer, time_spawned):
+    def __init__(self, lanes, background_image, mobs, goat, music, spawn_timer, time_spawned):
         self.lanes = lanes
         self.background_image = background_image
         self.mobs = mobs
@@ -13,6 +13,8 @@ class Level:
         self.music = music
         self.spawn_timer = spawn_timer
         self.time_spawned = time_spawned
+
+
 def create_level(level_number):
     if level_number == 1:
         level = Level(lanes=[350, 400, 450],

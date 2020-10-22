@@ -58,6 +58,12 @@ def get_life_sprite():
     life_sprite = pygame.transform.scale(life_sprite, (40, 30))
     return life_sprite
 
+def get_beer_sprite():
+    beer_sprite = pygame.image.load("image/player_sprites/beer_mug.png")
+    beer_sprite = pygame.transform.scale(beer_sprite, (40, 30))
+    return beer_sprite
+
+
 
 def get_dead_sprite(drunk_meter):
     dead_frogs = ["dead_frog.png", "frog_dead_tipsy.png", "frog_dead_drunk.png", "frog_dead_sloshed.png"]
