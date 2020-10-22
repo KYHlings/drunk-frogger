@@ -18,11 +18,13 @@ from game_src.window_handler import screen, lose_window, win_window
 # This function updates the window with sprites_classes each loop
 def redraw_window(cars, animals, wise_goat, dead_frog, background_image):
     screen.blit(background_image, (0, 0))
+    screen.blit(get_life_sprite(), (10, 305))
+    screen.blit(pygame.transform.flip(get_life_sprite(),True,True), (10, 215))
     life_x = 10
-    beer_x = 10
+    beer_y = 300
     for i in range(animals.drunk_meter):
-        screen.blit(get_beer_sprite(), (beer_x, 20))
-        beer_x += 25
+        screen.blit(get_beer_sprite(), (10, beer_y))
+        beer_y -= 25
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25
