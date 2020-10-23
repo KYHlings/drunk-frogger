@@ -57,7 +57,14 @@ def create_level(level_number):
                       goat=Goat(400, 200, 40, 30),
                       music=0,
                       spawn_timer=[1000, 2000, 1000],
-                      time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()])
+                      time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()],
+                      drown_cord=0,
+                      fl_spawn_timer=[],
+                      fl_time_spawned=[],
+                      floating_lanes=[],
+                      floating_mobs=[]
+                      )
+
 
     if level_number == 3:
         pass

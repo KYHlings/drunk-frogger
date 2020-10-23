@@ -53,7 +53,7 @@ def game_loop(sound_fx, volume):
     wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
 
-    q = True
+    q = False
 
     level_number = 1
     while True:
@@ -117,15 +117,14 @@ def game_loop(sound_fx, volume):
 
             for car in level.mobs:
                 if animals.check_collide(car):
-                    if animals.lives == 0:
-                        lose_window()
-                        return
-                    else:
+                    if animals.lives != 0:
                         animals.lives -= 1
                         dead_frog.player_died(animals.player_x, animals.player_y)
                         sound_fx.play_splat()
                         animals.reset()
-
+                    else:
+                        lose_window()
+                        return
             for floating_mob in level.floating_mobs:
                 if animals.check_collide(floating_mob):
                     animals.floating = True
@@ -134,7 +133,8 @@ def game_loop(sound_fx, volume):
                     animals.floating = False
 
             if animals.player_y < 225 and not animals.floating:
-                animals.lives -= 1
+                if animals.lives != 0:
+                    animals.lives -= 1
                 dead_frog.player_died(animals.player_x, animals.player_y)
                 sound_fx.play_splat()
                 animals.reset()
