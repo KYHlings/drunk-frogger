@@ -16,7 +16,7 @@ from game_src.window_handler import screen, lose_window, win_window
 
 
 # This function updates the window with sprites_classes each loop
-def redraw_window(cars, animals, wise_goat, dead_frog, background_image,floating_mob):
+def redraw_window( animals, wise_goat, dead_frog, background_image,lanes,floating_lanes):
     screen.blit(background_image, (0, 0))
     screen.blit(get_life_sprite(), (10, 315))
     screen.blit(pygame.transform.flip(get_life_sprite(), True, True), (10, 205))
@@ -28,18 +28,19 @@ def redraw_window(cars, animals, wise_goat, dead_frog, background_image,floating
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25
+    for lane in floating_lanes:
+        for mob in lane.floating_mobs:
+            screen.blit(mob.image, mob.mob_rect)
 
-    for mob in floating_mob:
-        screen.blit(mob.image, mob.mob_rect)
     if dead_frog.is_dead:
         screen.blit(dead_frog.img, (dead_frog.dead_x, dead_frog.dead_y))
         screen.blit(animals.update_img()[0], (1000, 1000))
 
     else:
         screen.blit(animals.update_img()[0], animals.update_img()[1])
-
-    for car in cars:
-        screen.blit(car.image, car.mob_rect)
+    for lane in lanes:
+        for car in lane.mobs:
+            screen.blit(car.image, car.mob_rect)
     #screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
@@ -74,7 +75,7 @@ def game_loop(sound_fx, volume):
                         car.update_rect(-1,lane.velocity)
                         if car.mob_x <= -50:
                             lane.mobs.remove(car)
-            for lane in level.lanes:
+            for lane in level.floating_lanes:
                 for floating_mob in lane.floating_mobs[:]:
                     if not floating_mob.is_left:
                         floating_mob.update_rect(1,lane.velocity)
@@ -88,10 +89,10 @@ def game_loop(sound_fx, volume):
             for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if not level.lanes[i].is_left:
-                        level.lane[i].mobs.append(
+                        level.lanes[i].mobs.append(
                             Mob(-40, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))
                     else:
-                        level.lane[i].mobs.append(
+                        level.lanes[i].mobs.append(
                             Mob(800, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
@@ -99,10 +100,10 @@ def game_loop(sound_fx, volume):
             for i in range(len(level.floating_lanes)):
                 if pygame.time.get_ticks() - level.fl_time_spawned[i] >= level.fl_spawn_timer[i]:
                     if not level.floating_lanes[i].is_left:
-                        level.lane[i].floating_mobs.append(
+                        level.floating_lanes[i].floating_mobs.append(
                             Floating_mob(-40, level.floating_lanes[i].y, get_floating_mob_sprite(False), level.floating_lanes[i].is_left))
                     else:
-                        level.lane[i].floating_mobs.append(
+                        level.floating_lanes[i].floating_mobs.append(
                             Floating_mob(800, level.floating_lanes[i].y, get_floating_mob_sprite(True), level.floating_lanes[i].is_left))
                     level.fl_time_spawned[i] = pygame.time.get_ticks()
                     level.fl_spawn_timer[i] = randint(1000, 2000)
@@ -116,24 +117,27 @@ def game_loop(sound_fx, volume):
                 #volume = Sound_settings(volume)
                 if not volume:
                     return
-
-            for car in level.mobs:
-                if animals.check_collide(car):
-                    if animals.lives != 1:
-                        animals.lives -= 1
-                        dead_frog.player_died(animals.player_x, animals.player_y)
-                        sound_fx.play_splat()
-                        animals.reset()
-                    else:
-                        lose_window()
-                        return
-            for floating_mob in level.floating_mobs:
-                if animals.check_collide(floating_mob):
-                    animals.floating = True
-                    animals.player_x += floating_mob.velocity
-                    break
-                else:
-                    animals.floating = False
+            for lane in level.lanes:
+                for car in lane.mobs:
+                    if animals.check_collide(car):
+                        if animals.lives != 1:
+                            animals.lives -= 1
+                            dead_frog.player_died(animals.player_x, animals.player_y)
+                            sound_fx.play_splat()
+                            animals.reset()
+                        else:
+                            lose_window()
+                            return
+            animals.floating = False
+            for lane in level.floating_lanes:
+                if animals.floating == False:
+                    for floating_mob in lane.floating_mobs:
+                        if animals.check_collide(floating_mob):
+                            animals.floating = True
+                            animals.player_x += lane.velocity
+                            break
+                        else:
+                            animals.floating = False
 
             if animals.player_y < 225 and not animals.floating:
                 if animals.lives != 1:
@@ -168,7 +172,6 @@ def game_loop(sound_fx, volume):
                     animals.reset()
                     running = False
 
-            redraw_window(level.mobs, animals, wise_goat, dead_frog, level.background_image,level.floating_mobs)
-        level_number += 1
+            redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes,level.floating_lanes)
         if level_number == 3:
             level_number = 1
