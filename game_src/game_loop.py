@@ -28,19 +28,19 @@ def redraw_window(cars, animals, wise_goat, dead_frog, background_image,floating
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25
+
+    for mob in floating_mob:
+        screen.blit(mob.image, mob.mob_rect)
     if dead_frog.is_dead:
         screen.blit(dead_frog.img, (dead_frog.dead_x, dead_frog.dead_y))
         screen.blit(animals.update_img()[0], (1000, 1000))
 
     else:
         screen.blit(animals.update_img()[0], animals.update_img()[1])
+
     for car in cars:
         screen.blit(car.image, car.mob_rect)
-
-    for mob in floating_mob:
-        screen.blit(mob.image, mob.mob_rect)
-
-    screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
+    #screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
 
@@ -121,9 +121,17 @@ def game_loop(sound_fx, volume):
                         lose_window()
                         return
                     else:
+                        animals.lives -= 1
                         dead_frog.player_died(animals.player_x, animals.player_y)
                         sound_fx.play_splat()
                         animals.reset()
+
+            for floating_mob in level.floating_mobs:
+                if animals.check_collide(floating_mob):
+                    animals.floating = True
+                    break
+                else:
+                    animals.floating = False
 
                     # This if statement checks if the player has reached the safe zone and triggers the quiz function
             if animals.player_y <= 300 and q == False:

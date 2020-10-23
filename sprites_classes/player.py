@@ -17,6 +17,7 @@ class Player:
         self.org_img = img
         self.player_mask = pygame.mask.from_surface(self.img)
         self.player_rect = self.img.get_rect(topleft=(self.player_x, self.player_y))
+        self.floating = False
 
     def update_img(self):
         self.img = get_player_sprite(self.drunk_meter)
@@ -39,7 +40,6 @@ class Player:
         my = py - mob.mob_rect[1]
         overlap = mob.mob_mask.overlap(self.player_mask, (mx, my))
         if overlap:
-            self.lives -= 1
             return True
 
     def reset(self):
