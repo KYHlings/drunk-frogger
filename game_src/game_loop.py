@@ -8,10 +8,9 @@ from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
     get_life_sprite, get_dead_sprite, get_beer_sprite
 
-from sprites_classes.npc import Mob, Goat
+from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
-from game_src.settings import Sound_settings
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
 from game_src.window_handler import screen, lose_window, win_window
 
@@ -72,13 +71,22 @@ def game_loop(sound_fx, volume):
                         level.mobs.remove(car)
             for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
-                    # print(level.lanes[i].is_left)
                     if not level.lanes[i].is_left:
                         level.mobs.append(
                             Mob(-40, level.lanes[i].y, 80, 40, get_mob_sprite(False), level.lanes[i].is_left))
                     else:
                         level.mobs.append(
                             Mob(800, level.lanes[i].y, 80, 40, get_mob_sprite(True), level.lanes[i].is_left))
+                    level.time_spawned[i] = pygame.time.get_ticks()
+                    level.spawn_timer[i] = randint(1000, 2000)
+            for i in range(len(level.floating_lanes)):
+                if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
+                    if not level.floating_lanes[i].is_left:
+                        level.mobs.append(
+                            Floating_mob(-40, level.floating_lanes[i].y, 80, 40, get_mob_sprite(False), level.floating_lanes[i].is_left))
+                    else:
+                        level.mobs.append(
+                            Floating_mob(800, level.floating_lanes[i].y, 80, 40, get_mob_sprite(True), level.floating_lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
             keys = pygame.key.get_pressed()

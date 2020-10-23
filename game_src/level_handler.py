@@ -26,7 +26,7 @@ class Lane:
 def create_level(level_number):
     if level_number == 1:
         level = Level(lanes=[Lane(345, 5, False), Lane(390, 5, True), Lane(435, 5, False), Lane(485, 5, True)],
-
+                      floating_lanes=[Lane(130, 5, False), Lane(100, 5, True), Lane(80, 5, False), Lane(60, 5, True)],
                       background_image=get_background_image(0),
                       mobs=[Mob(0, 345, 80, 40, get_mob_sprite(False), False),
                             Mob(500, 390, 80, 40, get_mob_sprite(True), True),
