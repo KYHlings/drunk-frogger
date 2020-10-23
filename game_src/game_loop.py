@@ -16,7 +16,7 @@ from game_src.window_handler import screen, lose_window, win_window
 
 
 # This function updates the window with sprites_classes each loop
-def redraw_window(cars, animals, wise_goat, dead_frog, background_image):
+def redraw_window(cars, animals, wise_goat, dead_frog, background_image,floating_mob):
     screen.blit(background_image, (0, 0))
     screen.blit(get_life_sprite(), (10, 315))
     screen.blit(pygame.transform.flip(get_life_sprite(), True, True), (10, 205))
@@ -36,6 +36,10 @@ def redraw_window(cars, animals, wise_goat, dead_frog, background_image):
         screen.blit(animals.update_img()[0], animals.update_img()[1])
     for car in cars:
         screen.blit(car.image, car.mob_rect)
+
+    for mob in floating_mob:
+        screen.blit(mob.image, mob.mob_rect)
+
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
@@ -69,6 +73,17 @@ def game_loop(sound_fx, volume):
                     car.update_rect(-1)
                     if car.mob_x <= -50:
                         level.mobs.remove(car)
+
+            for floating_mob in level.floating_mobs[:]:
+                if not floating_mob.is_left:
+                    floating_mob.update_rect(1)
+                    if floating_mob.mob_x >= 800:
+                        level.floating_mobs.remove(floating_mob)
+                else:
+                    floating_mob.update_rect(-1)
+                    if floating_mob.mob_x <= -50:
+                        level.floating_mobs.remove(floating_mob)
+
             for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if not level.lanes[i].is_left:
@@ -132,7 +147,7 @@ def game_loop(sound_fx, volume):
                     animals.reset()
                     running = False
 
-            redraw_window(level.mobs, animals, wise_goat, dead_frog, level.background_image)
+            redraw_window(level.mobs, animals, wise_goat, dead_frog, level.background_image,level.floating_mobs)
         level_number += 1
         if level_number == 3:
             level_number = 1
