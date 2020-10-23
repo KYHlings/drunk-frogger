@@ -45,4 +45,8 @@ def create_level(level_number):
                       music=0,
                       spawn_timer=[1000, 2000, 1000],
                       time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()])
+
+    if level_number == 3:
+        pass
+        # To be continued
     return level
