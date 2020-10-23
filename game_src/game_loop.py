@@ -53,7 +53,7 @@ def game_loop(sound_fx, volume):
     wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
 
-    q = False
+    q = True
 
     level_number = 1
     while True:
@@ -117,7 +117,7 @@ def game_loop(sound_fx, volume):
 
             for car in level.mobs:
                 if animals.check_collide(car):
-                    if animals.lives != 0:
+                    if animals.lives != 1:
                         animals.lives -= 1
                         dead_frog.player_died(animals.player_x, animals.player_y)
                         sound_fx.play_splat()
@@ -128,16 +128,21 @@ def game_loop(sound_fx, volume):
             for floating_mob in level.floating_mobs:
                 if animals.check_collide(floating_mob):
                     animals.floating = True
+                    animals.player_x += floating_mob.velocity
                     break
                 else:
                     animals.floating = False
 
             if animals.player_y < 225 and not animals.floating:
-                if animals.lives != 0:
+                if animals.lives != 1:
                     animals.lives -= 1
-                dead_frog.player_died(animals.player_x, animals.player_y)
-                sound_fx.play_splat()
-                animals.reset()
+                    dead_frog.player_died(animals.player_x, animals.player_y)
+                    sound_fx.play_splat()
+                    animals.reset()
+                else:
+                    lose_window()
+                    return
+
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function
             if animals.player_y <= 300 and q == False:
