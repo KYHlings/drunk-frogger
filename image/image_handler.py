@@ -46,11 +46,14 @@ def get_background_image(level_number):
 
 
 def get_mob_sprite(is_left):
-    cars_sprites = [("car_green1.png",(80,40)), "car_red1.png", "taxi1.png", "postnord2.png"]
-    mob_sprite = pygame.image.load(f"image/npc_sprites/{choice(cars_sprites)}").convert_alpha()
-    mob_sprite = pygame.transform.scale(mob_sprite, (80, 40))
+    cars_sprites = [("car_green1.png", (80, 40)), ("car_red1.png", (80, 40)), ("taxi1.png", (80, 40)),
+                    ("postnord2.png", (80, 40))]
+    car_sprite = choice(cars_sprites)
+    mob_sprite = pygame.image.load(f"image/npc_sprites/{choice(car_sprite[0])}").convert_alpha()
+    mob_sprite = pygame.transform.scale(mob_sprite, car_sprite[1])
     mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
-    return mob_sprite
+    return mob_sprite, car_sprite[1]
+
 
 def get_floating_mob_sprite(is_left):
     log_sprites = ["log.png", "long_log_leaf.png"]
@@ -65,11 +68,11 @@ def get_life_sprite():
     life_sprite = pygame.transform.scale(life_sprite, (40, 30))
     return life_sprite
 
+
 def get_beer_sprite():
     beer_sprite = pygame.image.load("image/player_sprites/beer_mug.png")
     beer_sprite = pygame.transform.scale(beer_sprite, (40, 30))
     return beer_sprite
-
 
 
 def get_dead_sprite(drunk_meter):
