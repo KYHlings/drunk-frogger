@@ -49,7 +49,6 @@ def game_loop(sound_fx, volume):
     dead_frog = Dead_Frog()
     wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
-    running = True
 
     q = False
 
