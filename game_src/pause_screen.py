@@ -17,6 +17,6 @@ def pause_screen():
             alternative[1].center = (350, alt)
             alt += 90
             screen.blit(alternative[0], alternative[1])
-
+            for event in pygame.event.get():
         pygame.display.update()
     return
