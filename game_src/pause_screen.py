@@ -21,9 +21,9 @@ def pause_screen(volume):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-            if event.typ == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_c:
-                    return
+                    return volume
                 if event.key == pygame.K_s:
                     volume = Sound_settings(volume)
                     return volume

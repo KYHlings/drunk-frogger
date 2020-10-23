@@ -87,11 +87,10 @@ def game_loop(sound_fx, volume):
             else:
                 animals.move(keys)
             if keys[pygame.K_p]:
-                pause_screen()
-
+                volume = pause_screen(volume)
                 #volume = Sound_settings(volume)
-                #if not volume:
-                    #return
+                if not volume:
+                    return
 
             for car in level.mobs:
                 if animals.check_collide(car):
