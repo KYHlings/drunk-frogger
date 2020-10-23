@@ -28,7 +28,7 @@ def pause_screen(volume):
                     volume = Sound_settings(volume)
                     return volume
                 if event.key == pygame.K_q:
-                   return False
+                    return False
 
         for alternative in option_ls:
             alternative[1].center = (375, alt)

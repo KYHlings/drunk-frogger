@@ -6,7 +6,7 @@ from game_src.level_handler import create_level
 from game_src.pause_screen import pause_screen
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
-    get_life_sprite, get_dead_sprite, get_beer_sprite
+    get_life_sprite, get_dead_sprite, get_beer_sprite, get_floating_mob_sprite
 
 from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
@@ -49,7 +49,7 @@ def game_loop(sound_fx, volume):
     wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
 
-    q = False
+    q = True
 
     level_number = 1
     while True:
@@ -80,15 +80,15 @@ def game_loop(sound_fx, volume):
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
             for i in range(len(level.floating_lanes)):
-                if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
+                if pygame.time.get_ticks() - level.fl_time_spawned[i] >= level.fl_spawn_timer[i]:
                     if not level.floating_lanes[i].is_left:
-                        level.mobs.append(
-                            Floating_mob(-40, level.floating_lanes[i].y, 80, 40, get_mob_sprite(False), level.floating_lanes[i].is_left))
+                        level.floating_mobs.append(
+                            Floating_mob(-40, level.floating_lanes[i].y, 80, 40, get_floating_mob_sprite(False), level.floating_lanes[i].is_left))
                     else:
-                        level.mobs.append(
-                            Floating_mob(800, level.floating_lanes[i].y, 80, 40, get_mob_sprite(True), level.floating_lanes[i].is_left))
-                    level.time_spawned[i] = pygame.time.get_ticks()
-                    level.spawn_timer[i] = randint(1000, 2000)
+                        level.floating_mobs.append(
+                            Floating_mob(800, level.floating_lanes[i].y, 80, 40, get_floating_mob_sprite(True), level.floating_lanes[i].is_left))
+                    level.fl_time_spawned[i] = pygame.time.get_ticks()
+                    level.fl_spawn_timer[i] = randint(1000, 2000)
             keys = pygame.key.get_pressed()
             if dead_frog.is_dead:
                 dead_frog.check_time_of_death()
