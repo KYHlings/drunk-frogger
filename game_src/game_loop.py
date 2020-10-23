@@ -88,20 +88,20 @@ def game_loop(sound_fx, volume):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if not level.lanes[i].is_left:
                         level.mobs.append(
-                            Mob(-40, level.lanes[i].y, 80, 40, get_mob_sprite(False), level.lanes[i].is_left))
+                            Mob(-40, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))
                     else:
                         level.mobs.append(
-                            Mob(800, level.lanes[i].y, 80, 40, get_mob_sprite(True), level.lanes[i].is_left))
+                            Mob(800, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
             for i in range(len(level.floating_lanes)):
                 if pygame.time.get_ticks() - level.fl_time_spawned[i] >= level.fl_spawn_timer[i]:
                     if not level.floating_lanes[i].is_left:
                         level.floating_mobs.append(
-                            Floating_mob(-40, level.floating_lanes[i].y, 80, 40, get_floating_mob_sprite(False), level.floating_lanes[i].is_left))
+                            Floating_mob(-40, level.floating_lanes[i].y, get_floating_mob_sprite(False), level.floating_lanes[i].is_left))
                     else:
                         level.floating_mobs.append(
-                            Floating_mob(800, level.floating_lanes[i].y, 80, 40, get_floating_mob_sprite(True), level.floating_lanes[i].is_left))
+                            Floating_mob(800, level.floating_lanes[i].y, get_floating_mob_sprite(True), level.floating_lanes[i].is_left))
                     level.fl_time_spawned[i] = pygame.time.get_ticks()
                     level.fl_spawn_timer[i] = randint(1000, 2000)
             keys = pygame.key.get_pressed()
