@@ -52,6 +52,13 @@ def get_mob_sprite(is_left):
     mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
     return mob_sprite
 
+def get_floating_mob_sprite(is_left):
+    log_sprites = ["log.png", "long_log_leaf.png"]
+    mob_sprite = pygame.image.load(f"image/npc_sprites/{choice(log_sprites)}").convert_alpha()
+    mob_sprite = pygame.transform.scale(mob_sprite, (100, 40))
+    mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
+    return mob_sprite
+
 
 def get_life_sprite():
     life_sprite = pygame.image.load("image/player_sprites/frog_face.png")
