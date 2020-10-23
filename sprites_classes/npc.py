@@ -6,13 +6,12 @@ class Mob:
         self.mob_x = mob_x
         self.mob_y = mob_y
         self.image = image
-        self.velocity = 5
         self.mob_mask = pygame.mask.from_surface(self.image)
         self.mob_rect = self.image.get_rect(topleft=(self.mob_x, self.mob_y))
         self.is_left = is_left
 
-    def update_rect(self, direction):
-        self.mob_x += self.velocity * direction
+    def update_rect(self, direction, velocity):
+        self.mob_x += velocity * direction
         self.mob_rect = self.image.get_rect(topleft=(self.mob_x, self.mob_y))
 
 class Floating_mob(Mob):

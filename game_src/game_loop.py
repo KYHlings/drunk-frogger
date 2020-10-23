@@ -64,25 +64,26 @@ def game_loop(sound_fx, volume):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
-            for car in level.mobs[:]:
-                if not car.is_left:
-                    car.update_rect(1)
-                    if car.mob_x >= 800:
-                        level.mobs.remove(car)
-                else:
-                    car.update_rect(-1)
-                    if car.mob_x <= -50:
-                        level.mobs.remove(car)
-
-            for floating_mob in level.floating_mobs[:]:
-                if not floating_mob.is_left:
-                    floating_mob.update_rect(1)
-                    if floating_mob.mob_x >= 800:
-                        level.floating_mobs.remove(floating_mob)
-                else:
-                    floating_mob.update_rect(-1)
-                    if floating_mob.mob_x <= -50:
-                        level.floating_mobs.remove(floating_mob)
+            for lane in level.lanes:
+                for car in lane.mobs[:]:
+                    if not car.is_left:
+                        car.update_rect(1, lane.velocity)
+                        if car.mob_x >= 800:
+                            lane.mobs.remove(car)
+                    else:
+                        car.update_rect(-1)
+                        if car.mob_x <= -50:
+                            lane.mobs.remove(car)
+            for lane in level.lanes:
+                for floating_mob in level.floating_mobs[:]:
+                    if not floating_mob.is_left:
+                        floating_mob.update_rect(1)
+                        if floating_mob.mob_x >= 800:
+                            level.floating_mobs.remove(floating_mob)
+                    else:
+                        floating_mob.update_rect(-1)
+                        if floating_mob.mob_x <= -50:
+                            level.floating_mobs.remove(floating_mob)
 
             for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
@@ -94,6 +95,7 @@ def game_loop(sound_fx, volume):
                             Mob(800, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
+
             for i in range(len(level.floating_lanes)):
                 if pygame.time.get_ticks() - level.fl_time_spawned[i] >= level.fl_spawn_timer[i]:
                     if not level.floating_lanes[i].is_left:
