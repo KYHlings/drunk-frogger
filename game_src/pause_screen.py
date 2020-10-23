@@ -11,10 +11,12 @@ def pause_screen():
         option_ls.append(text_object(option, large_text))
     while True:
         screen = pygame.Surface([600, 400])
-        screen.center = (400, 300)
+
         alt = 350
-        for alternative in options:
+        for alternative in option_ls:
             alternative[1].center = (350, alt)
             alt += 90
             screen.blit(alternative[0], alternative[1])
-        return
+
+        pygame.display.update()
+    return

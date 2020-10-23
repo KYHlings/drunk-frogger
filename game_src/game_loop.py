@@ -3,6 +3,7 @@ from random import randint
 import pygame
 
 from game_src.level_handler import create_level
+from game_src.pause_screen import pause_screen
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
     get_life_sprite, get_dead_sprite, get_beer_sprite
@@ -87,9 +88,11 @@ def game_loop(sound_fx, volume):
             else:
                 animals.move(keys)
             if keys[pygame.K_p]:
-                volume = Sound_settings(volume)
-                if not volume:
-                    return
+                pause_screen()
+
+                #volume = Sound_settings(volume)
+                #if not volume:
+                    #return
 
             for car in level.mobs:
                 if animals.check_collide(car):
