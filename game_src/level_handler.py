@@ -6,7 +6,7 @@ from sprites_classes.npc import Mob, Goat
 
 class Level:
     def __init__(self, lanes, floating_lanes, background_image, mobs, floating_mobs, goat, music, spawn_timer, time_spawned,
-                 fl_spawn_timer, fl_time_spawned):
+                 fl_spawn_timer, fl_time_spawned, drown_cord):
         self.lanes = lanes
         self.floating_lanes = floating_lanes
         self.background_image = background_image
@@ -18,7 +18,7 @@ class Level:
         self.time_spawned = time_spawned
         self.fl_spawn_timer = fl_spawn_timer
         self.fl_time_spawned = fl_time_spawned
-
+        self.drown_cord = drown_cord
 
 class Lane:
     def __init__(self, y, velocity, is_left):
@@ -44,8 +44,10 @@ def create_level(level_number):
                                     pygame.time.get_ticks()],
                       fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000],
                       fl_time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
-                                       pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()]
+                                       pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()],
+                      drown_cord=225
                       )
+
     if level_number == 2:
         level = Level(lanes=[Lane(350, 5, False), Lane(400, 5, True), Lane(450, 5, False)],
                       background_image=get_background_image(1),

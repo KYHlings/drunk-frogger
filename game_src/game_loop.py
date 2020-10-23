@@ -133,7 +133,13 @@ def game_loop(sound_fx, volume):
                 else:
                     animals.floating = False
 
-                    # This if statement checks if the player has reached the safe zone and triggers the quiz function
+            if animals.player_y < 225 and not animals.floating:
+                animals.lives -= 1
+                dead_frog.player_died(animals.player_x, animals.player_y)
+                sound_fx.play_splat()
+                animals.reset()
+
+            # This if statement checks if the player has reached the safe zone and triggers the quiz function
             if animals.player_y <= 300 and q == False:
                 get_goat_music()
 
