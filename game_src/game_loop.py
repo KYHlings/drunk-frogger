@@ -71,27 +71,27 @@ def game_loop(sound_fx, volume):
                         if car.mob_x >= 800:
                             lane.mobs.remove(car)
                     else:
-                        car.update_rect(-1)
+                        car.update_rect(-1,lane.velocity)
                         if car.mob_x <= -50:
                             lane.mobs.remove(car)
             for lane in level.lanes:
-                for floating_mob in level.floating_mobs[:]:
+                for floating_mob in lane.floating_mobs[:]:
                     if not floating_mob.is_left:
-                        floating_mob.update_rect(1)
+                        floating_mob.update_rect(1,lane.velocity)
                         if floating_mob.mob_x >= 800:
-                            level.floating_mobs.remove(floating_mob)
+                            lane.floating_mobs.remove(floating_mob)
                     else:
-                        floating_mob.update_rect(-1)
+                        floating_mob.update_rect(-1,lane.velocity)
                         if floating_mob.mob_x <= -50:
-                            level.floating_mobs.remove(floating_mob)
+                            lane.floating_mobs.remove(floating_mob)
 
             for i in range(len(level.lanes)):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if not level.lanes[i].is_left:
-                        level.mobs.append(
+                        level.lane[i].mobs.append(
                             Mob(-40, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))
                     else:
-                        level.mobs.append(
+                        level.lane[i].mobs.append(
                             Mob(800, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
@@ -99,10 +99,10 @@ def game_loop(sound_fx, volume):
             for i in range(len(level.floating_lanes)):
                 if pygame.time.get_ticks() - level.fl_time_spawned[i] >= level.fl_spawn_timer[i]:
                     if not level.floating_lanes[i].is_left:
-                        level.floating_mobs.append(
+                        level.lane[i].floating_mobs.append(
                             Floating_mob(-40, level.floating_lanes[i].y, get_floating_mob_sprite(False), level.floating_lanes[i].is_left))
                     else:
-                        level.floating_mobs.append(
+                        level.lane[i].floating_mobs.append(
                             Floating_mob(800, level.floating_lanes[i].y, get_floating_mob_sprite(True), level.floating_lanes[i].is_left))
                     level.fl_time_spawned[i] = pygame.time.get_ticks()
                     level.fl_spawn_timer[i] = randint(1000, 2000)
