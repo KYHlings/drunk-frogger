@@ -14,7 +14,7 @@ text_colour = (0, 0, 0)
 
 # Creates surface for draw_text function.
 def text_object(text, font):
-    text_surface = font.render(text, True, (255, 255, 255))
+    text_surface = font.render(text, True, text_colour)
     return text_surface, text_surface.get_rect()
 
 

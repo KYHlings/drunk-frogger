@@ -86,3 +86,9 @@ def get_dead_sprite(drunk_meter):
     dead_frog = pygame.image.load(f"image/player_sprites/{dead_frogs[drunk_meter]}")
     dead_frog = pygame.transform.scale(dead_frog, (40, 30))
     return dead_frog
+
+def get_quiz_box():
+    quiz_box = pygame.image.load("image/backgrounds_src/quiz_box1.png")
+    quiz_box = pygame.transform.scale(quiz_box, (800, 250))
+    return quiz_box
+

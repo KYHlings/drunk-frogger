@@ -5,7 +5,7 @@ import json
 
 import requests
 
-from image.image_handler import get_get_sprite, get_get_quiz_sprite
+from image.image_handler import get_get_sprite, get_get_quiz_sprite, get_quiz_box
 from game_src.window_handler import screen, text_object
 
 
@@ -35,7 +35,6 @@ def quiz_window(quiz):
     keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
             pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
     while run:
-        message_window = pygame.Surface([800, 300])
         large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 20)
         text_surf, text_rect = text_object(question, large_text)
         text_rect.center = (400, 445)
@@ -51,7 +50,7 @@ def quiz_window(quiz):
                     if event.key == keys[i]:
                         return question_list[i] == rightanswers
         screen.blit(get_get_quiz_sprite(), (100, 250))
-        screen.blit(message_window, (0, 375))
+        screen.blit(get_quiz_box(), (0, 375))
         screen.blit(text_surf, text_rect)
         alt_pos = 565
         for alternative_text in alternatives_text:
