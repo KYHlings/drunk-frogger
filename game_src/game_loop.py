@@ -119,6 +119,18 @@ def game_loop(sound_fx, volume):
                 if not volume:
                     return
 
+            for lane in level.lanes:
+                for car in lane.mobs:
+                    if animals.check_collide(car):
+                        if animals.lives != 1:
+                            animals.lives -= 1
+                            dead_frog.player_died(animals.player_x, animals.player_y)
+                            sound_fx.play_splat()
+                            animals.reset()
+                        else:
+                            lose_window()
+                            return
+
             animals.floating = False
             for lane in reversed(level.floating_lanes):
                 if not animals.floating:
@@ -169,6 +181,13 @@ def game_loop(sound_fx, volume):
                         running = False
                     else:
                         wise_goat.get_y = level.quiz_cord[question_number - 1]
+                        if animals.drunk_meter == 0:
+                            get_level_music()
+                        else:
+                            get_drunk_music(animals.drunk_meter)
+
+
+
 
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes)
         level_number += 1
