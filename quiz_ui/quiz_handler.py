@@ -11,7 +11,7 @@ from game_src.window_handler import screen, text_object
 
 # loads quiz from json-file, in future will load from api.
 def get_quiz():
-    url = requests.get("https://opentdb.com/api.php?amount=25&category=15&difficulty=medium&type=multiple")
+    url = requests.get("https://opentdb.com/api.php?amount=25&category=15&difficulty=easy&type=multiple")
     content = url.json(encoding='utf8')['results']
     shuffle(content)
     return content
@@ -21,7 +21,7 @@ def get_quiz():
 def quiz():
     quiz_content = get_quiz()
     for q in quiz_content:
-        return q["question"], q["correct_answer"], q["incorrect_answers"]
+        return q["question"].replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"), q["correct_answer"].replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"), q["incorrect_answers"]
 
 
 def quiz_window(quiz):
@@ -29,7 +29,7 @@ def quiz_window(quiz):
     question, rightanswers, wronganswers = quiz
     question_list = [rightanswers]
     for wronganswer in wronganswers:
-        question_list.append(wronganswer)
+        question_list.append(wronganswer.replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"))
     shuffle(question_list)
     run = True
     keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
