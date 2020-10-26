@@ -129,17 +129,21 @@ def game_loop(sound_fx, volume):
                             lose_window()
                             return
             animals.floating = False
-            for lane in level.floating_lanes:
-                if animals.floating == False:
+            for lane in reversed(level.floating_lanes):
+                if not animals.floating:
                     for floating_mob in lane.floating_mobs:
                         if animals.check_collide(floating_mob):
                             animals.floating = True
-                            animals.player_x += lane.velocity
+                            if lane.is_left:
+                                animals.player_x -= lane.velocity
+                            else:
+                                animals.player_x += lane.velocity
+
                             break
                         else:
                             animals.floating = False
 
-            if animals.player_y < 225 and not animals.floating:
+            if 55 < animals.player_y < 225 and not animals.floating:
                 if animals.lives != 1:
                     animals.lives -= 1
                     dead_frog.player_died(animals.player_x, animals.player_y)
