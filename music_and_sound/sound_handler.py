@@ -8,11 +8,18 @@ class Sound_fx:
         self.announcement_sound = get_announcement()
         self.splat_sounds = get_splat()
         self.burp_sounds = get_burp()
+        self.splash_sounds = get_splash()
 
     def play_splat(self):
         splat_sound = choice(self.splat_sounds)
         pygame.mixer.Sound.set_volume(splat_sound,0.4)
         return splat_sound.play()
+
+    def play_splash(self):
+        splash_sound = choice(self.splash_sounds)
+        pygame.mixer.Sound.set_volume(splash_sound,0.4)
+        return splash_sound.play()
+
 
     def play_burp(self):
         burp_sound = choice(self.burp_sounds)
@@ -85,3 +92,10 @@ def get_burp():
     for b in burp_files:
         burp_fx.append(pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{b}"))
     return burp_fx
+
+def get_splash():
+    splash_files = ["df_water_splash.ogg"]
+    splash_fx = []
+    for s in splash_files:
+        splash_fx.append(pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{s}"))
+    return splash_fx

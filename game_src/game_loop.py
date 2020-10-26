@@ -152,8 +152,8 @@ def game_loop(sound_fx, volume):
             if 60 < animals.player_y < 225 and not animals.floating:
                 if animals.lives != 1:
                     animals.lives -= 1
-                    dead_frog.player_died(animals.player_x, animals.player_y, "Drowned")
-                    sound_fx.play_splat()
+                    dead_frog.player_died(animals.player_x, animals.player_y, "drowned")
+                    sound_fx.play_splash()
                     animals.reset()
                 else:
                     lose_window()
@@ -170,7 +170,7 @@ def game_loop(sound_fx, volume):
                         lose_window()
                         return
                     animals.drunk_meter += 1
-                    dead_frog.img = get_roadkill_sprite(animals.drunk_meter)
+                    dead_frog.roadkill_img = get_roadkill_sprite(animals.drunk_meter)
                     sound_fx.play_burp()
                     animals.drunken_consequence()
                     get_drunk_music(animals.drunk_meter)
