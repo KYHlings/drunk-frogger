@@ -54,10 +54,11 @@ def game_loop(sound_fx, volume):
     wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
 
-    question_number = 1
+
 
     level_number = 1
     while True:
+        question_number = 1
         level = create_level(level_number)
         running = True
         while running:
@@ -173,7 +174,7 @@ def game_loop(sound_fx, volume):
                     q = False
                 else:
                     question_number += 1
-                    if question_number == level.amount_quiz:
+                    if question_number == level.amount_quiz + 1:
                         win_window()
                         animals.reset()
                         running = False
