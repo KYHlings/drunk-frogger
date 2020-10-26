@@ -6,7 +6,7 @@ from game_src.level_handler import create_level
 from game_src.pause_screen import pause_screen
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
-    get_life_sprite, get_dead_sprite, get_beer_sprite, get_floating_mob_sprite
+    get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_floating_mob_sprite
 
 from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
@@ -149,7 +149,7 @@ def game_loop(sound_fx, volume):
             if 60 < animals.player_y < 225 and not animals.floating:
                 if animals.lives != 1:
                     animals.lives -= 1
-                    dead_frog.player_died(animals.player_x, animals.player_y)
+                    dead_frog.player_died(animals.player_x, animals.player_y, "Drowned")
                     sound_fx.play_splat()
                     animals.reset()
                 else:
@@ -167,7 +167,7 @@ def game_loop(sound_fx, volume):
                         lose_window()
                         return
                     animals.drunk_meter += 1
-                    dead_frog.img = get_dead_sprite(animals.drunk_meter)
+                    dead_frog.img = get_roadkill_sprite(animals.drunk_meter)
                     sound_fx.play_burp()
                     animals.drunken_consequence()
                     get_drunk_music(animals.drunk_meter)
