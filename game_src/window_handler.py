@@ -58,3 +58,15 @@ def lose_window():
                 return
 
         pygame.display.update()
+
+def instruction_window():
+    while True:
+        screen.blit(win_image(), (0, 0))
+        draw_text("How to play!", font, text_colour, screen, 800, 600)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                return
+
+            pygame.display.update()
