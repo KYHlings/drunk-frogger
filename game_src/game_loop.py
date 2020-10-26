@@ -41,7 +41,7 @@ def redraw_window( animals, wise_goat, dead_frog, background_image,lanes,floatin
     for lane in lanes:
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
-    #screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
+    screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
     pygame.display.update()
 
 
@@ -54,7 +54,7 @@ def game_loop(sound_fx, volume):
     wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
 
-    q = True
+    q = False
 
     level_number = 1
     while True:
