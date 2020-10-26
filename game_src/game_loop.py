@@ -58,7 +58,7 @@ def game_loop(sound_fx, volume):
     while True:
         question_number = 1
         level = create_level(level_number)
-        wise_goat = Goat(animals.player_x, level.quiz_cord[0], 40, 30)
+        wise_goat = Goat(animals.player_x, level.quiz_cord[0] - 30, 40, 30)
         running = True
         while running:
             clock.tick(30)
@@ -164,6 +164,7 @@ def game_loop(sound_fx, volume):
                     q = False
                 else:
                     question_number += 1
+                    wise_goat.get_y = level.quiz_cord[question_number - 1]
                     if question_number == level.amount_quiz + 1:
                         win_window()
                         animals.reset()
