@@ -59,6 +59,7 @@ def lose_window():
 
         pygame.display.update()
 
+
 def instruction_window():
     while True:
         screen.blit(win_image(), (0, 0))

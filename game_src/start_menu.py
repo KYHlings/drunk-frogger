@@ -5,7 +5,7 @@ import pygame
 from image.image_handler import main_menu_image
 from game_src.settings import Sound_settings
 from music_and_sound.sound_handler import get_title_music, music_volume
-from game_src.window_handler import screen, draw_text, font, text_colour, font1
+from game_src.window_handler import screen, draw_text, font, text_colour, font1, instruction_window
 
 
 def start_menu(sound_fx, volume):
@@ -17,25 +17,23 @@ def start_menu(sound_fx, volume):
     while running:
         #This program writes out the start menu
         screen.blit(main_menu_image(), (0, 0))
-        draw_text("Main Menu", font, text_colour, screen, 210, 100)
-        button_1 = pygame.Rect(235, 220, 0, 50)
-        button_2 = pygame.Rect(235, 320, 0, 50)
-        button_3 = pygame.Rect(235, 420, 0, 50)
-        pygame.draw.rect(screen, text_colour, button_1)
-        draw_text("Start Game [1]", font1, text_colour, screen, 245, 200)
-        pygame.draw.rect(screen, text_colour, button_2)
-        draw_text("Settings [2]", font1, text_colour, screen, 245, 300)
-        pygame.draw.rect(screen, text_colour, button_3)
-        draw_text("End Game [3]", font1, text_colour, screen, 245, 400)
+        draw_text("Main Menu", font, text_colour, screen, 210, 50)
+        draw_text("[B]egin Game", font1, text_colour, screen, 245, 150)
+        draw_text("[S]ettings", font1, text_colour, screen, 245, 250)
+        draw_text("[H]ow to play", font1, text_colour, screen, 245, 350)
+        draw_text("[Q]uit Game", font1, text_colour, screen, 245, 450)
+
         #This section takes input user to control menu
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
+                if event.key == pygame.K_b:
                     return volume
-                if event.key == pygame.K_2:
+                if event.key == pygame.K_s:
                     volume = Sound_settings(volume)
-                if event.key == pygame.K_3:
+                if event.key == pygame.K_h:
+                    instruction_window()
+                if event.key == pygame.K_q:
                     sys.exit()
         pygame.display.update()
