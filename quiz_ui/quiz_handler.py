@@ -33,15 +33,15 @@ def quiz_window(quiz):
     keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
             pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
     while run:
-        message_window = pygame.Surface([800, 250])
+        message_window = pygame.Surface([800, 300])
         large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 20)
         text_surf, text_rect = text_object(question, large_text)
-        text_rect.center = (400, 500)
+        text_rect.center = (400, 445)
         alternatives_text = []
-        altnr = 0
+        altnr = 4
         for alternative in question_list:
-            alternatives_text.append(text_object(f"{altnr + 1}:{alternative}", large_text))
-            altnr += 1
+            alternatives_text.append(text_object(f"{altnr}:{alternative}", large_text))
+            altnr -= 1
         #checks players answers
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -49,11 +49,11 @@ def quiz_window(quiz):
                     if event.key == keys[i]:
                         return question_list[i] == rightanswers
         screen.blit(get_get_quiz_sprite(), (100, 250))
-        screen.blit(message_window, (0, 450))
+        screen.blit(message_window, (0, 400))
         screen.blit(text_surf, text_rect)
-        alt_pos = 300
+        alt_pos = 575
         for alternative_text in alternatives_text:
             alternative_text[1].center = (250, alt_pos)
-            alt_pos += 30
+            alt_pos -= 30
             screen.blit(alternative_text[0], alternative_text[1])
         pygame.display.update()
