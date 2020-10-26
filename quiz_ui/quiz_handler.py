@@ -19,16 +19,15 @@ def get_quiz():
 
 # unloads content from get_quiz function.
 def quiz():
-    quiz_content = None
     while True:
         quiz_content = get_quiz()
         print(len(quiz_content[0]['question']))
-        if len(quiz_content[0]['question']) < 80:
+        if 80 < len(quiz_content[0]['question']) < 90:
             break
 
-        return quiz_content[0]["question"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), quiz_content[0][
-            "correct_answer"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), quiz_content[0][
-                   "incorrect_answers"]
+    return quiz_content[0]["question"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), quiz_content[0][
+        "correct_answer"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), quiz_content[0][
+               "incorrect_answers"]
 
 
 def quiz_window(quiz):
