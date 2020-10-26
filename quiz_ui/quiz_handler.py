@@ -11,7 +11,7 @@ from game_src.window_handler import screen, text_object
 
 # loads quiz from json-file, in future will load from api.
 def get_quiz():
-    url = requests.get("https://opentdb.com/api.php?amount=25&category=15&difficulty=easy&type=multiple")
+    url = requests.get("https://opentdb.com/api.php?amount=1&category=15&difficulty=easy&type=multiple")
     content = url.json(encoding='utf8')['results']
     shuffle(content)
     return content
@@ -19,7 +19,12 @@ def get_quiz():
 
 # unloads content from get_quiz function.
 def quiz():
-    quiz_content = get_quiz()
+    while True:
+        quiz_content = get_quiz()
+        #if quiz_content
+        print(quiz_content)
+        break
+
     for q in quiz_content:
         return q["question"].replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"), q["correct_answer"].replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"), q["incorrect_answers"]
 
