@@ -10,7 +10,7 @@ class Player:
         self.player_y = player_y
         self.width = width
         self.height = height
-        self.velocity = 4
+        self.velocity = 8
         self.rotation = rotation
         self.drunk_meter = 0
         self.img = img
