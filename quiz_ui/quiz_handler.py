@@ -19,14 +19,16 @@ def get_quiz():
 
 # unloads content from get_quiz function.
 def quiz():
+    quiz_content = None
     while True:
         quiz_content = get_quiz()
-        #if quiz_content
-        print(quiz_content)
-        break
+        print(len(quiz_content[0]['question']))
+        if len(quiz_content[0]['question']) < 80:
+            break
 
-    for q in quiz_content:
-        return q["question"].replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"), q["correct_answer"].replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"), q["incorrect_answers"]
+        return quiz_content[0]["question"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), quiz_content[0][
+            "correct_answer"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), quiz_content[0][
+                   "incorrect_answers"]
 
 
 def quiz_window(quiz):
@@ -34,7 +36,7 @@ def quiz_window(quiz):
     question, rightanswers, wronganswers = quiz
     question_list = [rightanswers]
     for wronganswer in wronganswers:
-        question_list.append(wronganswer.replace("&quot;",'"').replace("&#039;","'").replace("&eacute;","é"))
+        question_list.append(wronganswer.replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"))
     shuffle(question_list)
     run = True
     keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
