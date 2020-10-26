@@ -41,7 +41,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     for lane in lanes:
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
-    screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y))
+    screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
     pygame.display.update()
 
 
@@ -57,7 +57,7 @@ def game_loop(sound_fx, volume):
     while True:
         question_number = 1
         level = create_level(level_number)
-        wise_goat = Goat(animals.player_x, level.quiz_cord[0] - 50)
+        wise_goat = Goat(animals.player_x, level.quiz_cord[0])
         running = True
         while running:
             clock.tick(30)
@@ -163,11 +163,12 @@ def game_loop(sound_fx, volume):
                     q = False
                 else:
                     question_number += 1
-                    wise_goat.get_y = level.quiz_cord[question_number - 1]
                     if question_number == level.amount_quiz + 1:
                         win_window()
                         animals.reset()
                         running = False
+                    else:
+                        wise_goat.get_y = level.quiz_cord[question_number - 1]
 
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes)
         level_number += 1
