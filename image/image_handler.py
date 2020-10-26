@@ -34,7 +34,7 @@ def rotate_player_sprite(player_sprite, rotation):
 
 def get_get_sprite():
     get_sprite = pygame.image.load("image/npc_sprites/visgetens_het.png")
-    get_sprite = pygame.transform.scale(get_sprite, (40, 30))
+    get_sprite = pygame.transform.scale(get_sprite, (50, 50))
     return get_sprite
 
 def get_get_quiz_sprite():

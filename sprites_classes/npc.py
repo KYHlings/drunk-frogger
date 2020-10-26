@@ -19,9 +19,7 @@ class Floating_mob(Mob):
         super().__init__(mob_x, mob_y, image, is_left)
 
 class Goat:
-    def __init__(self, get_x, get_y, width, height):
+    def __init__(self, get_x, get_y):
         self.get_x = get_x
         self.get_y = get_y
-        self.width = width
-        self.height = height
         self.velocity = 4

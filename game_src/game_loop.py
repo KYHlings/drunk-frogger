@@ -51,14 +51,13 @@ def game_loop(sound_fx, volume):
     get_level_music()
     animals = Player(400, 570, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
-    wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
 
     level_number = 1
     while True:
         question_number = 1
         level = create_level(level_number)
-        wise_goat = Goat(animals.player_x, level.quiz_cord[0] - 30, 40, 30)
+        wise_goat = Goat(animals.player_x, level.quiz_cord[0] - 50)
         running = True
         while running:
             clock.tick(30)

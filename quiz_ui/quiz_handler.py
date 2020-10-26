@@ -23,7 +23,6 @@ def quiz():
         quiz_content = get_quiz()
         for q in quiz_content:
             if len(q['question']) < 88:
-                print(len(q['question']))
                 return q["question"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), q[
                     "correct_answer"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), q[
                            "incorrect_answers"]
