@@ -143,7 +143,7 @@ def game_loop(sound_fx, volume):
                         else:
                             animals.floating = False
 
-            if 55 < animals.player_y < 225 and not animals.floating:
+            if 60 < animals.player_y < 225 and not animals.floating:
                 if animals.lives != 1:
                     animals.lives -= 1
                     dead_frog.player_died(animals.player_x, animals.player_y)

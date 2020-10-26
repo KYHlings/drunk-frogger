@@ -3,13 +3,15 @@ from random import shuffle
 from pathlib import Path
 import json
 
+import requests
+
 from image.image_handler import get_get_sprite
 from game_src.window_handler import screen,text_object
 
 #loads quiz from json-file, in future will load from api.
 def get_quiz():
     p = Path("quiz_ui/quiz.json")
-    #url = requests.get("https://mqif4s7obg.execute-api.eu-central-1.amazonaws.com/olofs_lambda")
+    url = requests.get("https://mqif4s7obg.execute-api.eu-central-1.amazonaws.com/olofs_lambda")
     content = json.loads(p.read_text(encoding='utf8'))['questions']
     shuffle(content)
     return content
