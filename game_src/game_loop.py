@@ -34,8 +34,9 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
 
     if dead_frog.is_dead:
         if dead_frog.cause_of_death == "roadkill":
-            screen.blit(dead_frog.img, (dead_frog.dead_x, dead_frog.dead_y))
+            screen.blit(dead_frog.roadkill_img, (dead_frog.dead_x, dead_frog.dead_y))
         elif dead_frog.cause_of_death == "drowned":
+            screen.blit(dead_frog.drowned_img, (dead_frog.dead_x, dead_frog.dead_y))
         screen.blit(animals.update_img()[0], (1000, 1000))
 
     else:

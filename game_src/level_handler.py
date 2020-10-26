@@ -34,10 +34,10 @@ def create_level(level_number):
     if level_number == 1:
         level = Level(lanes=[Lane([Mob(0, 345, get_mob_sprite(False), False)], 345, 6, False),
                              Lane([Mob(500, 390, get_mob_sprite(True), True)], 390, 5, True),
-                             Lane([Mob(0, 435, get_mob_sprite(False), False)], 435, 3, False),
+                             Lane([Mob(0, 435, get_mob_sprite(False), False)], 435, 5, False),
                              Lane([Mob(600, 485, get_mob_sprite(True), True)], 485, 5, True)],
                       floating_lanes=[Lane([], 55, 5, True), Lane([], 85, 5, False), Lane([], 115, 5, True),
-                                      Lane([], 145, 5, False), Lane([], 175, 3, True), Lane([], 200, 2, False)],
+                                      Lane([], 145, 5, False), Lane([], 175, 5, True), Lane([], 200, 5, False)],
                       background_image=get_background_image(0),
                       goat=Goat(400, 200),
                       amount_quiz=2,
