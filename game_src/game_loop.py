@@ -172,9 +172,11 @@ def game_loop(sound_fx, volume):
                     animals.reset()
                     q = False
                 else:
-                    win_window()
-                    animals.reset()
-                    running = False
+                    question_number += 1
+                    if question_number == level.amount_quiz:
+                        win_window()
+                        animals.reset()
+                        running = False
 
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes,level.floating_lanes)
         level_number += 1

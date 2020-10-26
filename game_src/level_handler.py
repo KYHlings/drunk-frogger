@@ -59,6 +59,8 @@ def create_level(level_number):
                       background_image=get_background_image(1),
                       goat=Goat(400, 200, 40, 30),
                       music=0,
+                      amount_quiz=2,
+                      quiz_cord=[300, 30],
                       spawn_timer=[1000, 2000, 1000],
                       time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()],
                       drown_cord=0,
