@@ -54,7 +54,7 @@ def game_loop(sound_fx, volume):
     wise_goat = Goat(animals.player_x, 200, 40, 30)
     pygame.display.set_caption("Drunk Frogger")
 
-    q = False
+    question_number = 1
 
     level_number = 1
     while True:
@@ -155,7 +155,7 @@ def game_loop(sound_fx, volume):
 
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function
-            if animals.player_y <= 300 and q == False:
+            if animals.player_y <= level.quiz_cord[question_number - 1]:
                 get_goat_music()
 
                 # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
