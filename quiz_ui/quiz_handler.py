@@ -21,8 +21,7 @@ def get_quiz():
 def quiz():
     while True:
         quiz_content = get_quiz()
-        print(len(quiz_content[0]['question']))
-        if 80 < len(quiz_content[0]['question']) < 90:
+        if len(quiz_content[0]['question']) < 88:
             break
 
     return quiz_content[0]["question"].replace("&quot;", '"').replace("&#039;", "'").replace("&eacute;", "é"), quiz_content[0][
@@ -40,11 +39,13 @@ def quiz_window(quiz):
     run = True
     keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
             pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
-    print(question)
     while run:
         large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 20)
+        large_text1 = pygame.font.Font("font_src/PAPYRUS.TTF", 35)
         text_surf, text_rect = text_object(question, large_text)
         text_rect.center = (400, 460)
+        goat_surf, goat_rect = text_object("The Wise Goat", large_text1)
+        goat_rect.center = (235, 415)
         alternatives_text = []
         altnr = 0
         for alternative in question_list:
@@ -56,8 +57,9 @@ def quiz_window(quiz):
                 for i in range(len(question_list)):
                     if event.key == keys[i]:
                         return question_list[i] == rightanswers
-        screen.blit(get_get_quiz_sprite(), (100, 250))
+        screen.blit(get_get_quiz_sprite(), (100, 150))
         screen.blit(get_quiz_box(), (0, 375))
+        screen.blit(goat_surf, goat_rect)
         screen.blit(text_surf, text_rect)
         alt_pos = 470
         for alternative_text in alternatives_text:
