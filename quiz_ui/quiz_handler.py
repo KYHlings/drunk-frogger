@@ -5,15 +5,16 @@ import json
 
 import requests
 
-from image.image_handler import get_get_sprite
+from image.image_handler import get_get_sprite, get_get_quiz_sprite
 from game_src.window_handler import screen,text_object
 
 #loads quiz from json-file, in future will load from api.
 def get_quiz():
     url = requests.get("https://opentdb.com/api.php?amount=25&category=15&difficulty=medium&type=multiple")
-    content = url.json()['results']
+    content = url.json(encoding='utf8')['results']
     shuffle(content)
     return content
+
 #unloads content from get_quiz function.
 def quiz():
     quiz_content=get_quiz()
@@ -32,10 +33,10 @@ def quiz_window(quiz):
     keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
             pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
     while run:
-        message_window = pygame.Surface([450, 100])
+        message_window = pygame.Surface([800, 250])
         large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 20)
         text_surf, text_rect = text_object(question, large_text)
-        text_rect.center = (400, 515)
+        text_rect.center = (400, 500)
         alternatives_text = []
         altnr = 0
         for alternative in question_list:
@@ -47,12 +48,12 @@ def quiz_window(quiz):
                 for i in range(len(question_list)):
                     if event.key == keys[i]:
                         return question_list[i] == rightanswers
-        screen.blit(get_get_sprite(), (100, 250))
+        screen.blit(get_get_quiz_sprite(), (100, 250))
         screen.blit(message_window, (0, 450))
         screen.blit(text_surf, text_rect)
-        alt_pos = 250
+        alt_pos = 300
         for alternative_text in alternatives_text:
             alternative_text[1].center = (250, alt_pos)
-            alt_pos += 60
+            alt_pos += 30
             screen.blit(alternative_text[0], alternative_text[1])
         pygame.display.update()
