@@ -44,7 +44,7 @@ def get_get_quiz_sprite():
 
 
 def get_background_image(level_number):
-    file_names = ["bg_suburban_bourbon.png", "back_placehold2.png"]
+    file_names = ["bg_suburban_bourbon.png", "bg_cosmopolitan.png"]
     background_image = pygame.image.load(f"image/backgrounds_src/{file_names[level_number]}")
     background_image = pygame.transform.scale(background_image, (800, 600))
     return background_image

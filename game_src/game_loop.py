@@ -177,5 +177,6 @@ def game_loop(sound_fx, volume):
                     running = False
 
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes,level.floating_lanes)
+        level_number += 1
         if level_number == 3:
             level_number = 1
