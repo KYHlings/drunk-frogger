@@ -32,7 +32,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     screen.blit(get_life_sprite(), (10, 315))
     screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 205))
     for i in range(animals.drunk_meter):
-        screen.blit(get_beer_sprite(), (10, beer_y))
+        screen.blit(get_beer_sprite(), (15, beer_y))
         beer_y -= 25
 
     if dead_frog.is_dead:

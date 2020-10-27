@@ -81,7 +81,7 @@ def get_sloshed_face():
     return sloshed_face
 
 def get_beer_sprite():
-    beer_sprite = pygame.image.load("image/player_sprites/beer_mug.png")
+    beer_sprite = pygame.image.load("image/player_sprites/beer1.png")
     beer_sprite = pygame.transform.scale(beer_sprite, (40, 30))
     return beer_sprite
 
