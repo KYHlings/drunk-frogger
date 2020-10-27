@@ -6,7 +6,7 @@ from sprites_classes.npc import Mob, Goat
 
 class Level:
     def __init__(self, lanes, floating_lanes, background_image, goat, music, spawn_timer, time_spawned,
-                 fl_spawn_timer, fl_time_spawned, drown_cord, amount_quiz, quiz_cord,sinking_cord):
+                 fl_spawn_timer, fl_time_spawned, drown_cord, amount_quiz, quiz_cord, sinking_cord):
         self.lanes = lanes
         self.floating_lanes = floating_lanes
         self.background_image = background_image
@@ -62,13 +62,21 @@ def create_level(level_number):
                       fl_time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
                                        pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()],
                       drown_cord=225,
-                      sinking_cord=(60,225)
+                      sinking_cord=(60, 225)
                       )
 
     if level_number == 2:
-        level = Level(lanes=[Lane([Mob(0, 350, get_mob_sprite(False), False)], 350, 5, False),
-                             Lane([Mob(0, 400, get_mob_sprite(True), True)], 400, 5, True),
-                             Lane([Mob(0, 450, get_mob_sprite(False), False)], 450, 5, False)],
+        level = Level(lanes=[Lane([Mob(0, 50, get_mob_sprite(False), False)], 50, 5, False),
+                             Lane([Mob(0, 70, get_mob_sprite(True), True)], 70, 5, True),
+                             Lane([Mob(0, 100, get_mob_sprite(False), False)], 100, 5, False),
+
+                             Lane([Mob(0, 250, get_mob_sprite(False), False)], 250, 5, False),
+                             Lane([Mob(0, 270, get_mob_sprite(True), True)], 270, 5, True),
+                             Lane([Mob(0, 300, get_mob_sprite(False), False)], 300, 5, False),
+
+                             Lane([Mob(0, 430, get_mob_sprite(False), False)], 430, 5, False),
+                             Lane([Mob(0, 480, get_mob_sprite(True), True)], 480, 5, True),
+                             Lane([Mob(0, 525, get_mob_sprite(False), False)], 525, 5, False)],
                       background_image=get_background_image(1),
                       goat=Goat(400, 200),
                       music=0,
@@ -80,7 +88,7 @@ def create_level(level_number):
                       fl_spawn_timer=[],
                       fl_time_spawned=[],
                       floating_lanes=[],
-                      sinking_cord=(0,0)
+                      sinking_cord=(0, 0)
                       )
 
     if level_number == 3:
