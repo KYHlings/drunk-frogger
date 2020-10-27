@@ -13,12 +13,13 @@ from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
-from game_src.window_handler import screen, lose_window, win_window
+from game_src.window_handler import screen, lose_window, win_window, draw_text, font1, text_colour
 
 
 # This function updates the window with sprites_classes each loop
-def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes):
+def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score):
     screen.blit(background_image, (0, 0))
+    draw_text(f"score:{score}",font1,text_colour )
 
     life_x = 10
     beer_y = 285
@@ -49,6 +50,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     for i in range(animals.drunk_meter):
         screen.blit(get_beer_sprite(), (15, beer_y))
         beer_y -= 25
+
     pygame.display.update()
 
 
@@ -69,7 +71,7 @@ def game_loop(sound_fx, volume):
         running = True
         get_level_music(level_number)
         while running:
-            score_by_player_position(animals.player_y, last_y, score)
+            score, last_y = score_by_player_position(animals.player_y, last_y, score)
             clock.tick(30)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -133,6 +135,7 @@ def game_loop(sound_fx, volume):
             for lane in level.lanes:
                 for car in lane.mobs:
                     if animals.check_collide(car):
+                        score -= 20
                         if animals.lives != 1:
                             animals.lives -= 1
                             dead_frog.player_died(animals.player_x, animals.player_y, "roadkill")
@@ -158,6 +161,7 @@ def game_loop(sound_fx, volume):
                             animals.floating = False
 
             if level.sinking_cord[0] < animals.player_y < level.sinking_cord[1] and not animals.floating:
+                score -= 20
                 if animals.lives != 1:
                     animals.lives -= 1
                     dead_frog.player_died(animals.player_x, animals.player_y, "drowned")
@@ -198,7 +202,7 @@ def game_loop(sound_fx, volume):
                         else:
                             get_drunk_music(level_number, animals.drunk_meter)
                 level.spawn_resumed()
-            redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes)
+            redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes, score)
         level_number += 1
         if level_number == 3:
             level_number = 1
