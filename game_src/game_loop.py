@@ -29,12 +29,6 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
         for mob in lane.floating_mobs:
             screen.blit(mob.image, mob.mob_rect)
 
-    screen.blit(get_life_sprite(), (10, 315))
-    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 205))
-    for i in range(animals.drunk_meter):
-        screen.blit(get_beer_sprite(), (15, beer_y))
-        beer_y -= 25
-
     if dead_frog.is_dead:
         if dead_frog.cause_of_death == "roadkill":
             screen.blit(dead_frog.roadkill_img, (dead_frog.dead_x, dead_frog.dead_y))
@@ -48,6 +42,12 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
+
+    screen.blit(get_life_sprite(), (10, 315))
+    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 205))
+    for i in range(animals.drunk_meter):
+        screen.blit(get_beer_sprite(), (15, beer_y))
+        beer_y -= 25
     pygame.display.update()
 
 
