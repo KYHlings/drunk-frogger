@@ -50,8 +50,8 @@ def create_level(level_number):
                              Lane([Mob(500, 390, get_mob_sprite(True), True)], 390, 5, True),
                              Lane([Mob(0, 435, get_mob_sprite(False), False)], 435, 5, False),
                              Lane([Mob(600, 485, get_mob_sprite(True), True)], 485, 5, True)],
-                      floating_lanes=[Lane([], 55, 5, True), Lane([], 85, 5, False), Lane([], 115, 5, True),
-                                      Lane([], 145, 5, False), Lane([], 175, 5, True), Lane([], 200, 5, False)],
+                      floating_lanes=[Lane([], 55, 5, True), Lane([], 90, 5, False), Lane([], 125, 5, True),
+                                      Lane([], 160, 5, False), Lane([], 193, 5, True)],
                       background_image=get_background_image(0),
                       goat=Goat(400, 200),
                       amount_quiz=2,
@@ -60,8 +60,8 @@ def create_level(level_number):
                       spawn_timer=[1000, 2000, 1000, 2000],
                       time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
                                     pygame.time.get_ticks()],
-                      fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000],
-                      fl_time_spawned=[tick, tick, tick, tick, tick, tick],
+                      fl_spawn_timer=[1000, 2000, 1000, 2000, 1000],
+                      fl_time_spawned=[tick, tick, tick, tick, tick],
                       drown_cord=225,
                       sinking_cord=(60, 225)
                       )
