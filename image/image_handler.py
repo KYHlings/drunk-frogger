@@ -104,3 +104,9 @@ def get_quiz_box():
     quiz_box = pygame.image.load("image/backgrounds_src/quiz_box1.png")
     quiz_box = pygame.transform.scale(quiz_box, (820, 345))
     return quiz_box
+
+
+def get_pause_window():
+    pause_box = pygame.image.load("image/backgrounds_src/Scroll_1.jpg")
+    pause_box = pygame.transform.scale(pause_box, (350, 350))
+    return pause_box
