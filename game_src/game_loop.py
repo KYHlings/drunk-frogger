@@ -59,7 +59,7 @@ def game_loop(sound_fx, volume):
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
-    level_number = 1
+    level_number = 2
     while True:
         question_number = 1
         level = create_level(level_number)
@@ -153,7 +153,7 @@ def game_loop(sound_fx, volume):
                         else:
                             animals.floating = False
 
-            if 60 < animals.player_y < 225 and not animals.floating:
+            if level.sinking_cord[0] < animals.player_y < level.sinking_cord[1] and not animals.floating:
                 if animals.lives != 1:
                     animals.lives -= 1
                     dead_frog.player_died(animals.player_x, animals.player_y, "drowned")
