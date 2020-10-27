@@ -41,9 +41,9 @@ def quiz_window(quiz):
         large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 20)
         large_text1 = pygame.font.Font("font_src/PAPYRUS.TTF", 35)
         text_surf, text_rect = text_object(question, large_text)
-        text_rect.center = (400, 460)
+        text_rect.center = (400, 465)
         goat_surf, goat_rect = text_object("The Wise Goat", large_text1)
-        goat_rect.center = (235, 415)
+        goat_rect.center = (240, 425)
         alternatives_text = []
         altnr = 0
         for alternative in question_list:
@@ -56,12 +56,12 @@ def quiz_window(quiz):
                     if event.key == keys[i]:
                         return question_list[i] == rightanswers
         screen.blit(get_get_quiz_sprite(), (100, 150))
-        screen.blit(get_quiz_box(), (0, 385))
+        screen.blit(get_quiz_box(), (0, 340))
         screen.blit(goat_surf, goat_rect)
         screen.blit(text_surf, text_rect)
         alt_pos = 470
         for alternative_text in alternatives_text:
-            alternative_text[1].topleft = (50, alt_pos)
+            alternative_text[1].topleft = (100, alt_pos)
             alt_pos += 30
             screen.blit(alternative_text[0], alternative_text[1])
         pygame.display.update()
