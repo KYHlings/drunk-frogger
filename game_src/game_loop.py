@@ -13,16 +13,16 @@ from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
-from game_src.window_handler import screen, lose_window, win_window, draw_text, font1, text_colour, score_surf, \
-    text_object, score_font
+from game_src.window_handler import screen, lose_window, win_window, \
+    text_object, score_font, roadkill_window, drown_window
 
 
 # This function updates the window with sprites_classes each loop
 def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score):
     screen.blit(background_image, (0, 0))
-    score_text,score_rect = text_object(f"score:{score}",score_font)
-    score_rect.topright=(790,10)
-    screen.blit(score_text,score_rect)
+    score_text, score_rect = text_object(f"score:{score}", score_font)
+    score_rect.topright = (790, 10)
+    screen.blit(score_text, score_rect)
     life_x = 10
     beer_y = 285
 
@@ -144,7 +144,7 @@ def game_loop(sound_fx, volume):
                             sound_fx.play_splat()
                             animals.reset()
                         else:
-                            lose_window()
+                            roadkill_window()
                             return
 
             animals.floating = False
@@ -170,7 +170,7 @@ def game_loop(sound_fx, volume):
                     sound_fx.play_splash()
                     animals.reset()
                 else:
-                    lose_window()
+                    drown_window()
                     return
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function

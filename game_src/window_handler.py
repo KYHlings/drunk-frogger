@@ -1,7 +1,7 @@
 import sys
 import pygame
 
-from image.image_handler import win_image, lose_image, how_to_play_image
+from image.image_handler import win_image, lose_image, how_to_play_image, roadkill_image, drown_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 pygame.init()
@@ -9,7 +9,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 font = pygame.font.Font("font_src/PAPYRUS.TTF", 80)
 font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 60)
-score_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf",30)
+score_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 30)
 text_colour = (0, 0, 0)
 score_surf = pygame.surface.Surface((240, 60))
 
@@ -51,6 +51,38 @@ def lose_window():
     losing = True
     while losing:
         screen.blit(lose_image(), (0, 0))
+        draw_text("You Lose!", font, text_colour, screen, 800, 600)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                return
+
+        pygame.display.update()
+
+
+def roadkill_window():
+    get_lose_music()
+    losing = True
+    while losing:
+        screen.blit(roadkill_image(), (0, 0))
+        draw_text("You Lose!", font, text_colour, screen, 800, 600)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                return
+
+        pygame.display.update()
+
+
+def drown_window():
+    get_lose_music()
+    losing = True
+    while losing:
+        screen.blit(drown_image(), (0, 0))
         draw_text("You Lose!", font, text_colour, screen, 800, 600)
 
         for event in pygame.event.get():
