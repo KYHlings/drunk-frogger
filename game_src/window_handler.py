@@ -1,7 +1,7 @@
 import sys
 import pygame
 
-from image.image_handler import win_image, lose_image
+from image.image_handler import win_image, lose_image, how_to_play_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 pygame.init()
@@ -64,7 +64,7 @@ def lose_window():
 
 def instruction_window():
     while True:
-        screen.blit(win_image(), (0, 0))
+        screen.blit(how_to_play_image(), (0, 0))
         draw_text("How to play!", font, text_colour, screen, 800, 600)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

@@ -13,6 +13,11 @@ def win_image():
     win_frog_image = pygame.transform.scale(win_frog_image, (800, 600))
     return win_frog_image
 
+def how_to_play_image():
+    how_to_play = pygame.image.load("image/backgrounds_src/how_to_play1.png")
+    how_to_play = pygame.transform.scale(how_to_play, (800, 600))
+    return how_to_play
+
 
 def lose_image():
     lose_frog_image = pygame.image.load("image/backgrounds_src/you_lose.jpg")
