@@ -54,17 +54,17 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
 # This function runs the main game
 def game_loop(sound_fx, volume):
     clock = pygame.time.Clock()
-    get_level_music()
     animals = Player(400, 570, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
-    level_number = 2
+    level_number = 1
     while True:
         question_number = 1
         level = create_level(level_number)
         wise_goat = Goat(animals.player_x, level.quiz_cord[0])
         running = True
+        get_level_music(level_number)
         while running:
             clock.tick(30)
             for event in pygame.event.get():
@@ -190,7 +190,7 @@ def game_loop(sound_fx, volume):
                     else:
                         wise_goat.get_y = level.quiz_cord[question_number - 1]
                         if animals.drunk_meter == 0:
-                            get_level_music()
+                            get_level_music(level_number)
                         else:
                             get_drunk_music(animals.drunk_meter)
                 level.spawn_resumed()
