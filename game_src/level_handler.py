@@ -20,8 +20,19 @@ class Level:
         self.amount_quiz = amount_quiz
         self.quiz_cord = quiz_cord
 
+    def spawn_paused(self):
+        self.time_of_pause = pygame.time.get_ticks()
+
+    def spawn_resumed(self):
+        extra_time = pygame.time.get_ticks() - self.time_of_pause
+        for i in range(len(self.spawn_timer)):
+            self.spawn_timer[i] += extra_time
+        for i in range(len(self.fl_spawn_timer)):
+            self.fl_spawn_timer[i] += extra_time
+
 
 class Lane:
+
     def __init__(self, mobs, y, velocity, is_left):
         self.mobs = mobs
         self.y = y

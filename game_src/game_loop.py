@@ -120,8 +120,9 @@ def game_loop(sound_fx, volume):
             else:
                 animals.move(keys)
             if keys[pygame.K_p]:
+                level.spawn_paused()
                 volume = pause_screen(volume)
-                # volume = Sound_settings(volume)
+                level.spawn_resumed()
                 if not volume:
                     return
 
@@ -164,6 +165,7 @@ def game_loop(sound_fx, volume):
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function
             if animals.player_y <= level.quiz_cord[question_number - 1]:
+                level.spawn_paused()
                 get_goat_music()
 
                 # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
@@ -179,7 +181,6 @@ def game_loop(sound_fx, volume):
                     animals.drunken_consequence()
                     get_drunk_music(animals.drunk_meter)
                     animals.reset()
-                    q = False
                 else:
                     question_number += 1
                     if question_number == level.amount_quiz + 1:
@@ -192,10 +193,7 @@ def game_loop(sound_fx, volume):
                             get_level_music()
                         else:
                             get_drunk_music(animals.drunk_meter)
-
-
-
-
+                level.spawn_resumed()
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes)
         level_number += 1
         if level_number == 3:
