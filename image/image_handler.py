@@ -87,14 +87,14 @@ def get_beer_sprite():
 
 
 def get_roadkill_sprite(drunk_meter):
-    dead_frogs = ["dead_frog.png", "frog_dead_tipsy.png", "frog_dead_drunk.png", "frog_dead_sloshed.png"]
+    dead_frogs = ["dead_frog.png", "frog_dead_tipsy.png", "frog_dead_drunk.png", "frog_dead_sloshed.png", "frog_dead_sloshed.png"]
     dead_frog = pygame.image.load(f"image/player_sprites/{dead_frogs[drunk_meter]}")
     dead_frog = pygame.transform.scale(dead_frog, (40, 30))
     return dead_frog
 
 
 def get_drowned_sprite(drunk_meter):
-    dead_frogs = ["drowning_frog.png", "drowning_frog_tipsy.png", "drowning_frog_drunk.png", "drowning_frog_sloshed.png"]
+    dead_frogs = ["drowning_frog.png", "drowning_frog_tipsy.png", "drowning_frog_drunk.png", "drowning_frog_sloshed.png", "drowning_frog_sloshed.png"]
     dead_frog = pygame.image.load(f"image/player_sprites/{dead_frogs[drunk_meter]}")
     dead_frog = pygame.transform.scale(dead_frog, (40, 30))
     return dead_frog
