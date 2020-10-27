@@ -10,7 +10,7 @@ class Player:
         self.player_y = player_y
         self.width = width
         self.height = height
-        self.velocity = 8
+        self.velocity = 5
         self.rotation = rotation
         self.drunk_meter = 0
         self.img = img
@@ -30,9 +30,11 @@ class Player:
         if self.drunk_meter == 1:
             self.velocity = 3.5
         elif self.drunk_meter == 2:
-            self.velocity = 10
+            self.velocity = 8
         elif self.drunk_meter == 3:
-            self.velocity = - 4
+            self.velocity = - 5
+        elif self.drunk_meter == 4:
+            self.velocity = -8
 
     def check_collide(self, mob):
         (px, py) = (self.player_rect[0], self.player_rect[1])

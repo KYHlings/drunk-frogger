@@ -17,7 +17,7 @@ class Sound_fx:
 
     def play_splash(self):
         splash_sound = choice(self.splash_sounds)
-        pygame.mixer.Sound.set_volume(splash_sound, 0.4)
+        pygame.mixer.Sound.set_volume(splash_sound, 0.2)
         return splash_sound.play()
 
     def play_burp(self):

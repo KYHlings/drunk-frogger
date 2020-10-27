@@ -44,7 +44,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
 
     screen.blit(get_life_sprite(), (10, 315))
-    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 205))
+    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 180))
     for i in range(animals.drunk_meter):
         screen.blit(get_beer_sprite(), (15, beer_y))
         beer_y -= 25
@@ -171,7 +171,7 @@ def game_loop(sound_fx, volume):
                 # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
                 # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
                 if not quiz_window(quiz()):
-                    if animals.drunk_meter == 3:
+                    if animals.drunk_meter == 4:
                         lose_window()
                         return
                     animals.drunk_meter += 1
