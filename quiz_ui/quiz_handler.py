@@ -43,7 +43,7 @@ def quiz_window(quiz):
         text_surf, text_rect = text_object(question, large_text)
         text_rect.center = (400, 460)
         goat_surf, goat_rect = text_object("The Wise Goat", large_text1)
-        goat_rect.center = (240, 415)
+        goat_rect.center = (230, 415)
         alternatives_text = []
         altnr = 0
         for alternative in question_list:
@@ -56,7 +56,7 @@ def quiz_window(quiz):
                     if event.key == keys[i]:
                         return question_list[i] == rightanswers
         screen.blit(get_get_quiz_sprite(), (100, 150))
-        screen.blit(get_quiz_box(), (0, 330))
+        screen.blit(get_quiz_box(), (-10, 330))
         screen.blit(goat_surf, goat_rect)
         screen.blit(text_surf, text_rect)
         alt_pos = 470
