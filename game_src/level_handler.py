@@ -3,6 +3,8 @@ import pygame
 from image.image_handler import get_background_image, get_mob_sprite
 from sprites_classes.npc import Mob, Goat
 
+tick = pygame.time.get_ticks()
+
 
 class Level:
     def __init__(self, lanes, floating_lanes, background_image, goat, music, spawn_timer, time_spawned,
@@ -59,31 +61,30 @@ def create_level(level_number):
                       time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
                                     pygame.time.get_ticks()],
                       fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000],
-                      fl_time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
-                                       pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()],
+                      fl_time_spawned=[tick, tick, tick, tick, tick, tick],
                       drown_cord=225,
                       sinking_cord=(60, 225)
                       )
 
     if level_number == 2:
-        level = Level(lanes=[Lane([Mob(0, 50, get_mob_sprite(False), False)], 50, 5, False),
-                             Lane([Mob(0, 70, get_mob_sprite(True), True)], 70, 5, True),
-                             Lane([Mob(0, 100, get_mob_sprite(False), False)], 100, 5, False),
+        level = Level(lanes=[Lane([Mob(150, 50, get_mob_sprite(False), False)], 50, 5, False),
+                             Lane([Mob(150, 90, get_mob_sprite(True), True)], 90, 5, True),
+                             Lane([Mob(150, 135, get_mob_sprite(False), False)], 135, 5, False),
 
-                             Lane([Mob(0, 250, get_mob_sprite(False), False)], 250, 5, False),
-                             Lane([Mob(0, 270, get_mob_sprite(True), True)], 270, 5, True),
-                             Lane([Mob(0, 300, get_mob_sprite(False), False)], 300, 5, False),
+                             Lane([Mob(150, 235, get_mob_sprite(False), False)], 235, 5, False),
+                             Lane([Mob(150, 280, get_mob_sprite(True), True)], 280, 5, True),
+                             Lane([Mob(150, 330, get_mob_sprite(False), False)], 330, 5, False),
 
-                             Lane([Mob(0, 430, get_mob_sprite(False), False)], 430, 5, False),
-                             Lane([Mob(0, 480, get_mob_sprite(True), True)], 480, 5, True),
-                             Lane([Mob(0, 525, get_mob_sprite(False), False)], 525, 5, False)],
+                             Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 5, False),
+                             Lane([Mob(150, 480, get_mob_sprite(True), True)], 480, 5, True),
+                             Lane([Mob(150, 525, get_mob_sprite(False), False)], 525, 5, False)],
                       background_image=get_background_image(1),
                       goat=Goat(400, 200),
                       music=0,
                       amount_quiz=2,
                       quiz_cord=[300, 30],
-                      spawn_timer=[1000, 2000, 1000],
-                      time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks()],
+                      spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],
+                      time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick],
                       drown_cord=0,
                       fl_spawn_timer=[],
                       fl_time_spawned=[],
