@@ -56,7 +56,7 @@ def quiz_window(quiz):
                     if event.key == keys[i]:
                         return question_list[i] == rightanswers
         screen.blit(get_get_quiz_sprite(), (100, 150))
-        screen.blit(get_quiz_box(), (0, 375))
+        screen.blit(get_quiz_box(), (0, 385))
         screen.blit(goat_surf, goat_rect)
         screen.blit(text_surf, text_rect)
         alt_pos = 470
