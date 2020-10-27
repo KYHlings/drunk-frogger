@@ -22,7 +22,7 @@ def quiz():
         quiz_content = get_quiz()
         for q in quiz_content:
             if len(q['question']) < 88:
-                return q["question"], q["correct"], q["incorrect_answers"]
+                return q["question"], q["correct_answer"], q["incorrect_answers"]
 
 
 def quiz_window(quiz):
