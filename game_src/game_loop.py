@@ -13,13 +13,13 @@ from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
-from game_src.window_handler import screen, lose_window, win_window, draw_text, font1, text_colour
+from game_src.window_handler import screen, lose_window, win_window, draw_text, font1, text_colour, score_surf
 
 
 # This function updates the window with sprites_classes each loop
 def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score):
     screen.blit(background_image, (0, 0))
-    draw_text(f"score:{score}",font1,text_colour )
+    draw_text(f"score:{score}", font1, text_colour, score_surf, 560, 30)
 
     life_x = 10
     beer_y = 285
@@ -202,7 +202,8 @@ def game_loop(sound_fx, volume):
                         else:
                             get_drunk_music(level_number, animals.drunk_meter)
                 level.spawn_resumed()
-            redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes, score)
+            redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
+                          score)
         level_number += 1
         if level_number == 3:
             level_number = 1

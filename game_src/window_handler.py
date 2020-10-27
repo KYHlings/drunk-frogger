@@ -10,6 +10,7 @@ screen = pygame.display.set_mode((800, 600))
 font = pygame.font.Font("font_src/PAPYRUS.TTF", 80)
 font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 60)
 text_colour = (0, 0, 0)
+score_surf = pygame.surface.Surface((240, 60))
 
 
 # Creates surface for draw_text function.
