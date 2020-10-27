@@ -6,7 +6,7 @@ from game_src.level_handler import create_level
 from game_src.pause_screen import pause_screen
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
-    get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_floating_mob_sprite
+    get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_floating_mob_sprite, get_sloshed_face, get_drowned_sprite
 
 from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
@@ -18,19 +18,22 @@ from game_src.window_handler import screen, lose_window, win_window
 # This function updates the window with sprites_classes each loop
 def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes):
     screen.blit(background_image, (0, 0))
-    screen.blit(get_life_sprite(), (10, 315))
-    screen.blit(pygame.transform.flip(get_life_sprite(), True, True), (10, 205))
+
     life_x = 10
     beer_y = 285
-    for i in range(animals.drunk_meter):
-        screen.blit(get_beer_sprite(), (10, beer_y))
-        beer_y -= 25
+
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25
     for lane in floating_lanes:
         for mob in lane.floating_mobs:
             screen.blit(mob.image, mob.mob_rect)
+
+    screen.blit(get_life_sprite(), (10, 315))
+    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 205))
+    for i in range(animals.drunk_meter):
+        screen.blit(get_beer_sprite(), (10, beer_y))
+        beer_y -= 25
 
     if dead_frog.is_dead:
         if dead_frog.cause_of_death == "roadkill":
@@ -171,6 +174,7 @@ def game_loop(sound_fx, volume):
                         return
                     animals.drunk_meter += 1
                     dead_frog.roadkill_img = get_roadkill_sprite(animals.drunk_meter)
+                    dead_frog.drowned_img = get_drowned_sprite(animals.drunk_meter)
                     sound_fx.play_burp()
                     animals.drunken_consequence()
                     get_drunk_music(animals.drunk_meter)
