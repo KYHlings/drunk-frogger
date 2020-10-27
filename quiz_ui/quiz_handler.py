@@ -1,7 +1,6 @@
 import pygame
 from random import shuffle
-from pathlib import Path
-import json
+import base64
 
 import requests
 
@@ -11,7 +10,7 @@ from game_src.window_handler import screen, text_object
 
 # loads quiz from json-file, in future will load from api.
 def get_quiz():
-    url = requests.get("https://opentdb.com/api.php?amount=50&category=15&difficulty=easy&type=multiple")
+    url = requests.get("https://opentdb.com/api.php?amount=50&category=15&difficulty=easy&type=multiple&encode=base64")
     content = url.json(encoding='utf8')['results']
     shuffle(content)
     return content
