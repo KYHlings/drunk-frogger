@@ -179,7 +179,7 @@ def game_loop(sound_fx, volume):
                     dead_frog.drowned_img = get_drowned_sprite(animals.drunk_meter)
                     sound_fx.play_burp()
                     animals.drunken_consequence()
-                    get_drunk_music(animals.drunk_meter)
+                    get_drunk_music(level_number, animals.drunk_meter)
                     animals.reset()
                 else:
                     question_number += 1
@@ -192,7 +192,7 @@ def game_loop(sound_fx, volume):
                         if animals.drunk_meter == 0:
                             get_level_music(level_number)
                         else:
-                            get_drunk_music(animals.drunk_meter)
+                            get_drunk_music(level_number, animals.drunk_meter)
                 level.spawn_resumed()
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes)
         level_number += 1
