@@ -39,7 +39,7 @@ def drown_image():
 
 
 def get_player_sprite(drunk_meter):
-    player_sprites = ['frog.png', 'frog_tipsy.png', 'frog_drunk.png', 'frog_sloshed.png']
+    player_sprites = ['frog.png', 'frog_tipsy.png', 'frog_drunk.png', 'frog_sloshed.png', 'frog_sloshed.png']
     player_sprite = pygame.image.load(f"image/player_sprites/{player_sprites[drunk_meter]}").convert_alpha()
     player_sprite = pygame.transform.scale(player_sprite, (40, 30))
     return player_sprite
