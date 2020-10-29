@@ -1,6 +1,7 @@
 import sys
 import pygame
 
+from game_src.score_handler import get_score
 from image.image_handler import win_image, lose_image, how_to_play_image, roadkill_image, drown_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music
 
@@ -98,6 +99,22 @@ def instruction_window():
     while True:
         screen.blit(how_to_play_image(), (0, 0))
         draw_text("How to play!", font, text_colour, screen, 800, 600)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                return
+
+            pygame.display.update()
+
+def score_window():
+    score_ls = get_score()
+    score_y = 100
+    while True:
+        for score in score_ls:
+            score_surf,score_rect = text_object(f"{score['name']} : {score['score']}",score_font)
+            score_rect.center(400,score_y)
+            screen.blit()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

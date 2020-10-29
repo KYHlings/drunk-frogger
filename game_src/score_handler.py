@@ -1,4 +1,4 @@
-import pathlib
+from pathlib import Path
 import json
 
 def score_by_player_position(player_y, last_y, score):
@@ -11,8 +11,10 @@ def score_by_player_position(player_y, last_y, score):
 
 
 def get_score():
-
-
+    score_ls = json.loads(Path("highscore.json").read_text(encoding='utf8'))
+    return score_ls
 
 def post_score():
     pass
+
+
