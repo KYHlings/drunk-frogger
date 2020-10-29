@@ -20,7 +20,7 @@ def start_menu(sound_fx, volume):
         draw_text("Main Menu", font, text_colour, screen, 210, 50)
         draw_text("[B]egin Game", font1, text_colour, screen, 245, 150)
         draw_text("[S]ettings", font1, text_colour, screen, 245, 250)
-        draw_text("[H]ow to play", font1, text_colour, screen, 245, 350)
+        draw_text("[T]utorial", font1, text_colour, screen, 245, 350)
         draw_text("[Q]uit Game", font1, text_colour, screen, 245, 450)
 
         #This section takes input user to control menu

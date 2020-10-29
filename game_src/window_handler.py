@@ -114,6 +114,9 @@ def score_window():
     while True:
         nr = 1
         score_y = 100
+        hs_surf, hs_rect = text_object("High score", score_font)
+        hs_rect.center = (400, 60)
+        screen.blit(hs_surf,hs_rect)
         for score in score_ls:
             score_surfing, score_rect = text_object(f"{nr}:{score['name']} : {score['score']}", score_font)
             nr += 1
