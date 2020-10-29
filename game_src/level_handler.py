@@ -23,7 +23,7 @@ class Level:
         self.amount_quiz = amount_quiz
         self.quiz_cord = quiz_cord
         self.sinking_cord = sinking_cord
-        self.safe_lane = safe_lanes
+        self.safe_lanes = safe_lanes
 
     def spawn_paused(self):
         self.time_of_pause = pygame.time.get_ticks()
@@ -138,8 +138,7 @@ def create_level(level_number):
                           Lane([Floating_mob(150, 430, get_floating_mob_sprite(True), False)], 430, 5, False),
                           Lane([Floating_mob(150, 480, get_floating_mob_sprite(True), True)], 480, 5, True),
                           Lane(lane_9, 515, 5, False)],
-                      safe_lanes=[Lane([Floating_mob(150, 430, get_safe_floating_mob_sprite(True), False)], 430, 5, False),
-                                  Lane([Floating_mob(150, 480, get_safe_floating_mob_sprite(True), True)], 480, 5, True), ],
+                      safe_lanes=[Lane([Floating_mob(150, 430, get_safe_floating_mob_sprite(True), False)], 430, 5, False)],
                       background_image=get_background_image(2),
                       goat=Goat(400, 200),
                       music=0,

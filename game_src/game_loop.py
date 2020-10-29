@@ -162,7 +162,7 @@ def game_loop(sound_fx, volume):
                             return
 
             animals.floating = False
-            for lane in reversed(level.floating_lanes):
+            for lane in reversed(level.floating_lanes + level.safe_lanes):
                 if not animals.floating:
                     for floating_mob in lane.floating_mobs:
                         if animals.check_collide(floating_mob):
@@ -229,7 +229,7 @@ def game_loop(sound_fx, volume):
                             get_drunk_music(level_number, animals.drunk_meter)
                 level.spawn_resumed()
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
-                          score, level.safe_lane)
+                          score, level.safe_lanes)
         level_number += 1
         if level_number == 4:
             level_number = 1
