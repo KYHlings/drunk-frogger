@@ -8,8 +8,8 @@ from music_and_sound.sound_handler import get_win_music, get_lose_music
 pygame.init()
 
 screen = pygame.display.set_mode((800, 600))
-font = pygame.font.Font("font_src/PAPYRUS.TTF", 80)
-font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 60)
+font = pygame.font.Font("font_src/PAPYRUS.TTF", 70)
+font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 50)
 score_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 30)
 text_colour = (0, 0, 0)
 score_surf = pygame.surface.Surface((240, 60))
