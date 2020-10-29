@@ -4,7 +4,7 @@ import pygame
 
 from game_src.level_handler import create_level
 from game_src.pause_screen import pause_screen
-from game_src.score_counter import score_by_player_position
+from game_src.score_handler import score_by_player_position
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
     get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_floating_mob_sprite, get_sloshed_face, get_drowned_sprite
