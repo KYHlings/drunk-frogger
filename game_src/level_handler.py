@@ -1,6 +1,7 @@
 import pygame
 
-from image.image_handler import get_background_image, get_mob_sprite, get_floating_mob_sprite
+from image.image_handler import get_background_image, get_mob_sprite, get_floating_mob_sprite, \
+    get_safe_floating_mob_sprite
 from sprites_classes.npc import Mob, Goat, Floating_mob
 
 tick = pygame.time.get_ticks()
@@ -8,7 +9,7 @@ tick = pygame.time.get_ticks()
 
 class Level:
     def __init__(self, lanes, floating_lanes, background_image, goat, music, spawn_timer, time_spawned,
-                 fl_spawn_timer, fl_time_spawned, drown_cord, amount_quiz, quiz_cord, sinking_cord, safe_lane):
+                 fl_spawn_timer, fl_time_spawned, drown_cord, amount_quiz, quiz_cord, sinking_cord, safe_lanes):
         self.lanes = lanes
         self.floating_lanes = floating_lanes
         self.background_image = background_image
@@ -22,7 +23,7 @@ class Level:
         self.amount_quiz = amount_quiz
         self.quiz_cord = quiz_cord
         self.sinking_cord = sinking_cord
-        self.safe_lane = safe_lane
+        self.safe_lane = safe_lanes
 
     def spawn_paused(self):
         self.time_of_pause = pygame.time.get_ticks()
@@ -80,7 +81,7 @@ def create_level(level_number):
                       fl_time_spawned=[tick, tick, tick, tick, tick],
                       drown_cord=225,
                       sinking_cord=(60, 225),
-                      safe_lane=[]
+                      safe_lanes=[]
                       )
 
     if level_number == 2:
@@ -113,13 +114,14 @@ def create_level(level_number):
                       fl_time_spawned=[],
                       floating_lanes=[],
                       sinking_cord=(0, 0),
-                      safe_lane=[]
+                      safe_lanes=[]
                       )
 
     if level_number == 3:
-        lane_9 = [Mob(150, 515, get_mob_sprite(False), False), Mob(300, 515, get_mob_sprite(False), False),
-                  Mob(400, 515, get_mob_sprite(False), False),
-                  Mob(600, 515, get_mob_sprite(False), False)]
+        lane_9 = [Floating_mob(150, 515, get_floating_mob_sprite(False), False),
+                  Floating_mob(300, 515, get_floating_mob_sprite(False), False),
+                  Floating_mob(400, 515, get_floating_mob_sprite(False), False),
+                  Floating_mob(600, 515, get_floating_mob_sprite(False), False)]
         lane_8 = []
         lane_7 = []
 
@@ -136,7 +138,8 @@ def create_level(level_number):
                           Lane([Floating_mob(150, 430, get_floating_mob_sprite(True), False)], 430, 5, False),
                           Lane([Floating_mob(150, 480, get_floating_mob_sprite(True), True)], 480, 5, True),
                           Lane(lane_9, 515, 5, False)],
-                      safe_lane=[],
+                      safe_lanes=[Lane([Floating_mob(150, 430, get_safe_floating_mob_sprite(True), False)], 430, 5, False),
+                                  Lane([Floating_mob(150, 480, get_safe_floating_mob_sprite(True), True)], 480, 5, True), ],
                       background_image=get_background_image(2),
                       goat=Goat(400, 200),
                       music=0,

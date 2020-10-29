@@ -63,7 +63,7 @@ def get_get_quiz_sprite():
 
 
 def get_background_image(level_number):
-    file_names = ["bg_suburban_bourbon.png", "bg_cosmopolitan.png","bg_ph_space.jpg"]
+    file_names = ["bg_suburban_bourbon.png", "bg_cosmopolitan.png", "bg_ph_space.jpg"]
     background_image = pygame.image.load(f"image/backgrounds_src/{file_names[level_number]}")
     background_image = pygame.transform.scale(background_image, (800, 600))
     return background_image
@@ -81,6 +81,15 @@ def get_mob_sprite(is_left):
 
 def get_floating_mob_sprite(is_left):
     log_sprites = [("log.png", (100, 80))]
+    log_sprite = choice(log_sprites)
+    mob_sprite = pygame.image.load(f"image/npc_sprites/{log_sprite[0]}").convert_alpha()
+    mob_sprite = pygame.transform.scale(mob_sprite, log_sprite[1])
+    mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
+    return mob_sprite
+
+
+def get_safe_floating_mob_sprite(is_left):
+    log_sprites = [("log.png", (270, 90))]
     log_sprite = choice(log_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{log_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, log_sprite[1])
