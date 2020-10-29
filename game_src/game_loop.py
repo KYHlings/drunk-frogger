@@ -175,6 +175,7 @@ def game_loop(sound_fx, volume):
                     animals.reset()
                 else:
                     drown_window()
+                    high_score_list(score)
                     return
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function
@@ -189,6 +190,7 @@ def game_loop(sound_fx, volume):
                     no_wrong_answers = False
                     if animals.drunk_meter == 4:
                         lose_window()
+                        high_score_list(score)
                         return
                     animals.drunk_meter += 1
                     dead_frog.roadkill_img = get_roadkill_sprite(animals.drunk_meter)
