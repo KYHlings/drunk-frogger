@@ -2,10 +2,11 @@ import sys
 
 import pygame
 
+from game_src.score_handler import score_window
 from image.image_handler import main_menu_image
 from game_src.settings import Sound_settings
 from music_and_sound.sound_handler import get_title_music, music_volume
-from game_src.window_handler import screen, draw_text, font, text_colour, font1, instruction_window, score_window
+from game_src.window_handler import screen, draw_text, font, text_colour, font1, instruction_window
 
 
 def start_menu(sound_fx, volume):

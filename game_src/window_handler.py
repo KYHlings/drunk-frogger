@@ -1,7 +1,6 @@
 import sys
 import pygame
 
-from game_src.score_handler import get_score
 from image.image_handler import win_image, lose_image, how_to_play_image, roadkill_image, drown_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music
 
@@ -108,34 +107,4 @@ def instruction_window():
             pygame.display.update()
 
 
-def score_window():
-    score_ls = get_score()
-    screen.fill((250, 250, 250))
-    while True:
-        nr = 1
-        score_y = 100
-        hs_surf, hs_rect = text_object("High score", score_font)
-        hs_rect.center = (400, 60)
-        screen.blit(hs_surf, hs_rect)
-        for score in score_ls:
-            score_surfing, score_rect = text_object(f"{nr}:{score['name']} : {score['score']}", score_font)
-            nr += 1
-            score_rect.center = 400, score_y
-            score_y += 40
-            screen.blit(score_surfing, score_rect)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                return
 
-            pygame.display.update()
-
-
-def write_highscore():
-    screen.fill((250, 250, 250))
-    while True:
-        inst_surf, inst_rect = text_object("Congratulations. Enter your name", score_font)
-        inst_rect.center = (400, 60)
-        screen.blit(inst_surf, inst_rect)
-        pygame.display.update()
