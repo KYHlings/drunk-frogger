@@ -63,7 +63,7 @@ def game_loop(sound_fx, volume):
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
-    level_number = 1
+    level_number = 3
     score = 0
     while True:
         last_y = 570
@@ -220,5 +220,5 @@ def game_loop(sound_fx, volume):
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
                           score)
         level_number += 1
-        if level_number == 3:
+        if level_number == 4:
             level_number = 1

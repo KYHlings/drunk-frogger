@@ -40,7 +40,7 @@ def get_title_music():
 
 
 def get_level_music(level_number):
-    music_files = ["df_level1_music.mp3", "df_level2_music.mp3"]
+    music_files = ["df_level1_music.mp3", "df_level2_music.mp3", "df_level2_music.mp3"]
     pygame.mixer.music.load(f"music_and_sound/music_src/{music_files[level_number-1]}")
     return pygame.mixer.music.play(-1)
 

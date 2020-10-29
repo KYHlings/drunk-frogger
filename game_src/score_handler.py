@@ -26,7 +26,7 @@ def high_score_list(score):
     if score_ls[9]["score"] < score:
         score_ls[9]["score"] = score
         name = write_highscore()
-        print(name)
+
         score_ls[9]["name"] = name
         sorted_score = sorted(score_ls, key=lambda s: s['score'], reverse=True)
         Path("game_src/highscore.json").write_text(json.dumps(sorted_score), encoding='utf8')
@@ -48,7 +48,7 @@ def write_highscore():
                 if event.key == pygame.K_BACKSPACE:
                     user_name = user_name[:-1]
                 elif event.key == pygame.K_RETURN:
-                    print(user_name)
+
                     return user_name
 
                 else:
