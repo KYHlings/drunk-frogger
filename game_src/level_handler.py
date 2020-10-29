@@ -113,6 +113,34 @@ def create_level(level_number):
                       )
 
     if level_number == 3:
-        pass
+        lane_9 = [Mob(150, 525, get_mob_sprite(False), False), Mob(300, 525, get_mob_sprite(False), False),
+                  Mob(400, 525, get_mob_sprite(False), False),
+                  Mob(600, 525, get_mob_sprite(False), False)]
+        lane_8 = []
+        lane_7 = []
+
+        floating_lanes = Level(lanes=[Lane([Mob(150, 50,floating_mob_get_mob_sprite(False), False)], 50, 5, False),
+                             Lane([Mob(150, 90,floating_mobget_mob_sprite(True), True)], 90, 5, True),
+                             Lane([Mob(150, 135,floating_mobget_mob_sprite(False), False)], 135, 5, False),
+
+                             Lane([Mob(150, 235,floating_mobget_mob_sprite(False), False)], 235, 5, False),
+                             Lane([Mob(150, 280,floating_mobget_mob_sprite(True), True)], 280, 5, True),
+                             Lane([Mob(150, 330,floating_mobget_mob_sprite(False), False)], 330, 5, False),
+
+                             Lane([Mob(150, 430,floating_mobget_mob_sprite(False), False)], 430, 5, False),
+                             Lane([Mob(150, 480,floating_mobget_mob_sprite(True), True)], 480, 5, True),
+                             Lane(lane_9, 525, 5, False)],
+                      background_image=get_background_image(1),
+                      goat=Goat(400, 200),
+                      music=0,
+                      amount_quiz=3,
+                      quiz_cord=[400, 205, 20],
+                      spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],
+                      time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick],
+                      drown_cord=0,
+                      fl_spawn_timer=[],
+                      fl_time_spawned=[],
+                      floating_lanes=[],
+                      sinking_cord=(0, 0)
         # To be continued
     return level
