@@ -107,14 +107,19 @@ def instruction_window():
 
             pygame.display.update()
 
+
 def score_window():
     score_ls = get_score()
-    score_y = 100
+    screen.fill((250, 250, 250))
     while True:
+        nr = 1
+        score_y = 100
         for score in score_ls:
-            score_surf,score_rect = text_object(f"{score['name']} : {score['score']}",score_font)
-            score_rect.center(400,score_y)
-            screen.blit()
+            score_surfing, score_rect = text_object(f"{nr}:{score['name']} : {score['score']}", score_font)
+            nr += 1
+            score_rect.center = 400, score_y
+            score_y += 40
+            screen.blit(score_surfing, score_rect)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

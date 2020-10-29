@@ -11,7 +11,7 @@ def score_by_player_position(player_y, last_y, score):
 
 
 def get_score():
-    score_ls = json.loads(Path("highscore.json").read_text(encoding='utf8'))
+    score_ls = json.loads(Path("game_src/highscore.json").read_text(encoding='utf8'))
     return score_ls
 
 def post_score():
