@@ -33,9 +33,9 @@ def high_score_list(score):
 
 
 def write_highscore():
-    screen.fill((250, 250, 250))
     user_name = ""
     while True:
+        screen.fill((250, 250, 250))
         inst_surf, inst_rect = text_object("Congratulations. Enter your name", score_font)
         inst_rect.center = (400, 60)
         screen.blit(inst_surf, inst_rect)
@@ -44,13 +44,17 @@ def write_highscore():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.type == pygame.K_BACKSPACE:
+                if event.key == pygame.K_BACKSPACE:
                     user_name = user_name[:-1]
-                user_name += event.unicode
+                elif event.key == pygame.K_RETURN:
+                    return
+                else:
+                    user_name += event.unicode
 
 
         name_surf, name_rect = text_object(user_name, score_font)
-        name_rect.center = (400, 60)
+        name_rect.center = (400, 100)
+        print(user_name)
         screen.blit(name_surf, name_rect)
 
         pygame.display.update()
