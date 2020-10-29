@@ -72,6 +72,7 @@ def game_loop(sound_fx, volume):
         wise_goat = Goat(animals.player_x, level.quiz_cord[0])
         running = True
         get_level_music(level_number)
+        no_death, no_wrong_answers = True, True
         while running:
             score, last_y = score_by_player_position(animals.player_y, last_y, score)
             clock.tick(30)
@@ -138,6 +139,7 @@ def game_loop(sound_fx, volume):
                 for car in lane.mobs:
                     if animals.check_collide(car):
                         score -= 20
+                        no_death = False
                         if animals.lives != 1:
                             animals.lives -= 1
                             dead_frog.player_died(animals.player_x, animals.player_y, "roadkill")
@@ -164,6 +166,7 @@ def game_loop(sound_fx, volume):
 
             if level.sinking_cord[0] < animals.player_y < level.sinking_cord[1] and not animals.floating:
                 score -= 20
+                no_death = False
                 if animals.lives != 1:
                     animals.lives -= 1
                     dead_frog.player_died(animals.player_x, animals.player_y, "drowned")
@@ -182,6 +185,7 @@ def game_loop(sound_fx, volume):
                 # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
                 if not quiz_window(quiz()):
                     score -= 100
+                    no_wrong_answers = False
                     if animals.drunk_meter == 4:
                         lose_window()
                         return
@@ -198,7 +202,8 @@ def game_loop(sound_fx, volume):
                     if question_number == level.amount_quiz + 1:
                         if no_death:
                             score += 200
-
+                        if no_wrong_answers:
+                            score += 200
                         win_window()
                         animals.reset()
                         running = False
