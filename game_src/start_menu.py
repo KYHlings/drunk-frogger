@@ -20,9 +20,9 @@ def start_menu(sound_fx, volume):
         draw_text("Main Menu", font, text_colour, screen, 210, 20)
         draw_text("[B]egin Game", font1, text_colour, screen, 245, 120)
         draw_text("[S]ettings", font1, text_colour, screen, 245, 200)
-        draw_text("[T]utorial", font1, text_colour, screen, 245, 300)
-        draw_text("[H]igh Score", font1, text_colour, screen, 245, 400)
-        draw_text("[Q]uit Game", font1, text_colour, screen, 245, 500)
+        draw_text("[T]utorial", font1, text_colour, screen, 245, 280)
+        draw_text("[H]igh Score", font1, text_colour, screen, 245, 360)
+        draw_text("[Q]uit Game", font1, text_colour, screen, 245, 440)
 
         #This section takes input user to control menu
         for event in pygame.event.get():
@@ -33,9 +33,9 @@ def start_menu(sound_fx, volume):
                     return volume
                 if event.key == pygame.K_s:
                     volume = Sound_settings(volume)
-                if event.key == pygame.K_h:
+                if event.key == pygame.K_t:
                     instruction_window()
-                if event.key == pygame.K_z:
+                if event.key == pygame.K_h:
                     score_window()
                 if event.key == pygame.K_q:
                     sys.exit()
