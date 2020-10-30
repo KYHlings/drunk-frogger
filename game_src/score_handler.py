@@ -38,7 +38,7 @@ def write_highscore():
     while True:
         screen.fill((250, 250, 250))
         inst_surf, inst_rect = text_object("Enter your name", score_font)
-        inst_rect.center = (600, 60)
+        inst_rect.center = (630, 60)
         screen.blit(inst_surf, inst_rect)
 
         for event in pygame.event.get():
@@ -54,9 +54,8 @@ def write_highscore():
                 else:
                     user_name += event.unicode
 
-
         name_surf, name_rect = text_object(user_name, score_font)
-        name_rect.center = (600, 100)
+        name_rect.center = (640, 130)
         screen.blit(name_surf, name_rect)
 
         pygame.display.update()

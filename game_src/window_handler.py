@@ -34,7 +34,7 @@ def win_window():
     winning = True
     while winning:
         screen.blit(win_image(), (0, 0))
-        #draw_text("You Win!", font, text_colour, screen, 800, 600)
+        # draw_text("You Win!", font, text_colour, screen, 800, 600)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -51,7 +51,7 @@ def lose_window():
     losing = True
     while losing:
         screen.blit(lose_image(), (0, 0))
-        #draw_text("You Lose!", font, text_colour, screen, 800, 600)
+        # draw_text("You Lose!", font, text_colour, screen, 800, 600)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -67,7 +67,7 @@ def roadkill_window():
     losing = True
     while losing:
         screen.blit(roadkill_image(), (0, 0))
-        #draw_text("You Lose!", font, text_colour, screen, 800, 600)
+        # draw_text("You Lose!", font, text_colour, screen, 800, 600)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -83,7 +83,7 @@ def drown_window():
     losing = True
     while losing:
         screen.blit(drown_image(), (0, 0))
-        #draw_text("You Lose!", font, text_colour, screen, 800, 600)
+        # draw_text("You Lose!", font, text_colour, screen, 800, 600)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -97,7 +97,7 @@ def drown_window():
 def instruction_window():
     while True:
         screen.blit(how_to_play_image(), (0, 0))
-        #draw_text("How to play!", font, text_colour, screen, 800, 600)
+        # draw_text("How to play!", font, text_colour, screen, 800, 600)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -106,18 +106,16 @@ def instruction_window():
 
             pygame.display.update()
 
+
 def level_title_window(level_number):
     name_ls = ['Suburban Bourbon', 'Cosmopolitan', 'Pangalactic']
-    screen.fill((255,255,255))
-    name_surf, name_rect = text_object(name_ls[level_number-1],title_font)
+    screen.fill((255, 255, 255))
+    name_surf, name_rect = text_object(name_ls[level_number - 1], title_font)
     name_rect.center = (650, 350)
     screen.blit(name_surf, name_rect)
     if level_number == 3:
-        name2_surf, name2_rect = text_object('Gargleblaster',title_font)
+        name2_surf, name2_rect = text_object('Gargleblaster', title_font)
         name2_rect.center = (650, 450)
         screen.blit(name2_surf, name2_rect)
     pygame.display.update()
     pygame.time.delay(1000)
-
-
-

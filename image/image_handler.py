@@ -1,6 +1,7 @@
 import pygame
 from random import choice
 
+
 def main_menu_image():
     main_image = pygame.image.load("image/backgrounds_src/drunk_frog.jpg")
     main_image = pygame.transform.scale(main_image, (1280, 800))
