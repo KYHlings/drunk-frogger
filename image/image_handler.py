@@ -80,7 +80,7 @@ def get_mob_sprite(is_left):
 
 
 def get_floating_mob_sprite(is_left):
-    log_sprites = [("log.png", (100, 80))]
+    log_sprites = [("log.png", (110, 100))]
     log_sprite = choice(log_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{log_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, log_sprite[1])
