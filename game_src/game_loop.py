@@ -18,7 +18,8 @@ from game_src.window_handler import screen, lose_window, win_window, \
 
 
 # This function updates the window with sprites_classes each loop
-def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes):
+def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
+                  level_number,question_number):
     screen.blit(background_image, (0, 0))
     score_text, score_rect = text_object(f"score:{score}", score_font)
     score_rect.topright = (790, 10)
@@ -49,7 +50,10 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     for lane in lanes:
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
-    screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
+    if level_number == 3 and question_number < 3:
+        screen.blit(get_get_sprite(), (safe_lanes[question_number-1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 30))
+    else:
+        screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
 
     screen.blit(get_life_sprite(), (10, 315))
     screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 180))
@@ -67,7 +71,7 @@ def game_loop(sound_fx, volume):
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
-    level_number = 3
+    level_number = 1
     score = 0
     while True:
         last_y = 570
@@ -229,7 +233,7 @@ def game_loop(sound_fx, volume):
                             get_drunk_music(level_number, animals.drunk_meter)
                 level.spawn_resumed()
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
-                          score, level.safe_lanes)
+                          score, level.safe_lanes,level_number,question_number)
         level_number += 1
         if level_number == 4:
             level_number = 1
