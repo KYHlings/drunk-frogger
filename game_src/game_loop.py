@@ -71,7 +71,7 @@ def game_loop(sound_fx, volume):
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
-    level_number = 3
+    level_number = 1
     score = 0
     while True:
         level_title_window(level_number)
@@ -201,7 +201,7 @@ def game_loop(sound_fx, volume):
 
                 # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
                 # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
-                if not quiz_window(quiz()):
+                if not quiz_window(quiz(), animals.drunk_meter):
                     score -= 100
                     no_wrong_answers = False
                     if animals.drunk_meter == 4:
