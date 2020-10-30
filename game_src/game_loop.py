@@ -67,7 +67,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
 # This function runs the main game
 def game_loop(sound_fx, volume):
     clock = pygame.time.Clock()
-    animals = Player(400, 730, 40, 30, 0, get_player_sprite(0))
+    animals = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
