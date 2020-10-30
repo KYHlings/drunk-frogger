@@ -72,5 +72,5 @@ class Player:
         if self.player_x < 0:
             self.player_x = 0
 
-        if self.player_x > 760:
-            self.player_x = 760
+        if self.player_x > 1240:
+            self.player_x = 1240

@@ -5,7 +5,6 @@ from image.image_handler import win_image, lose_image, how_to_play_image, roadki
 from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 pygame.init()
-
 screen = pygame.display.set_mode((1280, 800))
 font = pygame.font.Font("font_src/PAPYRUS.TTF", 70)
 font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 50)
