@@ -108,7 +108,7 @@ def game_loop(sound_fx, volume):
                 for floating_mob in lane.floating_mobs[:]:
                     if not floating_mob.is_left:
                         floating_mob.update_rect(1, lane.velocity)
-                        if floating_mob.mob_x >= 700 or floating_mob.mob_x <= 100:
+                        if floating_mob.mob_x >= 540 or floating_mob.mob_x <= -10:
                             lane.velocity *= -1
 
             for i in range(len(level.lanes)):
