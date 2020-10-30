@@ -65,12 +65,12 @@ def get_get_quiz_sprite():
 def get_background_image(level_number):
     file_names = ["bg_suburban_bourbon.png", "bg_cosmopolitan.png", "bg_ph_space.jpg"]
     background_image = pygame.image.load(f"image/backgrounds_src/{file_names[level_number]}")
-    background_image = pygame.transform.scale(background_image, (800, 600))
+    background_image = pygame.transform.scale(background_image, (1280, 800))
     return background_image
 
 
 def get_mob_sprite(is_left):
-    cars_sprites = [("car_green1.png", (80, 40)), ("car_red1.png", (80, 40)), ("taxi1.png", (80, 40)),
+    cars_sprites = [("car_green1.png", (128, 80)), ("car_red1.png", (80, 40)), ("taxi1.png", (80, 40)),
                     ("postnord2.png", (80, 40))]
     car_sprite = choice(cars_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{car_sprite[0]}").convert_alpha()

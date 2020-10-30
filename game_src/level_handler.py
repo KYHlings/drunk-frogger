@@ -63,10 +63,10 @@ def create_level(level_number):
                   Mob(250, 485, get_mob_sprite(True), True),
                   Mob(50, 485, get_mob_sprite(True), True)]
 
-        level = Level(lanes=[Lane(lane_1, 345, 100, False),
-                             Lane(lane_2, 390, 100, True),
-                             Lane(lane_3, 435, 100, False),
-                             Lane(lane_4, 485, 100, True)],
+        level = Level(lanes=[Lane(lane_1, 345, 5, False),
+                             Lane(lane_2, 390, 5, True),
+                             Lane(lane_3, 435, 5, False),
+                             Lane(lane_4, 485, 5, True)],
                       floating_lanes=[Lane([], 55, 5, True), Lane([], 90, 5, False), Lane([], 125, 5, True),
                                       Lane([], 160, 5, False), Lane([], 193, 5, True)],
                       background_image=get_background_image(0),

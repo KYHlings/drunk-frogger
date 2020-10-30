@@ -80,7 +80,10 @@ def game_loop(sound_fx, volume):
         level = create_level(level_number)
         wise_goat = Goat(animals.player_x, level.quiz_cord[0])
         running = True
-        get_level_music(level_number)
+        if animals.drunk_meter > 0:
+            get_drunk_music(level_number,animals.drunk_meter)
+        else:
+            get_level_music(level_number)
         no_death, no_wrong_answers = True, True
         while running:
             score, last_y = score_by_player_position(animals.player_y, last_y, score)
