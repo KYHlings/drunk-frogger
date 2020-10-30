@@ -70,8 +70,8 @@ def get_background_image(level_number):
 
 
 def get_mob_sprite(is_left):
-    cars_sprites = [("car_green1.png", (80, 40)), ("car_red1.png", (80, 40)), ("taxi1.png", (80, 40)),
-                    ("postnord2.png", (80, 40))]
+    cars_sprites = [("car_green1.png", (128, 65)), ("car_red1.png", (128, 65)), ("taxi1.png", (128, 65)),
+                    ("postnord2.png", (128, 65))]
     car_sprite = choice(cars_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{car_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, car_sprite[1])
