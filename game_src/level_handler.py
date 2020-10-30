@@ -48,27 +48,27 @@ class Lane:
 
 def create_level(level_number):
     if level_number == 1:
-        lane_1 = [Mob(30, 345, get_mob_sprite(False), False),
-                  Mob(300, 345, get_mob_sprite(False), False), Mob(570, 345, get_mob_sprite(False), False)]
+        lane_1 = [Mob(30, 445, get_mob_sprite(False), False),
+                  Mob(300, 445, get_mob_sprite(False), False), Mob(570, 445, get_mob_sprite(False), False)]
 
-        lane_2 = [Mob(500, 390, get_mob_sprite(True), True), Mob(200, 390, get_mob_sprite(True), True),
-                  Mob(700, 390, get_mob_sprite(True), True),
-                  Mob(400, 390, get_mob_sprite(True), True)]
+        lane_2 = [Mob(500, 510, get_mob_sprite(True), True), Mob(200, 510, get_mob_sprite(True), True),
+                  Mob(700, 510, get_mob_sprite(True), True),
+                  Mob(400, 510, get_mob_sprite(True), True)]
 
-        lane_3 = [Mob(0, 435, get_mob_sprite(False), False), Mob(200, 435, get_mob_sprite(False), False),
-                  Mob(350, 435, get_mob_sprite(False), False),
-                  Mob(500, 435, get_mob_sprite(False), False)]
+        lane_3 = [Mob(0, 570, get_mob_sprite(False), False), Mob(200, 570, get_mob_sprite(False), False),
+                  Mob(350, 570, get_mob_sprite(False), False),
+                  Mob(500, 570, get_mob_sprite(False), False)]
 
-        lane_4 = [Mob(600, 485, get_mob_sprite(True), True), Mob(400, 485, get_mob_sprite(True), True),
-                  Mob(250, 485, get_mob_sprite(True), True),
-                  Mob(50, 485, get_mob_sprite(True), True)]
+        lane_4 = [Mob(600, 640, get_mob_sprite(True), True), Mob(400, 640, get_mob_sprite(True), True),
+                  Mob(250, 640, get_mob_sprite(True), True),
+                  Mob(50, 640, get_mob_sprite(True), True)]
 
-        level = Level(lanes=[Lane(lane_1, 345, 5, False),
-                             Lane(lane_2, 390, 5, True),
-                             Lane(lane_3, 435, 5, False),
-                             Lane(lane_4, 485, 5, True)],
-                      floating_lanes=[Lane([], 55, 5, True), Lane([], 90, 5, False), Lane([], 125, 5, True),
-                                      Lane([], 160, 5, False), Lane([], 193, 5, True)],
+        level = Level(lanes=[Lane(lane_1, 445, 5, False),
+                             Lane(lane_2, 510, 5, True),
+                             Lane(lane_3, 570, 5, False),
+                             Lane(lane_4, 640, 5, True)],
+                      floating_lanes=[Lane([], 60, 5, True), Lane([], 95, 5, False), Lane([], 125, 5, True),
+                                      Lane([], 160, 5, False), Lane([], 193, 5, True), Lane([], 230, 5, True)],
                       background_image=get_background_image(0),
                       goat=Goat(400, 200),
                       amount_quiz=2,
@@ -77,8 +77,8 @@ def create_level(level_number):
                       spawn_timer=[1000, 1000, 1000, 1000],
                       time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
                                     pygame.time.get_ticks()],
-                      fl_spawn_timer=[1000, 2000, 1000, 2000, 1000],
-                      fl_time_spawned=[tick, tick, tick, tick, tick],
+                      fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000],
+                      fl_time_spawned=[tick, tick, tick, tick, tick, tick],
                       drown_cord=225,
                       sinking_cord=(60, 225),
                       safe_lanes=[]
