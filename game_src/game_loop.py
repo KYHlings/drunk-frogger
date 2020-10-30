@@ -14,7 +14,7 @@ from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
 from game_src.window_handler import screen, lose_window, win_window, \
-    text_object, score_font, roadkill_window, drown_window
+    text_object, score_font, roadkill_window, drown_window, level_title_window
 
 
 # This function updates the window with sprites_classes each loop
@@ -74,6 +74,7 @@ def game_loop(sound_fx, volume):
     level_number = 1
     score = 0
     while True:
+        level_title_window(level_number)
         last_y = 570
         question_number = 1
         level = create_level(level_number)

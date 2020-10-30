@@ -10,6 +10,7 @@ screen = pygame.display.set_mode((800, 600))
 font = pygame.font.Font("font_src/PAPYRUS.TTF", 70)
 font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 50)
 score_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 30)
+title_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 70)
 text_colour = (0, 0, 0)
 score_surf = pygame.surface.Surface((240, 60))
 
@@ -105,6 +106,17 @@ def instruction_window():
                 return
 
             pygame.display.update()
+
+def level_title_window(level_number):
+    name_ls = ['Suburban bourbon', 'Cosmopolitan','Pangalactic GargleBlaster']
+    running = True
+    while running:
+        screen.fill((255,255,255))
+        name_surf, name_rect = text_object(name_ls[level_number-1],title_font)
+        name_rect.center = (400, 300)
+        screen.blit(name_surf, name_rect)
+        pygame.time.delay(3000)
+
 
 
 
