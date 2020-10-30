@@ -132,7 +132,7 @@ def get_drowned_sprite(drunk_meter):
 
 def get_quiz_box():
     quiz_box = pygame.image.load("image/backgrounds_src/quiz_box1.png")
-    quiz_box = pygame.transform.scale(quiz_box, (1310, 600))
+    quiz_box = pygame.transform.scale(quiz_box, (1340, 600))
     return quiz_box
 
 

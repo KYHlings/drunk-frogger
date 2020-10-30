@@ -37,8 +37,8 @@ def write_highscore():
     user_name = ""
     while True:
         screen.fill((250, 250, 250))
-        inst_surf, inst_rect = text_object("Congratulations. Enter your name", score_font)
-        inst_rect.center = (400, 60)
+        inst_surf, inst_rect = text_object("Enter your name", score_font)
+        inst_rect.center = (600, 60)
         screen.blit(inst_surf, inst_rect)
 
         for event in pygame.event.get():
@@ -56,7 +56,7 @@ def write_highscore():
 
 
         name_surf, name_rect = text_object(user_name, score_font)
-        name_rect.center = (400, 100)
+        name_rect.center = (600, 100)
         screen.blit(name_surf, name_rect)
 
         pygame.display.update()
@@ -69,13 +69,13 @@ def score_window():
         nr = 1
         score_y = 100
         hs_surf, hs_rect = text_object("High score", score_font)
-        hs_rect.center = (400, 60)
+        hs_rect.center = (645, 40)
         screen.blit(hs_surf, hs_rect)
         for score in score_ls:
-            score_surfing, score_rect = text_object(f"{nr}:{score['name']} : {score['score']}", score_font)
+            score_surfing, score_rect = text_object(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font)
             nr += 1
-            score_rect.center = 400, score_y
-            score_y += 40
+            score_rect.center = 625, score_y
+            score_y += 70
             screen.blit(score_surfing, score_rect)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

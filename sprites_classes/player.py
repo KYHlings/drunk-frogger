@@ -5,7 +5,7 @@ from image.image_handler import rotate_player_sprite, get_player_sprite
 
 class Player:
     def __init__(self, player_x, player_y, width, height, rotation, img):
-        self.lives = 50
+        self.lives = 5
         self.player_x = player_x
         self.player_y = player_y
         self.width = width

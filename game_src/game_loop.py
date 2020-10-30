@@ -22,10 +22,10 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
                   level_number,question_number, level):
     screen.blit(background_image, (0, 0))
     score_text, score_rect = text_object(f"score:{score}", score_font)
-    score_rect.topright = (790, 10)
+    score_rect.topright = (1270, 10)
     screen.blit(score_text, score_rect)
     life_x = 10
-    beer_y = 285
+    beer_y = 405
 
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
@@ -43,7 +43,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
             screen.blit(dead_frog.roadkill_img, (dead_frog.dead_x, dead_frog.dead_y))
         elif dead_frog.cause_of_death == "drowned":
             screen.blit(dead_frog.drowned_img, (dead_frog.dead_x, dead_frog.dead_y))
-        screen.blit(animals.update_img()[0], (1000, 1000))
+        screen.blit(animals.update_img()[0], (3000, 3000))
 
     else:
         screen.blit(animals.update_img()[0], animals.update_img()[1])
@@ -55,8 +55,8 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     else:
         screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
 
-    screen.blit(get_life_sprite(), (10, 315))
-    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 180))
+    screen.blit(get_life_sprite(), (10, 435))
+    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 300))
     for i in range(animals.drunk_meter):
         screen.blit(get_beer_sprite(), (15, beer_y))
         beer_y -= 25
