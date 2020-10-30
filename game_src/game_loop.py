@@ -51,7 +51,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
     if level_number == 3 and question_number < 3:
-        screen.blit(get_get_sprite(), (safe_lanes[question_number-1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 30))
+        screen.blit(get_get_sprite(), (safe_lanes[question_number-1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 40))
     else:
         screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
 
@@ -71,7 +71,7 @@ def game_loop(sound_fx, volume):
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
-    level_number = 2
+    level_number = 1
     score = 0
     while True:
         level_title_window(level_number)
@@ -144,20 +144,20 @@ def game_loop(sound_fx, volume):
                 if not volume:
                     return
 
-            for lane in level.lanes:
-                for car in lane.mobs:
-                    if animals.check_collide(car):
-                        score -= 20
-                        no_death = False
-                        if animals.lives != 1:
-                            animals.lives -= 1
-                            dead_frog.player_died(animals.player_x, animals.player_y, "roadkill")
-                            sound_fx.play_splat()
-                            animals.reset()
-                        else:
-                            roadkill_window()
-                            high_score_list(score)
-                            return
+            # for lane in level.lanes:
+            #     for car in lane.mobs:
+            #         if animals.check_collide(car):
+            #             score -= 20
+            #             no_death = False
+            #             if animals.lives != 1:
+            #                 animals.lives -= 1
+            #                 dead_frog.player_died(animals.player_x, animals.player_y, "roadkill")
+            #                 sound_fx.play_splat()
+            #                 animals.reset()
+            #             else:
+            #                 roadkill_window()
+            #                 high_score_list(score)
+            #                 return
 
             animals.floating = False
             for lane in reversed(level.floating_lanes + level.safe_lanes):

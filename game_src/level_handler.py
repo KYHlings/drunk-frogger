@@ -85,28 +85,28 @@ def create_level(level_number):
                       )
 
     if level_number == 2:
-        lane_9 = [Mob(150, 525, get_mob_sprite(False), False), Mob(300, 525, get_mob_sprite(False), False),
-                  Mob(400, 525, get_mob_sprite(False), False),
-                  Mob(600, 525, get_mob_sprite(False), False)]
+        lane_9 = [Mob(150, 690, get_mob_sprite(False), False), Mob(300, 690, get_mob_sprite(False), False),
+                  Mob(400, 690, get_mob_sprite(False), False),
+                  Mob(600, 690, get_mob_sprite(False), False)]
         lane_8 = []
         lane_7 = []
 
-        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 5, False),
-                             Lane([Mob(150, 100, get_mob_sprite(True), True)], 100, 5, True),
-                             Lane([Mob(150, 235, get_mob_sprite(False), False)], 235, 5, False),
+        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 8, False),
+                             Lane([Mob(150, 115, get_mob_sprite(True), True)], 115, 8, True),
+                             Lane([Mob(150, 185, get_mob_sprite(False), False)],185 , 8, False),
 
-                             Lane([Mob(150, 315, get_mob_sprite(False), False)], 315, 5, False),
-                             Lane([Mob(150, 375, get_mob_sprite(True), True)], 375, 5, True),
-                             Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 5, False),
+                             Lane([Mob(150, 315, get_mob_sprite(False), False)], 315, 8, False),
+                             Lane([Mob(150, 375, get_mob_sprite(True), True)], 375, 8, True),
+                             Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 8, False),
 
-                             Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 5, False),
-                             Lane([Mob(150, 625, get_mob_sprite(True), True)], 625, 5, True),
-                             Lane(lane_9, 690, 5, False)],
+                             Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 8, False),
+                             Lane([Mob(150, 625, get_mob_sprite(True), True)], 625, 8, True),
+                             Lane(lane_9, 690, 8, False)],
                       background_image=get_background_image(1),
                       goat=Goat(400, 200),
                       music=0,
                       amount_quiz=3,
-                      quiz_cord=[400, 205, 20],
+                      quiz_cord=[525, 270, 20],
                       spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],
                       time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick],
                       drown_cord=0,
@@ -118,39 +118,43 @@ def create_level(level_number):
                       )
 
     if level_number == 3:
-        lane_9 = [Floating_mob(150, 515, get_floating_mob_sprite(False), False),
-                  Floating_mob(300, 515, get_floating_mob_sprite(False), False),
-                  Floating_mob(400, 515, get_floating_mob_sprite(False), False),
-                  Floating_mob(600, 515, get_floating_mob_sprite(False), False)]
+        lane_9 = [Floating_mob(150, 690, get_floating_mob_sprite(False), False),
+                  Floating_mob(300, 690, get_floating_mob_sprite(False), False),
+                  Floating_mob(400, 690, get_floating_mob_sprite(False), False),
+                  Floating_mob(600, 690, get_floating_mob_sprite(False), False)]
         lane_8 = []
         lane_7 = []
 
         level = Level(lanes=[],
                       floating_lanes=[
-                          Lane([Floating_mob(150, 50, get_floating_mob_sprite(False), False)], 50, 5, False),
-                          Lane([Floating_mob(150, 90, get_floating_mob_sprite(True), True)], 90, 5, True),
-                          Lane([Floating_mob(150, 135, get_floating_mob_sprite(False), False)], 135, 5, False),
+                          Lane([Floating_mob(150, 60, get_floating_mob_sprite(False), False)], 60, 5, False),
+                          Lane([Floating_mob(150, 105, get_floating_mob_sprite(True), True)], 105, 5, True),
+                          Lane([Floating_mob(150, 150, get_floating_mob_sprite(False), False)], 150, 5, False),
+                          Lane([Floating_mob(150, 195, get_floating_mob_sprite(False), False)], 195, 5, False),
 
-                          Lane([Floating_mob(150, 235, get_floating_mob_sprite(False), False)], 235, 5, False),
-                          Lane([Floating_mob(150, 280, get_floating_mob_sprite(True), True)], 280, 5, True),
-                          Lane([Floating_mob(150, 330, get_floating_mob_sprite(True), False)], 330, 5, False),
+                          Lane([Floating_mob(150, 290, get_floating_mob_sprite(False), False)], 290, 5, False),
+                          Lane([Floating_mob(150, 335, get_floating_mob_sprite(False), False)], 335, 5, False),
+                          Lane([Floating_mob(150, 380, get_floating_mob_sprite(True), True)], 380, 5, True),
+                          Lane([Floating_mob(150, 425, get_floating_mob_sprite(True), False)], 425, 5, False),
+                          Lane([Floating_mob(150, 470, get_floating_mob_sprite(True), False)], 470, 5, False),
 
-                          Lane([Floating_mob(150, 430, get_floating_mob_sprite(True), False)], 430, 5, False),
-                          Lane([Floating_mob(150, 480, get_floating_mob_sprite(True), True)], 480, 5, True),
-                          Lane(lane_9, 515, 5, False)],
-                      safe_lanes=[Lane([Floating_mob(150, 180, get_safe_floating_mob_sprite(True), False)], 180, 5, False),
-                                  Lane([Floating_mob(150, 380, get_safe_floating_mob_sprite(True), False)], 380, 5, False)],
+                          Lane([Floating_mob(150, 555, get_floating_mob_sprite(True), False)], 555, 5, False),
+                          Lane([Floating_mob(150, 600, get_floating_mob_sprite(True), False)], 600, 5, False),
+                          Lane([Floating_mob(150, 645, get_floating_mob_sprite(True), True)], 645, 5, True),
+                          Lane(lane_9, 690, 5, False)],
+                      safe_lanes=[Lane([Floating_mob(150, 245, get_safe_floating_mob_sprite(True), False)], 245, 5, True),
+                                  Lane([Floating_mob(150, 510, get_safe_floating_mob_sprite(True), False)], 510, 5, False)],
                       background_image=get_background_image(2),
                       goat=Goat(400, 200),
                       music=0,
                       amount_quiz=3,
-                      quiz_cord=[400, 205, 20],
-                      fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],
-                      fl_time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick],
+                      quiz_cord=[530, 275, 20],
+                      fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000,2000,1000,2000,1000],
+                      fl_time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick,tick,tick,tick,tick],
                       drown_cord=0,
                       spawn_timer=[],
                       time_spawned=[],
 
-                      sinking_cord=(60, 560)
+                      sinking_cord=(60, 735)
                       )
     return level
