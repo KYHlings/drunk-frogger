@@ -67,8 +67,8 @@ def create_level(level_number):
                              Lane(lane_2, 510, 5, True),
                              Lane(lane_3, 570, 5, False),
                              Lane(lane_4, 640, 5, True)],
-                      floating_lanes=[Lane([], 40, 5, True), Lane([], 85, 5, False), Lane([], 130, 5, True),
-                                      Lane([], 175, 5, False), Lane([], 210, 5, True), Lane([], 255, 5, False)],
+                      floating_lanes=[Lane([], 85, 5, False), Lane([], 130, 5, True),
+                                      Lane([], 170, 5, False), Lane([], 215, 5, True), Lane([], 260, 5, False)],
                       background_image=get_background_image(0),
                       goat=Goat(400, 200),
                       amount_quiz=2,
@@ -80,7 +80,7 @@ def create_level(level_number):
                       fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000],
                       fl_time_spawned=[tick, tick, tick, tick, tick, tick],
                       drown_cord=225,
-                      sinking_cord=(60, 225),
+                      sinking_cord=(85, 305),
                       safe_lanes=[]
                       )
 
