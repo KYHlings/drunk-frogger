@@ -26,7 +26,7 @@ def quiz():
 
 def quiz_window(quiz,drunk_meter):
     # takes quiz function and draws on screen.
-    font_list = ["PAPYRUS.TTF","ConnectionSerif-d20X.otf","LcdSolid-VPzB.ttf","RdjHandPixel-5w3L.otf"]
+    font_list = ["PAPYRUS.TTF", "PAPYRUS.TTF", "ConnectionSerif-d20X.otf","LcdSolid-VPzB.ttf","RdjHandPixel-5w3L.otf"]
     question, rightanswers, wronganswers = quiz
     question = html.unescape(question)
     rightanswers = html.unescape(rightanswers)
@@ -39,7 +39,7 @@ def quiz_window(quiz,drunk_meter):
             pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
     while run:
         large_text = pygame.font.Font(f"font_src/{font_list[drunk_meter]}", 20)
-        large_text1 = pygame.font.Font(f"font_src/{font_list[drunk_meter], 35)
+        large_text1 = pygame.font.Font(f"font_src/{font_list[drunk_meter]}", 35)
         text_surf, text_rect = text_object(question, large_text)
         text_rect.center = (400, 460)
         goat_surf, goat_rect = text_object("The Wise Goat", large_text1)
