@@ -1,40 +1,39 @@
 import pygame
 from random import choice
 
-
 def main_menu_image():
     main_image = pygame.image.load("image/backgrounds_src/drunk_frog.jpg")
-    main_image = pygame.transform.scale(main_image, (800, 600))
+    main_image = pygame.transform.scale(main_image, (1280, 800))
     return main_image
 
 
 def win_image():
     win_frog_image = pygame.image.load("image/backgrounds_src/win_frog.jpg")
-    win_frog_image = pygame.transform.scale(win_frog_image, (800, 600))
+    win_frog_image = pygame.transform.scale(win_frog_image, (1280, 800))
     return win_frog_image
 
 
 def how_to_play_image():
     how_to_play = pygame.image.load("image/backgrounds_src/how_to_play1.png")
-    how_to_play = pygame.transform.scale(how_to_play, (800, 600))
+    how_to_play = pygame.transform.scale(how_to_play, (1280, 800))
     return how_to_play
 
 
 def lose_image():
     lose_frog_image = pygame.image.load("image/backgrounds_src/you_lose.jpg")
-    lose_frog_image = pygame.transform.scale(lose_frog_image, (800, 600))
+    lose_frog_image = pygame.transform.scale(lose_frog_image, (1280, 800))
     return lose_frog_image
 
 
 def roadkill_image():
     run_over_image = pygame.image.load("image/backgrounds_src/run_over.jpg")
-    run_over_image = pygame.transform.scale(run_over_image, (800, 600))
+    run_over_image = pygame.transform.scale(run_over_image, (1280, 800))
     return run_over_image
 
 
 def drown_image():
     drowned_frog_image = pygame.image.load("image/backgrounds_src/drowned.jpg")
-    drowned_frog_image = pygame.transform.scale(drowned_frog_image, (800, 600))
+    drowned_frog_image = pygame.transform.scale(drowned_frog_image, (1280, 800))
     return drowned_frog_image
 
 
@@ -70,8 +69,8 @@ def get_background_image(level_number):
 
 
 def get_mob_sprite(is_left):
-    cars_sprites = [("car_green1.png", (128, 80)), ("car_red1.png", (80, 40)), ("taxi1.png", (80, 40)),
-                    ("postnord2.png", (80, 40))]
+    cars_sprites = [("car_green1.png", (128, 65)), ("car_red1.png", (128, 65)), ("taxi1.png", (128, 65)),
+                    ("postnord2.png", (128, 65))]
     car_sprite = choice(cars_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{car_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, car_sprite[1])
@@ -80,7 +79,7 @@ def get_mob_sprite(is_left):
 
 
 def get_floating_mob_sprite(is_left):
-    log_sprites = [("log.png", (100, 80))]
+    log_sprites = [("log.png", (110, 90))]
     log_sprite = choice(log_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{log_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, log_sprite[1])

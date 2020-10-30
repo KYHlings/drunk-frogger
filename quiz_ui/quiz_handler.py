@@ -20,13 +20,13 @@ def quiz():
     while True:
         quiz_content = get_quiz()
         for q in quiz_content:
-            if 80 < len(q['question']) < 85:
+            if len(q['question']) < 88:
                 return q["question"], "correct", q["incorrect_answers"]
 
 
 def quiz_window(quiz,drunk_meter):
     # takes quiz function and draws on screen.
-    font_list = ["PAPYRUS.TTF", "ConnectionSerif-d20X.otf","LcdSolid-VPzB.ttf","RdjHandPixel-5w3L.otf","VtcBadhangoverone-nnnO.ttf"]
+    font_list = ["PAPYRUS.TTF", "ConnectionSerif-d20X.otf","LcdSolid-VPzB.ttf","RdjHandPixel-5w3L.otf", "VtcBadhangoverone-nnnO.ttf"]
     question, rightanswers, wronganswers = quiz
     question = html.unescape(question)
     rightanswers = html.unescape(rightanswers)

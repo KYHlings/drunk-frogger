@@ -45,8 +45,8 @@ class Player:
             return True
 
     def reset(self):
-        self.player_x = 400
-        self.player_y = 570
+        self.player_x = 620
+        self.player_y = 770
 
     def move(self, keys):
 
@@ -63,8 +63,8 @@ class Player:
             self.rotation = 180
             self.player_y += self.velocity
 
-        if self.player_y > 570:
-            self.player_y = 570
+        if self.player_y > 770:
+            self.player_y = 770
 
         if self.player_y < 0:
             self.player_y = 0
@@ -72,5 +72,5 @@ class Player:
         if self.player_x < 0:
             self.player_x = 0
 
-        if self.player_x > 760:
-            self.player_x = 760
+        if self.player_x > 1240:
+            self.player_x = 1240

@@ -19,7 +19,7 @@ from game_src.window_handler import screen, lose_window, win_window, \
 
 # This function updates the window with sprites_classes each loop
 def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
-                  level_number,question_number):
+                  level_number,question_number, level):
     screen.blit(background_image, (0, 0))
     score_text, score_rect = text_object(f"score:{score}", score_font)
     score_rect.topright = (790, 10)
@@ -67,7 +67,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
 # This function runs the main game
 def game_loop(sound_fx, volume):
     clock = pygame.time.Clock()
-    animals = Player(400, 570, 40, 30, 0, get_player_sprite(0))
+    animals = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
 
@@ -91,26 +91,16 @@ def game_loop(sound_fx, volume):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
-            for lane in level.lanes:
+            for lane in level.lanes + level.floating_lanes:
                 for car in lane.mobs[:]:
                     if not car.is_left:
                         car.update_rect(1, lane.velocity)
-                        if car.mob_x >= 800:
+                        if car.mob_x >= 1280:
                             lane.mobs.remove(car)
                     else:
                         car.update_rect(-1, lane.velocity)
-                        if car.mob_x <= -50:
+                        if car.mob_x <= -60:
                             lane.mobs.remove(car)
-            for lane in level.floating_lanes:
-                for floating_mob in lane.floating_mobs[:]:
-                    if not floating_mob.is_left:
-                        floating_mob.update_rect(1, lane.velocity)
-                        if floating_mob.mob_x >= 800:
-                            lane.floating_mobs.remove(floating_mob)
-                    else:
-                        floating_mob.update_rect(-1, lane.velocity)
-                        if floating_mob.mob_x <= -50:
-                            lane.floating_mobs.remove(floating_mob)
 
             for lane in level.safe_lanes:
                 for floating_mob in lane.floating_mobs[:]:
@@ -123,10 +113,10 @@ def game_loop(sound_fx, volume):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if not level.lanes[i].is_left:
                         level.lanes[i].mobs.append(
-                            Mob(-40, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))
+                            Mob(-220, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))#sätter ett gem :P
                     else:
                         level.lanes[i].mobs.append(
-                            Mob(800, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
+                            Mob(1280, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
 
@@ -134,11 +124,11 @@ def game_loop(sound_fx, volume):
                 if pygame.time.get_ticks() - level.fl_time_spawned[i] >= level.fl_spawn_timer[i]:
                     if not level.floating_lanes[i].is_left:
                         level.floating_lanes[i].floating_mobs.append(
-                            Floating_mob(-40, level.floating_lanes[i].y, get_floating_mob_sprite(False),
+                            Floating_mob(-60, level.floating_lanes[i].y, get_floating_mob_sprite(False),
                                          level.floating_lanes[i].is_left))
                     else:
                         level.floating_lanes[i].floating_mobs.append(
-                            Floating_mob(800, level.floating_lanes[i].y, get_floating_mob_sprite(True),
+                            Floating_mob(1280, level.floating_lanes[i].y, get_floating_mob_sprite(True),
                                          level.floating_lanes[i].is_left))
                     level.fl_time_spawned[i] = pygame.time.get_ticks()
                     level.fl_spawn_timer[i] = randint(1000, 2000)
@@ -237,7 +227,7 @@ def game_loop(sound_fx, volume):
                             get_drunk_music(level_number, animals.drunk_meter)
                 level.spawn_resumed()
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
-                          score, level.safe_lanes,level_number,question_number)
+                          score, level.safe_lanes,level_number,question_number, level)
         level_number += 1
         if level_number == 4:
             level_number = 1
