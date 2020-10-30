@@ -91,17 +91,17 @@ def create_level(level_number):
         lane_8 = []
         lane_7 = []
 
-        level = Level(lanes=[Lane([Mob(150, 50, get_mob_sprite(False), False)], 50, 5, False),
-                             Lane([Mob(150, 90, get_mob_sprite(True), True)], 90, 5, True),
-                             Lane([Mob(150, 135, get_mob_sprite(False), False)], 135, 5, False),
-
+        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 5, False),
+                             Lane([Mob(150, 100, get_mob_sprite(True), True)], 100, 5, True),
                              Lane([Mob(150, 235, get_mob_sprite(False), False)], 235, 5, False),
-                             Lane([Mob(150, 280, get_mob_sprite(True), True)], 280, 5, True),
-                             Lane([Mob(150, 330, get_mob_sprite(False), False)], 330, 5, False),
 
+                             Lane([Mob(150, 315, get_mob_sprite(False), False)], 315, 5, False),
+                             Lane([Mob(150, 375, get_mob_sprite(True), True)], 375, 5, True),
                              Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 5, False),
-                             Lane([Mob(150, 480, get_mob_sprite(True), True)], 480, 5, True),
-                             Lane(lane_9, 525, 5, False)],
+
+                             Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 5, False),
+                             Lane([Mob(150, 625, get_mob_sprite(True), True)], 625, 5, True),
+                             Lane(lane_9, 690, 5, False)],
                       background_image=get_background_image(1),
                       goat=Goat(400, 200),
                       music=0,
