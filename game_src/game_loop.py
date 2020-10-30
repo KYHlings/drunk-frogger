@@ -88,26 +88,16 @@ def game_loop(sound_fx, volume):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
-            for lane in level.lanes:
+            for lane in level.lanes + level.floating_lanes:
                 for car in lane.mobs[:]:
                     if not car.is_left:
                         car.update_rect(1, lane.velocity)
-                        if car.mob_x >= 800:
+                        if car.mob_x >= 1280:
                             lane.mobs.remove(car)
                     else:
                         car.update_rect(-1, lane.velocity)
-                        if car.mob_x <= -50:
+                        if car.mob_x <= -60:
                             lane.mobs.remove(car)
-            for lane in level.floating_lanes:
-                for floating_mob in lane.floating_mobs[:]:
-                    if not floating_mob.is_left:
-                        floating_mob.update_rect(1, lane.velocity)
-                        if floating_mob.mob_x >= 800:
-                            lane.floating_mobs.remove(floating_mob)
-                    else:
-                        floating_mob.update_rect(-1, lane.velocity)
-                        if floating_mob.mob_x <= -50:
-                            lane.floating_mobs.remove(floating_mob)
 
             for lane in level.safe_lanes:
                 for floating_mob in lane.floating_mobs[:]:
@@ -120,10 +110,10 @@ def game_loop(sound_fx, volume):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if not level.lanes[i].is_left:
                         level.lanes[i].mobs.append(
-                            Mob(-40, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))
+                            Mob(-50, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))
                     else:
                         level.lanes[i].mobs.append(
-                            Mob(800, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
+                            Mob(1280, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
                     level.time_spawned[i] = pygame.time.get_ticks()
                     level.spawn_timer[i] = randint(1000, 2000)
 

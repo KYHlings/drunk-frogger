@@ -26,7 +26,7 @@ def quiz():
 
 def quiz_window(quiz,drunk_meter):
     # takes quiz function and draws on screen.
-    font_list = ["PAPYRUS.TTF", "PAPYRUS.TTF", "ConnectionSerif-d20X.otf","LcdSolid-VPzB.ttf","RdjHandPixel-5w3L.otf"]
+    font_list = ["PAPYRUS.TTF", "ConnectionSerif-d20X.otf","LcdSolid-VPzB.ttf","RdjHandPixel-5w3L.otf", "VtcBadhangoverone-nnnO.ttf"]
     question, rightanswers, wronganswers = quiz
     question = html.unescape(question)
     rightanswers = html.unescape(rightanswers)

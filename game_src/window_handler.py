@@ -6,7 +6,7 @@ from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((1280, 800))
 font = pygame.font.Font("font_src/PAPYRUS.TTF", 70)
 font1 = pygame.font.Font("font_src/PAPYRUS.TTF", 50)
 score_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 30)

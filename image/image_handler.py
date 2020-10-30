@@ -4,37 +4,37 @@ from random import choice
 
 def main_menu_image():
     main_image = pygame.image.load("image/backgrounds_src/drunk_frog.jpg")
-    main_image = pygame.transform.scale(main_image, (800, 600))
+    main_image = pygame.transform.scale(main_image, (1280, 800))
     return main_image
 
 
 def win_image():
     win_frog_image = pygame.image.load("image/backgrounds_src/win_frog.jpg")
-    win_frog_image = pygame.transform.scale(win_frog_image, (800, 600))
+    win_frog_image = pygame.transform.scale(win_frog_image, (1280, 800))
     return win_frog_image
 
 
 def how_to_play_image():
     how_to_play = pygame.image.load("image/backgrounds_src/how_to_play1.png")
-    how_to_play = pygame.transform.scale(how_to_play, (800, 600))
+    how_to_play = pygame.transform.scale(how_to_play, (1280, 800))
     return how_to_play
 
 
 def lose_image():
     lose_frog_image = pygame.image.load("image/backgrounds_src/you_lose.jpg")
-    lose_frog_image = pygame.transform.scale(lose_frog_image, (800, 600))
+    lose_frog_image = pygame.transform.scale(lose_frog_image, (1280, 800))
     return lose_frog_image
 
 
 def roadkill_image():
     run_over_image = pygame.image.load("image/backgrounds_src/run_over.jpg")
-    run_over_image = pygame.transform.scale(run_over_image, (800, 600))
+    run_over_image = pygame.transform.scale(run_over_image, (1280, 800))
     return run_over_image
 
 
 def drown_image():
     drowned_frog_image = pygame.image.load("image/backgrounds_src/drowned.jpg")
-    drowned_frog_image = pygame.transform.scale(drowned_frog_image, (800, 600))
+    drowned_frog_image = pygame.transform.scale(drowned_frog_image, (1280, 800))
     return drowned_frog_image
 
 
@@ -65,7 +65,7 @@ def get_get_quiz_sprite():
 def get_background_image(level_number):
     file_names = ["bg_suburban_bourbon.png", "bg_cosmopolitan.png", "bg_ph_space.jpg"]
     background_image = pygame.image.load(f"image/backgrounds_src/{file_names[level_number]}")
-    background_image = pygame.transform.scale(background_image, (800, 600))
+    background_image = pygame.transform.scale(background_image, (1280, 800))
     return background_image
 
 
