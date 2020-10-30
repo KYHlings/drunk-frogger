@@ -108,14 +108,14 @@ def instruction_window():
             pygame.display.update()
 
 def level_title_window(level_number):
-    name_ls = ['Suburban bourbon', 'Cosmopolitan', 'Pangalactic']
+    name_ls = ['Suburban Bourbon', 'Cosmopolitan', 'Pangalactic']
     screen.fill((255,255,255))
     name_surf, name_rect = text_object(name_ls[level_number-1],title_font)
-    name_rect.center = (400, 300)
+    name_rect.center = (400, 250)
     screen.blit(name_surf, name_rect)
     if level_number == 3:
-        name2_surf, name2_rect = text_object('GargleBlaster',title_font)
-        name2_rect.center = (400, 400)
+        name2_surf, name2_rect = text_object('Gargleblaster',title_font)
+        name2_rect.center = (400, 350)
         screen.blit(name2_surf, name2_rect)
     pygame.display.update()
     pygame.time.delay(2000)

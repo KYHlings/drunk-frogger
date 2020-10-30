@@ -30,7 +30,7 @@ class Player:
         if self.drunk_meter == 1:
             self.velocity = 3.5
         elif self.drunk_meter == 2:
-            self.velocity = 8
+            self.velocity = 12
         elif self.drunk_meter == 3:
             self.velocity = - 5
         elif self.drunk_meter == 4:
