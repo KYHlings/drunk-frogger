@@ -12,3 +12,5 @@ RED = (255,0,0)
 GREEN = (0,255,0)
 BLUE = (0,0,255)
 full_window_blit_pos = (0,0)
+font_list = [("PAPYRUS.TTF", 25), ("ConnectionSerif-d20X.otf", 20), ("LcdSolid-VPzB.ttf", 20),
+                 ("RdjHandPixel-5w3L.otf", 23), ("VtcBadhangoverone-nnnO.ttf", 23)]

@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from game_src.score_handler import score_window, write_highscore
+from game_src.score_handler import score_window
 from image.image_handler import main_menu_image
 from game_src.settings import sound_settings
 from music_and_sound.sound_handler import get_title_music, music_volume

@@ -17,9 +17,10 @@ from game_src.window_handler import  lose_window, win_window, \
     text_object, roadkill_window, drown_window, level_title_window
 from game_src.variabels import *
 
-# This function updates the window with sprites_classes each loop
+
 def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
                   level_number, question_number):
+    # This function updates the window with sprites_classes each loop
     screen.blit(background_image, full_window_blit_pos)
     score_text, score_rect = text_object(f"score:{score}", score_font)
     score_rect.topright = (1270, 10)
@@ -65,13 +66,14 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     pygame.display.update()
 
 
-# This function runs the main game
+
 def game_loop(sound_fx, volume):
+    # This function runs the main game loop
     clock = pygame.time.Clock()
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 3
+    level_number = 1
     score = 0
     while True:
         level_title_window(level_number)

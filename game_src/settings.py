@@ -5,6 +5,7 @@ from game_src.variabels import *
 
 
 def sound_settings(volume_float):
+    #allows player to change sound volume
     running = True
     volume_int = int(volume_float * 10)
     while running:

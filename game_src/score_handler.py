@@ -2,10 +2,9 @@ import sys
 from pathlib import Path
 import json
 
-import pygame
 
-from game_src.window_handler import text_object
-from game_src.variabels import screen,score_font,WHITE
+from game_src.window_handler import text_object, draw_text
+from game_src.variabels import *
 
 def score_by_player_position(player_y, last_y, score):
     if player_y <= last_y:
@@ -54,10 +53,8 @@ def write_highscore():
                 else:
                     user_name += event.unicode
 
-        name_surf, name_rect = text_object(user_name, score_font)
-        name_rect.center = (640, 130)
-        screen.blit(name_surf, name_rect)
 
+        draw_text(user_name,score_font,BLACK,screen,640,130)
         pygame.display.update()
 
 

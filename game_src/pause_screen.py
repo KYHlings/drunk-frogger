@@ -5,6 +5,7 @@ from game_src.variabels import *
 
 
 def pause_screen(volume):
+    #Creates a pause screen with selectable options
     options = ["[C]ontinue", "[S]ettings", "[Q]uit To Menu"]
     option_ls = []
     pause = "Pause Menu"
