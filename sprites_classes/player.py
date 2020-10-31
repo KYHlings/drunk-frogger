@@ -6,8 +6,8 @@ from image.image_handler import rotate_player_sprite, get_player_sprite
 class Player:
     def __init__(self, player_x, player_y, width, height, rotation, img):
         self.lives = 5
-        self.player_x = player_x
-        self.player_y = player_y
+        self.x = player_x
+        self.y = player_y
         self.width = width
         self.height = height
         self.velocity = 5
@@ -16,14 +16,14 @@ class Player:
         self.img = img
         self.org_img = img
         self.player_mask = pygame.mask.from_surface(self.img)
-        self.player_rect = self.img.get_rect(topleft=(self.player_x, self.player_y))
+        self.player_rect = self.img.get_rect(topleft=(self.x, self.y))
         self.floating = False
 
     def update_img(self):
         self.img = get_player_sprite(self.drunk_meter)
         self.img = rotate_player_sprite(self.img, self.rotation)
         self.player_mask = pygame.mask.from_surface(self.img)
-        self.player_rect = self.img.get_rect(topleft=(self.player_x, self.player_y))
+        self.player_rect = self.img.get_rect(topleft=(self.x, self.y))
         return self.img, self.player_rect
 
     def drunken_consequence(self):
@@ -38,32 +38,32 @@ class Player:
 
 
     def reset(self):
-        self.player_x = 620
-        self.player_y = 770
+        self.x = 620
+        self.y = 770
 
     def move(self, keys):
 
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            self.player_x -= self.velocity
+            self.x -= self.velocity
             self.rotation = 90
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            self.player_x += self.velocity
+            self.x += self.velocity
             self.rotation = 270
         if keys[pygame.K_UP] or keys[pygame.K_w]:
-            self.player_y -= self.velocity
+            self.y -= self.velocity
             self.rotation = 0
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.rotation = 180
-            self.player_y += self.velocity
+            self.y += self.velocity
 
-        if self.player_y > 770:
-            self.player_y = 770
+        if self.y > 770:
+            self.y = 770
 
-        if self.player_y < 0:
-            self.player_y = 0
+        if self.y < 0:
+            self.y = 0
 
-        if self.player_x < 0:
-            self.player_x = 0
+        if self.x < 0:
+            self.x = 0
 
-        if self.player_x > 1240:
-            self.player_x = 1240
+        if self.x > 1240:
+            self.x = 1240
