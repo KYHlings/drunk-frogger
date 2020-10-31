@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import json
 
-from game_src.window_handler import text_object, draw_text
+from game_src.window_handler import draw_text
 from game_src.variabels import *
 
 
@@ -37,8 +37,8 @@ def write_highscore():
     # Player can add their name to the highscore
     user_name = ""
     while True:
-        screen.fill((250, 250, 250))
-        draw_text("Enter your name", score_font, BLACK, screen, 500, 60)
+        screen.fill(WHITE)
+        draw_text("Enter your name", score_font, BLACK, screen, 630, 60,'center')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -50,7 +50,7 @@ def write_highscore():
                 else:
                     user_name += event.unicode
 
-        draw_text(user_name, score_font, BLACK, screen, 500, 130)
+        draw_text(user_name, score_font, BLACK, screen, 640, 130,'center')
         pygame.display.update()
 
 
@@ -60,9 +60,9 @@ def score_window():
     screen.fill(WHITE)
     while True:
         score_y = 100
-        draw_text("High score", score_font, BLACK, screen, 500, 40)
+        draw_text("High score", score_font, BLACK, screen, 600, 40,'center')
         for nr, score in enumerate(score_ls, 1):
-            draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 285, score_y)
+            draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 285, score_y,'topleft')
             score_y += 70
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

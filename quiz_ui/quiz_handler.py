@@ -57,8 +57,8 @@ def quiz_window(quiz, drunk_meter):
                         return question_list[i] == rightanswers
         screen.blit(get_get_quiz_sprite(), (140, 230))
         screen.blit(get_quiz_box(), (-20, 330))
-        draw_text("The Wise Goat", goat_name_fonts, BLACK, screen, 175, 445)
-        draw_text(question, question_fonts_ls, BLACK, screen, 75, 525)
+        draw_text("The Wise Goat", goat_name_fonts, BLACK, screen, 175, 445,'topleft')
+        draw_text(question, question_fonts_ls, BLACK, screen, 75, 525,'topleft')
         alt_pos = 575
         for alternative_text in alternatives_text:
             alternative_text[1].topleft = (100, alt_pos)
