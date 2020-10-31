@@ -13,4 +13,4 @@ def main():
 if __name__ == '__main__':
     while True:
         main()
-#This program runs the game
+# This program runs the game

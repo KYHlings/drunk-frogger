@@ -19,13 +19,13 @@ from game_src.window_handler import screen, lose_window, win_window, \
 
 # This function updates the window with sprites_classes each loop
 def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
-                  level_number,question_number, level):
+                  level_number, question_number, level):
     screen.blit(background_image, (0, 0))
     score_text, score_rect = text_object(f"score:{score}", score_font)
-    score_rect.topright = (790, 10)
+    score_rect.topright = (1270, 10)
     screen.blit(score_text, score_rect)
     life_x = 10
-    beer_y = 285
+    beer_y = 405
 
     for i in range(animals.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
@@ -43,7 +43,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
             screen.blit(dead_frog.roadkill_img, (dead_frog.dead_x, dead_frog.dead_y))
         elif dead_frog.cause_of_death == "drowned":
             screen.blit(dead_frog.drowned_img, (dead_frog.dead_x, dead_frog.dead_y))
-        screen.blit(animals.update_img()[0], (1000, 1000))
+        screen.blit(animals.update_img()[0], (3000, 3000))
 
     else:
         screen.blit(animals.update_img()[0], animals.update_img()[1])
@@ -51,12 +51,13 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
     if level_number == 3 and question_number < 3:
-        screen.blit(get_get_sprite(), (safe_lanes[question_number-1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 40))
+        screen.blit(get_get_sprite(),
+                    (safe_lanes[question_number - 1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 40))
     else:
         screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
 
-    screen.blit(get_life_sprite(), (10, 315))
-    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 180))
+    screen.blit(get_life_sprite(), (10, 435))
+    screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 300))
     for i in range(animals.drunk_meter):
         screen.blit(get_beer_sprite(), (15, beer_y))
         beer_y -= 25
@@ -75,13 +76,13 @@ def game_loop(sound_fx, volume):
     score = 0
     while True:
         level_title_window(level_number)
-        last_y = 570
+        last_y = 770
         question_number = 1
         level = create_level(level_number)
         wise_goat = Goat(animals.player_x, level.quiz_cord[0])
         running = True
         if animals.drunk_meter > 0:
-            get_drunk_music(level_number,animals.drunk_meter)
+            get_drunk_music(level_number, animals.drunk_meter)
         else:
             get_level_music(level_number)
         no_death, no_wrong_answers = True, True
@@ -113,7 +114,8 @@ def game_loop(sound_fx, volume):
                 if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
                     if not level.lanes[i].is_left:
                         level.lanes[i].mobs.append(
-                            Mob(-220, level.lanes[i].y, get_mob_sprite(False), level.lanes[i].is_left))#sätter ett gem :P
+                            Mob(-220, level.lanes[i].y, get_mob_sprite(False),
+                                level.lanes[i].is_left))  # sätter ett gem :P
                     else:
                         level.lanes[i].mobs.append(
                             Mob(1280, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
@@ -144,20 +146,20 @@ def game_loop(sound_fx, volume):
                 if not volume:
                     return
 
-            # for lane in level.lanes:
-            #     for car in lane.mobs:
-            #         if animals.check_collide(car):
-            #             score -= 20
-            #             no_death = False
-            #             if animals.lives != 1:
-            #                 animals.lives -= 1
-            #                 dead_frog.player_died(animals.player_x, animals.player_y, "roadkill")
-            #                 sound_fx.play_splat()
-            #                 animals.reset()
-            #             else:
-            #                 roadkill_window()
-            #                 high_score_list(score)
-            #                 return
+            for lane in level.lanes:
+                for car in lane.mobs:
+                    if animals.check_collide(car):
+                        score -= 20
+                        no_death = False
+                        if animals.lives != 1:
+                            animals.lives -= 1
+                            dead_frog.player_died(animals.player_x, animals.player_y, "roadkill")
+                            sound_fx.play_splat()
+                            animals.reset()
+                        else:
+                            roadkill_window()
+                            high_score_list(score)
+                            return
 
             animals.floating = False
             for lane in reversed(level.floating_lanes + level.safe_lanes):
@@ -227,7 +229,7 @@ def game_loop(sound_fx, volume):
                             get_drunk_music(level_number, animals.drunk_meter)
                 level.spawn_resumed()
             redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
-                          score, level.safe_lanes,level_number,question_number, level)
+                          score, level.safe_lanes, level_number, question_number, level)
         level_number += 1
         if level_number == 4:
             level_number = 1

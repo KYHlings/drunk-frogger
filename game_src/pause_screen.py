@@ -14,9 +14,9 @@ def pause_screen(volume):
         option_ls.append(text_object(option, large_text))
     while True:
         text_surf, text_rect = text_object(pause, large_text)
-        text_rect.center = (400, 180)
+        text_rect.center = (650, 180)
         alt = 250
-        screen.blit(get_pause_window(), (215, 125))
+        screen.blit(get_pause_window(), (465, 125))
         screen.blit(text_surf, text_rect)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -31,7 +31,7 @@ def pause_screen(volume):
                     return False
 
         for alternative in option_ls:
-            alternative[1].center = (375, alt)
+            alternative[1].center = (625, alt)
             alt += 75
             screen.blit(alternative[0], alternative[1])
         pygame.display.update()
