@@ -70,16 +70,19 @@ def get_drunk_music(level_number, drunken_meter):
 
 
 def get_credits():
+    #Adds credits music
     pygame.mixer.music.load("music_and_sound/music_src/df_credits.mp3")
     pygame.mixer.music.play(-1)
 
 
 def get_announcement():
+    #Adds announcement
     announcement = pygame.mixer.Sound("music_and_sound/sounds_fx_src/df-theme-announcer.ogg")
     return announcement
 
 
 def get_splat():
+    #Adds sound-fx when colliding with car
     splat_files = ["df_splat1.ogg", "df_splat2.ogg", "df_splat3.ogg"]
     splat_fx = []
     for s in splat_files:
@@ -88,6 +91,7 @@ def get_splat():
 
 
 def get_burp():
+    #Adds sound-fx when drunk
     burp_files = ["df_burp1.ogg", "df_burp2.wav", "df_burp3.ogg"]
     burp_fx = []
     for b in burp_files:
@@ -96,6 +100,7 @@ def get_burp():
 
 
 def get_splash():
+    #Adds sound-fx when falling into water
     splash_files = ["df_water_splash.ogg"]
     splash_fx = []
     for s in splash_files:

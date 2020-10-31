@@ -38,6 +38,7 @@ class Level:
             self.fl_spawn_timer[i] += extra_time
 
     def move_mobs(self):
+        #Moves mobs left and right. Removes after leaving window
         for lane in self.lanes + self.floating_lanes:
             for mob in lane.mobs[:]:
                 if not mob.is_left:
@@ -57,6 +58,7 @@ class Level:
                         lane.velocity *= -1
 
     def spawn_mobs(self):
+        #Spawns the mobs
         for i in range(len(self.lanes)):
             if pygame.time.get_ticks() - self.time_spawned[i] >= self.spawn_timer[i]:
                 if not self.lanes[i].is_left:
@@ -94,6 +96,7 @@ class Lane:
 
 
 def create_level(level_number):
+    #Creates the level objects according to the level number
     if level_number == 1:
         lane_1 = [Mob(30, 445, get_mob_sprite(False), False),
                   Mob(300, 445, get_mob_sprite(False), False), Mob(570, 445, get_mob_sprite(False), False)]
