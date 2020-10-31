@@ -38,8 +38,8 @@ def write_highscore():
     # Player can add their name to the highscore
     user_name = ""
     while True:
-        screen.fill(WHITE)
-        draw_text("Enter your name", score_font, BLACK, screen, 630, 60,'center')
+        screen.fill(BLACK)
+        draw_text("Enter your name", score_font, WHITE, screen, 630, 60,'center')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -51,7 +51,7 @@ def write_highscore():
                 else:
                     user_name += event.unicode
 
-        draw_text(user_name, score_font, BLACK, screen, 640, 130,'center')
+        draw_text(user_name, score_font, WHITE, screen, 640, 130,'center')
         pygame.display.update()
 
 

@@ -8,7 +8,7 @@ from sprites_classes.npc import  Goat
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
-from game_src.window_handler import lose_window, win_window, roadkill_window, drown_window, level_title_window, draw_text
+from game_src.window_handler import lose_window, win_window, level_title_window, draw_text
 from game_src.variabels import *
 
 
@@ -65,7 +65,7 @@ def game_loop(sound_fx, volume):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 1
+    level_number = 3
     score = 0
     while True:
         #starts game loop. Uses level number to load desiganted level.
@@ -141,12 +141,16 @@ def game_loop(sound_fx, volume):
                     player.lives -= 1
                     if level_number == 3:
                         sound_fx.play_falling()
+                        dead_frog.player_died(player.x,player.y,"asphyxiation")
                     else:
                         sound_fx.play_splash()
-                    dead_frog.player_died(player.x, player.y, "drowned")
+                        dead_frog.player_died(player.x, player.y, "drowned")
                     player.reset()
                 else:
-                    lose_window("drowned")
+                    if level_number == 3:
+                        lose_window("asphyxiation")
+                    else:
+                        lose_window("drowned")
                     high_score_list(score)
                     return
 

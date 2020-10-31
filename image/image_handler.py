@@ -61,6 +61,12 @@ def drown_image():
     drowned_frog_image = pygame.transform.scale(drowned_frog_image, bg_image_size)
     return drowned_frog_image
 
+#gets space_frog image
+def space_frog_image():
+    space_frog_image = pygame.image.load("image/backgrounds_src/dejected-space-frog.jpg")
+    space_frog_image = pygame.transform.scale(space_frog_image, bg_image_size)
+    return space_frog_image
+
 #gets player sprites depending on drunknes
 def get_player_sprite(drunk_meter):
     player_sprites = ['frog.png', 'frog_tipsy.png', 'frog_drunk.png', 'frog_sloshed.png', 'frog_sloshed.png']
