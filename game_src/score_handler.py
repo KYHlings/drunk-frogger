@@ -4,8 +4,8 @@ import json
 
 import pygame
 
-from game_src.window_handler import screen, text_object, score_font
-
+from game_src.window_handler import text_object
+from game_src.variabels import screen,score_font,WHITE
 
 def score_by_player_position(player_y, last_y, score):
     if player_y <= last_y:
@@ -48,9 +48,7 @@ def write_highscore():
                 if event.key == pygame.K_BACKSPACE:
                     user_name = user_name[:-1]
                 elif event.key == pygame.K_RETURN:
-
                     return user_name
-
                 else:
                     user_name += event.unicode
 
@@ -63,7 +61,7 @@ def write_highscore():
 
 def score_window():
     score_ls = get_score()
-    screen.fill((250, 250, 250))
+    screen.fill(WHITE)
     while True:
         nr = 1
         score_y = 100

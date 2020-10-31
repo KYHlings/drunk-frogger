@@ -1,7 +1,6 @@
 import pygame
 from random import shuffle
 import html
-
 import requests
 
 from image.image_handler import get_get_quiz_sprite, get_quiz_box

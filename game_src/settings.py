@@ -1,20 +1,18 @@
-import pygame
 
 from image.image_handler import main_menu_image
 from music_and_sound.sound_handler import music_volume
-from game_src.window_handler import draw_text, font, text_colour, screen, font1
-
+from game_src.window_handler import draw_text
+from game_src.variabels import *
 
 def Sound_settings(volume_float):
     running = True
-
     volume_int = int(volume_float * 10)
     while running:
         volume_float = float(volume_int) / 10
         volume_rect_x = 450
         screen.blit(main_menu_image(), (0, 0))
-        draw_text("Settings", font, text_colour, screen, 400, 100)
-        draw_text("Change volume [-][+]", font1, text_colour, screen, 400, 300)
+        draw_text("Settings", font, BLACK, screen, 400, 100)
+        draw_text("Change volume [-][+]", font1, BLACK, screen, 400, 300)
         for event in pygame.event.get():
             if event.type == pygame.KEYUP:
                 # Allows keyboard buttons to change sound volume
@@ -32,7 +30,7 @@ def Sound_settings(volume_float):
         for i in range(volume_int):
             volume_rect = pygame.Rect(volume_rect_x, 420, 20, 50)
             volume_rect_x += 50
-            pygame.draw.rect(screen, text_colour, volume_rect)
+            pygame.draw.rect(screen, BLACK, volume_rect)
         music_volume(volume_float)
         pygame.display.update()
 

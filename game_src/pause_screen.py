@@ -1,15 +1,13 @@
-import pygame
 
 from game_src.settings import Sound_settings
-from game_src.window_handler import text_object, screen
+from game_src.window_handler import text_object
 from image.image_handler import get_pause_window
-
+from game_src.variabels import *
 
 def pause_screen(volume):
     options = ["[C]ontinue", "[S]ettings", "[Q]uit To Menu"]
     option_ls = []
     pause = "Pause Menu"
-    large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 40)
     for option in options:
         option_ls.append(text_object(option, large_text))
     while True:
