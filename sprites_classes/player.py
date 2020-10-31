@@ -39,6 +39,7 @@ class Player:
             self.velocity = -8
 
     def reset(self):
+        # Sets player cord when triggerd.
         self.x = 620
         self.y = 770
 
@@ -57,6 +58,7 @@ class Player:
             self.rotation = 180
             self.y += self.velocity
 
+        # Sets border for player to stay on screen.
         if self.y > 770:
             self.y = 770
 

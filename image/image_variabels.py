@@ -1,3 +1,4 @@
+#Sets variabels for easy change.
 bg_image_size = (1280,800)
 player_sprite_size = (40,30)
 drunk_meter_size = (40,30)

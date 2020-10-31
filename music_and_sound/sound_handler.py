@@ -39,7 +39,7 @@ class Sound_fx:
 def music_volume(volume):
     pygame.mixer.music.set_volume(volume)
 
-
+###
 # Each function gets a specific soundfile to load
 def get_title_music():
     pygame.mixer.music.load("music_and_sound/music_src/df_theme_music2.mp3")
@@ -65,7 +65,7 @@ def get_win_music():
 def get_lose_music():
     pygame.mixer.music.load("music_and_sound/music_src/df_die_music.mp3")
     return pygame.mixer.music.play(1)
-
+####
 
 # Loads different track depending on level of drunkness.
 def get_drunk_music(level_number, drunken_meter):
