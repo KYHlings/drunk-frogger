@@ -1,5 +1,5 @@
 from game_src.settings import sound_settings
-from game_src.window_handler import text_object
+from game_src.window_handler import text_object, draw_text
 from image.image_handler import get_pause_window
 from game_src.variabels import *
 
@@ -12,11 +12,9 @@ def pause_screen(volume):
     for option in options:
         option_ls.append(text_object(option, large_text))
     while True:
-        text_surf, text_rect = text_object(pause, large_text)
-        text_rect.center = (650, 180)
         alt = 250
         screen.blit(get_pause_window(), (465, 125))
-        screen.blit(text_surf, text_rect)
+        draw_text(pause, large_text, BLACK, screen, 535, 170,'topleft')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()

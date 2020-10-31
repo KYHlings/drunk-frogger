@@ -1,3 +1,4 @@
+#Stores variabels for easy change.
 import pygame
 pygame.init()
 screen = pygame.display.set_mode((1280, 800))

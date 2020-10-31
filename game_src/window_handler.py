@@ -14,10 +14,15 @@ def text_object(text, font):
 
 
 # Write text at created surface.
-def draw_text(text, font, colour, surface, x, y):
+def draw_text(text, font, colour, surface, x, y,direction):
     text_obj = font.render(text, 1, colour)
     text_rect = text_obj.get_rect()
-    text_rect.topleft = (x, y)
+    if direction == 'topleft':
+        text_rect.topleft = (x, y)
+    if direction == 'center':
+        text_rect.center = (x, y)
+    if direction == 'topright':
+        text_rect.topright = (x, y)
     surface.blit(text_obj, text_rect)
 
 
@@ -27,8 +32,6 @@ def win_window():
     winning = True
     while winning:
         screen.blit(win_image(), full_window_blit_pos)
-        # draw_text("You Win!", font, BLACK, screen, 800, 600)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -44,8 +47,6 @@ def lose_window():
     losing = True
     while losing:
         screen.blit(lose_image(), full_window_blit_pos)
-        # draw_text("You Lose!", font, BLACK, screen, 800, 600)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -60,8 +61,6 @@ def roadkill_window():
     losing = True
     while losing:
         screen.blit(roadkill_image(), full_window_blit_pos)
-        # draw_text("You Lose!", font, BLACK, screen, 800, 600)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -76,8 +75,6 @@ def drown_window():
     losing = True
     while losing:
         screen.blit(drown_image(), full_window_blit_pos)
-        # draw_text("You Lose!", font, BLACK, screen, 800, 600)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -88,29 +85,23 @@ def drown_window():
 
 
 def instruction_window():
-    #Creates how to play window
+    # Creates how to play window
     while True:
         screen.blit(how_to_play_image(), full_window_blit_pos)
-        # draw_text("How to play!", font, BLACK, screen, 800, 600)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 return
-
             pygame.display.update()
 
 
 def level_title_window(level_number):
-    #Display level names before playing a level
+    # Display level names before playing a level
     name_ls = ['Suburban Bourbon', 'Cosmopolitan', 'Pangalactic']
-    screen.fill(WHITE)
-    name_surf, name_rect = text_object(name_ls[level_number - 1], title_font)
-    name_rect.center = (650, 350)
-    screen.blit(name_surf, name_rect)
+    screen.fill(BLACK)
+    draw_text(name_ls[level_number - 1], title_font,WHITE,screen,650,350,'center')
     if level_number == 3:
-        name2_surf, name2_rect = text_object('Gargleblaster', title_font)
-        name2_rect.center = (650, 450)
-        screen.blit(name2_surf, name2_rect)
+        draw_text('Gargleblaster', title_font,WHITE,screen,650,450,'center')
     pygame.display.update()
     pygame.time.delay(1000)
