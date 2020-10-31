@@ -65,15 +65,11 @@ def score_window():
     while True:
         nr = 1
         score_y = 100
-        hs_surf, hs_rect = text_object("High score", score_font)
-        hs_rect.center = (645, 40)
-        screen.blit(hs_surf, hs_rect)
+        draw_text("High score", score_font,BLACK,screen, 645, 40)
         for score in score_ls:
-            score_surfing, score_rect = text_object(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font)
+            draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 625, score_y)
             nr += 1
-            score_rect.center = 625, score_y
             score_y += 70
-            screen.blit(score_surfing, score_rect)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
