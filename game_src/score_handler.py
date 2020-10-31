@@ -2,9 +2,9 @@ import sys
 from pathlib import Path
 import json
 
-
 from game_src.window_handler import text_object, draw_text
 from game_src.variabels import *
+
 
 def score_by_player_position(player_y, last_y, score):
     if player_y <= last_y:
@@ -21,7 +21,7 @@ def get_score():
 
 
 def high_score_list(score):
-    #Checks if player has enough score to be on high score list. Shows the list afterwards
+    # Checks if player has enough score to be on high score list. Shows the list afterwards
     score_ls = get_score()
     if score_ls[9]["score"] < score:
         score_ls[9]["score"] = score
@@ -34,14 +34,11 @@ def high_score_list(score):
 
 
 def write_highscore():
-    #Player can add their name to the highscore
+    # Player can add their name to the highscore
     user_name = ""
     while True:
         screen.fill((250, 250, 250))
-        inst_surf, inst_rect = text_object("Enter your name", score_font)
-        inst_rect.center = (630, 60)
-        screen.blit(inst_surf, inst_rect)
-
+        draw_text("Enter your name", score_font, BLACK, screen, 500, 60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -53,22 +50,19 @@ def write_highscore():
                 else:
                     user_name += event.unicode
 
-
-        draw_text(user_name,score_font,BLACK,screen,640,130)
+        draw_text(user_name, score_font, BLACK, screen, 500, 130)
         pygame.display.update()
 
 
 def score_window():
-    #Shows the highscore
+    # Shows the highscore
     score_ls = get_score()
     screen.fill(WHITE)
     while True:
-        nr = 1
         score_y = 100
-        draw_text("High score", score_font,BLACK,screen, 645, 40)
-        for score in score_ls:
-            draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 625, score_y)
-            nr += 1
+        draw_text("High score", score_font, BLACK, screen, 500, 40)
+        for nr, score in enumerate(score_ls, 1):
+            draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 285, score_y)
             score_y += 70
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
