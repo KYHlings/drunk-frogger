@@ -36,13 +36,6 @@ class Player:
         elif self.drunk_meter == 4:
             self.velocity = -8
 
-    def check_collide(self, mob):
-        (px, py) = (self.player_rect[0], self.player_rect[1])
-        mx = px - mob.mob_rect[0]
-        my = py - mob.mob_rect[1]
-        overlap = mob.mob_mask.overlap(self.player_mask, (mx, my))
-        if overlap:
-            return True
 
     def reset(self):
         self.player_x = 620

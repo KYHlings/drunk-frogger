@@ -1,3 +1,5 @@
+from random import randint
+
 import pygame
 
 from image.image_handler import get_background_image, get_mob_sprite, get_floating_mob_sprite, \
@@ -34,6 +36,51 @@ class Level:
             self.spawn_timer[i] += extra_time
         for i in range(len(self.fl_spawn_timer)):
             self.fl_spawn_timer[i] += extra_time
+
+    def move_mobs(self):
+        for lane in self.lanes + self.floating_lanes:
+            for mob in lane.mobs[:]:
+                if not mob.is_left:
+                    mob.update_rect(1, lane.velocity)
+                    if mob.mob_x >= 1280:
+                        lane.mobs.remove(mob)
+                else:
+                    mob.update_rect(-1, lane.velocity)
+                    if mob.mob_x <= -60:
+                        lane.mobs.remove(mob)
+
+        for lane in self.safe_lanes:
+            for floating_mob in lane.floating_mobs[:]:
+                if not floating_mob.is_left:
+                    floating_mob.update_rect(1, lane.velocity)
+                    if floating_mob.mob_x >= 540 or floating_mob.mob_x <= -10:
+                        lane.velocity *= -1
+
+    def spawn_mobs(self):
+        for i in range(len(self.lanes)):
+            if pygame.time.get_ticks() - self.time_spawned[i] >= self.spawn_timer[i]:
+                if not self.lanes[i].is_left:
+                    self.lanes[i].mobs.append(
+                        Mob(-220, self.lanes[i].y, get_mob_sprite(False),
+                            self.lanes[i].is_left))  # sätter ett gem :P
+                else:
+                    self.lanes[i].mobs.append(
+                        Mob(1280, self.lanes[i].y, get_mob_sprite(True), self.lanes[i].is_left))
+                self.time_spawned[i] = pygame.time.get_ticks()
+                self.spawn_timer[i] = randint(1000, 2000)
+
+        for i in range(len(self.floating_lanes)):
+            if pygame.time.get_ticks() - self.fl_time_spawned[i] >= self.fl_spawn_timer[i]:
+                if not self.floating_lanes[i].is_left:
+                    self.floating_lanes[i].floating_mobs.append(
+                        Floating_mob(-60, self.floating_lanes[i].y, get_floating_mob_sprite(False),
+                                     self.floating_lanes[i].is_left))
+                else:
+                    self.floating_lanes[i].floating_mobs.append(
+                        Floating_mob(1280, self.floating_lanes[i].y, get_floating_mob_sprite(True),
+                                     self.floating_lanes[i].is_left))
+                self.fl_time_spawned[i] = pygame.time.get_ticks()
+                self.fl_spawn_timer[i] = randint(1000, 2000)
 
 
 class Lane:

@@ -68,10 +68,9 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
 # This function runs the main game
 def game_loop(sound_fx, volume):
     clock = pygame.time.Clock()
-    animals = Player(620, 770, 40, 30, 0, get_player_sprite(0))
+    player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-
     level_number = 1
     score = 0
     while True:
@@ -79,66 +78,28 @@ def game_loop(sound_fx, volume):
         last_y = 770
         question_number = 1
         level = create_level(level_number)
-        wise_goat = Goat(animals.player_x, level.quiz_cord[0])
+        wise_goat = Goat(player.player_x, level.quiz_cord[0])
         running = True
-        if animals.drunk_meter > 0:
-            get_drunk_music(level_number, animals.drunk_meter)
+        if player.drunk_meter > 0:
+            get_drunk_music(level_number, player.drunk_meter)
         else:
             get_level_music(level_number)
         no_death, no_wrong_answers = True, True
         while running:
-            score, last_y = score_by_player_position(animals.player_y, last_y, score)
+            score, last_y = score_by_player_position(player.player_y, last_y, score)
             clock.tick(30)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
-            for lane in level.lanes + level.floating_lanes:
-                for car in lane.mobs[:]:
-                    if not car.is_left:
-                        car.update_rect(1, lane.velocity)
-                        if car.mob_x >= 1280:
-                            lane.mobs.remove(car)
-                    else:
-                        car.update_rect(-1, lane.velocity)
-                        if car.mob_x <= -60:
-                            lane.mobs.remove(car)
 
-            for lane in level.safe_lanes:
-                for floating_mob in lane.floating_mobs[:]:
-                    if not floating_mob.is_left:
-                        floating_mob.update_rect(1, lane.velocity)
-                        if floating_mob.mob_x >= 540 or floating_mob.mob_x <= -10:
-                            lane.velocity *= -1
+            level.move_mobs()
+            level.spawn_mobs()
 
-            for i in range(len(level.lanes)):
-                if pygame.time.get_ticks() - level.time_spawned[i] >= level.spawn_timer[i]:
-                    if not level.lanes[i].is_left:
-                        level.lanes[i].mobs.append(
-                            Mob(-220, level.lanes[i].y, get_mob_sprite(False),
-                                level.lanes[i].is_left))  # sätter ett gem :P
-                    else:
-                        level.lanes[i].mobs.append(
-                            Mob(1280, level.lanes[i].y, get_mob_sprite(True), level.lanes[i].is_left))
-                    level.time_spawned[i] = pygame.time.get_ticks()
-                    level.spawn_timer[i] = randint(1000, 2000)
-
-            for i in range(len(level.floating_lanes)):
-                if pygame.time.get_ticks() - level.fl_time_spawned[i] >= level.fl_spawn_timer[i]:
-                    if not level.floating_lanes[i].is_left:
-                        level.floating_lanes[i].floating_mobs.append(
-                            Floating_mob(-60, level.floating_lanes[i].y, get_floating_mob_sprite(False),
-                                         level.floating_lanes[i].is_left))
-                    else:
-                        level.floating_lanes[i].floating_mobs.append(
-                            Floating_mob(1280, level.floating_lanes[i].y, get_floating_mob_sprite(True),
-                                         level.floating_lanes[i].is_left))
-                    level.fl_time_spawned[i] = pygame.time.get_ticks()
-                    level.fl_spawn_timer[i] = randint(1000, 2000)
             keys = pygame.key.get_pressed()
             if dead_frog.is_dead:
                 dead_frog.check_time_of_death()
             else:
-                animals.move(keys)
+                player.move(keys)
             if keys[pygame.K_p]:
                 level.spawn_paused()
                 volume = pause_screen(volume)
@@ -148,68 +109,68 @@ def game_loop(sound_fx, volume):
 
             for lane in level.lanes:
                 for car in lane.mobs:
-                    if animals.check_collide(car):
+                    if car.check_collide(player):
                         score -= 20
                         no_death = False
-                        if animals.lives != 1:
-                            animals.lives -= 1
-                            dead_frog.player_died(animals.player_x, animals.player_y, "roadkill")
+                        if player.lives != 1:
+                            player.lives -= 1
+                            dead_frog.player_died(player.player_x, player.player_y, "roadkill")
                             sound_fx.play_splat()
-                            animals.reset()
+                            player.reset()
                         else:
                             roadkill_window()
                             high_score_list(score)
                             return
 
-            animals.floating = False
+            player.floating = False
             for lane in reversed(level.floating_lanes + level.safe_lanes):
-                if not animals.floating:
+                if not player.floating:
                     for floating_mob in lane.floating_mobs:
-                        if animals.check_collide(floating_mob):
-                            animals.floating = True
+                        if floating_mob.check_collide(player):
+                            player.floating = True
                             if lane.is_left:
-                                animals.player_x -= lane.velocity
+                                player.player_x -= lane.velocity
                             else:
-                                animals.player_x += lane.velocity
+                                player.player_x += lane.velocity
 
                             break
                         else:
-                            animals.floating = False
+                            player.floating = False
 
-            if level.sinking_cord[0] < animals.player_y < level.sinking_cord[1] and not animals.floating:
+            if level.sinking_cord[0] < player.player_y < level.sinking_cord[1] and not player.floating:
                 score -= 20
                 no_death = False
-                if animals.lives != 1:
-                    animals.lives -= 1
-                    dead_frog.player_died(animals.player_x, animals.player_y, "drowned")
+                if player.lives != 1:
+                    player.lives -= 1
+                    dead_frog.player_died(player.player_x, player.player_y, "drowned")
                     sound_fx.play_splash()
-                    animals.reset()
+                    player.reset()
                 else:
                     drown_window()
                     high_score_list(score)
                     return
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function
-            if animals.player_y <= level.quiz_cord[question_number - 1]:
+            if player.player_y <= level.quiz_cord[question_number - 1]:
                 level.spawn_paused()
                 get_goat_music()
 
                 # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
                 # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
-                if not quiz_window(quiz(), animals.drunk_meter):
+                if not quiz_window(quiz(), player.drunk_meter):
                     score -= 100
                     no_wrong_answers = False
-                    if animals.drunk_meter == 4:
+                    if player.drunk_meter == 4:
                         lose_window()
                         high_score_list(score)
                         return
-                    animals.drunk_meter += 1
-                    dead_frog.roadkill_img = get_roadkill_sprite(animals.drunk_meter)
-                    dead_frog.drowned_img = get_drowned_sprite(animals.drunk_meter)
+                    player.drunk_meter += 1
+                    dead_frog.roadkill_img = get_roadkill_sprite(player.drunk_meter)
+                    dead_frog.drowned_img = get_drowned_sprite(player.drunk_meter)
                     sound_fx.play_burp()
-                    animals.drunken_consequence()
-                    get_drunk_music(level_number, animals.drunk_meter)
-                    animals.reset()
+                    player.drunken_consequence()
+                    get_drunk_music(level_number, player.drunk_meter)
+                    player.reset()
                 else:
                     score += 100
                     question_number += 1
@@ -219,16 +180,16 @@ def game_loop(sound_fx, volume):
                         if no_wrong_answers:
                             score += 200
                         win_window()
-                        animals.reset()
+                        player.reset()
                         running = False
                     else:
                         wise_goat.get_y = level.quiz_cord[question_number - 1]
-                        if animals.drunk_meter == 0:
+                        if player.drunk_meter == 0:
                             get_level_music(level_number)
                         else:
-                            get_drunk_music(level_number, animals.drunk_meter)
+                            get_drunk_music(level_number, player.drunk_meter)
                 level.spawn_resumed()
-            redraw_window(animals, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
+            redraw_window(player, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
                           score, level.safe_lanes, level_number, question_number, level)
         level_number += 1
         if level_number == 4:
