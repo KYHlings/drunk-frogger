@@ -20,6 +20,7 @@ class Player:
         self.floating = False
 
     def update_img(self):
+        #Updates player avatar image
         self.img = get_player_sprite(self.drunk_meter)
         self.img = rotate_player_sprite(self.img, self.rotation)
         self.player_mask = pygame.mask.from_surface(self.img)
@@ -27,6 +28,7 @@ class Player:
         return self.img, self.player_rect
 
     def drunken_consequence(self):
+        #Changes player movement depending on how high drunk_meter is
         if self.drunk_meter == 1:
             self.velocity = 3.5
         elif self.drunk_meter == 2:
@@ -42,7 +44,7 @@ class Player:
         self.y = 770
 
     def move(self, keys):
-
+        #Allows player avatar to move with keys on keyboard
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.x -= self.velocity
             self.rotation = 90

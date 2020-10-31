@@ -88,6 +88,7 @@ def drown_window():
 
 
 def instruction_window():
+    #Creates how to play window
     while True:
         screen.blit(how_to_play_image(), full_window_blit_pos)
         # draw_text("How to play!", font, BLACK, screen, 800, 600)
@@ -101,6 +102,7 @@ def instruction_window():
 
 
 def level_title_window(level_number):
+    #Display level names before playing a level
     name_ls = ['Suburban Bourbon', 'Cosmopolitan', 'Pangalactic']
     screen.fill(WHITE)
     name_surf, name_rect = text_object(name_ls[level_number - 1], title_font)
