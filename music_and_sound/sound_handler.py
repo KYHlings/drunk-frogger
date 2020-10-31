@@ -9,6 +9,7 @@ class Sound_fx:
         self.splat_sounds = get_splat()
         self.burp_sounds = get_burp()
         self.splash_sounds = get_splash()
+        self.falling_sounds = get_falling()
 
     def play_splat(self):
         splat_sound = choice(self.splat_sounds)
@@ -24,6 +25,12 @@ class Sound_fx:
         burp_sound = choice(self.burp_sounds)
         pygame.mixer.Sound.set_volume(burp_sound, 0.2)
         return burp_sound.play()
+
+    def play_falling(self):
+        falling_sound = choice(self.falling_sounds)
+        pygame.mixer.Sound.set_volume(falling_sound, 0.03)
+        return falling_sound.play()
+
 
     def play_announcement(self):
         return self.announcement_sound.play()
@@ -106,3 +113,12 @@ def get_splash():
     for s in splash_files:
         splash_fx.append(pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{s}"))
     return splash_fx
+
+
+def get_falling():
+    #Adds sound-fx when falling into space
+    falling_files = ["df_falling.mp3"]
+    falling_fx = []
+    for s in falling_files:
+        falling_fx.append(pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{s}"))
+    return falling_fx

@@ -65,7 +65,7 @@ def game_loop(sound_fx, volume):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 1
+    level_number = 3
     score = 0
     while True:
         #starts game loop. Uses level number to load desiganted level.
@@ -139,8 +139,11 @@ def game_loop(sound_fx, volume):
                 no_death = False
                 if player.lives != 1:
                     player.lives -= 1
+                    if level_number == 3:
+                        sound_fx.play_falling()
+                    else:
+                        sound_fx.play_splash()
                     dead_frog.player_died(player.x, player.y, "drowned")
-                    sound_fx.play_splash()
                     player.reset()
                 else:
                     drown_window()
