@@ -54,7 +54,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
         screen.blit(get_get_sprite(),
                     (safe_lanes[question_number - 1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 40))
     else:
-        screen.blit(get_get_sprite(), (animals.player_x - 20, wise_goat.get_y - 30))
+        screen.blit(get_get_sprite(), (animals.x - 20, wise_goat.get_y - 30))
 
     screen.blit(get_life_sprite(), (10, 435))
     screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 300))
@@ -71,14 +71,14 @@ def game_loop(sound_fx, volume):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 1
+    level_number = 3
     score = 0
     while True:
         level_title_window(level_number)
         last_y = 770
         question_number = 1
         level = create_level(level_number)
-        wise_goat = Goat(player.player_x, level.quiz_cord[0])
+        wise_goat = Goat(player.x, level.quiz_cord[0])
         running = True
         if player.drunk_meter > 0:
             get_drunk_music(level_number, player.drunk_meter)
@@ -86,7 +86,7 @@ def game_loop(sound_fx, volume):
             get_level_music(level_number)
         no_death, no_wrong_answers = True, True
         while running:
-            score, last_y = score_by_player_position(player.player_y, last_y, score)
+            score, last_y = score_by_player_position(player.y, last_y, score)
             clock.tick(30)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -114,7 +114,7 @@ def game_loop(sound_fx, volume):
                         no_death = False
                         if player.lives != 1:
                             player.lives -= 1
-                            dead_frog.player_died(player.player_x, player.player_y, "roadkill")
+                            dead_frog.player_died(player.x, player.y, "roadkill")
                             sound_fx.play_splat()
                             player.reset()
                         else:
@@ -129,20 +129,20 @@ def game_loop(sound_fx, volume):
                         if floating_mob.check_collide(player):
                             player.floating = True
                             if lane.is_left:
-                                player.player_x -= lane.velocity
+                                player.x -= lane.velocity
                             else:
-                                player.player_x += lane.velocity
+                                player.x += lane.velocity
 
                             break
                         else:
                             player.floating = False
 
-            if level.sinking_cord[0] < player.player_y < level.sinking_cord[1] and not player.floating:
+            if level.sinking_cord[0] < player.y < level.sinking_cord[1] and not player.floating:
                 score -= 20
                 no_death = False
                 if player.lives != 1:
                     player.lives -= 1
-                    dead_frog.player_died(player.player_x, player.player_y, "drowned")
+                    dead_frog.player_died(player.x, player.y, "drowned")
                     sound_fx.play_splash()
                     player.reset()
                 else:
@@ -151,7 +151,7 @@ def game_loop(sound_fx, volume):
                     return
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function
-            if player.player_y <= level.quiz_cord[question_number - 1]:
+            if player.y <= level.quiz_cord[question_number - 1]:
                 level.spawn_paused()
                 get_goat_music()
 
