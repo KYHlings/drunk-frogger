@@ -20,7 +20,6 @@ def quiz():
     while True:
         quiz_content = get_quiz()
         for q in quiz_content:
-            print(f'{len(q["question"])} :::::::{q["question"]}')
             if len(html.unescape(q['question'])) < 88:
                 return q["question"], "correct", q["incorrect_answers"]
 

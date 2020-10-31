@@ -65,7 +65,7 @@ def game_loop(sound_fx, volume):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 3
+    level_number = 1
     score = 0
     while True:
         #starts game loop. Uses level number to load desiganted level.
@@ -115,7 +115,7 @@ def game_loop(sound_fx, volume):
                             sound_fx.play_splat()
                             player.reset()
                         else:
-                            roadkill_window()
+                            lose_window("roadkill")
                             high_score_list(score)
                             return
             #Checks collision with mobs in floating lanes.
@@ -146,7 +146,7 @@ def game_loop(sound_fx, volume):
                     dead_frog.player_died(player.x, player.y, "drowned")
                     player.reset()
                 else:
-                    drown_window()
+                    lose_window("drowned")
                     high_score_list(score)
                     return
 
@@ -161,7 +161,7 @@ def game_loop(sound_fx, volume):
                     score -= 100
                     no_wrong_answers = False
                     if player.drunk_meter == 4:
-                        lose_window()
+                        lose_window("alcohol_poisoning")
                         high_score_list(score)
                         return
                     player.drunk_meter += 1

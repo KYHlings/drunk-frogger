@@ -31,7 +31,7 @@ def how_to_play_image():
     return how_to_play
 
 
-def lose_image():
+def alcohol_poisoning_image():
     lose_frog_image = pygame.image.load("image/backgrounds_src/you_lose.jpg")
     lose_frog_image = pygame.transform.scale(lose_frog_image, bg_image_size)
     return lose_frog_image
