@@ -9,6 +9,7 @@ class Dead_Frog():
         self.is_dead = False
 
     def player_died(self, x, y, cause_of_death):
+        # Saves the player cordinates when the player dies and triggers the death sprite
         self.dead_x = x
         self.dead_y = y
         self.is_dead = True
@@ -16,5 +17,6 @@ class Dead_Frog():
         self.cause_of_death = cause_of_death
 
     def check_time_of_death(self):
+        # Turns of the dead player sprite after some time
         if get_ticks() - self.time_of_death >= 1500:
             self.is_dead = False

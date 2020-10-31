@@ -4,7 +4,7 @@ import pygame
 
 from image.image_handler import get_background_image, get_mob_sprite, get_floating_mob_sprite, \
     get_safe_floating_mob_sprite
-from sprites_classes.npc import Mob, Goat, Floating_mob
+from sprites_classes.npc import Mob, Floating_mob
 
 tick = pygame.time.get_ticks()
 
@@ -26,11 +26,11 @@ class Level:
         self.safe_lanes = safe_lanes
 
     def spawn_paused(self):
-        #Saves the time when the game pauses
+        # Saves the time when the game pauses
         self.time_of_pause = pygame.time.get_ticks()
 
     def spawn_resumed(self):
-        #Adds the time that has been spent while the game been paused to the spawn_timer
+        # Adds the time that has been spent while the game been paused to the spawn_timer
         extra_time = pygame.time.get_ticks() - self.time_of_pause
         for i in range(len(self.spawn_timer)):
             self.spawn_timer[i] += extra_time
@@ -38,7 +38,7 @@ class Level:
             self.fl_spawn_timer[i] += extra_time
 
     def move_mobs(self):
-        #Moves mobs left and right. Removes after leaving window
+        # Moves mobs left and right. Removes after leaving window
         for lane in self.lanes + self.floating_lanes:
             for mob in lane.mobs[:]:
                 if not mob.is_left:
@@ -58,7 +58,7 @@ class Level:
                         lane.velocity *= -1
 
     def spawn_mobs(self):
-        #Spawns the mobs
+        # Spawns the mobs
         for i in range(len(self.lanes)):
             if pygame.time.get_ticks() - self.time_spawned[i] >= self.spawn_timer[i]:
                 if not self.lanes[i].is_left:
@@ -96,7 +96,7 @@ class Lane:
 
 
 def create_level(level_number):
-    #Creates the level objects according to the level number
+    # Creates the level objects according to the level number
     if level_number == 1:
         lane_1 = [Mob(30, 445, get_mob_sprite(False), False),
                   Mob(300, 445, get_mob_sprite(False), False), Mob(570, 445, get_mob_sprite(False), False)]

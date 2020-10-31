@@ -22,6 +22,7 @@ def get_score():
 
 
 def high_score_list(score):
+    #Checks if player has enough score to be on high score list. Shows the list afterwards
     score_ls = get_score()
     if score_ls[9]["score"] < score:
         score_ls[9]["score"] = score
@@ -30,10 +31,11 @@ def high_score_list(score):
         score_ls[9]["name"] = name
         sorted_score = sorted(score_ls, key=lambda s: s['score'], reverse=True)
         Path("game_src/highscore.json").write_text(json.dumps(sorted_score), encoding='utf8')
-        score_window()
+    score_window()
 
 
 def write_highscore():
+    #Player can add their name to the highscore
     user_name = ""
     while True:
         screen.fill((250, 250, 250))
@@ -60,6 +62,7 @@ def write_highscore():
 
 
 def score_window():
+    #Shows the highscore
     score_ls = get_score()
     screen.fill(WHITE)
     while True:
