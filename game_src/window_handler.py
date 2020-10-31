@@ -21,6 +21,13 @@ def draw_text(text, font, colour, surface, x, y):
     surface.blit(text_obj, text_rect)
 
 
+def draw_topright_text(text, font, colour, surface, x, y):
+    text_obj = font.render(text, 1, colour)
+    text_rect = text_obj.get_rect()
+    text_rect.topright = (x, y)
+    surface.blit(text_obj, text_rect)
+
+
 # Creates and loads win window.
 def win_window():
     get_win_music()
@@ -88,7 +95,7 @@ def drown_window():
 
 
 def instruction_window():
-    #Creates how to play window
+    # Creates how to play window
     while True:
         screen.blit(how_to_play_image(), full_window_blit_pos)
         # draw_text("How to play!", font, BLACK, screen, 800, 600)
@@ -102,7 +109,7 @@ def instruction_window():
 
 
 def level_title_window(level_number):
-    #Display level names before playing a level
+    # Display level names before playing a level
     name_ls = ['Suburban Bourbon', 'Cosmopolitan', 'Pangalactic']
     screen.fill(WHITE)
     name_surf, name_rect = text_object(name_ls[level_number - 1], title_font)

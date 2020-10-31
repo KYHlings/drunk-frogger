@@ -13,8 +13,8 @@ from sprites_classes.npc import Mob, Goat, Floating_mob
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
-from game_src.window_handler import  lose_window, win_window, \
-    text_object, roadkill_window, drown_window, level_title_window
+from game_src.window_handler import lose_window, win_window, \
+    text_object, roadkill_window, drown_window, level_title_window, draw_text, draw_topright_text
 from game_src.variabels import *
 
 
@@ -22,9 +22,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
                   level_number, question_number):
     # This function updates the window with sprites_classes each loop
     screen.blit(background_image, full_window_blit_pos)
-    score_text, score_rect = text_object(f"score:{score}", score_font)
-    score_rect.topright = (1270, 10)
-    screen.blit(score_text, score_rect)
+    draw_topright_text(f"score:{score}", score_font,BLACK, screen, 1270, 10)
     life_x = 10
     beer_y = 405
 
