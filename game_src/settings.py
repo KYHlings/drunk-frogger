@@ -1,10 +1,10 @@
-
 from image.image_handler import main_menu_image
 from music_and_sound.sound_handler import music_volume
 from game_src.window_handler import draw_text
 from game_src.variabels import *
 
-def Sound_settings(volume_float):
+
+def sound_settings(volume_float):
     running = True
     volume_int = int(volume_float * 10)
     while running:
@@ -36,4 +36,4 @@ def Sound_settings(volume_float):
 
 
 if __name__ == '__main__':
-    Sound_settings(0.1)
+    sound_settings(0.1)

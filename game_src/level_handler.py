@@ -10,13 +10,11 @@ tick = pygame.time.get_ticks()
 
 
 class Level:
-    def __init__(self, lanes, floating_lanes, background_image, goat, music, spawn_timer, time_spawned,
+    def __init__(self, lanes, floating_lanes, background_image, spawn_timer, time_spawned,
                  fl_spawn_timer, fl_time_spawned, drown_cord, amount_quiz, quiz_cord, sinking_cord, safe_lanes):
         self.lanes = lanes
         self.floating_lanes = floating_lanes
         self.background_image = background_image
-        self.goat = goat
-        self.music = music
         self.spawn_timer = spawn_timer
         self.time_spawned = time_spawned
         self.fl_spawn_timer = fl_spawn_timer
@@ -28,9 +26,11 @@ class Level:
         self.safe_lanes = safe_lanes
 
     def spawn_paused(self):
+        #Saves the time when the game pauses
         self.time_of_pause = pygame.time.get_ticks()
 
     def spawn_resumed(self):
+        #Adds the time that has been spent while the game been paused to the spawn_timer
         extra_time = pygame.time.get_ticks() - self.time_of_pause
         for i in range(len(self.spawn_timer)):
             self.spawn_timer[i] += extra_time
@@ -117,10 +117,8 @@ def create_level(level_number):
                       floating_lanes=[Lane([], 85, 5, False), Lane([], 130, 5, True),
                                       Lane([], 170, 5, False), Lane([], 215, 5, True), Lane([], 260, 5, False)],
                       background_image=get_background_image(0),
-                      goat=Goat(400, 200),
                       amount_quiz=2,
                       quiz_cord=[375, 30],
-                      music=0,
                       spawn_timer=[1000, 1000, 1000, 1000],
                       time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
                                     pygame.time.get_ticks()],
@@ -150,8 +148,6 @@ def create_level(level_number):
                              Lane([Mob(150, 625, get_mob_sprite(True), True)], 625, 8, True),
                              Lane(lane_9, 690, 8, False)],
                       background_image=get_background_image(1),
-                      goat=Goat(400, 200),
-                      music=0,
                       amount_quiz=3,
                       quiz_cord=[525, 270, 20],
                       spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],
@@ -193,8 +189,6 @@ def create_level(level_number):
                           Lane([Floating_mob(150, 245, get_safe_floating_mob_sprite(True), False)], 245, 5, True),
                           Lane([Floating_mob(150, 510, get_safe_floating_mob_sprite(True), False)], 510, 5, False)],
                       background_image=get_background_image(2),
-                      goat=Goat(400, 200),
-                      music=0,
                       amount_quiz=3,
                       quiz_cord=[530, 275, 20],
                       fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],

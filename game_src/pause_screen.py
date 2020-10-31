@@ -1,8 +1,8 @@
-
-from game_src.settings import Sound_settings
+from game_src.settings import sound_settings
 from game_src.window_handler import text_object
 from image.image_handler import get_pause_window
 from game_src.variabels import *
+
 
 def pause_screen(volume):
     options = ["[C]ontinue", "[S]ettings", "[Q]uit To Menu"]
@@ -23,7 +23,7 @@ def pause_screen(volume):
                 if event.key == pygame.K_c:
                     return volume
                 if event.key == pygame.K_s:
-                    volume = Sound_settings(volume)
+                    volume = sound_settings(volume)
                     return volume
                 if event.key == pygame.K_q:
                     return False

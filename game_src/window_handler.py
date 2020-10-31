@@ -6,6 +6,7 @@ from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 score_surf = pygame.surface.Surface((240, 60))
 
+
 # Creates surface for draw_text function.
 def text_object(text, font):
     text_surface = font.render(text, True, BLACK)

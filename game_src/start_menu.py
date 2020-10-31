@@ -4,7 +4,7 @@ import pygame
 
 from game_src.score_handler import score_window, write_highscore
 from image.image_handler import main_menu_image
-from game_src.settings import Sound_settings
+from game_src.settings import sound_settings
 from music_and_sound.sound_handler import get_title_music, music_volume
 from game_src.window_handler import screen, draw_text, font, BLACK, font1, instruction_window
 
@@ -33,7 +33,7 @@ def start_menu(sound_fx, volume):
                 if event.key == pygame.K_b:
                     return volume
                 if event.key == pygame.K_s:
-                    volume = Sound_settings(volume)
+                    volume = sound_settings(volume)
                 if event.key == pygame.K_t:
                     instruction_window()
                 if event.key == pygame.K_h:

@@ -19,7 +19,7 @@ from game_src.variabels import *
 
 # This function updates the window with sprites_classes each loop
 def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
-                  level_number, question_number, level):
+                  level_number, question_number):
     screen.blit(background_image, full_window_blit_pos)
     score_text, score_rect = text_object(f"score:{score}", score_font)
     score_rect.topright = (1270, 10)
@@ -190,7 +190,7 @@ def game_loop(sound_fx, volume):
                             get_drunk_music(level_number, player.drunk_meter)
                 level.spawn_resumed()
             redraw_window(player, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
-                          score, level.safe_lanes, level_number, question_number, level)
+                          score, level.safe_lanes, level_number, question_number)
         level_number += 1
         if level_number == 4:
             level_number = 1
