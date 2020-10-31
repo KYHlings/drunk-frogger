@@ -16,7 +16,7 @@ def sound_settings(volume_float):
         draw_text("Change volume [-][+]", font1, BLACK, screen, 400, 300,'topleft')
         for event in pygame.event.get():
             if event.type == pygame.KEYUP:
-                # Allows keyboard buttons to change sound volume
+                # Allows keyboard input to change sound volume
                 if event.key == pygame.K_MINUS and volume_int > 0:
                     volume_int -= 1
                 if event.key == pygame.K_PLUS and volume_int <= 5:

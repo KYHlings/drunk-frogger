@@ -1,20 +1,14 @@
-from random import randint
-
-import pygame
-
 from game_src.level_handler import create_level
 from game_src.pause_screen import pause_screen
 from game_src.score_handler import score_by_player_position, high_score_list
 from sprites_classes.dead_frog import Dead_Frog
-from image.image_handler import get_player_sprite, get_get_sprite, get_mob_sprite, \
-    get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_floating_mob_sprite, get_sloshed_face, get_drowned_sprite
-
-from sprites_classes.npc import Mob, Goat, Floating_mob
+from image.image_handler import get_player_sprite, get_get_sprite, \
+    get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_sloshed_face, get_drowned_sprite
+from sprites_classes.npc import  Goat
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
-from game_src.window_handler import lose_window, win_window, \
-    text_object, roadkill_window, drown_window, level_title_window, draw_text
+from game_src.window_handler import lose_window, win_window, roadkill_window, drown_window, level_title_window, draw_text
 from game_src.variabels import *
 
 
@@ -74,6 +68,7 @@ def game_loop(sound_fx, volume):
     level_number = 1
     score = 0
     while True:
+        #starts game loop. Uses level number to load desiganted level.
         level_title_window(level_number)
         last_y = 770
         question_number = 1
@@ -85,7 +80,9 @@ def game_loop(sound_fx, volume):
         else:
             get_level_music(level_number)
         no_death, no_wrong_answers = True, True
+
         while running:
+            #Runs individual levels.
             score, last_y = score_by_player_position(player.y, last_y, score)
             clock.tick(30)
             for event in pygame.event.get():
@@ -106,7 +103,7 @@ def game_loop(sound_fx, volume):
                 level.spawn_resumed()
                 if not volume:
                     return
-
+            # Checks collision with cars in each lane.
             for lane in level.lanes:
                 for car in lane.mobs:
                     if car.check_collide(player):
@@ -121,7 +118,7 @@ def game_loop(sound_fx, volume):
                             roadkill_window()
                             high_score_list(score)
                             return
-
+            #Checks collision with mobs in floating lanes.
             player.floating = False
             for lane in reversed(level.floating_lanes + level.safe_lanes):
                 if not player.floating:
@@ -136,7 +133,7 @@ def game_loop(sound_fx, volume):
                             break
                         else:
                             player.floating = False
-
+            #Triggers event if player is not colliding with floating mob
             if level.sinking_cord[0] < player.y < level.sinking_cord[1] and not player.floating:
                 score -= 20
                 no_death = False

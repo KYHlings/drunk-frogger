@@ -7,6 +7,7 @@ from game_src.variabels import *
 
 
 def score_by_player_position(player_y, last_y, score):
+    # takes player postition and returns score.
     if player_y <= last_y:
         score += last_y - player_y
         last_y = player_y
@@ -16,6 +17,7 @@ def score_by_player_position(player_y, last_y, score):
 
 
 def get_score():
+    #gets score file.
     score_ls = json.loads(Path("game_src/highscore.json").read_text(encoding='utf8'))
     return score_ls
 
@@ -26,7 +28,6 @@ def high_score_list(score):
     if score_ls[9]["score"] < score:
         score_ls[9]["score"] = score
         name = write_highscore()
-
         score_ls[9]["name"] = name
         sorted_score = sorted(score_ls, key=lambda s: s['score'], reverse=True)
         Path("game_src/highscore.json").write_text(json.dumps(sorted_score), encoding='utf8')
