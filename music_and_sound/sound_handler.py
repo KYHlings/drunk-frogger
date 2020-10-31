@@ -40,7 +40,7 @@ def get_title_music():
 
 
 def get_level_music(level_number):
-    music_files = ["df_level1_music.mp3", "df_level2_music.mp3", "df_level2_music.mp3"]
+    music_files = ["df_level1.2_music.mp3", "df_level2_music.mp3","df_level3_music.mp3"]
     pygame.mixer.music.load(f"music_and_sound/music_src/{music_files[level_number-1]}")
     return pygame.mixer.music.play(-1)
 
@@ -62,8 +62,8 @@ def get_lose_music():
 
 # Loads different track depending on level of drunkness.
 def get_drunk_music(level_number, drunken_meter):
-    drunk_music_ls =[["df_level1_music_drunk1.mp3", "df_level1_music_drunk2.mp3", "df_level1_music_drunk3.mp3",
-                      "df_level1_music_drunk4.mp3"],["df_level2_music_drunk1.mp3", "df_level2_music_drunk2.mp3", "df_level2_music_drunk3.mp3",
+    drunk_music_ls =[["df_level1.2_music_drunk1.mp3", "df_level1.2_music_drunk2.mp3", "df_level1.2_music_drunk3.mp3",
+                      "df_level1.2_music_drunk4.mp3"],["df_level2_music_drunk1.mp3", "df_level2.2_music_drunk2.mp3", "df_level2_music_drunk3.mp3",
                       "df_level2_music_drunk4.mp3"]]
     pygame.mixer.music.load(f"music_and_sound/music_src/{drunk_music_ls[level_number-1][drunken_meter-1]}")
     return pygame.mixer.music.play(-1)
