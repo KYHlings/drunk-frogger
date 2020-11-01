@@ -104,33 +104,17 @@ def game_loop(sound_fx, volume):
                     return
             # Checks collision with cars in each lane.
             if player.lives != 0:
-                player,dead_frog,score,no_death = is_frog_runover(level, player, score, dead_frog, sound_fx, no_death)
-                print(player.lives)
+                player, dead_frog, score, no_death = is_frog_runover(level, player, score, dead_frog, sound_fx,
+                                                                     no_death)
+                player, dead_frog, score, no_death = is_frog_drowning(level, player, score, level_number, sound_fx,
+                                                                      dead_frog, no_death)
+
             if player.lives == 0:
                 return
             # Checks collision with mobs in floating lanes.
             player = is_frog_afloat(level, player)
 
             # Triggers event if player is not colliding with floating mob
-            if level.sinking_cord[0] < player.y < level.sinking_cord[1] and not player.floating:
-                score -= 20
-                no_death = False
-                if player.lives != 1:
-                    player.lives -= 1
-                    if level_number == 3:
-                        sound_fx.play_falling()
-                        dead_frog.player_died(player.x, player.y, "asphyxiation")
-                    else:
-                        sound_fx.play_splash()
-                        dead_frog.player_died(player.x, player.y, "drowned")
-                    player.reset()
-                else:
-                    if level_number == 3:
-                        lose_window("asphyxiation")
-                    else:
-                        lose_window("drowned")
-                    high_score_list(score)
-                    return
 
             # This if statement checks if the player has reached the safe zone and triggers the quiz function
             if player.y <= level.quiz_cord[question_number - 1]:
@@ -194,7 +178,8 @@ def is_frog_afloat(level, player):
 
     return player
 
-def is_frog_runover(level,player,score,dead_frog,sound_fx,no_death):
+
+def is_frog_runover(level, player, score, dead_frog, sound_fx, no_death):
     for lane in level.lanes:
         for car in lane.mobs:
             if car.check_collide(player):
@@ -205,10 +190,32 @@ def is_frog_runover(level,player,score,dead_frog,sound_fx,no_death):
                     dead_frog.player_died(player.x, player.y, "roadkill")
                     sound_fx.play_splat()
                     player.reset()
-                    return player,dead_frog,score,no_death
+                    return player, dead_frog, score, no_death
                 else:
                     lose_window("roadkill")
                     high_score_list(score)
-                    print("Något annat?")
-                    return player,dead_frog,score,no_death
-    return player,dead_frog,score,no_death
+                    return player, dead_frog, score, no_death
+    return player, dead_frog, score, no_death
+
+def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog, no_death):
+    if level.sinking_cord[0] < player.y < level.sinking_cord[1] and not player.floating:
+        score -= 20
+        no_death = False
+        player.lives -= 1
+        if player.lives != 0:
+            if level_number == 3:
+                sound_fx.play_falling()
+                dead_frog.player_died(player.x, player.y, "asphyxiation")
+            else:
+                sound_fx.play_splash()
+                dead_frog.player_died(player.x, player.y, "drowned")
+            player.reset()
+            return player, score, dead_frog, no_death
+        else:
+            if level_number == 3:
+                lose_window("asphyxiation")
+            else:
+                lose_window("drowned")
+            high_score_list(score)
+            return player, score, dead_frog, no_death
+    return player, score, dead_frog, no_death
