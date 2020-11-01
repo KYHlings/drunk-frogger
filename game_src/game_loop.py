@@ -118,6 +118,8 @@ def game_loop(sound_fx, volume):
                             high_score_list(score)
                             return
             # Checks collision with mobs in floating lanes.
+            player.floating = False
+
             player = is_frog_afloat(level, player)
 
             # Triggers event if player is not colliding with floating mob
@@ -190,15 +192,19 @@ def game_loop(sound_fx, volume):
 def is_frog_afloat(level, player):
     for lane in reversed(level.floating_lanes + level.safe_lanes):
         for floating_mob in lane.floating_mobs:
+            print(floating_mob.mob_x)
             if floating_mob.check_collide(player):
                 player.floating = True
                 if lane.is_left:
                     player.x -= lane.velocity
+                    print("test")
                     return player
                 else:
                     player.x += lane.velocity
+                    print("testing")
                     return player
 
             else:
                 player.floating = False
+                print("nothing")
                 return player
