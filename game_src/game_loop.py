@@ -87,10 +87,6 @@ def game_loop(sound_fx, volume):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
-
-            level.move_mobs()
-            level.spawn_mobs()
-
             keys = pygame.key.get_pressed()
             if dead_frog.is_dead:
                 dead_frog.check_time_of_death()
@@ -103,18 +99,27 @@ def game_loop(sound_fx, volume):
                 if not volume:
                     return
 
+            level.move_mobs()
+            level.spawn_mobs()
+
                 # Checks collision with cars in each lane.
-            player, dead_frog, score, no_death = is_frog_runover(level, player, score, dead_frog, sound_fx,
-                                                                     no_death)
-                # Triggers event if player is not colliding with floating mob
-            player, score, dead_frog, no_death = is_frog_drowning( level,player, score, level_number, sound_fx,
-                                                                      dead_frog,no_death)
+            player, dead_frog, score, no_death = is_frog_run_over(level, player, score, dead_frog, sound_fx,
+                                                                 no_death)
+            # Triggers event if player is not colliding with floating mob
+            player, score, dead_frog, no_death = is_frog_drowning(level, player, score, level_number, sound_fx,
+                                                                  dead_frog, no_death)
             if player.lives == 0:
                 return
             # Checks collision with mobs in floating lanes.
             player = is_frog_afloat(level, player)
 
-            player,question_number,score,dead_frog,no_death,no_wrong_answers = check_quiz(level,player,question_number,score,dead_frog,sound_fx,level_number,no_death,no_wrong_answers,wise_goat)
+            player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer = check_quiz(
+                level, player,
+                question_number, score,
+                dead_frog, sound_fx,
+                level_number, no_death,
+                no_wrong_answers,
+                wise_goat)
             if question_number > level.amount_quiz:
                 running = False
             redraw_window(player, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
@@ -141,7 +146,7 @@ def is_frog_afloat(level, player):
     return player
 
 
-def is_frog_runover(level, player, score, dead_frog, sound_fx, no_death):
+def is_frog_run_over(level, player, score, dead_frog, sound_fx, no_death):
     for lane in level.lanes:
         for car in lane.mobs:
             if car.check_collide(player):
@@ -159,7 +164,8 @@ def is_frog_runover(level, player, score, dead_frog, sound_fx, no_death):
                     return player, dead_frog, score, no_death
     return player, dead_frog, score, no_death
 
-def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog,no_death):
+
+def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog, no_death):
     if level.sinking_cord[0] < player.y < level.sinking_cord[1] and not player.floating:
         score -= 20
         no_death = False
@@ -180,10 +186,11 @@ def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog,no_
                 lose_window("drowned")
             high_score_list(score)
             return player, score, dead_frog, no_death
-    return player,score,dead_frog,no_death
+    return player, score, dead_frog, no_death
 
 
-def check_quiz(level,player,question_number,score,dead_frog,sound_fx,level_number,no_death,no_wrong_answers,wise_goat):
+def check_quiz(level, player, question_number, score, dead_frog, sound_fx, level_number, no_death, no_wrong_answers,
+               wise_goat):
     if player.y <= level.quiz_cord[question_number - 1]:
         level.spawn_paused()
         get_goat_music()
@@ -196,7 +203,8 @@ def check_quiz(level,player,question_number,score,dead_frog,sound_fx,level_numbe
             if player.drunk_meter == 4:
                 lose_window("alcohol_poisoning")
                 high_score_list(score)
-                return player,question_number,score,dead_frog,no_death,no_wrong_answers
+                level.spawn_resumed()
+                return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer
             player.drunk_meter += 1
             dead_frog.roadkill_img = get_roadkill_sprite(player.drunk_meter)
             dead_frog.drowned_img = get_drowned_sprite(player.drunk_meter)
@@ -204,7 +212,8 @@ def check_quiz(level,player,question_number,score,dead_frog,sound_fx,level_numbe
             player.drunken_consequence()
             get_drunk_music(level_number, player.drunk_meter)
             player.reset()
-            return player, question_number, score, dead_frog, no_death, no_wrong_answers
+            level.spawn_resumed()
+            return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer
         else:
             score += 100
             question_number += 1
@@ -215,14 +224,14 @@ def check_quiz(level,player,question_number,score,dead_frog,sound_fx,level_numbe
                     score += 200
                 win_window()
                 player.reset()
-
-                return player,question_number,score,dead_frog,no_death,no_wrong_answers
+                level.spawn_resumed()
+                return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer
             else:
                 wise_goat.get_y = level.quiz_cord[question_number - 1]
                 if player.drunk_meter == 0:
                     get_level_music(level_number)
                 else:
                     get_drunk_music(level_number, player.drunk_meter)
-                    return player, question_number, score, dead_frog, no_death, no_wrong_answers
-        level.spawn_resumed()
-    return player,question_number,score,dead_frog,no_death,no_wrong_answers
+                    level.spawn_resumed()
+                    return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer
+    return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer
