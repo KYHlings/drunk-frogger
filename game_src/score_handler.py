@@ -62,6 +62,7 @@ def score_window():
     while True:
         score_y = 100
         draw_text("High score", score_font, BLACK, screen, 600, 40,'center')
+        draw_text("Any key to return",key_font,BLACK,screen,1270,10,"topright")
         for nr, score in enumerate(score_ls, 1):
             draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 285, score_y,'topleft')
             score_y += 70

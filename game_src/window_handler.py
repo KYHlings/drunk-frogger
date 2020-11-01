@@ -68,6 +68,7 @@ def instruction_window():
     # Creates how to play window
     while True:
         screen.blit(how_to_play_image(), full_window_blit_pos)
+        draw_text("Any key to return",key_font,GREY,screen,1270,10,'topright')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
