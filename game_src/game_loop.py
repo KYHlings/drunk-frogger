@@ -64,7 +64,7 @@ def game_loop(sound_fx, volume):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 3
+    level_number = 2
     score = 0
     while True:
         # starts game loop. Uses level number to load desiganted level.
@@ -103,23 +103,12 @@ def game_loop(sound_fx, volume):
                 if not volume:
                     return
             # Checks collision with cars in each lane.
-            for lane in level.lanes:
-                for car in lane.mobs:
-                    if car.check_collide(player):
-                        score -= 20
-                        no_death = False
-                        if player.lives != 1:
-                            player.lives -= 1
-                            dead_frog.player_died(player.x, player.y, "roadkill")
-                            sound_fx.play_splat()
-                            player.reset()
-                        else:
-                            lose_window("roadkill")
-                            high_score_list(score)
-                            return
+            if player.lives != 0:
+                player,dead_frog,score,no_death = is_frog_runover(level, player, score, dead_frog, sound_fx, no_death)
+                print(player.lives)
+            if player.lives == 0:
+                return
             # Checks collision with mobs in floating lanes.
-            player.floating = False
-
             player = is_frog_afloat(level, player)
 
             # Triggers event if player is not colliding with floating mob
@@ -192,19 +181,34 @@ def game_loop(sound_fx, volume):
 def is_frog_afloat(level, player):
     for lane in reversed(level.floating_lanes + level.safe_lanes):
         for floating_mob in lane.floating_mobs:
-            print(floating_mob.mob_x)
             if floating_mob.check_collide(player):
                 player.floating = True
                 if lane.is_left:
                     player.x -= lane.velocity
-                    print("test")
                     return player
                 else:
                     player.x += lane.velocity
-                    print("testing")
                     return player
-
             else:
                 player.floating = False
-                print("nothing")
-                return player
+
+    return player
+
+def is_frog_runover(level,player,score,dead_frog,sound_fx,no_death):
+    for lane in level.lanes:
+        for car in lane.mobs:
+            if car.check_collide(player):
+                score -= 20
+                no_death = False
+                player.lives -= 1
+                if player.lives != 0:
+                    dead_frog.player_died(player.x, player.y, "roadkill")
+                    sound_fx.play_splat()
+                    player.reset()
+                    return player,dead_frog,score,no_death
+                else:
+                    lose_window("roadkill")
+                    high_score_list(score)
+                    print("Något annat?")
+                    return player,dead_frog,score,no_death
+    return player,dead_frog,score,no_death
