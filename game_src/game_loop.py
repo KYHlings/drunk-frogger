@@ -4,7 +4,7 @@ from game_src.score_handler import score_by_player_position, high_score_list
 from sprites_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, \
     get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_sloshed_face, get_drowned_sprite
-from sprites_classes.npc import  Goat
+from sprites_classes.npc import Goat
 from sprites_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
@@ -16,7 +16,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
                   level_number, question_number):
     # This function updates the window with sprites_classes each loop
     screen.blit(background_image, full_window_blit_pos)
-    draw_text(f"score:{score}", score_font,BLACK, screen, 1270, 10,'topright')
+    draw_text(f"score:{score}", score_font, BLACK, screen, 1270, 10, 'topright')
     life_x = 10
     beer_y = 405
 
@@ -58,7 +58,6 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     pygame.display.update()
 
 
-
 def game_loop(sound_fx, volume):
     # This function runs the main game loop
     clock = pygame.time.Clock()
@@ -68,7 +67,7 @@ def game_loop(sound_fx, volume):
     level_number = 3
     score = 0
     while True:
-        #starts game loop. Uses level number to load desiganted level.
+        # starts game loop. Uses level number to load desiganted level.
         level_title_window(level_number)
         last_y = 770
         question_number = 1
@@ -82,7 +81,7 @@ def game_loop(sound_fx, volume):
         no_death, no_wrong_answers = True, True
 
         while running:
-            #Runs individual levels.
+            # Runs individual levels.
             score, last_y = score_by_player_position(player.y, last_y, score)
             clock.tick(30)
             for event in pygame.event.get():
@@ -118,22 +117,10 @@ def game_loop(sound_fx, volume):
                             lose_window("roadkill")
                             high_score_list(score)
                             return
-            #Checks collision with mobs in floating lanes.
-            player.floating = False
-            for lane in reversed(level.floating_lanes + level.safe_lanes):
-                if not player.floating:
-                    for floating_mob in lane.floating_mobs:
-                        if floating_mob.check_collide(player):
-                            player.floating = True
-                            if lane.is_left:
-                                player.x -= lane.velocity
-                            else:
-                                player.x += lane.velocity
+            # Checks collision with mobs in floating lanes.
+            player = is_frog_afloat(level, player)
 
-                            break
-                        else:
-                            player.floating = False
-            #Triggers event if player is not colliding with floating mob
+            # Triggers event if player is not colliding with floating mob
             if level.sinking_cord[0] < player.y < level.sinking_cord[1] and not player.floating:
                 score -= 20
                 no_death = False
@@ -141,7 +128,7 @@ def game_loop(sound_fx, volume):
                     player.lives -= 1
                     if level_number == 3:
                         sound_fx.play_falling()
-                        dead_frog.player_died(player.x,player.y,"asphyxiation")
+                        dead_frog.player_died(player.x, player.y, "asphyxiation")
                     else:
                         sound_fx.play_splash()
                         dead_frog.player_died(player.x, player.y, "drowned")
@@ -198,3 +185,20 @@ def game_loop(sound_fx, volume):
         level_number += 1
         if level_number == 4:
             level_number = 1
+
+
+def is_frog_afloat(level, player):
+    for lane in reversed(level.floating_lanes + level.safe_lanes):
+        for floating_mob in lane.floating_mobs:
+            if floating_mob.check_collide(player):
+                player.floating = True
+                if lane.is_left:
+                    player.x -= lane.velocity
+                    return player
+                else:
+                    player.x += lane.velocity
+                    return player
+
+            else:
+                player.floating = False
+                return player
