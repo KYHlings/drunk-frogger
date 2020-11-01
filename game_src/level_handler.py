@@ -11,7 +11,7 @@ tick = pygame.time.get_ticks()
 
 class Level:
     def __init__(self, lanes, floating_lanes, background_image, spawn_timer, time_spawned,
-                 fl_spawn_timer, fl_time_spawned, drown_cord, amount_quiz, quiz_cord, sinking_cord, safe_lanes):
+                 fl_spawn_timer, fl_time_spawned, amount_quiz, quiz_cord, sinking_cord, safe_lanes):
         self.lanes = lanes
         self.floating_lanes = floating_lanes
         self.background_image = background_image
@@ -19,7 +19,6 @@ class Level:
         self.time_spawned = time_spawned
         self.fl_spawn_timer = fl_spawn_timer
         self.fl_time_spawned = fl_time_spawned
-        self.drown_cord = drown_cord
         self.amount_quiz = amount_quiz
         self.quiz_cord = quiz_cord
         self.sinking_cord = sinking_cord
@@ -127,7 +126,6 @@ def create_level(level_number):
                                     pygame.time.get_ticks()],
                       fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000],
                       fl_time_spawned=[tick, tick, tick, tick, tick, tick],
-                      drown_cord=225,
                       sinking_cord=(85, 305),
                       safe_lanes=[]
                       )
@@ -155,7 +153,6 @@ def create_level(level_number):
                       quiz_cord=[525, 270, 20],
                       spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],
                       time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick],
-                      drown_cord=0,
                       fl_spawn_timer=[],
                       fl_time_spawned=[],
                       floating_lanes=[],
@@ -196,10 +193,8 @@ def create_level(level_number):
                       quiz_cord=[530, 275, 20],
                       fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000, 2000, 1000],
                       fl_time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick, tick, tick, tick, tick],
-                      drown_cord=0,
                       spawn_timer=[],
                       time_spawned=[],
-
                       sinking_cord=(60, 735)
                       )
     return level

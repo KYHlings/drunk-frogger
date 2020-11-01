@@ -64,7 +64,7 @@ def game_loop(sound_fx, volume):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 2
+    level_number = 1
     score = 0
     while True:
         # starts game loop. Uses level number to load desiganted level.
@@ -102,59 +102,21 @@ def game_loop(sound_fx, volume):
                 level.spawn_resumed()
                 if not volume:
                     return
-            # Checks collision with cars in each lane.
-            if player.lives != 0:
-                player, dead_frog, score, no_death = is_frog_runover(level, player, score, dead_frog, sound_fx,
-                                                                     no_death)
-                player, dead_frog, score, no_death = is_frog_drowning(level, player, score, level_number, sound_fx,
-                                                                      dead_frog, no_death)
 
+                # Checks collision with cars in each lane.
+            player, dead_frog, score, no_death = is_frog_runover(level, player, score, dead_frog, sound_fx,
+                                                                     no_death)
+                # Triggers event if player is not colliding with floating mob
+            player, score, dead_frog, no_death = is_frog_drowning( level,player, score, level_number, sound_fx,
+                                                                      dead_frog,no_death)
             if player.lives == 0:
                 return
             # Checks collision with mobs in floating lanes.
             player = is_frog_afloat(level, player)
 
-            # Triggers event if player is not colliding with floating mob
-
-            # This if statement checks if the player has reached the safe zone and triggers the quiz function
-            if player.y <= level.quiz_cord[question_number - 1]:
-                level.spawn_paused()
-                get_goat_music()
-
-                # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
-                # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
-                if not quiz_window(quiz(), player.drunk_meter):
-                    score -= 100
-                    no_wrong_answers = False
-                    if player.drunk_meter == 4:
-                        lose_window("alcohol_poisoning")
-                        high_score_list(score)
-                        return
-                    player.drunk_meter += 1
-                    dead_frog.roadkill_img = get_roadkill_sprite(player.drunk_meter)
-                    dead_frog.drowned_img = get_drowned_sprite(player.drunk_meter)
-                    sound_fx.play_burp()
-                    player.drunken_consequence()
-                    get_drunk_music(level_number, player.drunk_meter)
-                    player.reset()
-                else:
-                    score += 100
-                    question_number += 1
-                    if question_number == level.amount_quiz + 1:
-                        if no_death:
-                            score += 200
-                        if no_wrong_answers:
-                            score += 200
-                        win_window()
-                        player.reset()
-                        running = False
-                    else:
-                        wise_goat.get_y = level.quiz_cord[question_number - 1]
-                        if player.drunk_meter == 0:
-                            get_level_music(level_number)
-                        else:
-                            get_drunk_music(level_number, player.drunk_meter)
-                level.spawn_resumed()
+            player,question_number,score,dead_frog,no_death,no_wrong_answers = check_quiz(level,player,question_number,score,dead_frog,sound_fx,level_number,no_death,no_wrong_answers,wise_goat)
+            if question_number > level.amount_quiz:
+                running = False
             redraw_window(player, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
                           score, level.safe_lanes, level_number, question_number)
         level_number += 1
@@ -197,7 +159,7 @@ def is_frog_runover(level, player, score, dead_frog, sound_fx, no_death):
                     return player, dead_frog, score, no_death
     return player, dead_frog, score, no_death
 
-def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog, no_death):
+def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog,no_death):
     if level.sinking_cord[0] < player.y < level.sinking_cord[1] and not player.floating:
         score -= 20
         no_death = False
@@ -218,4 +180,49 @@ def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog, no
                 lose_window("drowned")
             high_score_list(score)
             return player, score, dead_frog, no_death
-    return player, score, dead_frog, no_death
+    return player,score,dead_frog,no_death
+
+
+def check_quiz(level,player,question_number,score,dead_frog,sound_fx,level_number,no_death,no_wrong_answers,wise_goat):
+    if player.y <= level.quiz_cord[question_number - 1]:
+        level.spawn_paused()
+        get_goat_music()
+
+        # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
+        # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
+        if not quiz_window(quiz(), player.drunk_meter):
+            score -= 100
+            no_wrong_answers = False
+            if player.drunk_meter == 4:
+                lose_window("alcohol_poisoning")
+                high_score_list(score)
+                return player,question_number,score,dead_frog,no_death,no_wrong_answers
+            player.drunk_meter += 1
+            dead_frog.roadkill_img = get_roadkill_sprite(player.drunk_meter)
+            dead_frog.drowned_img = get_drowned_sprite(player.drunk_meter)
+            sound_fx.play_burp()
+            player.drunken_consequence()
+            get_drunk_music(level_number, player.drunk_meter)
+            player.reset()
+            return player, question_number, score, dead_frog, no_death, no_wrong_answers
+        else:
+            score += 100
+            question_number += 1
+            if question_number == level.amount_quiz + 1:
+                if no_death:
+                    score += 200
+                if no_wrong_answers:
+                    score += 200
+                win_window()
+                player.reset()
+
+                return player,question_number,score,dead_frog,no_death,no_wrong_answers
+            else:
+                wise_goat.get_y = level.quiz_cord[question_number - 1]
+                if player.drunk_meter == 0:
+                    get_level_music(level_number)
+                else:
+                    get_drunk_music(level_number, player.drunk_meter)
+                    return player, question_number, score, dead_frog, no_death, no_wrong_answers
+        level.spawn_resumed()
+    return player,question_number,score,dead_frog,no_death,no_wrong_answers
