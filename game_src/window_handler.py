@@ -88,3 +88,16 @@ def level_title_window(level_number):
     pygame.time.delay(1000)
 
 
+def credits():
+    while True:
+        screen.fill(WHITE)
+        draw_text("T.O.A.D Productions",font,BLACK,screen,200,200,'topleft')
+        draw_text("Progammers",large_text,BLACK,screen,200,250,'topleft')
+        draw_text()
+        draw_text()
+        draw_text()
+        draw_text()
+        draw_text()
+        draw_text("Music",large_text,BLACK,screen,200,350,'topleft')
+        draw_text("David Pergament")
+        draw_text("Art",large_text,BLACK,screen,200,450,'topleft')
