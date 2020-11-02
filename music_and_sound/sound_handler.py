@@ -120,7 +120,7 @@ def get_splash():
 
 def get_falling():
     #Adds sound-fx when falling into space
-    falling_files = ["df_falling.mp3"]
+    falling_files = ["df_falling_short.mp3", "df_falling_pitch_short.mp3"]
     falling_fx = []
     for s in falling_files:
         falling_fx.append(pygame.mixer.Sound(f"music_and_sound/sounds_fx_src/{s}"))
