@@ -89,22 +89,23 @@ def level_title_window(level_number):
 
 
 def credits_window():
+    get_credits_music()
     while True:
-        get_credits_music()
+
         screen.fill(WHITE)
         #screen.blit(credits_image(),full_window_blit_pos)
 
-        draw_text("T.O.A.D Productions", font, BLACK, screen, 200, 50, 'center')
-        draw_text("Progammers", large_text, BLACK, screen, 100, 100, 'topleft')
-        names_y = 100
+        draw_text("T.O.A.D Productions", credits_font_large, BLACK, screen, 640, 50, 'center')
+        draw_text("Programmers", credits_font, BLACK, screen, 640, 100, 'center')
+        names_y = 150
         names = ["Tobias Andblad", "Elizabeth Kallioniemi", "David Pergament", "Jonathan Vernersson", "Daniel Yngve"]
         for name in names:
-            draw_text(name, large_text, BLACK, screen, 500, names_y, 'topleft')
+            draw_text(name, credits_font, BLACK, screen, 640, names_y, 'center')
             names_y += 50
-        draw_text("Music", large_text, BLACK, screen, 100, 460, 'topleft')
-        draw_text("David Pergament", large_text, BLACK, screen, 500, 460, 'topleft')
-        draw_text("Art", large_text, BLACK, screen, 100, 540, 'topleft')
-        draw_text("Elizabeth Kallioniemi", large_text, BLACK, screen, 500, 540, 'topleft')
+        draw_text("Music",credits_font, BLACK, screen, 640, 410, 'center')
+        draw_text("David Pergament", credits_font, BLACK, screen, 640, 460, 'center')
+        draw_text("Art", credits_font, BLACK, screen, 640, 510, 'center')
+        draw_text("Elizabeth Kallioniemi", credits_font, BLACK, screen, 640, 540, 'center')
         draw_text("Any key to return", key_font, BLACK, screen, 1270, 10, "topright")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
