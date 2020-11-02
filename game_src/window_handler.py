@@ -2,7 +2,7 @@ import sys
 
 from game_src.variabels import *
 from image.image_handler import win_image, alcohol_poisoning_image, how_to_play_image, roadkill_image, drown_image, \
-    space_frog_image
+    space_frog_image, main_menu_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 score_surf = pygame.surface.Surface((240, 60))
@@ -86,3 +86,12 @@ def level_title_window(level_number):
         draw_text('Gargleblaster', title_font,WHITE,screen,650,450,'center')
     pygame.display.update()
     pygame.time.delay(1000)
+
+def settings_window():
+    while True:
+
+
+        pygame.blit(main_menu_image(),(0,0))
+        draw_text("[S]ound Settings",font1,BLACK,screen,200,200,'topleft')
+        draw_text("[Q]iz Settings",font1,BLACK,screen,300,200,"topleft")
+        draw_text("Press Enter to return",font1,BLACK,1270,50,"topright")
