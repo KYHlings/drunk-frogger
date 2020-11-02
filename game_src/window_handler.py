@@ -1,5 +1,6 @@
 import sys
 
+from game_src.settings import sound_settings
 from game_src.variabels import *
 from image.image_handler import win_image, alcohol_poisoning_image, how_to_play_image, roadkill_image, drown_image, \
     space_frog_image, main_menu_image
@@ -87,11 +88,24 @@ def level_title_window(level_number):
     pygame.display.update()
     pygame.time.delay(1000)
 
-def settings_window():
+def settings_window(volume):
     while True:
 
 
         pygame.blit(main_menu_image(),(0,0))
         draw_text("[S]ound Settings",font1,BLACK,screen,200,200,'topleft')
         draw_text("[Q]iz Settings",font1,BLACK,screen,300,200,"topleft")
-        draw_text("Press Enter to return",font1,BLACK,1270,50,"topright")
+        draw_text("Press Enter to return",font1,BLACK, screen, 1270,50,"topright")
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_s:
+                    volume = sound_settings(volume)
+                if event.key == pygame.K_q:
+                    pass
+                if event.key == pygame.K_RETURN:
+                    return volume
+
+
