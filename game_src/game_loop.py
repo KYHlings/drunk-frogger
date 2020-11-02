@@ -12,7 +12,7 @@ from game_src.window_handler import lose_window, win_window, level_title_window,
 from game_src.variabels import *
 
 
-def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
+def redraw_window(player, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
                   level_number, question_number):
     # This function updates the window with sprites_classes each loop
     screen.blit(background_image, full_window_blit_pos)
@@ -20,7 +20,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     life_x = 10
     beer_y = 405
 
-    for i in range(animals.lives):
+    for i in range(player.lives):
         screen.blit(get_life_sprite(), (life_x, 10))
         life_x += 25
     for lane in floating_lanes:
@@ -36,10 +36,10 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
             screen.blit(dead_frog.roadkill_img, (dead_frog.dead_x, dead_frog.dead_y))
         elif dead_frog.cause_of_death == "drowned":
             screen.blit(dead_frog.drowned_img, (dead_frog.dead_x, dead_frog.dead_y))
-        screen.blit(animals.update_img()[0], (3000, 3000))
+        screen.blit(player.update_img()[0], (3000, 3000))
 
     else:
-        screen.blit(animals.update_img()[0], animals.update_img()[1])
+        screen.blit(player.update_img()[0], player.update_img()[1])
     for lane in lanes:
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
@@ -47,11 +47,11 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
         screen.blit(get_get_sprite(),
                     (safe_lanes[question_number - 1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 40))
     else:
-        screen.blit(get_get_sprite(), (animals.x - 20, wise_goat.get_y - 30))
+        screen.blit(get_get_sprite(), (player.x - 20, wise_goat.get_y - 30))
 
     screen.blit(get_life_sprite(), (10, 435))
     screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 300))
-    for i in range(animals.drunk_meter):
+    for i in range(player.drunk_meter):
         screen.blit(get_beer_sprite(), (15, beer_y))
         beer_y -= 25
 

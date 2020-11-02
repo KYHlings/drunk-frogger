@@ -88,6 +88,7 @@ def level_title_window(level_number):
     pygame.time.delay(1000)
 
 
+
 def credits():
     while True:
         screen.fill(WHITE)
