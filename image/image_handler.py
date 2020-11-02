@@ -37,6 +37,11 @@ def alcohol_poisoning_image():
     lose_frog_image = pygame.transform.scale(lose_frog_image, bg_image_size)
     return lose_frog_image
 
+def credits_image():
+    credits_image = pygame.image.load("image/backgrounds_src/credits_bg.jpg")
+    credits_image = pygame.transform.scale(credits_image, bg_image_size)
+    return credits_image
+
 
 ###
 

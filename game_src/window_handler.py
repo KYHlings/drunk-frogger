@@ -2,7 +2,7 @@ import sys
 
 from game_src.variabels import *
 from image.image_handler import win_image, alcohol_poisoning_image, how_to_play_image, roadkill_image, drown_image, \
-    space_frog_image
+    space_frog_image, credits_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music, get_credits_music
 
 score_surf = pygame.surface.Surface((240, 60))
@@ -92,17 +92,19 @@ def credits_window():
     while True:
         get_credits_music()
         screen.fill(WHITE)
+        #screen.blit(credits_image(),full_window_blit_pos)
+
         draw_text("T.O.A.D Productions", font, BLACK, screen, 200, 50, 'center')
-        draw_text("Progammers", large_text, BLACK, screen, 200, 250, 'topleft')
-        names_y = 200
+        draw_text("Progammers", large_text, BLACK, screen, 100, 100, 'topleft')
+        names_y = 100
         names = ["Tobias Andblad", "Elizabeth Kallioniemi", "David Pergament", "Jonathan Vernersson", "Daniel Yngve"]
         for name in names:
-            draw_text(name, large_text, BLACK, screen, 200, names_y, 'center')
+            draw_text(name, large_text, BLACK, screen, 500, names_y, 'topleft')
             names_y += 50
-        draw_text("Music", large_text, BLACK, screen, 200, 350, 'topleft')
-        draw_text("David Pergament", large_text, BLACK, screen, 200, 400, 'center')
-        draw_text("Art", large_text, BLACK, screen, 200, 450, 'topleft')
-        draw_text("Elizabeth Kallioniemi", large_text, BLACK, screen, 200, 450, 'center')
+        draw_text("Music", large_text, BLACK, screen, 100, 460, 'topleft')
+        draw_text("David Pergament", large_text, BLACK, screen, 500, 460, 'topleft')
+        draw_text("Art", large_text, BLACK, screen, 100, 540, 'topleft')
+        draw_text("Elizabeth Kallioniemi", large_text, BLACK, screen, 500, 540, 'topleft')
         draw_text("Any key to return", key_font, BLACK, screen, 1270, 10, "topright")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
