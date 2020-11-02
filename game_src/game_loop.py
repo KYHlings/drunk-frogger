@@ -58,7 +58,7 @@ def redraw_window(animals, wise_goat, dead_frog, background_image, lanes, floati
     pygame.display.update()
 
 
-def game_loop(sound_fx, volume):
+def game_loop(sound_fx, volume,quiz_category):
     # This function runs the main game loop
     clock = pygame.time.Clock()
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
@@ -119,7 +119,7 @@ def game_loop(sound_fx, volume):
                 dead_frog, sound_fx,
                 level_number, no_death,
                 no_wrong_answers,
-                wise_goat)
+                wise_goat,quiz_category)
             if question_number > level.amount_quiz:
                 running = False
             redraw_window(player, wise_goat, dead_frog, level.background_image, level.lanes, level.floating_lanes,
@@ -190,14 +190,14 @@ def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog, no
 
 
 def check_quiz(level, player, question_number, score, dead_frog, sound_fx, level_number, no_death, no_wrong_answers,
-               wise_goat):
+               wise_goat,quiz_category):
     if player.y <= level.quiz_cord[question_number - 1]:
         level.spawn_paused()
         get_goat_music()
 
         # This if statement checks if the player answers correctly. If the player answers correctly they trigger the win function
         # if they do not answer correctly they get moved to the start position and adds one to the drunk_meter integer
-        if not quiz_window(quiz(), player.drunk_meter):
+        if not quiz_window(quiz(quiz_category), player.drunk_meter):
             score -= 100
             no_wrong_answers = False
             if player.drunk_meter == 4:

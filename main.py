@@ -8,8 +8,8 @@ def main():
     volume = 0.1
     quiz_category = 15
     sound_fx = Sound_fx()
-    start_menu(sound_fx, volume)
-    game_loop(sound_fx, volume)
+    start_menu(sound_fx, volume,quiz_category)
+    game_loop(sound_fx, volume,quiz_category)
 
 
 if __name__ == '__main__':

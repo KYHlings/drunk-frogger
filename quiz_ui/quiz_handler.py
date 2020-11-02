@@ -8,17 +8,17 @@ from game_src.variabels import *
 
 
 # loads quiz from json-file, in future will load from api.
-def get_quiz():
-    url = requests.get("https://opentdb.com/api.php?amount=50&category=15&difficulty=easy&type=multiple")
+def get_quiz(quiz_category):
+    url = requests.get(f"https://opentdb.com/api.php?amount=50&category={quiz_category}&difficulty=easy&type=multiple")
     content = url.json(encoding='utf8')['results']
     shuffle(content)
     return content
 
 
 # unloads content from get_quiz function.
-def quiz():
+def quiz(quiz_category):
     while True:
-        quiz_content = get_quiz()
+        quiz_content = get_quiz(quiz_category)
         for q in quiz_content:
             if len(html.unescape(q['question'])) < 88:
                 return q["question"], "correct", q["incorrect_answers"]

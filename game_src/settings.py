@@ -2,6 +2,7 @@ from image.image_handler import main_menu_image
 from music_and_sound.sound_handler import music_volume
 from game_src.window_handler import draw_text
 from game_src.variabels import *
+from quiz_ui.quiz_handler import quiz_settings
 
 
 def sound_settings(volume_float):
@@ -37,7 +38,7 @@ def sound_settings(volume_float):
         pygame.display.update()
 
 
-def settings_window(volume):
+def settings_window(volume,quiz_category):
     while True:
         screen.blit(main_menu_image(), (0, 0))
         draw_text("Settings menu", font, BLACK, screen, 640, 100, 'center')
@@ -52,9 +53,9 @@ def settings_window(volume):
                 if event.key == pygame.K_s:
                     volume = sound_settings(volume)
                 if event.key == pygame.K_q:
-                    pass
+                    quiz_category = quiz_settings(quiz_category)
                 if event.key == pygame.K_RETURN:
-                    return volume
+                    return volume,quiz_category
         pygame.display.update()
 
 

@@ -9,7 +9,7 @@ from music_and_sound.sound_handler import get_title_music, music_volume
 from game_src.window_handler import screen, draw_text, font, BLACK, font1, instruction_window
 
 
-def start_menu(sound_fx, volume):
+def start_menu(sound_fx, volume,quiz_category):
     # This loads the sound handler module
     music_volume(volume)
     sound_fx.play_announcement()
@@ -31,9 +31,9 @@ def start_menu(sound_fx, volume):
                 sys.exit()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_b:
-                    return volume
+                    return volume,quiz_category
                 if event.key == pygame.K_s:
-                    volume = settings_window(volume)
+                    volume,quiz_category = settings_window(volume,quiz_category)
                 if event.key == pygame.K_t:
                     instruction_window()
                 if event.key == pygame.K_h:
