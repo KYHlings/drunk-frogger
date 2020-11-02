@@ -64,7 +64,7 @@ def game_loop(sound_fx, volume,quiz_category):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 3
+    level_number = 1
     score = 0
     while True:
         # starts game loop. Uses level number to load desiganted level.
@@ -226,12 +226,13 @@ def check_quiz(level, player, question_number, score, dead_frog, sound_fx, level
                 player.reset()
                 level.spawn_resumed()
                 return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer
+
             else:
+                level.spawn_resumed()
                 wise_goat.get_y = level.quiz_cord[question_number - 1]
                 if player.drunk_meter == 0:
                     get_level_music(level_number)
                 else:
                     get_drunk_music(level_number, player.drunk_meter)
-                    level.spawn_resumed()
                     return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer
     return player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer

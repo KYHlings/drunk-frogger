@@ -56,7 +56,7 @@ class Level:
             for floating_mob in lane.floating_mobs[:]:
                 if not floating_mob.is_left:
                     floating_mob.update_rect(1, lane.velocity)
-                    if floating_mob.mob_x >= 540 or floating_mob.mob_x <= -10:
+                    if floating_mob.mob_x >= 1020 or floating_mob.mob_x <= -10:
                         lane.velocity *= -1
 
     def spawn_mobs(self):
@@ -115,10 +115,10 @@ def create_level(level_number):
                   Mob(250, 640, get_mob_sprite(True), True),
                   Mob(50, 640, get_mob_sprite(True), True)]
 
-        level = Level(lanes=[Lane(lane_1, 445, 8, False),
-                             Lane(lane_2, 510, 8, True),
-                             Lane(lane_3, 570, 8, False),
-                             Lane(lane_4, 640, 8, True)],
+        level = Level(lanes=[Lane(lane_1, 445, 2, False),
+                             Lane(lane_2, 510, 10, True),
+                             Lane(lane_3, 570, 12, False),
+                             Lane(lane_4, 640, 6, True)],
                       floating_lanes=[Lane([], 85, 5, False), Lane([], 130, 5, True),
                                       Lane([], 170, 5, False), Lane([], 215, 5, True), Lane([], 260, 5, False)],
                       background_image=get_background_image(0),
