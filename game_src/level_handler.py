@@ -11,7 +11,8 @@ tick = pygame.time.get_ticks()
 
 class Level:
     def __init__(self, lanes, floating_lanes, background_image, spawn_timer, time_spawned,
-                 fl_spawn_timer, fl_time_spawned, amount_quiz, quiz_cord, sinking_cord, safe_lanes, possible_spawn, fl_possible_spawn):
+                 fl_spawn_timer, fl_time_spawned, amount_quiz, quiz_cord, sinking_cord, safe_lanes, possible_spawn,
+                 fl_possible_spawn):
         self.lanes = lanes
         self.floating_lanes = floating_lanes
         self.background_image = background_image
@@ -25,6 +26,7 @@ class Level:
         self.safe_lanes = safe_lanes
         self.possible_spawn = possible_spawn
         self.fl_possible_spawn = fl_possible_spawn
+
     def spawn_paused(self):
         # Saves the time when the game pauses
         self.time_of_pause = pygame.time.get_ticks()
@@ -82,7 +84,7 @@ class Level:
                         Floating_mob(1280, self.floating_lanes[i].y, get_floating_mob_sprite(True),
                                      self.floating_lanes[i].is_left))
                 self.fl_time_spawned[i] = pygame.time.get_ticks()
-                self.fl_spawn_timer[i] = randint(1000, 2000)
+                self.fl_spawn_timer[i] = randint(self.fl_possible_spawn[i][0], self.fl_possible_spawn[i][1])
 
 
 class Lane:
@@ -128,7 +130,9 @@ def create_level(level_number):
                       fl_time_spawned=[tick, tick, tick, tick, tick, tick],
                       sinking_cord=(85, 305),
                       safe_lanes=[],
-                      possible_spawn=[(3000, 4000), (1000, 2000), (1000, 2000), (1000, 2000)])
+                      possible_spawn=[(3000, 4000), (1000, 2000), (1000, 2000), (1000, 2000)],
+                      fl_possible_spawn=[(3000, 4000), (1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000),
+                                         (1000, 2000)])
 
     if level_number == 2:
         lane_9 = [Mob(150, 690, get_mob_sprite(False), False), Mob(300, 690, get_mob_sprite(False), False),
@@ -157,7 +161,11 @@ def create_level(level_number):
                       fl_time_spawned=[],
                       floating_lanes=[],
                       sinking_cord=(0, 0),
-                      safe_lanes=[]
+                      safe_lanes=[],
+                      possible_spawn=[(1000, 2000), (2000, 3000), (1000, 2000),
+                                      (2000, 3000), (1000, 2000), (2000, 3000),
+                                      (1000, 2000), (2000, 3000), (1000, 2000)],
+                      fl_possible_spawn=[]
                       )
 
     if level_number == 3:
@@ -186,7 +194,7 @@ def create_level(level_number):
                           Lane([Floating_mob(150, 645, get_floating_mob_sprite(True), True)], 645, 5, True),
                           Lane(lane_9, 690, 5, False)],
                       safe_lanes=[
-                          Lane([Floating_mob(150, 245, get_safe_floating_mob_sprite(True), False)], 245, 5, True),
+                          Lane([Floating_mob(150, 245, get_safe_floating_mob_sprite(True), False)], 245, 5, False),
                           Lane([Floating_mob(150, 510, get_safe_floating_mob_sprite(True), False)], 510, 5, False)],
                       background_image=get_background_image(2),
                       amount_quiz=3,
@@ -195,6 +203,11 @@ def create_level(level_number):
                       fl_time_spawned=[tick, tick, tick, tick, tick, tick, tick, tick, tick, tick, tick, tick, tick],
                       spawn_timer=[],
                       time_spawned=[],
-                      sinking_cord=(60, 735)
+                      sinking_cord=(60, 735),
+                      fl_possible_spawn=[(1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000),
+                                         (1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000),
+                                         (1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000)],
+                      possible_spawn=[]
+
                       )
     return level
