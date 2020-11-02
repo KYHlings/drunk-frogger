@@ -178,24 +178,24 @@ def create_level(level_number):
 
         level = Level(lanes=[],
                       floating_lanes=[
-                          Lane([Floating_mob(150, 60, get_floating_mob_sprite(False), False)], 60, 5, False),
-                          Lane([Floating_mob(150, 105, get_floating_mob_sprite(True), True)], 105, 5, True),
-                          Lane([Floating_mob(150, 150, get_floating_mob_sprite(False), False)], 150, 5, False),
-                          Lane([Floating_mob(150, 195, get_floating_mob_sprite(False), False)], 195, 5, False),
+                          Lane([Floating_mob(150, 60, get_floating_mob_sprite(False), False)], 60, 8, False),
+                          Lane([Floating_mob(150, 105, get_floating_mob_sprite(True), True)], 105, 12, True),
+                          Lane([Floating_mob(150, 150, get_floating_mob_sprite(False), False)], 150, 10, False),
+                          Lane([Floating_mob(150, 195, get_floating_mob_sprite(False), False)], 195, 7, False),
 
-                          Lane([Floating_mob(150, 290, get_floating_mob_sprite(False), False)], 290, 5, False),
-                          Lane([Floating_mob(150, 335, get_floating_mob_sprite(False), False)], 335, 5, False),
+                          Lane([Floating_mob(150, 290, get_floating_mob_sprite(False), False)], 290, 6, False),
+                          Lane([Floating_mob(150, 335, get_floating_mob_sprite(False), False)], 335, 9, False),
                           Lane([Floating_mob(150, 380, get_floating_mob_sprite(True), True)], 380, 5, True),
-                          Lane([Floating_mob(150, 425, get_floating_mob_sprite(True), False)], 425, 5, False),
-                          Lane([Floating_mob(150, 470, get_floating_mob_sprite(True), False)], 470, 5, False),
+                          Lane([Floating_mob(150, 425, get_floating_mob_sprite(True), False)], 425, 12, False),
+                          Lane([Floating_mob(150, 470, get_floating_mob_sprite(True), False)], 470, 3, False),
 
-                          Lane([Floating_mob(150, 555, get_floating_mob_sprite(True), False)], 555, 5, False),
-                          Lane([Floating_mob(150, 600, get_floating_mob_sprite(True), False)], 600, 5, False),
+                          Lane([Floating_mob(150, 555, get_floating_mob_sprite(True), False)], 555, 4, False),
+                          Lane([Floating_mob(150, 600, get_floating_mob_sprite(True), False)], 600, 10, False),
                           Lane([Floating_mob(150, 645, get_floating_mob_sprite(True), True)], 645, 5, True),
                           Lane(lane_9, 690, 5, False)],
                       safe_lanes=[
-                          Lane([Floating_mob(150, 245, get_safe_floating_mob_sprite(True), False)], 245, 5, False),
-                          Lane([Floating_mob(150, 510, get_safe_floating_mob_sprite(True), False)], 510, 5, False)],
+                          Lane([Floating_mob(150, 245, get_safe_floating_mob_sprite(True), False)], 245, 6, False),
+                          Lane([Floating_mob(150, 510, get_safe_floating_mob_sprite(True), False)], 510, 6, False)],
                       background_image=get_background_image(2),
                       amount_quiz=3,
                       quiz_cord=[530, 275, 20],
@@ -204,9 +204,9 @@ def create_level(level_number):
                       spawn_timer=[],
                       time_spawned=[],
                       sinking_cord=(60, 735),
-                      fl_possible_spawn=[(1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000),
-                                         (1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000),
-                                         (1000, 2000), (1000, 2000), (1000, 2000), (1000, 2000)],
+                      fl_possible_spawn=[(1000, 1500), (400, 1000), (1000, 1500), (1000, 2000),
+                                         (1000, 2000), (1000, 2000), (1000, 2000), (400, 1000), (2000, 3000),
+                                         (1500, 2500), (1000, 2000), (1000, 2000), (1000, 2000)],
                       possible_spawn=[]
 
                       )
