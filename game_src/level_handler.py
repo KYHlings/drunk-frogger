@@ -141,7 +141,7 @@ def create_level(level_number):
         lane_8 = []
         lane_7 = []
 
-        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 2, False),
+        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 3, False),
                              Lane([Mob(150, 115, get_mob_sprite(True), True)], 115, 5, True),
                              Lane([Mob(150, 185, get_mob_sprite(True), True)], 185, 10, True),
 
@@ -149,8 +149,8 @@ def create_level(level_number):
                              Lane([Mob(150, 375, get_mob_sprite(True), True)], 375, 14, True),
                              Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 7, False),
 
-                             Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 8, False),
-                             Lane([Mob(150, 625, get_mob_sprite(True), True)], 625, 8, True),
+                             Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 15, False),
+                             Lane([Mob(150, 625, get_mob_sprite(True), True)], 625, 3, True),
                              Lane(lane_9, 690, 8, False)],
                       background_image=get_background_image(1),
                       amount_quiz=3,
@@ -162,9 +162,9 @@ def create_level(level_number):
                       floating_lanes=[],
                       sinking_cord=(0, 0),
                       safe_lanes=[],
-                      possible_spawn=[(3000, 4000), (1500, 2500), (700, 1600),
+                      possible_spawn=[(2000, 2500), (1500, 2500), (700, 1600),
                                       (1800, 2700), (500, 1600), (1200, 1800),
-                                      (1000, 2000), (2000, 3000), (1000, 2000)],
+                                      (300, 1000), (2000, 2500), (2000, 3000)],
                       fl_possible_spawn=[]
                       )
 
