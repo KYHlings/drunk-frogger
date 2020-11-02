@@ -3,7 +3,7 @@ import sys
 from game_src.variabels import *
 from image.image_handler import win_image, alcohol_poisoning_image, how_to_play_image, roadkill_image, drown_image, \
     space_frog_image
-from music_and_sound.sound_handler import get_win_music, get_lose_music
+from music_and_sound.sound_handler import get_win_music, get_lose_music, get_credits_music
 
 score_surf = pygame.surface.Surface((240, 60))
 
@@ -91,14 +91,19 @@ def level_title_window(level_number):
 
 def credits():
     while True:
+        get_credits_music()
         screen.fill(WHITE)
         draw_text("T.O.A.D Productions",font,BLACK,screen,200,200,'topleft')
         draw_text("Progammers",large_text,BLACK,screen,200,250,'topleft')
-        draw_text()
-        draw_text()
-        draw_text()
-        draw_text()
-        draw_text()
+        names= ["Tobias Andblad","Elizabeth Kallioniemi","David Pergament","Jonathan Vernersson","Daniel Yngve"]
+        for name in names:
+            draw_text(name,large_text,BLACK,screen,200,200,'topleft')
+        # draw_text("Tobias Andblad")
+        # draw_text("Elizabeth Kallioniemi")
+        # draw_text("David Pergament")
+        # draw_text("Jonathan Vernersson")
+        # draw_text("Daniel Yngve")
         draw_text("Music",large_text,BLACK,screen,200,350,'topleft')
         draw_text("David Pergament")
         draw_text("Art",large_text,BLACK,screen,200,450,'topleft')
+        draw_text("Elizabeth Kallioniemi")

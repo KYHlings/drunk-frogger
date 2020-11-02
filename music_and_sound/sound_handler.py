@@ -66,6 +66,9 @@ def get_lose_music():
     pygame.mixer.music.load("music_and_sound/music_src/df_die_music.mp3")
     return pygame.mixer.music.play(1)
 ####
+def get_credits_music():
+    pygame.mixer.music.load("music_and_sound/music_src/df_credits.mp3")
+    return pygame.mixer.music.play(1)
 
 # Loads different track depending on level of drunkness.
 def get_drunk_music(level_number, drunken_meter):
