@@ -67,21 +67,31 @@ def quiz_window(quiz, drunk_meter):
 
 
 def quiz_settings(current_quiz):
-    screen.blit(main_menu_image(), (0, 0))
-    categories_ls = {11: "Movies", 15: "Video Games"}
+    categories_ls = {11: "Movies", 15: "Video Games",19: "Math", 12: "Music", 21: "Sports"}
     while True:
+        screen.blit(main_menu_image(), (0, 0))
         draw_text(f"Current quiz category:{categories_ls[current_quiz]}", large_text, BLACK, screen, 50, 100, "topleft")
         draw_text("Enter to return", large_text, BLACK, screen, 50, 700, "topleft")
         draw_text("[1]:Movies", font1, BLACK, screen, 75, 200, 'topleft')
         draw_text("[2]:Video Games", font1, BLACK, screen, 75, 250, 'topleft')
-
+        draw_text("[3]:Math", font1, BLACK, screen, 75, 300, 'topleft')
+        draw_text("[4]:Music", font1, BLACK, screen, 75, 350, 'topleft')
+        draw_text("[5]:Sports", font1, BLACK, screen, 75, 400, 'topleft')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_1:
-                    return 11
+                    current_quiz = 11
                 if event.key == pygame.K_2:
-                    return 15
+                    current_quiz = 15
+                if event.key == pygame.K_3:
+                    current_quiz = 19
+                if event.key == pygame.K_4:
+                    current_quiz = 12
+                if event.key == pygame.K_5:
+                    current_quiz = 21
+                if event.key == pygame.K_RETURN:
+                    return current_quiz
         pygame.display.update()
 

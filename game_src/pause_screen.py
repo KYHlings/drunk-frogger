@@ -18,7 +18,7 @@ def pause_screen(volume):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYUP:
                 if event.key == pygame.K_c:
                     return volume
                 if event.key == pygame.K_s:
