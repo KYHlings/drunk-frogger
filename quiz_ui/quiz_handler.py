@@ -1,11 +1,11 @@
-
 from random import shuffle
 import html
 import requests
 
-from image.image_handler import get_get_quiz_sprite, get_quiz_box
-from game_src.window_handler import  text_object, draw_text
+from image.image_handler import get_get_quiz_sprite, get_quiz_box, main_menu_image
+from game_src.window_handler import text_object, draw_text
 from game_src.variabels import *
+
 
 # loads quiz from json-file, in future will load from api.
 def get_quiz():
@@ -56,11 +56,32 @@ def quiz_window(quiz, drunk_meter):
                         return question_list[i] == rightanswers
         screen.blit(get_get_quiz_sprite(), (140, 230))
         screen.blit(get_quiz_box(), (-20, 330))
-        draw_text("The Wise Goat", goat_name_fonts, BLACK, screen, 175, 445,'topleft')
-        draw_text(question, question_fonts_ls, BLACK, screen, 75, 525,'topleft')
+        draw_text("The Wise Goat", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
+        draw_text(question, question_fonts_ls, BLACK, screen, 75, 525, 'topleft')
         alt_pos = 575
         for alternative_text in alternatives_text:
             alternative_text[1].topleft = (100, alt_pos)
             alt_pos += 45
             screen.blit(alternative_text[0], alternative_text[1])
         pygame.display.update()
+
+
+def quiz_settings(current_quiz):
+    screen.blit(main_menu_image(), (0, 0))
+    categories_ls = {11: "Movies", 15: "Video Games"}
+    while True:
+        draw_text(f"Current quiz category:{categories_ls[current_quiz]}", large_text, BLACK, screen, 50, 100, "topleft")
+        draw_text("Enter to return", large_text, BLACK, screen, 50, 700, "topleft")
+        draw_text("[1]:Movies", font1, BLACK, screen, 75, 200, 'topleft')
+        draw_text("[2]:Video Games", font1, BLACK, screen, 75, 250, 'topleft')
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_1:
+                    return 11
+                if event.key == pygame.K_2:
+                    return 15
+        pygame.display.update()
+

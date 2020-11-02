@@ -6,6 +6,7 @@ from music_and_sound.sound_handler import Sound_fx
 def main():
     # This program runs the game
     volume = 0.1
+    quiz_category = 15
     sound_fx = Sound_fx()
     start_menu(sound_fx, volume)
     game_loop(sound_fx, volume)
