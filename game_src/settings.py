@@ -42,8 +42,8 @@ def settings_window(volume,quiz_category):
     while True:
         screen.blit(main_menu_image(), (0, 0))
         draw_text("Settings menu", font, BLACK, screen, 640, 100, 'center')
-        draw_text("[S]ound Settings", font1, BLACK, screen, 200, 200, 'topleft')
-        draw_text("[Q]uiz Settings", font1, BLACK, screen, 300, 400, "topleft")
+        draw_text("[S]ound Settings", font1, BLACK, screen, 640, 300, 'center')
+        draw_text("[Q]uiz Settings", font1, BLACK, screen, 640, 400, "center")
         draw_text("Enter to return",large_text,BLACK,screen,50,700,"topleft")
 
         for event in pygame.event.get():

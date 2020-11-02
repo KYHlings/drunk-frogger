@@ -70,13 +70,14 @@ def quiz_settings(current_quiz):
     categories_ls = {11: "Movies", 15: "Video Games",19: "Math", 12: "Music", 21: "Sports"}
     while True:
         screen.blit(main_menu_image(), (0, 0))
+        draw_text("Choose quiz category", font1, BLACK, screen, 640, 50, "center")
         draw_text(f"Current quiz category:{categories_ls[current_quiz]}", large_text, BLACK, screen, 50, 100, "topleft")
+        draw_text("[1]:Movies", font1, BLACK, screen, 100, 200, 'topleft')
+        draw_text("[2]:Video Games", font1, BLACK, screen, 100, 270, 'topleft')
+        draw_text("[3]:Math", font1, BLACK, screen, 100, 340, 'topleft')
+        draw_text("[4]:Music", font1, BLACK, screen, 100, 410, 'topleft')
+        draw_text("[5]:Sports", font1, BLACK, screen, 100, 480, 'topleft')
         draw_text("Enter to return", large_text, BLACK, screen, 50, 700, "topleft")
-        draw_text("[1]:Movies", font1, BLACK, screen, 75, 200, 'topleft')
-        draw_text("[2]:Video Games", font1, BLACK, screen, 75, 250, 'topleft')
-        draw_text("[3]:Math", font1, BLACK, screen, 75, 300, 'topleft')
-        draw_text("[4]:Music", font1, BLACK, screen, 75, 350, 'topleft')
-        draw_text("[5]:Sports", font1, BLACK, screen, 75, 400, 'topleft')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
