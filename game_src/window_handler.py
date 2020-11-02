@@ -1,9 +1,8 @@
 import sys
 
-from game_src.settings import sound_settings
 from game_src.variabels import *
 from image.image_handler import win_image, alcohol_poisoning_image, how_to_play_image, roadkill_image, drown_image, \
-    space_frog_image, main_menu_image
+    space_frog_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music
 
 score_surf = pygame.surface.Surface((240, 60))
@@ -16,7 +15,7 @@ def text_object(text, font):
 
 
 # Write text at created surface.
-def draw_text(text, font, colour, surface, x, y,direction):
+def draw_text(text, font, colour, surface, x, y, direction):
     text_obj = font.render(text, 1, colour)
     text_rect = text_obj.get_rect()
     if direction == 'topleft':
@@ -69,7 +68,7 @@ def instruction_window():
     # Creates how to play window
     while True:
         screen.blit(how_to_play_image(), full_window_blit_pos)
-        draw_text("Any key to return",key_font,GREY,screen,1270,10,'topright')
+        draw_text("Any key to return", key_font, GREY, screen, 1270, 10, 'topright')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -82,30 +81,10 @@ def level_title_window(level_number):
     # Display level names before playing a level
     name_ls = ['Suburban Bourbon', 'Cosmopolitan', 'Pangalactic']
     screen.fill(BLACK)
-    draw_text(name_ls[level_number - 1], title_font,WHITE,screen,650,350,'center')
+    draw_text(name_ls[level_number - 1], title_font, WHITE, screen, 650, 350, 'center')
     if level_number == 3:
-        draw_text('Gargleblaster', title_font,WHITE,screen,650,450,'center')
+        draw_text('Gargleblaster', title_font, WHITE, screen, 650, 450, 'center')
     pygame.display.update()
     pygame.time.delay(1000)
-
-def settings_window(volume):
-    while True:
-
-
-        pygame.blit(main_menu_image(),(0,0))
-        draw_text("[S]ound Settings",font1,BLACK,screen,200,200,'topleft')
-        draw_text("[Q]iz Settings",font1,BLACK,screen,300,200,"topleft")
-        draw_text("Press Enter to return",font1,BLACK, screen, 1270,50,"topright")
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                quit()
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_s:
-                    volume = sound_settings(volume)
-                if event.key == pygame.K_q:
-                    pass
-                if event.key == pygame.K_RETURN:
-                    return volume
 
 

@@ -14,7 +14,7 @@ def sound_settings(volume_float):
         screen.blit(main_menu_image(), (0, 0))
         draw_text("Settings", font, BLACK, screen, 400, 100,'topleft')
         draw_text("Change volume [-][+]", font1, BLACK, screen, 400, 300,'topleft')
-        draw_text("Enter to return",font1,BLACK,screen,50,700,"topleft")
+        draw_text("Enter to return",large_text,BLACK,screen,50,700,"topleft")
         for event in pygame.event.get():
             if event.type == pygame.KEYUP:
                 # Allows keyboard input to change sound volume
@@ -34,6 +34,27 @@ def sound_settings(volume_float):
             volume_rect_x += 50
             pygame.draw.rect(screen, BLACK, volume_rect)
         music_volume(volume_float)
+        pygame.display.update()
+
+
+def settings_window(volume):
+    while True:
+        screen.blit(main_menu_image(), (0, 0))
+        draw_text("Settings menu", font, BLACK, screen, 640, 100, 'center')
+        draw_text("[S]ound Settings", font1, BLACK, screen, 200, 200, 'topleft')
+        draw_text("[Q]uiz Settings", font1, BLACK, screen, 300, 400, "topleft")
+        draw_text("Enter to return",large_text,BLACK,screen,50,700,"topleft")
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_s:
+                    volume = sound_settings(volume)
+                if event.key == pygame.K_q:
+                    pass
+                if event.key == pygame.K_RETURN:
+                    return volume
         pygame.display.update()
 
 

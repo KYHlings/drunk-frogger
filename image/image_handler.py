@@ -13,7 +13,7 @@ def main_menu_image():
 
 
 def get_background_image(level_number):
-    file_names = ["bg_suburban_bourbon.png", "bg_cosmopolitan.png", "bg_Pangalactic_G.png"]
+    file_names = ["bg_suburban_bourbon.png", "bg_cosmopolitan.png", "bg_Pangalactic_G2.png"]
     background_image = pygame.image.load(f"image/backgrounds_src/{file_names[level_number]}")
     background_image = pygame.transform.scale(background_image, bg_image_size)
     return background_image
