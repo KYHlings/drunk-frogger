@@ -11,7 +11,7 @@ tick = pygame.time.get_ticks()
 
 class Level:
     def __init__(self, lanes, floating_lanes, background_image, spawn_timer, time_spawned,
-                 fl_spawn_timer, fl_time_spawned, amount_quiz, quiz_cord, sinking_cord, safe_lanes):
+                 fl_spawn_timer, fl_time_spawned, amount_quiz, quiz_cord, sinking_cord, safe_lanes, possible_spawn, fl_possible_spawn):
         self.lanes = lanes
         self.floating_lanes = floating_lanes
         self.background_image = background_image
@@ -23,7 +23,8 @@ class Level:
         self.quiz_cord = quiz_cord
         self.sinking_cord = sinking_cord
         self.safe_lanes = safe_lanes
-
+        self.possible_spawn = possible_spawn
+        self.fl_possible_spawn = fl_possible_spawn
     def spawn_paused(self):
         # Saves the time when the game pauses
         self.time_of_pause = pygame.time.get_ticks()
@@ -68,7 +69,7 @@ class Level:
                     self.lanes[i].mobs.append(
                         Mob(1280, self.lanes[i].y, get_mob_sprite(True), self.lanes[i].is_left))
                 self.time_spawned[i] = pygame.time.get_ticks()
-                self.spawn_timer[i] = randint(1000, 2000)
+                self.spawn_timer[i] = randint(self.possible_spawn[i][0], self.possible_spawn[i][1])
 
         for i in range(len(self.floating_lanes)):
             if pygame.time.get_ticks() - self.fl_time_spawned[i] >= self.fl_spawn_timer[i]:
@@ -122,13 +123,12 @@ def create_level(level_number):
                       amount_quiz=2,
                       quiz_cord=[375, 30],
                       spawn_timer=[1000, 1000, 1000, 1000],
-                      time_spawned=[pygame.time.get_ticks(), pygame.time.get_ticks(), pygame.time.get_ticks(),
-                                    pygame.time.get_ticks()],
+                      time_spawned=[tick, tick, tick, tick],
                       fl_spawn_timer=[1000, 2000, 1000, 2000, 1000, 2000],
                       fl_time_spawned=[tick, tick, tick, tick, tick, tick],
                       sinking_cord=(85, 305),
-                      safe_lanes=[]
-                      )
+                      safe_lanes=[],
+                      possible_spawn=[(3000, 4000), (1000, 2000), (1000, 2000), (1000, 2000)])
 
     if level_number == 2:
         lane_9 = [Mob(150, 690, get_mob_sprite(False), False), Mob(300, 690, get_mob_sprite(False), False),
