@@ -1,6 +1,6 @@
 from image.image_handler import main_menu_image
 from music_and_sound.sound_handler import music_volume
-from game_src.window_handler import draw_text
+from game_src.window_handler import draw_text, credits_window
 from game_src.variabels import *
 from quiz_ui.quiz_handler import quiz_settings
 
@@ -44,6 +44,7 @@ def settings_window(volume,quiz_category):
         draw_text("Settings menu", font, BLACK, screen, 640, 100, 'center')
         draw_text("[S]ound Settings", font1, BLACK, screen, 640, 300, 'center')
         draw_text("[Q]uiz Settings", font1, BLACK, screen, 640, 400, "center")
+        draw_text("[C]redits", font1, BLACK, screen, 640, 500, "center")
         draw_text("Enter to return",large_text,BLACK,screen,50,700,"topleft")
 
         for event in pygame.event.get():
@@ -54,6 +55,8 @@ def settings_window(volume,quiz_category):
                     volume = sound_settings(volume)
                 if event.key == pygame.K_q:
                     quiz_category = quiz_settings(quiz_category)
+                if event.key == pygame.K_c:
+                    credits_window()
                 if event.key == pygame.K_RETURN:
                     return volume,quiz_category
         pygame.display.update()
