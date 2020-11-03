@@ -17,7 +17,7 @@ def score_by_player_position(player_y, last_y, score):
 
 
 def get_score():
-    #gets score file.
+    # gets score file.
     score_ls = json.loads(Path("game_src/highscore.json").read_text(encoding='utf8'))
     return score_ls
 
@@ -39,11 +39,11 @@ def write_highscore():
     user_name = ""
     while True:
         screen.fill(BLACK)
-        draw_text("Enter your name", score_font, WHITE, screen, 630, 60,'center')
+        draw_text("Enter your name", score_font, WHITE, screen, 630, 60, 'center')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYUP:
                 if event.key == pygame.K_BACKSPACE:
                     user_name = user_name[:-1]
                 elif event.key == pygame.K_RETURN:
@@ -51,7 +51,7 @@ def write_highscore():
                 else:
                     user_name += event.unicode
 
-        draw_text(user_name, score_font, WHITE, screen, 640, 130,'center')
+        draw_text(user_name, score_font, WHITE, screen, 640, 130, 'center')
         pygame.display.update()
 
 
@@ -61,15 +61,16 @@ def score_window():
     screen.fill(WHITE)
     while True:
         score_y = 100
-        draw_text("High score", score_font, BLACK, screen, 600, 40,'center')
-        draw_text("Any key to return",key_font,BLACK,screen,1270,10,"topright")
+        draw_text("High score", score_font, BLACK, screen, 600, 40, 'center')
+        draw_text("Any key to return", key_font, BLACK, screen, 1270, 10, "topright")
         for nr, score in enumerate(score_ls, 1):
-            draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 285, score_y,'topleft')
+            draw_text(f"{nr:2}. {score['name']:12} : {score['score']:5}", score_font, BLACK, screen, 285, score_y,
+                      'topleft')
             score_y += 70
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYUP:
                 return
 
-            pygame.display.update()
+        pygame.display.update()

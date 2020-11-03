@@ -18,8 +18,8 @@ def start_menu(sound_fx, volume, quiz_category):
     running = True
     while running:
         # This program writes out the start menu
-        #screen.blit(main_menu_image(), (0, 0))
-        screen.fill(WHITE)
+        screen.blit(main_menu_image(), (0, 0))
+        #screen.fill(WHITE)
         draw_text("Main Menu", font, BLACK, screen, 370, 20, 'topleft')
         draw_text("[B]egin Game", font1, BLACK, screen, 500, 180, 'topleft')
         draw_text("[S]ettings", font1, BLACK, screen, 500, 260, 'topleft')

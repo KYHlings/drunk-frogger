@@ -58,7 +58,7 @@ def lose_window(cause_of_death):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYUP:
                 return
 
         pygame.display.update()
@@ -72,9 +72,9 @@ def instruction_window():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYUP:
                 return
-            pygame.display.update()
+        pygame.display.update()
 
 
 def level_title_window(level_number):
