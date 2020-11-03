@@ -87,6 +87,11 @@ def get_player_sprite(drunk_meter):
     player_sprite = pygame.transform.scale(player_sprite, player_sprite_size)
     return player_sprite
 
+def get_player_mask_for_outline():
+    player_sprite = pygame.image.load(f"image/player_sprites/frog.png")
+    player_sprite = pygame.transform.scale(player_sprite, player_sprite_size)
+    return player_sprite
+
 
 # rotates player sprite depending on movment
 def rotate_player_sprite(player_sprite, rotation):

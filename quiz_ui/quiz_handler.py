@@ -9,7 +9,7 @@ from game_src.variabels import *
 
 # loads quiz from json-file, in future will load from api.
 def get_quiz(quiz_category):
-    url = requests.get(f"https://opentdb.com/api.php?amount=50&category={quiz_category}&difficulty=easy&type=multiple")
+    url = requests.get(f"https://opentdb.com/api.php?amount=25&category={quiz_category}&difficulty=easy&type=multiple")
     content = url.json(encoding='utf8')['results']
     shuffle(content)
     return content
@@ -20,6 +20,7 @@ def quiz(quiz_category):
     while True:
         quiz_content = get_quiz(quiz_category)
         for q in quiz_content:
+            print(html.unescape(q['question']))
             if len(html.unescape(q['question'])) < 88:
                 return q["question"], "correct", q["incorrect_answers"]
 
@@ -67,16 +68,16 @@ def quiz_window(quiz, drunk_meter):
 
 
 def quiz_settings(current_quiz):
-    categories_ls = {11: "Movies", 15: "Video Games",19: "Math", 12: "Music", 21: "Sports"}
+    categories_ls = {11: "Movies", 15: "Video Games", 9: "General Knowledge", 12: "Music", 10: "Books"}
     while True:
         screen.blit(main_menu_image(), (0, 0))
         draw_text("Choose quiz category", font1, BLACK, screen, 640, 50, "center")
         draw_text(f"Current quiz category:{categories_ls[current_quiz]}", large_text, BLACK, screen, 50, 100, "topleft")
         draw_text("[1]:Movies", font1, BLACK, screen, 100, 200, 'topleft')
         draw_text("[2]:Video Games", font1, BLACK, screen, 100, 270, 'topleft')
-        draw_text("[3]:Math", font1, BLACK, screen, 100, 340, 'topleft')
+        draw_text("[3]:Books", font1, BLACK, screen, 100, 340, 'topleft')
         draw_text("[4]:Music", font1, BLACK, screen, 100, 410, 'topleft')
-        draw_text("[5]:Sports", font1, BLACK, screen, 100, 480, 'topleft')
+        draw_text("[5]:General Knowledge", font1, BLACK, screen, 100, 480, 'topleft')
         draw_text("Enter to return", large_text, BLACK, screen, 50, 700, "topleft")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -87,11 +88,11 @@ def quiz_settings(current_quiz):
                 if event.key == pygame.K_2:
                     current_quiz = 15
                 if event.key == pygame.K_3:
-                    current_quiz = 19
+                    current_quiz = 10
                 if event.key == pygame.K_4:
                     current_quiz = 12
                 if event.key == pygame.K_5:
-                    current_quiz = 21
+                    current_quiz = 9
                 if event.key == pygame.K_RETURN:
                     return current_quiz
         pygame.display.update()

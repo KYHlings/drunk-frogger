@@ -1,7 +1,5 @@
 import sys
 
-import pygame
-
 from game_src.score_handler import score_window
 from game_src.settings import settings_window
 from game_src.variabels import *
