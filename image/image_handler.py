@@ -8,7 +8,7 @@ from image.image_variabels import *
 # each function gets bg_image for respektiv screen.
 
 def main_menu_image():
-    main_image = pygame.image.load("image/backgrounds_src/credits_bg2.jpg")
+    main_image = pygame.image.load("image/backgrounds_src/credits_bg3.jpg")
     main_image = pygame.transform.scale(main_image, bg_image_size)
     return main_image
 
@@ -38,7 +38,7 @@ def alcohol_poisoning_image():
     return lose_frog_image
 
 def credits_image():
-    credits_image = pygame.image.load("image/backgrounds_src/credits_bg.jpg")
+    credits_image = pygame.image.load("image/backgrounds_src/credits_bg3.jpg")
     credits_image = pygame.transform.scale(credits_image, bg_image_size)
     return credits_image
 

@@ -53,7 +53,7 @@ def get_level_music(level_number):
 
 
 def get_goat_music():
-    pygame.mixer.music.load("music_and_sound/music_src/df_goat_music.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/df_goat_music2.mp3")
     return pygame.mixer.music.play(-1)
 
 

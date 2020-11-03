@@ -78,7 +78,7 @@ def quiz_settings(current_quiz):
         draw_text("[3]:Books", font1, BLACK, screen, 100, 340, 'topleft')
         draw_text("[4]:Music", font1, BLACK, screen, 100, 410, 'topleft')
         draw_text("[5]:General Knowledge", font1, BLACK, screen, 100, 480, 'topleft')
-        draw_text("Enter to return", large_text, BLACK, screen, 50, 700, "topleft")
+        draw_text("Enter to return", large_text, BLACK, screen, 50, 650, "topleft")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()

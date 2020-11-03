@@ -91,9 +91,7 @@ def level_title_window(level_number):
 def credits_window():
     get_credits_music()
     while True:
-        screen.fill(WHITE)
-        #screen.blit(credits_image(),full_window_blit_pos)
-
+        screen.blit(credits_image(),full_window_blit_pos)
         draw_text("T.O.A.D Productions", credits_font_large, BLACK, screen, 640, 50, 'center')
         draw_text("Programmers", credits_title_font, BLACK, screen, 640, 150, 'center')
         names_y = 200
@@ -105,7 +103,7 @@ def credits_window():
         draw_text("David Pergament", credits_font, BLACK, screen, 640, 510, 'center')
         draw_text("Art", credits_title_font, BLACK, screen, 640, 570, 'center')
         draw_text("Elizabeth Kallioniemi", credits_font, BLACK, screen, 640, 620, 'center')
-        draw_text("Any key to return", key_font, BLACK, screen, 1270, 10, "topright")
+        draw_text("Any key to return",credits_font,BLACK,screen,50,680,"topleft")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
