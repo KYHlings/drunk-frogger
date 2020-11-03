@@ -56,7 +56,7 @@ class Level:
             for floating_mob in lane.floating_mobs[:]:
                 if not floating_mob.is_left:
                     floating_mob.update_rect(1, lane.velocity)
-                    if floating_mob.mob_x >= 1020 or floating_mob.mob_x <= -10:
+                    if floating_mob.mob_x >= 1045 or floating_mob.mob_x <= -35:
                         lane.velocity *= -1
 
     def spawn_mobs(self):

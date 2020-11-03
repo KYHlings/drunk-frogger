@@ -12,9 +12,9 @@ def pause_screen(volume):
     for option in options:
         option_ls.append(text_object(option, pause_font))
     while True:
-        alt = 250
+        alt = 340
         screen.blit(get_pause_window(), (480, 225))
-        draw_text(pause, large_text, BLACK, screen, 535, 180,'topleft')
+        draw_text(pause, large_text, BLACK, screen, 535, 270,'topleft')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
