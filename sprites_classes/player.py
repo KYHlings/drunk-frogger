@@ -38,6 +38,16 @@ class Player:
         elif self.drunk_meter == 4:
             self.velocity = -8
 
+
+    def mask_outline(self,screen):
+        mask = self.player_mask
+        mask_surf = mask.to_surface()
+        mask_surf.set_colorkey((0,0,0))
+        screen.blit(mask_surf,(self.x -1,self.y))
+        screen.blit(mask_surf, (self.x +1, self.y))
+        screen.blit(mask_surf, (self.x, self.y -1))
+        screen.blit(mask_surf, (self.x , self.y +1))
+
     def reset(self):
         # Sets player cord when triggerd.
         self.x = 620

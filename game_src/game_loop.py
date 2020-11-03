@@ -39,7 +39,9 @@ def redraw_window(player, wise_goat, dead_frog, background_image, lanes, floatin
         screen.blit(player.update_img()[0], (3000, 3000))
 
     else:
+        player.mask_outline(screen)
         screen.blit(player.update_img()[0], player.update_img()[1])
+
     for lane in lanes:
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
@@ -64,7 +66,7 @@ def game_loop(sound_fx, volume,quiz_category):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 3
+    level_number = 1
     score = 0
     score_time_counter = 0
     while True:
