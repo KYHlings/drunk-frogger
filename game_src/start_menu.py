@@ -18,12 +18,12 @@ def start_menu(sound_fx, volume, quiz_category):
         # This program writes out the start menu
         screen.blit(main_menu_image(), (0, 0))
         #screen.fill(WHITE)
-        draw_text("Main Menu", font, BLACK, screen, 370, 20, 'topleft')
-        draw_text("[B]egin Game", font1, BLACK, screen, 500, 180, 'topleft')
-        draw_text("[S]ettings", font1, BLACK, screen, 500, 260, 'topleft')
-        draw_text("[T]utorial", font1, BLACK, screen, 500, 340, 'topleft')
-        draw_text("[H]igh Score", font1, BLACK, screen, 500, 420, 'topleft')
-        draw_text("[Q]uit Game", font1, BLACK, screen, 500, 500, 'topleft')
+        draw_text("Main Menu", menu_font_large, BLACK, screen, 370, 20, 'topleft')
+        draw_text("[B]egin Game", menu_font, BLACK, screen, 500, 180, 'topleft')
+        draw_text("[S]ettings", menu_font, BLACK, screen, 500, 260, 'topleft')
+        draw_text("[T]utorial", menu_font, BLACK, screen, 500, 340, 'topleft')
+        draw_text("[H]igh Score", menu_font, BLACK, screen, 500, 420, 'topleft')
+        draw_text("[Q]uit Game", menu_font, BLACK, screen, 500, 500, 'topleft')
 
         # This section takes input user to control menu
         for event in pygame.event.get():

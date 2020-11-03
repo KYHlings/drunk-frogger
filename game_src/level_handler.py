@@ -4,7 +4,7 @@ import pygame
 
 from image.image_handler import get_background_image, get_mob_sprite, get_floating_mob_sprite, \
     get_safe_floating_mob_sprite, get_floating_mob_sprite_space
-from sprites_classes.npc import Mob, Floating_mob
+from character_classes.npc import Mob, Floating_mob
 
 tick = pygame.time.get_ticks()
 

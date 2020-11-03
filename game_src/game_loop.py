@@ -1,11 +1,11 @@
 from game_src.level_handler import create_level
 from game_src.pause_screen import pause_screen
 from game_src.score_handler import score_by_player_position, high_score_list
-from sprites_classes.dead_frog import Dead_Frog
+from character_classes.dead_frog import Dead_Frog
 from image.image_handler import get_player_sprite, get_get_sprite, \
     get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_sloshed_face, get_drowned_sprite
-from sprites_classes.npc import Goat
-from sprites_classes.player import Player
+from character_classes.npc import Goat
+from character_classes.player import Player
 from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
 from game_src.window_handler import lose_window, win_window, level_title_window, draw_text
@@ -14,7 +14,7 @@ from game_src.variabels import *
 
 def redraw_window(player, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
                   level_number, question_number):
-    # This function updates the window with sprites_classes each loop
+    # This function updates the window with character_classes each loop
     screen.blit(background_image, full_window_blit_pos)
     draw_text(f"score:{score}", score_font, BLACK, screen, 1270, 10, 'topright')
     life_x = 10
