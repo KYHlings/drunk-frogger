@@ -54,7 +54,7 @@ def get_quiz_box():
 
 # gets image for pause window
 def get_pause_window():
-    pause_box = pygame.image.load("image/backgrounds_src/Scroll_1.jpg")
+    pause_box = pygame.image.load("image/backgrounds_src/pause_menu.png")
     pause_box = pygame.transform.scale(pause_box, pause_window_size)
     return pause_box
 

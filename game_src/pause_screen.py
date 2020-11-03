@@ -10,11 +10,11 @@ def pause_screen(volume):
     option_ls = []
     pause = "Pause Menu"
     for option in options:
-        option_ls.append(text_object(option, large_text))
+        option_ls.append(text_object(option, pause_font))
     while True:
         alt = 250
-        screen.blit(get_pause_window(), (465, 125))
-        draw_text(pause, large_text, BLACK, screen, 535, 170,'topleft')
+        screen.blit(get_pause_window(), (480, 225))
+        draw_text(pause, large_text, BLACK, screen, 535, 180,'topleft')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
@@ -28,8 +28,8 @@ def pause_screen(volume):
                     return False
 
         for alternative in option_ls:
-            alternative[1].center = (625, alt)
-            alt += 75
+            alternative[1].center = (635, alt)
+            alt += 50
             screen.blit(alternative[0], alternative[1])
         pygame.display.update()
     return
