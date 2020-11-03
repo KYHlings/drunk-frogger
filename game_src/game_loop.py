@@ -111,13 +111,15 @@ def game_loop(sound_fx, volume,quiz_category):
                 # Checks collision with cars in each lane.
             player, dead_frog, score, no_death = is_frog_run_over(level, player, score, dead_frog, sound_fx,
                                                                  no_death)
+
+            # Checks collision with mobs in floating lanes.
+            player = is_frog_afloat(level, player)
+
             # Triggers event if player is not colliding with floating mob
             player, score, dead_frog, no_death = is_frog_drowning(level, player, score, level_number, sound_fx,
                                                                   dead_frog, no_death)
             if player.lives == 0:
                 return
-            # Checks collision with mobs in floating lanes.
-            player = is_frog_afloat(level, player)
 
             player, question_number, score, dead_frog, no_death, no_wrong_answers, level.spawn_timer, level.fl_spawn_timer = check_quiz(
                 level, player,
