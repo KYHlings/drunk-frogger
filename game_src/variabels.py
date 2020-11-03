@@ -12,6 +12,7 @@ large_text = pygame.font.Font("font_src/PAPYRUS.TTF", 40)
 score_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 45)
 title_font = pygame.font.Font("font_src/ConnectionSerif-d20X.otf", 90)
 key_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 30)
+
 BLACK = (0, 0, 0)
 WHITE = (255,255,255)
 RED = (255,0,0)

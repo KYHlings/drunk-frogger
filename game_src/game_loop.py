@@ -70,7 +70,7 @@ def game_loop(sound_fx, volume,quiz_category):
     score = 0
     score_time_counter = 0
     while True:
-        # starts game loop. Uses level number to load desiganted level.
+        # starts game loop. Uses level number to load designated level.
         level_title_window(level_number)
         last_y = 770
         question_number = 1

@@ -38,15 +38,17 @@ class Player:
         elif self.drunk_meter == 4:
             self.velocity = -8
 
-
-    def mask_outline(self,screen):
+    def mask_outline(self, screen):
+        self.img = get_player_sprite(self.drunk_meter)
+        self.img = rotate_player_sprite(self.img, self.rotation)
+        self.player_mask = pygame.mask.from_surface(self.img)
         mask = self.player_mask
         mask_surf = mask.to_surface()
-        mask_surf.set_colorkey((0,0,0))
-        screen.blit(mask_surf,(self.x -1,self.y))
-        screen.blit(mask_surf, (self.x +1, self.y))
-        screen.blit(mask_surf, (self.x, self.y -1))
-        screen.blit(mask_surf, (self.x , self.y +1))
+        mask_surf.set_colorkey((0, 0, 0))
+        screen.blit(mask_surf, (self.x - 1, self.y))
+        screen.blit(mask_surf, (self.x + 1, self.y))
+        screen.blit(mask_surf, (self.x, self.y - 1))
+        screen.blit(mask_surf, (self.x, self.y + 1))
 
     def reset(self):
         # Sets player cord when triggerd.
