@@ -99,7 +99,7 @@ def game_loop(sound_fx, volume,quiz_category):
                 level.spawn_paused()
                 volume = pause_screen(volume)
                 level.spawn_resumed()
-                if not volume and volume != 0:
+                if volume == -1:
                     return
 
             level.move_mobs()
