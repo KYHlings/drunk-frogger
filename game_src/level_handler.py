@@ -3,7 +3,7 @@ from random import randint
 import pygame
 
 from image.image_handler import get_background_image, get_mob_sprite, get_floating_mob_sprite, \
-    get_safe_floating_mob_sprite
+    get_safe_floating_mob_sprite, get_floating_mob_sprite_space
 from sprites_classes.npc import Mob, Floating_mob
 
 tick = pygame.time.get_ticks()
@@ -82,6 +82,20 @@ class Level:
                 else:
                     self.floating_lanes[i].floating_mobs.append(
                         Floating_mob(1280, self.floating_lanes[i].y, get_floating_mob_sprite(True),
+                                     self.floating_lanes[i].is_left))
+                self.fl_time_spawned[i] = pygame.time.get_ticks()
+                self.fl_spawn_timer[i] = randint(self.fl_possible_spawn[i][0], self.fl_possible_spawn[i][1])
+
+    def spawn_space_mobs(self):
+        for i in range(len(self.floating_lanes)):
+            if pygame.time.get_ticks() - self.fl_time_spawned[i] >= self.fl_spawn_timer[i]:
+                if not self.floating_lanes[i].is_left:
+                    self.floating_lanes[i].floating_mobs.append(
+                        Floating_mob(-60, self.floating_lanes[i].y, get_floating_mob_sprite_space(False),
+                                     self.floating_lanes[i].is_left))
+                else:
+                    self.floating_lanes[i].floating_mobs.append(
+                        Floating_mob(1280, self.floating_lanes[i].y, get_floating_mob_sprite_space(True),
                                      self.floating_lanes[i].is_left))
                 self.fl_time_spawned[i] = pygame.time.get_ticks()
                 self.fl_spawn_timer[i] = randint(self.fl_possible_spawn[i][0], self.fl_possible_spawn[i][1])
@@ -169,29 +183,29 @@ def create_level(level_number):
                       )
 
     if level_number == 3:
-        lane_9 = [Floating_mob(150, 690, get_floating_mob_sprite(False), False),
-                  Floating_mob(300, 690, get_floating_mob_sprite(False), False),
-                  Floating_mob(400, 690, get_floating_mob_sprite(False), False),
-                  Floating_mob(600, 690, get_floating_mob_sprite(False), False)]
+        lane_9 = [Floating_mob(150, 690, get_floating_mob_sprite_space(False), False),
+                  Floating_mob(300, 690, get_floating_mob_sprite_space(False), False),
+                  Floating_mob(400, 690, get_floating_mob_sprite_space(False), False),
+                  Floating_mob(600, 690, get_floating_mob_sprite_space(False), False)]
         lane_8 = []
         lane_7 = []
 
         level = Level(lanes=[],
                       floating_lanes=[
-                          Lane([Floating_mob(150, 60, get_floating_mob_sprite(False), False)], 60, 8, False),
-                          Lane([Floating_mob(150, 105, get_floating_mob_sprite(True), True)], 105, 12, True),
-                          Lane([Floating_mob(150, 150, get_floating_mob_sprite(False), False)], 150, 10, False),
-                          Lane([Floating_mob(150, 195, get_floating_mob_sprite(False), False)], 195, 7, False),
+                          Lane([Floating_mob(150, 60, get_floating_mob_sprite_space(False), False)], 60, 8, False),
+                          Lane([Floating_mob(150, 105, get_floating_mob_sprite_space(True), True)], 105, 12, True),
+                          Lane([Floating_mob(150, 150, get_floating_mob_sprite_space(False), False)], 150, 10, False),
+                          Lane([Floating_mob(150, 195, get_floating_mob_sprite_space(False), False)], 195, 7, False),
 
-                          Lane([Floating_mob(150, 290, get_floating_mob_sprite(False), False)], 290, 6, False),
-                          Lane([Floating_mob(150, 335, get_floating_mob_sprite(False), False)], 335, 9, False),
-                          Lane([Floating_mob(150, 380, get_floating_mob_sprite(True), True)], 380, 5, True),
-                          Lane([Floating_mob(150, 425, get_floating_mob_sprite(True), False)], 425, 12, False),
-                          Lane([Floating_mob(150, 470, get_floating_mob_sprite(True), False)], 470, 3, False),
+                          Lane([Floating_mob(150, 290, get_floating_mob_sprite_space(False), False)], 290, 6, False),
+                          Lane([Floating_mob(150, 335, get_floating_mob_sprite_space(False), False)], 335, 9, False),
+                          Lane([Floating_mob(150, 380, get_floating_mob_sprite_space(True), True)], 380, 5, True),
+                          Lane([Floating_mob(150, 425, get_floating_mob_sprite_space(True), False)], 425, 12, False),
+                          Lane([Floating_mob(150, 470, get_floating_mob_sprite_space(True), False)], 470, 3, False),
 
-                          Lane([Floating_mob(150, 555, get_floating_mob_sprite(True), False)], 555, 4, False),
-                          Lane([Floating_mob(150, 600, get_floating_mob_sprite(True), False)], 600, 10, False),
-                          Lane([Floating_mob(150, 645, get_floating_mob_sprite(True), True)], 645, 5, True),
+                          Lane([Floating_mob(150, 555, get_floating_mob_sprite_space(True), False)], 555, 4, False),
+                          Lane([Floating_mob(150, 600, get_floating_mob_sprite_space(True), False)], 600, 10, False),
+                          Lane([Floating_mob(150, 645, get_floating_mob_sprite_space(True), True)], 645, 5, True),
                           Lane(lane_9, 690, 5, False)],
                       safe_lanes=[
                           Lane([Floating_mob(150, 245, get_safe_floating_mob_sprite(True), False)], 245, 6, False),

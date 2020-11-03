@@ -128,10 +128,18 @@ def get_floating_mob_sprite(is_left):
     mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
     return mob_sprite
 
+def get_floating_mob_sprite_space(is_left):
+    log_sprites = [("PixelArt.png", log_size), ("PixelArt-1.png", log_size), ("PixelArt-3.png", log_size)]
+    log_sprite = choice(log_sprites)
+    mob_sprite = pygame.image.load(f"image/npc_sprites/{log_sprite[0]}").convert_alpha()
+    mob_sprite = pygame.transform.scale(mob_sprite, log_sprite[1])
+    mob_sprite = pygame.transform.flip(mob_sprite, is_left, False)
+    return mob_sprite
+
 
 # Gets sprite for safe lane mobs for lvl3
 def get_safe_floating_mob_sprite(is_left):
-    log_sprites = [("log.png", safe_lane_mob)]
+    log_sprites = [("PixelArt-2.png", safe_lane_mob)]
     log_sprite = choice(log_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{log_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, log_sprite[1])

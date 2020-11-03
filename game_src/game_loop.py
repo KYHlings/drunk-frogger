@@ -66,7 +66,7 @@ def game_loop(sound_fx, volume,quiz_category):
     player = Player(620, 770, 40, 30, 0, get_player_sprite(0))
     dead_frog = Dead_Frog()
     pygame.display.set_caption("Drunk Frogger")
-    level_number = 1
+    level_number = 3
     score = 0
     score_time_counter = 0
     while True:
@@ -103,7 +103,10 @@ def game_loop(sound_fx, volume,quiz_category):
                     return
 
             level.move_mobs()
-            level.spawn_mobs()
+            if level_number == 3:
+                level.spawn_space_mobs()
+            else:
+                level.spawn_mobs()
 
                 # Checks collision with cars in each lane.
             player, dead_frog, score, no_death = is_frog_run_over(level, player, score, dead_frog, sound_fx,
