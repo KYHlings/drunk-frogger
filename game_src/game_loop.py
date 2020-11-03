@@ -132,7 +132,7 @@ def game_loop(sound_fx, volume,quiz_category):
                           score, level.safe_lanes, level_number, question_number)
 
             score_time_counter += 1
-            if score_time_counter == 10:
+            if score_time_counter == 30:
                 score -= 1
                 score_time_counter = 0
         level_number += 1

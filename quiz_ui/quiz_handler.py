@@ -20,9 +20,8 @@ def quiz(quiz_category):
     while True:
         quiz_content = get_quiz(quiz_category)
         for q in quiz_content:
-            print(html.unescape(q['question']))
             if len(html.unescape(q['question'])) < 88:
-                return q["question"], "correct", q["incorrect_answers"]
+                return q["question"], q["correct_answer"], q["incorrect_answers"]
 
 
 def quiz_window(quiz, drunk_meter):
