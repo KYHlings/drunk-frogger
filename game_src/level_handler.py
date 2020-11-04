@@ -39,7 +39,7 @@ class Level:
         for i in range(len(self.fl_spawn_timer)):
             self.fl_spawn_timer[i] += extra_time
 
-    def move_mobs(self):
+    def move_and_remove_mobs(self):
         # Moves mobs left and right. Removes after leaving window
         for lane in self.lanes + self.floating_lanes:
             for mob in lane.mobs[:]:
@@ -49,7 +49,7 @@ class Level:
                         lane.mobs.remove(mob)
                 else:
                     mob.update_rect(-1, lane.velocity)
-                    if mob.mob_x <= -60:
+                    if mob.mob_x <= -200:
                         lane.mobs.remove(mob)
 
         for lane in self.safe_lanes:
@@ -77,7 +77,7 @@ class Level:
             if pygame.time.get_ticks() - self.fl_time_spawned[i] >= self.fl_spawn_timer[i]:
                 if not self.floating_lanes[i].is_left:
                     self.floating_lanes[i].floating_mobs.append(
-                        Floating_mob(-60, self.floating_lanes[i].y, get_floating_mob_sprite(False),
+                        Floating_mob(-220, self.floating_lanes[i].y, get_floating_mob_sprite(False),
                                      self.floating_lanes[i].is_left))
                 else:
                     self.floating_lanes[i].floating_mobs.append(
@@ -114,20 +114,19 @@ class Lane:
 def create_level(level_number):
     # Creates the level objects according to the level number
     if level_number == 1:
-        lane_1 = [Mob(30, 445, get_mob_sprite(False), False),
+        lane_1 = [Mob(30, 445, get_mob_sprite(False), False), Mob(800, 445, get_mob_sprite(False), False),
                   Mob(300, 445, get_mob_sprite(False), False), Mob(570, 445, get_mob_sprite(False), False)]
 
-        lane_2 = [Mob(500, 510, get_mob_sprite(True), True), Mob(200, 510, get_mob_sprite(True), True),
-                  Mob(700, 510, get_mob_sprite(True), True),
-                  Mob(400, 510, get_mob_sprite(True), True)]
+        lane_2 = [Mob(200, 510, get_mob_sprite(True), True),
+                  Mob(1000, 510, get_mob_sprite(True), True),
+                  Mob(600, 510, get_mob_sprite(True), True)]
 
-        lane_3 = [Mob(0, 570, get_mob_sprite(False), False), Mob(200, 570, get_mob_sprite(False), False),
-                  Mob(350, 570, get_mob_sprite(False), False),
-                  Mob(500, 570, get_mob_sprite(False), False)]
+        lane_3 = [Mob(1000, 570, get_mob_sprite(False), False), Mob(300, 570, get_mob_sprite(False), False),
+                  Mob(600, 570, get_mob_sprite(False), False)]
 
-        lane_4 = [Mob(600, 640, get_mob_sprite(True), True), Mob(400, 640, get_mob_sprite(True), True),
-                  Mob(250, 640, get_mob_sprite(True), True),
-                  Mob(50, 640, get_mob_sprite(True), True)]
+        lane_4 = [Mob(500, 640, get_mob_sprite(True), True),
+                  Mob(250, 640, get_mob_sprite(True), True),  Mob(800, 640, get_mob_sprite(True), True),
+                  Mob(50, 640, get_mob_sprite(True), True),  Mob(1000, 640, get_mob_sprite(True), True)]
 
         level = Level(lanes=[Lane(lane_1, 445, 2, False),
                              Lane(lane_2, 510, 10, True),
@@ -149,10 +148,12 @@ def create_level(level_number):
                                          (500, 1200)])
 
     if level_number == 2:
-        lane_9 = [Mob(150, 690, get_mob_sprite(False), False), Mob(300, 690, get_mob_sprite(False), False),
-                  Mob(400, 690, get_mob_sprite(False), False),
-                  Mob(600, 690, get_mob_sprite(False), False)]
-        lane_8 = []
+        lane_9 = [Mob(100, 690, get_mob_sprite(False), False), Mob(350, 690, get_mob_sprite(False), False),
+                  Mob(600, 690, get_mob_sprite(False), False),
+                  Mob(880, 690, get_mob_sprite(False), False)]
+        lane_8 = [Mob(100, 625, get_mob_sprite(True), True), Mob(350, 625, get_mob_sprite(True), True),
+                  Mob(600, 625, get_mob_sprite(True), True), Mob(1000, 625, get_mob_sprite(True), True),
+                  Mob(800, 625, get_mob_sprite(True), True)]
         lane_7 = []
 
         level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 3, False),
@@ -164,7 +165,7 @@ def create_level(level_number):
                              Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 7, False),
 
                              Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 15, False),
-                             Lane([Mob(150, 625, get_mob_sprite(True), True)], 625, 3, True),
+                             Lane(lane_8, 625, 3, True),
                              Lane(lane_9, 690, 8, False)],
                       background_image=get_background_image(1),
                       amount_quiz=3,
