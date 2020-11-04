@@ -13,7 +13,7 @@ def sound_settings(volume_float):
         volume_float = float(volume_int) / 10
         volume_rect_x = 450
         screen.blit(main_menu_image(), (0, 0))
-        draw_text("Settings", menu_font_large, BLACK, screen, 400, 100, 'topleft')
+        draw_text("Music settings", menu_font_large, BLACK, screen, 300, 100, 'topleft')
         draw_text("Change volume [-][+]", menu_font, BLACK, screen, 400, 300, 'topleft')
         draw_text("Enter to return", general_font, BLACK, screen, 50, 650, "topleft")
         for event in pygame.event.get():
