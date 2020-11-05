@@ -18,11 +18,12 @@ class Player:
         self.player_mask = pygame.mask.from_surface(self.img)
         self.player_rect = self.img.get_rect(topleft=(self.x, self.y))
         self.floating = False
+        self.index = 0
 
     def update_img(self):
         # Updates player avatar image
-        self.img = get_player_sprite(self.drunk_meter)
-        self.img = rotate_player_sprite(self.img, self.rotation)
+        self.img = get_player_sprite(self.index)
+        #self.img = rotate_player_sprite(self.img, self.rotation)
         self.player_mask = pygame.mask.from_surface(self.img)
         self.player_rect = self.img.get_rect(topleft=(self.x, self.y))
         return self.img, self.player_rect
@@ -39,7 +40,7 @@ class Player:
             self.velocity = -8
 
     def mask_outline(self, screen):
-        self.img = get_player_sprite(self.drunk_meter)
+        self.img = get_player_sprite(self.index)
         self.img = rotate_player_sprite(self.img, self.rotation)
         self.player_mask = pygame.mask.from_surface(self.img)
         mask = self.player_mask
@@ -59,16 +60,20 @@ class Player:
         # Allows player avatar to move with keys on keyboard
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.x -= self.velocity
-            self.rotation = 90
+            self.index = 2
+            #self.rotation = 90
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.x += self.velocity
-            self.rotation = 270
+            self.index = 1
+            #self.rotation = 270
         if keys[pygame.K_UP] or keys[pygame.K_w]:
             self.y -= self.velocity
-            self.rotation = 0
+            self.index = 0
+            #self.rotation = 0
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            self.rotation = 180
+            #self.rotation = 180
             self.y += self.velocity
+            self.index = 3
 
         # Sets border for player to stay on screen.
         if self.y > 770:

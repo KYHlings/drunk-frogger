@@ -81,11 +81,19 @@ def space_frog_image():
 
 
 # gets player sprites depending on drunknes
-def get_player_sprite(drunk_meter):
-    player_sprites = ['frog.png', 'frog_tipsy.png', 'frog_drunk.png', 'frog_sloshed.png', 'frog_sloshed.png']
-    player_sprite = pygame.image.load(f"image/player_sprites/{player_sprites[drunk_meter]}").convert_alpha()
+# def get_player_sprite(drunk_meter):
+#     player_sprites = ['frog.png', 'frog_tipsy.png', 'frog_drunk.png', 'frog_sloshed.png', 'frog_sloshed.png']
+#     player_sprite = pygame.image.load(f"image/player_sprites/{player_sprites[drunk_meter]}").convert_alpha()
+#     player_sprite = pygame.transform.scale(player_sprite, player_sprite_size)
+#     return player_sprite
+
+
+def get_player_sprite(index):
+    player_sprites = ['Hasse_back.png', 'Hasse_right.png', 'Hasse_left.png', 'Hasse_front.png']
+    player_sprite = pygame.image.load(f"image/player_sprites/{player_sprites[index]}").convert_alpha()
     player_sprite = pygame.transform.scale(player_sprite, player_sprite_size)
     return player_sprite
+
 
 def get_player_mask_for_outline():
     player_sprite = pygame.image.load(f"image/player_sprites/frog.png")
