@@ -5,6 +5,7 @@ import requests
 from image.image_handler import get_get_quiz_sprite, get_quiz_box, main_menu_image
 from game_src.window_handler import text_object, draw_text
 from game_src.variabels import *
+from game_src.menu_buttons import movies_category_button, video_games_category_button, books_category_button, music_category_button, general_knowledge_category_button
 
 
 # loads quiz from json-file, in future will load from api.
@@ -68,15 +69,21 @@ def quiz_window(quiz, drunk_meter):
 
 def quiz_settings(current_quiz):
     categories_ls = {11: "Movies", 15: "Video Games", 9: "General Knowledge", 12: "Music", 10: "Books"}
+    highlighted = 0
     while True:
         screen.blit(main_menu_image(), (0, 0))
-        draw_text("Choose quiz category", menu_font, BLACK, screen, 640, 50, "center")
-        draw_text(f"Current quiz category:{categories_ls[current_quiz]}", general_font, BLACK, screen, 50, 100, "topleft")
-        draw_text("[1]:Movies", menu_font, BLACK, screen, 100, 200, 'topleft')
-        draw_text("[2]:Video Games", menu_font, BLACK, screen, 100, 270, 'topleft')
-        draw_text("[3]:Books", menu_font, BLACK, screen, 100, 340, 'topleft')
-        draw_text("[4]:Music", menu_font, BLACK, screen, 100, 410, 'topleft')
-        draw_text("[5]:General Knowledge", menu_font, BLACK, screen, 100, 480, 'topleft')
+        draw_text("Choose quiz category", menu_font, WHITE, screen, 640, 50, "center")
+        draw_text(f"Current quiz category: {categories_ls[current_quiz]}", menu_font, WHITE, screen, 50, 100, "topleft")
+        movies_category_button(highlighted)
+        video_games_category_button(highlighted)
+        books_category_button(highlighted)
+        music_category_button(highlighted)
+        general_knowledge_category_button(highlighted)
+        # draw_text("[1]:Movies", menu_font, BLACK, screen, 100, 200, 'topleft')
+        # draw_text("[2]:Video Games", menu_font, BLACK, screen, 100, 270, 'topleft')
+        # draw_text("[3]:Books", menu_font, BLACK, screen, 100, 340, 'topleft')
+        # draw_text("[4]:Music", menu_font, BLACK, screen, 100, 410, 'topleft')
+        # draw_text("[5]:General Knowledge", menu_font, BLACK, screen, 100, 480, 'topleft')
         draw_text("Enter to return", general_font, BLACK, screen, 50, 650, "topleft")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -93,6 +100,25 @@ def quiz_settings(current_quiz):
                 if event.key == pygame.K_5:
                     current_quiz = 9
                 if event.key == pygame.K_RETURN:
+                    if highlighted == 0:
+                        current_quiz = 11
+                    if highlighted == 1:
+                        current_quiz = 15
+                    if highlighted == 2:
+                        current_quiz = 10
+                    if highlighted == 3:
+                        current_quiz = 12
+                    if highlighted == 4:
+                        current_quiz = 9
                     return current_quiz
+
+                if event.key == pygame.K_DOWN:
+                    highlighted += 1
+                    if highlighted == 5:
+                        highlighted = 0
+                if event.key == pygame.K_UP:
+                    highlighted -= 1
+                    if highlighted < 0:
+                        highlighted = 4
         pygame.display.update()
 
