@@ -1,0 +1,4 @@
+# PyCharm IDEA folder
+.idea
+venv
+*.pyc
