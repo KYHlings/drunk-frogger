@@ -2,8 +2,8 @@
 import pygame
 pygame.init()
 screen = pygame.display.set_mode((1280, 800))
-menu_font_large = pygame.font.Font("font_src/PAPYRUS.TTF", 120)
-menu_font = pygame.font.Font("font_src/PAPYRUS.TTF", 60)
+menu_font_large = pygame.font.Font("font_src/RacingSansOne-Regular.ttf", 120)
+menu_font = pygame.font.Font("font_src/RacingSansOne-Regular.ttf", 50)
 credits_font = pygame.font.Font("font_src/BarcadeBrawlRegular-plYD.ttf",20)
 credits_title_font = pygame.font.Font("font_src/BarcadeBrawlRegular-plYD.ttf",25)
 credits_font_large = pygame.font.Font("font_src/BarcadeBrawlRegular-plYD.ttf",30)
