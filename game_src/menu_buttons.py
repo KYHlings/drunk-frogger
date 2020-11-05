@@ -1,6 +1,7 @@
 from game_src.window_handler import draw_text
 from game_src.variabels import *
 
+# For start menu
 def start_menu_button(highlighted):
     #455 <= mouse[0] <= 455 + 320 and 180 <= mouse[1] <= 180 + 70:
     #mouse = pygame.mouse.get_pos()
@@ -66,7 +67,7 @@ def quit_menu_button(highlighted):
         draw_text("Quit Game", menu_font, WHITE, screen, 495, 540, 'topleft')
 
 
-
+# For settings menu
 def sound_settings_button(highlighted):
     if highlighted == 0:
         pygame.draw.rect(screen, WHITE, (445, 270, 390, 70), 3)
@@ -88,6 +89,7 @@ def quiz_settings_button(highlighted):
         pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (447, 372, 386, 66))
         draw_text("Quiz Settings", menu_font, WHITE, screen, 640, 400, "center")
 
+
 def credit_button(highlighted):
     if highlighted == 2:
         pygame.draw.rect(screen, WHITE, (445, 470, 390, 70), 3)
@@ -97,3 +99,69 @@ def credit_button(highlighted):
         pygame.draw.rect(screen, WHITE, (445, 470, 390, 70), 3)
         pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (447, 472, 386, 66))
         draw_text("Credits", menu_font, WHITE, screen, 640, 500, "center")
+
+
+# For quiz settings menu
+def movies_category_button(highlighted):
+    #455 <= mouse[0] <= 455 + 320 and 180 <= mouse[1] <= 180 + 70:
+    #mouse = pygame.mouse.get_pos()
+    if highlighted == 0:
+        pygame.draw.rect(screen, WHITE, (100, 200, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_SELECTED, (102, 202, 471, 66))
+        draw_text("Movies", menu_font, WHITE, screen, 262, 200, 'topleft')
+    else:
+        pygame.draw.rect(screen, WHITE, (100, 200, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (102, 202, 471, 66))
+        draw_text("Movies", menu_font, WHITE, screen, 262, 200, 'topleft')
+
+
+def video_games_category_button(highlighted):
+    #455 <= mouse[0] <= 455 + 320 and 180 <= mouse[1] <= 180 + 70:
+    #mouse = pygame.mouse.get_pos()
+    if highlighted == 1:
+        pygame.draw.rect(screen, WHITE, (100, 290, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_SELECTED, (102, 292, 471, 66))
+        draw_text("Video Games", menu_font, WHITE, screen, 190, 290, 'topleft')
+    else:
+        pygame.draw.rect(screen, WHITE, (100, 290, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (102, 292, 471, 66))
+        draw_text("Video Games", menu_font, WHITE, screen, 190, 290, 'topleft')
+
+
+def books_category_button(highlighted):
+    #455 <= mouse[0] <= 455 + 320 and 180 <= mouse[1] <= 180 + 70:
+    #mouse = pygame.mouse.get_pos()
+    if highlighted == 2:
+        pygame.draw.rect(screen, WHITE, (100, 380, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_SELECTED, (102, 382, 471, 66))
+        draw_text("Books", menu_font, WHITE, screen, 262, 380, 'topleft')
+    else:
+        pygame.draw.rect(screen, WHITE, (100, 380, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (102, 382, 471, 66))
+        draw_text("Books", menu_font, WHITE, screen, 262, 380, 'topleft')
+
+
+def music_category_button(highlighted):
+    #455 <= mouse[0] <= 455 + 320 and 180 <= mouse[1] <= 180 + 70:
+    #mouse = pygame.mouse.get_pos()
+    if highlighted == 3:
+        pygame.draw.rect(screen, WHITE, (100, 470, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_SELECTED, (102, 472, 471, 66))
+        draw_text("Music", menu_font, WHITE, screen, 262, 470, 'topleft')
+    else:
+        pygame.draw.rect(screen, WHITE, (100, 470, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (102, 472, 471, 66))
+        draw_text("Music", menu_font, WHITE, screen, 262, 470, 'topleft')
+
+
+def general_knowledge_category_button(highlighted):
+    #455 <= mouse[0] <= 455 + 320 and 180 <= mouse[1] <= 180 + 70:
+    #mouse = pygame.mouse.get_pos()
+    if highlighted == 4:
+        pygame.draw.rect(screen, WHITE, (100, 560, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_SELECTED, (102, 562, 471, 66))
+        draw_text("General Knowledge", menu_font, WHITE, screen, 112, 560, 'topleft')
+    else:
+        pygame.draw.rect(screen, WHITE, (100, 560, 475, 70), 3)
+        pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (102, 562, 471, 66))
+        draw_text("General Knowledge", menu_font, WHITE, screen, 112, 560, 'topleft')
