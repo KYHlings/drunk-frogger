@@ -123,8 +123,8 @@ def get_get_quiz_sprite():
 
 # Gets the car sprites for the mob class
 def get_mob_sprite(is_left):
-    cars_sprites = [("car_green1.png", car_green_size), ("car_red1.png", car_red_size), ("taxi1.png", taxi_size),
-                    ("postnord2.png", truck_size)]
+    cars_sprites = [("Car_grey.PNG", car_grey_size), ("Car_red.PNG", car_red_size), ("Car_green.PNG", car_green_size),
+                    ("Car_blue.PNG", car_blue_size), ("Car_purple.PNG", car_purple_size), ("Car_Yellow.PNG", (car_yellow_size))]
     car_sprite = choice(cars_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{car_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, car_sprite[1])
