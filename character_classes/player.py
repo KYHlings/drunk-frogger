@@ -10,7 +10,7 @@ class Player:
         self.y = player_y
         self.width = width
         self.height = height
-        self.velocity = 5
+        self.velocity = 7
         self.rotation = rotation
         self.drunk_meter = 0
         self.img = img
@@ -31,7 +31,7 @@ class Player:
     def drunken_consequence(self):
         # Changes player movement depending on how high drunk_meter is
         if self.drunk_meter == 1:
-            self.velocity = 3.5
+            self.velocity = 4.5
         elif self.drunk_meter == 2:
             self.velocity = 10
         elif self.drunk_meter == 3:
