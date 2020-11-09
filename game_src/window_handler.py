@@ -81,9 +81,9 @@ def level_title_window(level_number):
     # Display level names before playing a level
     name_ls = ['Suburban Bourbon', 'Cosmopolitan', 'Pangalactic']
     screen.fill(BLACK)
-    draw_text(name_ls[level_number - 1], title_font, WHITE, screen, 650, 350, 'center')
+    draw_text(name_ls[level_number - 1], title_font, LIGHT_PURPLE_SELECTED, screen, 650, 350, 'center')
     if level_number == 3:
-        draw_text('Gargleblaster', title_font, WHITE, screen, 650, 450, 'center')
+        draw_text('Gargleblaster', title_font, LIGHT_PURPLE_SELECTED, screen, 650, 450, 'center')
     pygame.display.update()
     pygame.time.delay(1000)
 

@@ -10,7 +10,7 @@ credits_font_large = pygame.font.Font("font_src/BarcadeBrawlRegular-plYD.ttf",30
 pause_font = pygame.font.Font("font_src/PAPYRUS.TTF", 30)
 general_font = pygame.font.Font("font_src/PAPYRUS.TTF", 40)
 score_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 45)
-title_font = pygame.font.Font("font_src/ConnectionSerif-d20X.otf", 90)
+title_font = pygame.font.Font("font_src/RacingSansOne-Regular.ttf", 90)
 key_font = pygame.font.Font("font_src/LcdSolid-VPzB.ttf", 30)
 
 BLACK = (0, 0, 0)
