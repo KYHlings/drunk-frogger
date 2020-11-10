@@ -39,7 +39,7 @@ def quiz_correct_window(question, rightanswers, drunk_meter):
                 if event.key == pygame.K_RETURN:
                     return
 
-        screen.blit(get_get_quiz_sprite(), (140, 230))
+        screen.blit(get_get_quiz_sprite(), (160, 170))
         screen.blit(get_quiz_box(), (-20, 330))
         draw_text("Correct!", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
         draw_text(f"The question was: {question}", question_fonts_ls, BLACK, screen, 75, 525, 'topleft')
@@ -62,7 +62,7 @@ def quiz_incorrect_window(question, rightanswers, wrong_ans, drunk_meter):
                 if event.key == pygame.K_RETURN:
                     return
 
-        screen.blit(get_get_quiz_sprite(), (140, 230))
+        screen.blit(get_get_quiz_sprite(), (160, 170))
         screen.blit(get_quiz_box(), (-20, 330))
         draw_text("Incorrect!", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
         draw_text(f"The question was: {question}", question_fonts_ls, BLACK, screen, 75, 525, 'topleft')
