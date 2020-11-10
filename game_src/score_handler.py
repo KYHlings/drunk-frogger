@@ -43,7 +43,7 @@ def write_highscore():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYUP:
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     user_name = user_name[:-1]
                 elif event.key == pygame.K_RETURN:
