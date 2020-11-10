@@ -33,7 +33,7 @@ def how_to_play_image():
 
 
 def alcohol_poisoning_image():
-    lose_frog_image = pygame.image.load("image/backgrounds_src/you_lose.jpg")
+    lose_frog_image = pygame.image.load("image/backgrounds_src/HappyHasse_Lose.jpg")
     lose_frog_image = pygame.transform.scale(lose_frog_image, bg_image_size)
     return lose_frog_image
 
@@ -61,7 +61,7 @@ def get_pause_window():
 
 # gets roadkill image
 def roadkill_image():
-    run_over_image = pygame.image.load("image/backgrounds_src/run_over.jpg")
+    run_over_image = pygame.image.load("image/backgrounds_src/HappyHasse_Splat.jpg")
     run_over_image = pygame.transform.scale(run_over_image, bg_image_size)
     return run_over_image
 
