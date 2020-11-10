@@ -108,15 +108,20 @@ def rotate_player_sprite(player_sprite, rotation):
 
 
 # gets the goat sprite
-def get_get_sprite():
-    get_sprite = pygame.image.load("image/npc_sprites/visgetens_het.png")
+# def get_get_sprite():
+#     get_sprite = pygame.image.load("image/npc_sprites/visgetens_het.png")
+#     get_sprite = pygame.transform.scale(get_sprite, goat_lane_size)
+#     return get_sprite
+
+
+def get_poppy_sprite():
+    get_sprite = pygame.image.load("image/npc_sprites/Wise_poppy2.PNG")
     get_sprite = pygame.transform.scale(get_sprite, goat_lane_size)
     return get_sprite
 
-
 # gets the goat in bigger size for the quiz
 def get_get_quiz_sprite():
-    get_sprite = pygame.image.load("image/npc_sprites/visgetens_het.png")
+    get_sprite = pygame.image.load("image/npc_sprites/Wise_poppy.PNG")
     get_sprite = pygame.transform.scale(get_sprite, goat_quiz_size)
     return get_sprite
 
@@ -161,8 +166,14 @@ def get_safe_floating_mob_sprite(is_left):
 
 
 # Gets sprite for life meter and start of drunken meter
+# def get_life_sprite():
+#     life_sprite = pygame.image.load("image/player_sprites/frog_face.png")
+#     life_sprite = pygame.transform.scale(life_sprite, drunk_meter_size)
+#     return life_sprite
+
+
 def get_life_sprite():
-    life_sprite = pygame.image.load("image/player_sprites/frog_face.png")
+    life_sprite = pygame.image.load("image/player_sprites/Hasse_face.PNG")
     life_sprite = pygame.transform.scale(life_sprite, drunk_meter_size)
     return life_sprite
 
