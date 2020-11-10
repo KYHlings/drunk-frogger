@@ -194,7 +194,7 @@ def get_beer_sprite():
 
 # Get roadkill sprite for when player get run over
 def get_roadkill_sprite(drunk_meter):
-    dead_frogs = ["dead_frog.png", "frog_dead_tipsy.png", "frog_dead_drunk.png", "frog_dead_sloshed.png",
+    dead_frogs = ["dead_Hasse.png", "frog_dead_tipsy.png", "frog_dead_drunk.png", "frog_dead_sloshed.png",
                   "frog_dead_sloshed.png"]
     dead_frog = pygame.image.load(f"image/player_sprites/{dead_frogs[drunk_meter]}")
     dead_frog = pygame.transform.scale(dead_frog, player_sprite_size)
