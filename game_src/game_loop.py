@@ -2,7 +2,7 @@ from game_src.level_handler import create_level
 from game_src.pause_screen import pause_screen
 from game_src.score_handler import score_by_player_position, high_score_list
 from character_classes.dead_frog import Dead_Frog
-from image.image_handler import get_player_sprite, get_get_sprite, \
+from image.image_handler import get_player_sprite, get_poppy_sprite, \
     get_life_sprite, get_roadkill_sprite, get_beer_sprite, get_sloshed_face, get_drowned_sprite
 from character_classes.npc import Goat
 from character_classes.player import Player
@@ -46,10 +46,10 @@ def redraw_window(player, wise_goat, dead_frog, background_image, lanes, floatin
         for car in lane.mobs:
             screen.blit(car.image, car.mob_rect)
     if level_number == 3 and question_number < 3:
-        screen.blit(get_get_sprite(),
+        screen.blit(get_poppy_sprite(),
                     (safe_lanes[question_number - 1].floating_mobs[0].mob_x + 100, wise_goat.get_y - 40))
     else:
-        screen.blit(get_get_sprite(), (player.x - 20, wise_goat.get_y - 30))
+        screen.blit(get_poppy_sprite(), (player.x - 20, wise_goat.get_y - 30))
 
     screen.blit(get_life_sprite(), (10, 435))
     screen.blit(pygame.transform.flip(get_sloshed_face(), True, True), (10, 300))
@@ -190,7 +190,7 @@ def is_frog_drowning(level, player, score, level_number, sound_fx, dead_frog, no
             else:
                 sound_fx.play_splash()
                 dead_frog.player_died(player.x, player.y, "drowned")
-            player.reset()
+            player.reset_mid()
             return player, score, dead_frog, no_death
         else:
             if level_number == 3:
