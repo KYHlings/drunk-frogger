@@ -128,17 +128,17 @@ def video_games_category_button(highlighted):
         draw_text("Video Games", menu_font, WHITE, screen, 190, 290, 'topleft')
 
 
-def books_category_button(highlighted):
+def geography_category_button(highlighted):
     #455 <= mouse[0] <= 455 + 320 and 180 <= mouse[1] <= 180 + 70:
     #mouse = pygame.mouse.get_pos()
     if highlighted == 2:
         pygame.draw.rect(screen, WHITE, (100, 380, 475, 70), 3)
         pygame.draw.rect(screen, LIGHT_PURPLE_SELECTED, (102, 382, 471, 66))
-        draw_text("Books", menu_font, WHITE, screen, 262, 380, 'topleft')
+        draw_text("Geography", menu_font, WHITE, screen, 262, 380, 'topleft')
     else:
         pygame.draw.rect(screen, WHITE, (100, 380, 475, 70), 3)
         pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (102, 382, 471, 66))
-        draw_text("Books", menu_font, WHITE, screen, 262, 380, 'topleft')
+        draw_text("Geography", menu_font, WHITE, screen, 262, 380, 'topleft')
 
 
 def music_category_button(highlighted):

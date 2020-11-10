@@ -5,7 +5,7 @@ import requests
 from image.image_handler import get_get_quiz_sprite, get_quiz_box, main_menu_image
 from game_src.window_handler import text_object, draw_text
 from game_src.variabels import *
-from game_src.menu_buttons import movies_category_button, video_games_category_button, books_category_button, music_category_button, general_knowledge_category_button
+from game_src.menu_buttons import movies_category_button, video_games_category_button, geography_category_button, music_category_button, general_knowledge_category_button
 
 
 # loads quiz from json-file, in future will load from api.
@@ -68,7 +68,7 @@ def quiz_window(quiz, drunk_meter):
 
 
 def quiz_settings(current_quiz):
-    categories_ls = {11: "Movies", 15: "Video Games", 9: "General Knowledge", 12: "Music", 10: "Books"}
+    categories_ls = {11: "Movies", 15: "Video Games", 9: "General Knowledge", 12: "Music", 22: "Geography"}
     highlighted = 0
     while True:
         screen.blit(main_menu_image(), (0, 0))
@@ -76,7 +76,7 @@ def quiz_settings(current_quiz):
         draw_text(f"Current quiz category: {categories_ls[current_quiz]}", menu_font, WHITE, screen, 50, 100, "topleft")
         movies_category_button(highlighted)
         video_games_category_button(highlighted)
-        books_category_button(highlighted)
+        geography_category_button(highlighted)
         music_category_button(highlighted)
         general_knowledge_category_button(highlighted)
         # draw_text("[1]:Movies", menu_font, BLACK, screen, 100, 200, 'topleft')
@@ -94,7 +94,7 @@ def quiz_settings(current_quiz):
                 if event.key == pygame.K_2:
                     current_quiz = 15
                 if event.key == pygame.K_3:
-                    current_quiz = 10
+                    current_quiz = 22
                 if event.key == pygame.K_4:
                     current_quiz = 12
                 if event.key == pygame.K_5:
@@ -105,7 +105,7 @@ def quiz_settings(current_quiz):
                     if highlighted == 1:
                         current_quiz = 15
                     if highlighted == 2:
-                        current_quiz = 10
+                        current_quiz = 22
                     if highlighted == 3:
                         current_quiz = 12
                     if highlighted == 4:
