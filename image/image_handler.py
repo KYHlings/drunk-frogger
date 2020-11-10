@@ -89,7 +89,7 @@ def space_frog_image():
 
 
 def get_player_sprite(index):
-    player_sprites = ['Hasse_back_tail.PNG', 'Hasse_right_tail.PNG', 'Hasse_left_tail.PNG', 'Hasse_front.PNG']
+    player_sprites = ['Hasse_back_tail.PNG', 'Hasse_right_tail1.png', 'Hasse_left_tail1.png', 'Hasse_front.PNG']
     player_sprite = pygame.image.load(f"image/player_sprites/{player_sprites[index]}").convert_alpha()
     player_sprite = pygame.transform.scale(player_sprite, player_sprite_size)
     return player_sprite
