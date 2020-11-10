@@ -27,7 +27,7 @@ def win_image():
 
 
 def how_to_play_image():
-    how_to_play = pygame.image.load("image/backgrounds_src/how_to_play1.png")
+    how_to_play = pygame.image.load("image/backgrounds_src/How_To_Play.png")
     how_to_play = pygame.transform.scale(how_to_play, bg_image_size)
     return how_to_play
 
@@ -89,7 +89,7 @@ def space_frog_image():
 
 
 def get_player_sprite(index):
-    player_sprites = ['Hasse_back.png', 'Hasse_right.png', 'Hasse_left.png', 'Hasse_front.png']
+    player_sprites = ['Hasse_back_tail.PNG', 'Hasse_right_tail.PNG', 'Hasse_left_tail.PNG', 'Hasse_front.PNG']
     player_sprite = pygame.image.load(f"image/player_sprites/{player_sprites[index]}").convert_alpha()
     player_sprite = pygame.transform.scale(player_sprite, player_sprite_size)
     return player_sprite
@@ -139,7 +139,7 @@ def get_mob_sprite(is_left):
 
 # Gets the logs for the floating mobs class
 def get_floating_mob_sprite(is_left):
-    log_sprites = [("log.png", log_size)]
+    log_sprites = [("Tree_stock1.PNG", log_size)]
     log_sprite = choice(log_sprites)
     mob_sprite = pygame.image.load(f"image/npc_sprites/{log_sprite[0]}").convert_alpha()
     mob_sprite = pygame.transform.scale(mob_sprite, log_sprite[1])
