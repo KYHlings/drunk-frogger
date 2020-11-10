@@ -43,8 +43,8 @@ def quiz_correct_window(question, rightanswers, drunk_meter):
         screen.blit(get_quiz_box(), (-20, 330))
         draw_text("Correct!", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
         draw_text(f"The question was: {question}", question_fonts_ls, BLACK, screen, 75, 525, 'topleft')
-        draw_text(f"'{rightanswers}' was the correct answer! Good job!", question_fonts_ls, BLACK, screen, 75, 555, 'topleft')
-        draw_text(f"Press enter to continue", question_fonts_ls, BLACK, screen, 75, 585, 'topleft')
+        draw_text(f"'{rightanswers}' was the correct answer! Good job!", question_fonts_ls, BLACK, screen, 75, 605, 'topleft')
+        draw_text(f"Press enter to continue", question_fonts_ls, BLACK, screen, 75, 685, 'topleft')
 
         pygame.display.update()
 
@@ -66,10 +66,9 @@ def quiz_incorrect_window(question, rightanswers, wrong_ans, drunk_meter):
         screen.blit(get_quiz_box(), (-20, 330))
         draw_text("Incorrect!", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
         draw_text(f"The question was: {question}", question_fonts_ls, BLACK, screen, 75, 525, 'topleft')
-        draw_text(f"'{rightanswers}' was the correct answer, not '{wrong_ans}'! Better luck next time!", question_fonts_ls, BLACK, screen, 75, 555,
+        draw_text(f"'{rightanswers}' was the correct answer, not '{wrong_ans}'! Better luck next time!", question_fonts_ls, BLACK, screen, 75, 605,
                   'topleft')
-        draw_text(f"Press enter to continue", question_fonts_ls, BLACK, screen, 75, 585, 'topleft')
-
+        draw_text(f"Press enter to continue", question_fonts_ls, BLACK, screen, 75, 685, 'topleft')
         pygame.display.update()
 
 
