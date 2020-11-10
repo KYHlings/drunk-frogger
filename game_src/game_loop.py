@@ -134,9 +134,11 @@ def game_loop(sound_fx, volume,quiz_category):
                           score, level.safe_lanes, level_number, question_number)
 
             score_time_counter += 1
-            if score_time_counter == 30:
+            if score_time_counter == 10:
                 score -= 1
                 score_time_counter = 0
+            if score == -1:             # Hindrar Score att gå negativt
+                score += 1
         level_number += 1
         player.drunk_meter = 0      # Resets Drunk-level till noll när man går till nästa bana.
         if level_number == 4:
