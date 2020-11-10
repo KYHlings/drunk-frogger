@@ -114,6 +114,7 @@ class Lane:
 def create_level(level_number):
     # Creates the level objects according to the level number
     if level_number == 1:
+
         lane_1 = [Mob(30, 445, get_mob_sprite(False), False), Mob(800, 445, get_mob_sprite(False), False),
                   Mob(300, 445, get_mob_sprite(False), False), Mob(570, 445, get_mob_sprite(False), False)]
 

@@ -31,13 +31,13 @@ class Sound_fx:
         pygame.mixer.Sound.set_volume(falling_sound, 0.03)
         return falling_sound.play()
 
-
     def play_announcement(self):
         return self.announcement_sound.play()
 
 
 def music_volume(volume):
     pygame.mixer.music.set_volume(volume)
+
 
 ###
 # Each function gets a specific soundfile to load
@@ -47,8 +47,8 @@ def get_title_music():
 
 
 def get_level_music(level_number):
-    music_files = ["df_level1.2_music.mp3", "df_level2_music.mp3","df_level3_music.mp3"]
-    pygame.mixer.music.load(f"music_and_sound/music_src/{music_files[level_number-1]}")
+    music_files = ["df_level1.2_music.mp3", "df_level2_music.mp3", "df_level3_music.mp3"]
+    pygame.mixer.music.load(f"music_and_sound/music_src/{music_files[level_number - 1]}")
     return pygame.mixer.music.play(-1)
 
 
@@ -65,34 +65,40 @@ def get_win_music():
 def get_lose_music():
     pygame.mixer.music.load("music_and_sound/music_src/df_die_music.mp3")
     return pygame.mixer.music.play(1)
+
+
 ####
 def get_credits_music():
     pygame.mixer.music.load("music_and_sound/music_src/df_credits.mp3")
     return pygame.mixer.music.play(1)
 
+
 # Loads different track depending on level of drunkness.
 def get_drunk_music(level_number, drunken_meter):
-    drunk_music_ls =[["df_level1.2_music_drunk1.mp3", "df_level1.2_music_drunk2.mp3", "df_level1.2_music_drunk3.mp3",
-                      "df_level1.2_music_drunk4.mp3"],["df_level2_music_drunk1.mp3", "df_level2.2_drunk2.mp3", "df_level2_music_drunk3.mp3",
-                      "df_level2_music_drunk4.mp3"],["df_level3_music_drunk1.mp3","df_level3_music_drunk2.mp3","df_level3_music_drunk3.mp3","df_level3_music_drunk4.mp3"]]
-    pygame.mixer.music.load(f"music_and_sound/music_src/{drunk_music_ls[level_number-1][drunken_meter-1]}")
+    drunk_music_ls = [["df_level1.2_music_drunk1.mp3", "df_level1.2_music_drunk2.mp3", "df_level1.2_music_drunk3.mp3",
+                       "df_level1.2_music_drunk4.mp3"],
+                      ["df_level2_music_drunk1.mp3", "df_level2.2_drunk2.mp3", "df_level2_music_drunk3.mp3",
+                       "df_level2_music_drunk4.mp3"],
+                      ["df_level3_music_drunk1.mp3", "df_level3_music_drunk2.mp3", "df_level3_music_drunk3.mp3",
+                       "df_level3_music_drunk4.mp3"]]
+    pygame.mixer.music.load(f"music_and_sound/music_src/{drunk_music_ls[level_number - 1][drunken_meter - 1]}")
     return pygame.mixer.music.play(-1)
 
 
 def get_credits():
-    #Adds credits music
+    # Adds credits music
     pygame.mixer.music.load("music_and_sound/music_src/df_credits.mp3")
     pygame.mixer.music.play(-1)
 
 
 def get_announcement():
-    #Adds announcement
+    # Adds announcement
     announcement = pygame.mixer.Sound("music_and_sound/sounds_fx_src/df-theme-announcer.ogg")
     return announcement
 
 
 def get_splat():
-    #Adds sound-fx when colliding with car
+    # Adds sound-fx when colliding with car
     splat_files = ["df_splat1.ogg", "df_splat2.ogg", "df_splat3.ogg"]
     splat_fx = []
     for s in splat_files:
@@ -101,7 +107,7 @@ def get_splat():
 
 
 def get_burp():
-    #Adds sound-fx when drunk
+    # Adds sound-fx when drunk
     burp_files = ["df_burp1.ogg", "df_burp2.wav", "df_burp3.ogg"]
     burp_fx = []
     for b in burp_files:
@@ -110,7 +116,7 @@ def get_burp():
 
 
 def get_splash():
-    #Adds sound-fx when falling into water
+    # Adds sound-fx when falling into water
     splash_files = ["df_water_splash.ogg"]
     splash_fx = []
     for s in splash_files:
@@ -119,7 +125,7 @@ def get_splash():
 
 
 def get_falling():
-    #Adds sound-fx when falling into space
+    # Adds sound-fx when falling into space
     falling_files = ["df_falling_short.mp3", "df_falling_pitch_short.mp3"]
     falling_fx = []
     for s in falling_files:
