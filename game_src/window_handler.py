@@ -1,9 +1,10 @@
 import sys
-
+import time
 from game_src.variabels import *
 from image.image_handler import win_image, alcohol_poisoning_image, how_to_play_image, roadkill_image, drown_image, \
     space_frog_image, credits_image
 from music_and_sound.sound_handler import get_win_music, get_lose_music, get_credits_music, get_title_music
+from game_src.score_handler import score_window
 
 score_surf = pygame.surface.Surface((240, 60))
 
@@ -49,6 +50,7 @@ def lose_window(cause_of_death):
     while losing:
         if cause_of_death == "roadkill":
             screen.blit(roadkill_image(), full_window_blit_pos)
+            time.sleep(2)
         elif cause_of_death == "drowned":
             screen.blit(drown_image(), full_window_blit_pos)
         elif cause_of_death == "alcohol_poisoning":
@@ -59,7 +61,8 @@ def lose_window(cause_of_death):
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYUP:
-                return
+                time.sleep(3)
+                return score_window()
 
         pygame.display.update()
 

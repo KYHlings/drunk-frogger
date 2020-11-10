@@ -10,7 +10,7 @@ from quiz_ui.quiz_handler import quiz_window, quiz
 from music_and_sound.sound_handler import get_level_music, get_goat_music, get_drunk_music
 from game_src.window_handler import lose_window, win_window, level_title_window, draw_text
 from game_src.variabels import *
-
+import time
 
 def redraw_window(player, wise_goat, dead_frog, background_image, lanes, floating_lanes, score, safe_lanes,
                   level_number, question_number):
@@ -175,6 +175,9 @@ def is_frog_run_over(level, player, score, dead_frog, sound_fx, no_death):
                     player.reset()
                     return player, dead_frog, score, no_death
                 else:
+                    dead_frog.player_died(player.x, player.y, "roadkill")
+                    sound_fx.play_splat()
+                    time.sleep(2)
                     lose_window("roadkill")
                     high_score_list(score)
                     return player, dead_frog, score, no_death

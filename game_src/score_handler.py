@@ -2,9 +2,20 @@ import sys
 from pathlib import Path
 import json
 
-from game_src.window_handler import draw_text
+#from game_src.window_handler import draw_text
 from game_src.variabels import *
 
+# Write text at created surface.
+def draw_text(text, font, colour, surface, x, y, direction):
+    text_obj = font.render(text, 1, colour)
+    text_rect = text_obj.get_rect()
+    if direction == 'topleft':
+        text_rect.topleft = (x, y)
+    if direction == 'center':
+        text_rect.center = (x, y)
+    if direction == 'topright':
+        text_rect.topright = (x, y)
+    surface.blit(text_obj, text_rect)
 
 def score_by_player_position(player_y, last_y, score):
     # takes player postition and returns score.
