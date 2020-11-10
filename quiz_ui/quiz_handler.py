@@ -25,6 +25,55 @@ def quiz(quiz_category):
                 return q["question"], q["correct_answer"], q["incorrect_answers"]
 
 
+def quiz_correct_window(question, rightanswers, drunk_meter):
+
+    while True:
+        question_fonts_ls = pygame.font.Font(f"font_src/{font_list[drunk_meter][0]}", font_list[drunk_meter][1])
+        goat_name_fonts = pygame.font.Font(f"font_src/{font_list[drunk_meter][0]}", font_list[drunk_meter][1] + 15)
+
+        # checks players answers
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    return
+
+        screen.blit(get_get_quiz_sprite(), (140, 230))
+        screen.blit(get_quiz_box(), (-20, 330))
+        draw_text("Correct!", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
+        draw_text(f"The question was: {question}", question_fonts_ls, BLACK, screen, 75, 525, 'topleft')
+        draw_text(f"'{rightanswers}' was the correct answer! Good job!", question_fonts_ls, BLACK, screen, 75, 555, 'topleft')
+        draw_text(f"Press enter to continue", question_fonts_ls, BLACK, screen, 75, 585, 'topleft')
+
+        pygame.display.update()
+
+
+def quiz_incorrect_window(question, rightanswers, wrong_ans, drunk_meter):
+    while True:
+        question_fonts_ls = pygame.font.Font(f"font_src/{font_list[drunk_meter][0]}", font_list[drunk_meter][1])
+        goat_name_fonts = pygame.font.Font(f"font_src/{font_list[drunk_meter][0]}", font_list[drunk_meter][1] + 15)
+
+        # checks players answers
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    return
+
+        screen.blit(get_get_quiz_sprite(), (140, 230))
+        screen.blit(get_quiz_box(), (-20, 330))
+        draw_text("Incorrect!", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
+        draw_text(f"The question was: {question}", question_fonts_ls, BLACK, screen, 75, 525, 'topleft')
+        draw_text(f"'{rightanswers}' was the correct answer, not '{wrong_ans}'! Better luck next time!", question_fonts_ls, BLACK, screen, 75, 555,
+                  'topleft')
+        draw_text(f"Press enter to continue", question_fonts_ls, BLACK, screen, 75, 585, 'topleft')
+
+        pygame.display.update()
+
+
+
 def quiz_window(quiz, drunk_meter):
     # takes quiz function and draws on screen.
 
@@ -53,8 +102,15 @@ def quiz_window(quiz, drunk_meter):
                 exit()
             if event.type == pygame.KEYDOWN:
                 for i in range(len(question_list)):
+                    # if event.key == keys[i]:
+                    #     return question_list[i] == rightanswers
                     if event.key == keys[i]:
-                        return question_list[i] == rightanswers
+                        if question_list[i] == rightanswers:
+                            quiz_correct_window(question, rightanswers, drunk_meter)
+                            return True
+                        else:
+                            quiz_incorrect_window(question, rightanswers, question_list[i], drunk_meter)
+                            return False
         screen.blit(get_get_quiz_sprite(), (160, 170))
         screen.blit(get_quiz_box(), (-20, 330))
         draw_text("Wise Poppy", goat_name_fonts, BLACK, screen, 175, 445, 'topleft')
