@@ -129,7 +129,7 @@ def create_level(level_number):
                   Mob(250, 640, get_mob_sprite(True), True),  Mob(800, 640, get_mob_sprite(True), True),
                   Mob(50, 640, get_mob_sprite(True), True),  Mob(1000, 640, get_mob_sprite(True), True)]
 
-        level = Level(lanes=[Lane(lane_1, 445, 2, False),
+        level = Level(lanes=[Lane(lane_1, 445, 4, False),
                              Lane(lane_2, 510, 10, True),
                              Lane(lane_3, 570, 12, False),
                              Lane(lane_4, 640, 6, True)],
@@ -158,13 +158,13 @@ def create_level(level_number):
                   Mob(800, 625, get_mob_sprite(True), True)]
         lane_7 = []
 
-        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 5, False),
-                             Lane([Mob(150, 115, get_mob_sprite(True), True)], 115, 5, True),
+        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 12, False),
+                             Lane([Mob(150, 115, get_mob_sprite(True), True)], 115, 7, True),
                              Lane([Mob(150, 185, get_mob_sprite(True), True)], 185, 10, True),
 
-                             Lane([Mob(150, 315, get_mob_sprite(False), False)], 315, 4, False),
+                             Lane([Mob(150, 315, get_mob_sprite(False), False)], 315, 5, False),
                              Lane([Mob(150, 375, get_mob_sprite(True), True)], 375, 14, True),
-                             Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 7, False),
+                             Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 8, False),
 
                              Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 5, False),
                              Lane(lane_8, 625, 5, True),
@@ -179,8 +179,8 @@ def create_level(level_number):
                       floating_lanes=[],
                       sinking_cord=(0, 0),
                       safe_lanes=[],
-                      possible_spawn=[(2000, 2500), (1500, 2500), (700, 1600),
-                                      (2500, 2700), (2500, 3000), (1000, 1800), # ändra avstånd mellan spawn
+                      possible_spawn=[(3000, 3500), (1900, 2500), (1200, 2000),
+                                      (2500, 2700), (2500, 3000), (1800, 2000), # ändra avstånd mellan spawn
                                       (2400, 2800), (2800, 3000), (3000, 3500)],
                       fl_possible_spawn=[]
                       )
