@@ -56,6 +56,19 @@ class Player:
         self.x = 620
         self.y = 770
 
+    def reset_mid(self):
+        self.x = 620
+        self.y = 380
+
+    # def reset_second_top(self):
+    #     self.x = 620
+    #     self.y = 500
+    #
+    # def reset_top(self):
+    #     self.x = 620
+    #     self.y = 230
+
+
     def move(self, keys):
         # Allows player avatar to move with keys on keyboard
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
