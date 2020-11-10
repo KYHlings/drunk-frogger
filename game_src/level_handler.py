@@ -143,7 +143,8 @@ def create_level(level_number):
                       fl_time_spawned=[tick, tick, tick, tick, tick, tick],
                       sinking_cord=(85, 305),
                       safe_lanes=[],
-                      possible_spawn=[(3200, 4200), (800, 1700), (700, 1500), (1000, 2000)],
+                      #possible_spawn=[(3200, 4200), (800, 1700), (700, 1500), (1000, 2000)],
+                      possible_spawn=[(4000, 6000), (2000, 5000), (2000, 7000), (3000, 5000)],
                       fl_possible_spawn=[(3000, 4000), (1000, 2000), (500, 1700), (1000, 2000), (1000, 2000),
                                          (500, 1200)])
 

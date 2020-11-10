@@ -134,11 +134,11 @@ def geography_category_button(highlighted):
     if highlighted == 2:
         pygame.draw.rect(screen, WHITE, (100, 380, 475, 70), 3)
         pygame.draw.rect(screen, LIGHT_PURPLE_SELECTED, (102, 382, 471, 66))
-        draw_text("Geography", menu_font, WHITE, screen, 262, 380, 'topleft')
+        draw_text("Geography", menu_font, WHITE, screen, 220, 380, 'topleft')
     else:
         pygame.draw.rect(screen, WHITE, (100, 380, 475, 70), 3)
         pygame.draw.rect(screen, LIGHT_PURPLE_UNSELECTED, (102, 382, 471, 66))
-        draw_text("Geography", menu_font, WHITE, screen, 262, 380, 'topleft')
+        draw_text("Geography", menu_font, WHITE, screen, 220, 380, 'topleft')
 
 
 def music_category_button(highlighted):
