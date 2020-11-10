@@ -157,7 +157,7 @@ def create_level(level_number):
                   Mob(800, 625, get_mob_sprite(True), True)]
         lane_7 = []
 
-        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 3, False),
+        level = Level(lanes=[Lane([Mob(150, 55, get_mob_sprite(False), False)], 55, 5, False),
                              Lane([Mob(150, 115, get_mob_sprite(True), True)], 115, 5, True),
                              Lane([Mob(150, 185, get_mob_sprite(True), True)], 185, 10, True),
 
@@ -165,8 +165,8 @@ def create_level(level_number):
                              Lane([Mob(150, 375, get_mob_sprite(True), True)], 375, 14, True),
                              Lane([Mob(150, 430, get_mob_sprite(False), False)], 430, 7, False),
 
-                             Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 15, False),
-                             Lane(lane_8, 625, 3, True),
+                             Lane([Mob(150, 570, get_mob_sprite(False), False)], 570, 5, False),
+                             Lane(lane_8, 625, 5, True),
                              Lane(lane_9, 690, 8, False)],
                       background_image=get_background_image(1),
                       amount_quiz=3,
@@ -179,8 +179,8 @@ def create_level(level_number):
                       sinking_cord=(0, 0),
                       safe_lanes=[],
                       possible_spawn=[(2000, 2500), (1500, 2500), (700, 1600),
-                                      (1800, 2700), (500, 1600), (1200, 1800),
-                                      (300, 1000), (2000, 2500), (2000, 3000)],
+                                      (2500, 2700), (2500, 3000), (1000, 1800), # ändra avstånd mellan spawn
+                                      (2400, 2800), (2800, 3000), (3000, 3500)],
                       fl_possible_spawn=[]
                       )
 
