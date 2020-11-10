@@ -21,7 +21,7 @@ def get_background_image(level_number):
 
 
 def win_image():
-    win_frog_image = pygame.image.load("image/backgrounds_src/win_frog.jpg")
+    win_frog_image = pygame.image.load("image/backgrounds_src/HappyHasse_Win.jpg")
     win_frog_image = pygame.transform.scale(win_frog_image, bg_image_size)
     return win_frog_image
 
