@@ -54,7 +54,8 @@ def music_volume(volume):
 # Each function gets a specific soundfile to load
 
 def get_title_music():
-    pygame.mixer.music.load("music_and_sound/music_src/df_theme_music2.mp3")
+    #pygame.mixer.music.load("music_and_sound/music_src/df_theme_music2.mp3")
+    pygame.mixer.music.load("music_and_sound/music_src/new_music/mahna_rapsody.mp3")
     return pygame.mixer.music.play(-1)
 
 
